@@ -3,10 +3,19 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
 </head>
 <body>
-    <header>
+    <div class = "img">
         <img src="Images/logo.png" alt="LOGO">
-    </header>
+    </div>
+
+    <div class="dots-container">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+Con
 </body>
 </html>
