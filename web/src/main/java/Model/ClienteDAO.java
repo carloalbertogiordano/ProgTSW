@@ -9,8 +9,7 @@ public class ClienteDAO {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
         String insert = "INSERT INTO Cliente (Nickname, Mail, Pass, Tel, Via, Provincia) VALUES ('" + c.getNickname() + "', '" + c.getMail() + "', '" + c.getPass() + "', '" + c.getTel() + "', '" + c.getVia() + "', '" + c.getProvincia() + "')";
-        PreparedStatement pdstmt = con.prepareStatement(insert);
-        ResultSet rs = pdstmt.executeQuery();
+        stmt.executeUpdate(insert);
     }
 
     public Cliente doRetrieveByMail(String m) throws SQLException {
@@ -48,6 +47,17 @@ public class ClienteDAO {
         ResultSet rs = pdstmt.executeQuery();
     }
 
-
-
+    public boolean isCorrectLogin(String mail, String pass) throws SQLException {
+            Connection con = ConPool.getConnection();
+            Statement stmt = (Statement) con.createStatement();
+            String select = "SELECT Pass FROM Cliente WHERE Mail = '" + mail + "'";
+            PreparedStatement pdstmt = con.prepareStatement(select);
+            ResultSet rs = pdstmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(1).equals(pass)) {
+                    return true;
+                }
+            }
+        return false;
+    }
 }

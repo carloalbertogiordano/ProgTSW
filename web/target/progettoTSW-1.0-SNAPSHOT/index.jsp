@@ -18,6 +18,8 @@
     </div>
 
     <p>Registrati: <a href="CreazioneUtente.jsp">register</a></p>
+    <p>Login: <a href="login.jsp">login</a></p>
+
 
 </body>
 </html>

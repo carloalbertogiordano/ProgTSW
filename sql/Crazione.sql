@@ -9,7 +9,7 @@ Nickname varchar(50) not null unique,
 Tel varchar(13) not null unique,
 Via varchar(100) not null,
 Provincia varchar(2) not null,
-Administrator boolean not null
+Administrator boolean not null default false
 );
 
 create table Carrello(
