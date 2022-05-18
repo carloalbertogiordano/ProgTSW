@@ -5,9 +5,8 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World! - CIAO" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+    <header>
+        <img src="Images/logo.png" alt="LOGO">
+    </header>
 </body>
 </html>
