@@ -3,14 +3,13 @@ CREATE DATABASE Ecommerce;
 USE Ecommerce;
 
 create table Cliente(
-Mail varchar(50) not null unique,
+Mail varchar(70) PRIMARY KEY,
 Pass varchar(50) not null unique,
 Nickname varchar(50) not null unique,
 Tel varchar(13) not null unique,
 Via varchar(100) not null,
 Provincia varchar(2) not null,
-Administrator boolean not null,
-primary key (Mail, Pass)
+Administrator boolean not null
 );
 
 create table Carrello(
@@ -20,12 +19,11 @@ create table Carrello(
 
 create table Ordine(
 ClienteMail varchar(50) not null unique,
-ClientePassword varchar (50) not null unique,
 CarrelloCod int not null unique AUTO_INCREMENT,
 Fattura varchar(50) not null unique,
-foreign key (ClienteMail, ClientePassword) references Cliente(Mail, Pass),
+foreign key (ClienteMail) references Cliente(Mail),
 foreign key (CarrelloCod) references Carrello(Cod),
-primary key (ClienteMail, ClientePassword, CarrelloCod, Fattura)
+primary key (ClienteMail, CarrelloCod, Fattura)
 );
 
 create table Pezzo(
@@ -66,14 +64,12 @@ create table Applicare (
 
 create table Carta(
 	ClienteMail varchar (50) not null,
-    ClientePassword varchar (50) not null,
     N_Carta int not null,
     Intestatario varchar (50) not null,
     CVV int not null,
     Scadenza date not null,
     foreign key (ClienteMail) references Cliente(Mail),
-    foreign key (ClientePassword) references Cliente(Pass),
-    primary key (ClienteMail, ClientePassword, N_Carta)
+    primary key (ClienteMail, N_Carta)
 );
 
 create table Comporre(
@@ -85,7 +81,3 @@ create table Comporre(
    	foreign key (CarrelloCod) references Carrello(Cod),
 	primary key (PezzoID, CarrelloCod)
 );
-
-
-###Popolazione###
-

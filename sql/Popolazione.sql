@@ -12,9 +12,9 @@ insert into Carrello (Totale) values (1000);
 insert into Carrello (Totale) values (10000);
 
 #Ordini
-insert into Ordine values ("cliente1@placeholdermail.com", "8890faaaf4bf2f913be5ccff9e5f23b88657bd15", 1, "1");
-insert into Ordine values ("cliente2@placeholdermail.com", "0b2646fdcdc7d726f41cb457877840fa4ef5cd2f", 2, "2");
-insert into Ordine values ("cliente3@placeholdermail.com", "cd5883c1e209563a8dfca43d005e2f6a87af573d", 3, "3");
+insert into Ordine values ("cliente1@placeholdermail.com", 1, "1");
+insert into Ordine values ("cliente2@placeholdermail.com", 2, "2");
+insert into Ordine values ("cliente3@placeholdermail.com", 3, "3");
 
 #CPU
 insert into Pezzo (Id, tipo, Marca, Modello, Prezzo, Wattaggio, Frequenza, N_Core, url) values (1, "CPU", "Intel", "i7", 200, 300, 4.2, 8, "https://www.intel.com/content/dam/www/global/badges/11th-gen-core-i7-processors-badge-rwd.png.rendition.intel.web.64.64.png");
