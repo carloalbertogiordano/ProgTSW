@@ -3,3 +3,10 @@ img {
     width: 4%;
     object-fit: contain;
 }
+
+divide {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+}

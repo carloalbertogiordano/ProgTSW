@@ -16,6 +16,8 @@
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
-Con
+
+    <p>Registrati: <a href="CreazioneUtente.jsp">register</a></p>
+
 </body>
 </html>
