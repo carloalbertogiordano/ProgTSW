@@ -1,5 +1,8 @@
 package Model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class CPU extends Prodotto {
     private double frequenza;
     private int N_Core;
@@ -10,19 +13,12 @@ public class CPU extends Prodotto {
         this.N_Core = N_Core;
     }
 
-    public double getFrequenza() {
-        return frequenza;
+    public ArrayList<CPU> getCpuList() throws SQLException {
+        ArrayList<CPU> list_CPUs = new ArrayList<CPU>();
+        ProdottoDAO PDAO = new ProdottoDAO();
+        ArrayList<Prodotto> list = (ArrayList<Prodotto>) PDAO.doRetriveByType("CPU");
+
+        return list;
     }
 
-    public void setFrequenza(double frequenza) {
-        this.frequenza = frequenza;
-    }
-
-    public int getN_Core() {
-        return N_Core;
-    }
-
-    public void setN_Core(int n_Core) {
-        N_Core = n_Core;
-    }
 }

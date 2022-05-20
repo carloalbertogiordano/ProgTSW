@@ -1,24 +1,11 @@
 package Model;
 
-public class Prodotto {
+public abstract class Prodotto {
     private int ID;
     private String marca;
     private String modello;
     private double prezzo;
-    private String type;
-    private int wattaggio;
-    private int frequenza;
-    private int N_CORE;
-    private int N_RAM;
-    private int N_USB;
-    private int N_PCI;
-    private int MBs;
-    private int VRAM;
-    private int N_WATT;
-    private int W_CPU;
-    private short FormaMobo;
-    private String url;
-    private String Descrizione;
+    private String tipo;
 
 
     public Prodotto() {
@@ -41,7 +28,7 @@ public class Prodotto {
         this.wattaggio = wattaggio;
     }
 
-    public int getFrequenza() {
+    public double getFrequenza() {
         return frequenza;
     }
 
