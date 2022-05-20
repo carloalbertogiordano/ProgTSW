@@ -1,0 +1,46 @@
+img {
+    height: 4%;
+    width: 4%;
+    object-fit: contain;
+}
+
+divide {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #780000;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.navbar{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+#login{
+    position: absolute;
+    right: 30px;
+    display: flex;
+    align-items: center;
+}
