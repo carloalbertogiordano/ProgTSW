@@ -13,10 +13,10 @@
     <div class="navbar">
         <%
             if(c==null){
-                out.println("<a href=\"login.jsp\"><button>Login</button></a>");
+                out.println("<a href=\"login.jsp\"><button class = \"login\">Login</button></a>");
             }
             else{
-                out.println("<a href=\"Logout\"><button id=\"login\">Logout</button></a>");
+                out.println("<a href=\"Logout\"><button class =\"login\">Logout</button></a>");
             }
         %>
     </div>
