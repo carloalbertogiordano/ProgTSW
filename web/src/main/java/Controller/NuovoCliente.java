@@ -12,11 +12,6 @@ import java.sql.SQLException;
 @WebServlet(name = "NuovoCliente", value = "/NuovoCliente")
 public class NuovoCliente extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nikName = request.getParameter("NikName");
         String password = request.getParameter("Password");
