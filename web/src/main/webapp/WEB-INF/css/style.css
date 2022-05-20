@@ -31,3 +31,16 @@ divide {
 .closebtn:hover {
     color: black;
 }
+
+.navbar{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+#login{
+    position: relative;
+    right: 30px;
+    display: flex;
+    align-items: center;
+}
