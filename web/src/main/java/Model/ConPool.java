@@ -46,7 +46,7 @@ public class ConPool {
             p.setUrl("jdbc:mysql://localhost:3306/Ecommerce?serverTimezone=UTC");
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("user1");
-            p.setPassword("password1");
+            p.setPassword("VoW!S$!h3udC#W");
             p.setMaxActive(10000);
             p.setInitialSize(10);
             p.setMinIdle(10);
