@@ -58,3 +58,7 @@ divide {
     background-color: #669bbc;
     color: black;
 }
+
+.login:visited {
+    text-decoration: none;
+}

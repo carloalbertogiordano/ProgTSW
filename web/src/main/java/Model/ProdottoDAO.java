@@ -21,4 +21,9 @@ public class ProdottoDAO {
         }
         return list;
     }
+
+    public List<Prodotto> doRetriveByType(String type) throws SQLException {
+        Connection conn = ConPool.getConnection();
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Pezzo WHERE ");
+    }
 }
