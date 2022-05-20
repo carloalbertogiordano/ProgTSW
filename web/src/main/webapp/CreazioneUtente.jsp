@@ -9,9 +9,19 @@
 <html>
 <head>
   <title>Creazione Utente</title>
-  <link rel = "stylesheet" type = "text/css" href = "../style.css">
+  <link rel = "stylesheet" type = "text/css" href = "style.css">
 </head>
 <body>
+
+<%
+  if (request.getAttribute("register.error") != null) {
+    out.println("<div class=\"alert\">");
+    out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+    out.println("<strong>Attenzione: </strong> Compila tutti i campi.");
+    out.println("</div>");
+  }
+%>
+
 <h1>Creazione Utente</h1>
 <form action="NuovoCliente" method="post">
   <table>

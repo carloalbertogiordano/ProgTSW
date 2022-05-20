@@ -30,15 +30,15 @@ public class Login extends HttpServlet {
                 System.out.println("Cliente non trovato o password errata");
                 //Rimanda alla pagina di login
                 request.getRequestDispatcher("login.jsp").forward(request, response);
-                //TODO: redirect to the right page
             }
             else{
+                //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
                 System.out.println("Cliente trovato");
+                //Prendi nickname e mail dal DB e crea l' oggetto cliente da tenere in sessione
                 Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail));
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
-                //TODO: redirect to the right page
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } catch (SQLException e) {
