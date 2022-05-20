@@ -18,6 +18,7 @@ public class NuovoCliente extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //
         String nikName = request.getParameter("NikName");
         String password = request.getParameter("Password");
         String email = request.getParameter("Email");

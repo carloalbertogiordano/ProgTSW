@@ -33,7 +33,7 @@ if (request.getAttribute("login.error") != null) {
         </tr>
     </table>
 </form>
-<p>Or <a href="CreazioneUtente.jsp">register</a></p>
+<p>Oppure <a href="CreazioneUtente.jsp">registrati</a></p>
 
 </body>
 </html>
