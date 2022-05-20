@@ -1,9 +1,6 @@
-<%@ page import="Model.CPUDAO" %>
-<%@ page import="Model.CPU" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.MoboDAO" %>
-<%@ page import="Model.Mobo" %><%--
+<%@ page import="Model.*" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -43,6 +40,24 @@
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
+
+    out.println("<br>");
+    out.println("<br>");
+    out.println("<br>");
+
+    RamDAO rDAO = new RamDAO();
+    try {
+        ArrayList<Ram> rams = rDAO.doRetriveByType();
+        for (Ram ram : rams) {
+            out.println("<p>Ram: " + ram.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+
+
+
 
 
 %>

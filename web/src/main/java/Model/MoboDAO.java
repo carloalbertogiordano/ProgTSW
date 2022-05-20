@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class MoboDAO {
 
     //Interroga il DB per avere una lista di prodotti di tipo MOBO
-    //TODO: NON é FINITO QUESTO METODO. SI DEVE PRENDERE LE MOBO
     private ArrayList<Prodotto> doRetrive() throws SQLException {
         ArrayList<Prodotto> list = new ArrayList<>();
         Connection con = ConPool.getConnection();

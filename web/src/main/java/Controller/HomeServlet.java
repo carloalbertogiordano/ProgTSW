@@ -2,16 +2,12 @@ package Controller;
 
 import Model.CarrelloDAO;
 import Model.Cliente;
-import Model.Prodotto;
-import Model.ProdottoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "HomeServlet", value = "/HomeServlet")
 public class HomeServlet extends HttpServlet {

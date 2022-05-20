@@ -3,7 +3,7 @@ package Model;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class CPUDAO extends ProdottoDAO{
+public class CPUDAO {
 
     public CPUDAO(){
         super();
