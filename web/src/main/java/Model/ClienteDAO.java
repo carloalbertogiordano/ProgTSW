@@ -50,8 +50,8 @@ public class ClienteDAO {
     public boolean isCorrectLogin(String mail, String pass) throws SQLException {
             Connection con = ConPool.getConnection();
             Statement stmt = (Statement) con.createStatement();
-            String select = "SELECT Pass FROM Cliente WHERE Mail = '" + mail + "'";
-            PreparedStatement pdstmt = con.prepareStatement(select);
+            PreparedStatement pdstmt = con.prepareStatement("SELECT Pass FROM Cliente WHERE Mail = ? ");
+            pdstmt.setString(1, mail);
             ResultSet rs = pdstmt.executeQuery();
             while (rs.next()) {
                 if (rs.getString(1).equals(pass)) {
@@ -59,5 +59,18 @@ public class ClienteDAO {
                 }
             }
         return false;
+    }
+
+    public String doRetriveNickByEmail(String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Nickname FROM Cliente WHERE Mail = ? ");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+        String nick = "";
+        while(rs.next()){
+            nick = rs.getString(1);
+        }
+        return nick;
     }
 }

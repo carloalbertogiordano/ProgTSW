@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Cliente;
 import Model.ClienteDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -33,10 +34,12 @@ public class Login extends HttpServlet {
             }
             else{
                 System.out.println("Cliente trovato");
+                Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail));
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
-                session.setAttribute("mail", mail);
+                session.setAttribute("cliente", c);
                 //TODO: redirect to the right page
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

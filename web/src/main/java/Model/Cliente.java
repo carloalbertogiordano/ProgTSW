@@ -13,6 +13,11 @@ public class Cliente {
         Administrator = administrator;
     }
 
+    public Cliente(String mail, String nickname){
+        this.Mail = mail;
+        this.Nickname = nickname;
+    }
+
     public String getMail() {
         return Mail;
     }

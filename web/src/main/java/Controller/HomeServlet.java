@@ -16,14 +16,6 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession ss = request.getSession();
-        ProdottoDAO service = new ProdottoDAO();
-        List<Prodotto> list = new ArrayList<Prodotto>();
-        try{
-            list = service.doRetriveAll();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        ss.setAttribute("prodotti", list);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
