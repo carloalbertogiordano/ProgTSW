@@ -55,20 +55,6 @@
         throw new RuntimeException(e);
     }
 
-    out.println("<br>");
-    out.println("<br>");
-    out.println("<br>");
-
-    HddDAO hDAO = new HddDAO();
-    try {
-        ArrayList<Hdd> hdds = hDAO.doRetriveByType();
-        for (Hdd hdd : hdds) {
-            out.println("<p>Hdd: " + hdd.toString() + "</p>");
-        }
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
-
 
 
 
