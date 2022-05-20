@@ -18,12 +18,12 @@ create table Carrello(
 );
 
 create table Ordine(
-ClienteMail varchar(50) not null unique,
-CarrelloCod int not null unique AUTO_INCREMENT,
-Fattura varchar(50) not null unique,
+ClienteMail varchar(50) not null,
+CarrelloCod int not null AUTO_INCREMENT,
+Evaso boolean not null, 
 foreign key (ClienteMail) references Cliente(Mail),
 foreign key (CarrelloCod) references Carrello(Cod),
-primary key (ClienteMail, CarrelloCod, Fattura)
+primary key (ClienteMail, CarrelloCod)
 );
 
 create table Pezzo(
@@ -31,6 +31,7 @@ create table Pezzo(
     Marca varchar (30) not null,
     Modello varchar (30) not null,
     Prezzo int not null,
+    Quantita int not null,
     Wattaggio int,
     Tipo varchar (20) not null,
     Frequenza float,
@@ -77,7 +78,6 @@ create table Comporre(
 	PezzoID int,
     CarrelloCod int,
     Quantità int not null,
-    Prezzo int not null,
 	foreign key (PezzoID) references Pezzo(ID),
    	foreign key (CarrelloCod) references Carrello(Cod),
 	primary key (PezzoID, CarrelloCod)
