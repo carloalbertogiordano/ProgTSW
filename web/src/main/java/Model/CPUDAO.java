@@ -1,0 +1,39 @@
+package Model;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class CPUDAO extends ProdottoDAO{
+
+    public CPUDAO(){
+        super();
+    }
+
+    //Interroga il DB per avere una lista di prodotti di tipo CPU
+    private ArrayList<Prodotto> doRetrive() throws SQLException {
+        ArrayList<Prodotto> list = new ArrayList<>();
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT * FROM Pezzo WHERE Tipo = ? ");
+        pdstmt.setString(1, "CPU");
+        ResultSet rs = pdstmt.executeQuery();
+        while(rs.next()){
+            CPU cpu = new CPU(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getDouble(7), rs.getInt(8), rs.getString(17), rs.getString(18));
+            list.add(cpu);
+        }
+        return list;
+    }
+
+    //Prende la lista di prodotti e fa il cast a lista di cpu
+    public ArrayList<CPU> doRetriveByType() throws SQLException{
+        CPUDAO cDAO = new CPUDAO();
+        ArrayList<Prodotto> listP = cDAO.doRetrive();
+        ArrayList<CPU> listC = new ArrayList<CPU>();
+        for(Prodotto p : listP){
+            listC.add((CPU) p);
+        }
+        return listC;
+    }
+
+
+}

@@ -1,5 +1,5 @@
 package Model;
-
+/*
 public class Mobo extends Prodotto{
     private int forma;
     private int N_RAM;
@@ -45,3 +45,6 @@ public class Mobo extends Prodotto{
         N_PCI = n_PCI;
     }
 }
+
+
+ */

@@ -1,4 +1,7 @@
-<%--
+<%@ page import="Model.CPUDAO" %>
+<%@ page import="Model.CPU" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -11,6 +14,21 @@
     <title>Title</title>
 </head>
 <body>
+<h1>TESTING:</h1>
+
+<%
+    CPUDAO cDAO = new CPUDAO();
+    try {
+        ArrayList<CPU> cpus = cDAO.doRetriveByType();
+        for (CPU cpu : cpus) {
+            out.println("<p>CPU: " + cpu.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+
+%>
 
 </body>
 </html>
