@@ -57,3 +57,24 @@ insert into Pezzo (tipo, Marca, Modello, Prezzo, FormaMobo, url) values ("CASE",
 insert into Pezzo (tipo, Marca, Modello, Prezzo, W_CPU, url) values ("DISSIPATORE", "Cooler Master", "MA612", 100, 300, "https://cdn.coolermaster.com/media/assets/1003/masterair-ma612-stealth-380x380-2-hover.png");
 insert into Pezzo (tipo, Marca, Modello, Prezzo, W_CPU, url) values ("DISSIPATORE", "Noctua", "NH-D12L", 400, 700, "https://noctua.at/pub/media/catalog/product/cache/0cdbea399f8ed06da39b3854134f6934/n/h/nh_d12l_5.jpg");
 insert into Pezzo (tipo, Marca, Modello, Prezzo, W_CPU, url) values ("DISSIPATORE", "Deep Cool", "GAMMAXX GT BK", 35, 150, "https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPUAirCoolers/GAMMAXX_GT_BK/Gallery/608X760/04.jpg?fm=webp&q=60");
+
+#Sconto
+insert into Sconto values('2023-12-24', '2024-12-26', 40);
+
+#Applicare (Sconto su che prodotti?)
+insert into Applicare values('2023-12-24', '2024-12-26', 1);
+insert into Applicare values('2023-12-24', '2024-12-26', 2);
+insert into Applicare values('2023-12-24', '2024-12-26', 5);
+insert into Applicare values('2023-12-24', '2024-12-26', 6);
+insert into Applicare values('2023-12-24', '2024-12-26', 9);
+insert into Applicare values('2023-12-24', '2024-12-26', 10);
+
+
+
+
+
+
+
+
+
+
