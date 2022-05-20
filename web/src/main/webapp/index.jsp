@@ -20,6 +20,9 @@
                 if(c != null){
                     out.println("<h1>Bentornato " + c.getNickname() + "</h1>");
                 }
+                else{
+                    out.println("<h1>Benvenuto su PCBuilder</h1>");
+                }
             %>
         </h1>
     </div>
