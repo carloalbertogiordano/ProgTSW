@@ -1,4 +1,4 @@
-<%@ page import="Model.Cliente.Cliente" %>
+<%@ page import="Model.Cliente_.Cliente" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Model.CPU_.Cpu" %>
