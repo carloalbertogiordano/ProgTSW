@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel = "stylesheet" type = "text/css" href = "WEB-INF/css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
 <body>
 <%

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel = "stylesheet" type = "text/css" href = "WEB-INF/css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
 <body>
 
