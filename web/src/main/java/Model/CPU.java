@@ -13,12 +13,12 @@ public class CPU extends Prodotto {
         this.N_Core = N_Core;
     }
 
-    public ArrayList<CPU> getCpuList() throws SQLException {
+   /* public ArrayList<CPU> getCpuList() throws SQLException {
         ArrayList<CPU> list_CPUs = new ArrayList<CPU>();
         ProdottoDAO PDAO = new ProdottoDAO();
         ArrayList<Prodotto> list = (ArrayList<Prodotto>) PDAO.doRetriveByType("CPU");
 
         return list;
-    }
+    }*/
 
 }

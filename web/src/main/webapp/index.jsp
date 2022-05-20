@@ -36,12 +36,8 @@
         %>
     </div>
 
-<%
-    ProdottoDAO service = new ProdottoDAO();
-    List<Prodotto> list = new ArrayList<Prodotto>();
-    list = service.doRetriveByType("CPU");
 
-%>
+<p>Testing: <a href="testing.jsp"> TEST </a></p>
 
 </body>
 </html>

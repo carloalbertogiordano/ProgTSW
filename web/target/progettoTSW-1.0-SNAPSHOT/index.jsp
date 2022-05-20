@@ -1,4 +1,9 @@
 <%@ page import="Model.Cliente" %>
+<%@ page import="Model.ProdottoDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Model.CPU" %>
+<%@ page import="Model.Prodotto" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -29,9 +34,10 @@
                 out.println("<h1>Benvenuto su PCBuilder</h1><br>");
             }
         %>
-
     </div>
 
+
+<p>Testing: <a href="testing.jsp"> TEST </a></p>
 
 </body>
 </html>

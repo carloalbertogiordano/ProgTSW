@@ -49,12 +49,16 @@ divide {
 }
 
 .login{
+    position: absolute;
+    right: 30px;
     display: flex;
     align-items: center;
-    justify-items: end;
-    margin-right: 30px;
     border-style: none;
     border-radius: 5px;
     background-color: #669bbc;
     color: black;
+}
+
+.login:visited {
+    text-decoration: none;
 }

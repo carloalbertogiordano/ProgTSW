@@ -1,11 +1,24 @@
 package Model;
 
-public abstract class Prodotto {
+public class Prodotto {
     private int ID;
     private String marca;
     private String modello;
     private double prezzo;
-    private String tipo;
+    private String type;
+    private int wattaggio;
+    private double frequenza;
+    private int N_CORE;
+    private int N_RAM;
+    private int N_USB;
+    private int N_PCI;
+    private int MBs;
+    private int VRAM;
+    private int N_WATT;
+    private int W_CPU;
+    private short FormaMobo;
+    private String url;
+    private String Descrizione;
 
 
     public Prodotto() {
