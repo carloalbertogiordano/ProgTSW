@@ -1,7 +1,7 @@
 <%@ page import="Model.Cliente" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="Model.CPU" %>
+<%@ page import="Model.Cpu" %>
 <%@ page import="Model.Prodotto" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>

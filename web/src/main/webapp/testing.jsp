@@ -16,10 +16,10 @@
 <h1>TESTING:</h1>
 
 <%
-    CPUDAO cDAO = new CPUDAO();
+    CpuDAO cDAO = new CpuDAO();
     try {
-        ArrayList<CPU> cpus = cDAO.doRetriveByType();
-        for (CPU cpu : cpus) {
+        ArrayList<Cpu> cpus = cDAO.doRetriveByType();
+        for (Cpu cpu : cpus) {
             out.println("<p>CPU: " + cpu.toString() + "</p>");
         }
     } catch (SQLException e) {
@@ -54,7 +54,6 @@
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
-
 
 
 
