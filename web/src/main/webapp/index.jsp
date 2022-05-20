@@ -16,7 +16,6 @@
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
-    <p>Mattia è stronzo</p>
     <p>Registrati: <a href="CreazioneUtente.jsp">register</a></p>
     <p>Login: <a href="login.jsp">login</a></p>
 
