@@ -16,7 +16,7 @@
                 out.println("<a href=\"login.jsp\"><button>Login</button></a>");
             }
             else{
-                out.println("<a href=\"logout.jsp\"><button id=\"login\">Logout</button></a>");
+                out.println("<a href=\"Logout\"><button id=\"login\">Logout</button></a>");
             }
         %>
     </div>

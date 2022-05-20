@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
 <body>
 
@@ -34,6 +34,7 @@ if (request.getAttribute("login.error") != null) {
     </table>
 </form>
 <p>Oppure <a href="CreazioneUtente.jsp">registrati</a></p>
+
 
 </body>
 </html>
