@@ -18,7 +18,8 @@ public class CPUDAO extends ProdottoDAO{
         pdstmt.setString(1, "CPU");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            CPU cpu = new CPU(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getDouble(7), rs.getInt(8), rs.getString(17), rs.getString(18));
+                                          //int ID,                 String marca,             String modello,           double prezzo,           int quantità,            int wattaggio,         double frequenza,             int N_Core,                  String url,       String descrizione
+            CPU cpu = new CPU(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(7), rs.getInt(8), rs.getString(18), rs.getString(19));
             list.add(cpu);
         }
         return list;

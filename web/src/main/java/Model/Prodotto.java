@@ -8,12 +8,13 @@ public abstract class Prodotto {
     private String tipo;
     private String url;
     private String descrizione;
+    private int quantità;
 
 
 
     public Prodotto() {}
 
-    public Prodotto(int ID, String marca, String modello, double prezzo, String tipo, String url, String descrizione) {
+    public Prodotto(int ID, String marca, String modello, double prezzo, int quantità, String tipo, String url, String descrizione) {
         this.ID = ID;
         this.marca = marca;
         this.modello = modello;
@@ -21,6 +22,7 @@ public abstract class Prodotto {
         this.tipo = tipo;
         this.url = url;
         this.descrizione = descrizione;
+        this.quantità = quantità;
     }
 
     public int getID() {
@@ -53,6 +55,14 @@ public abstract class Prodotto {
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public int getQuantità() {
+        return quantità;
+    }
+
+    public void setQuantità(int quantità) {
+        this.quantità = quantità;
     }
 
     public String getTipo() {
