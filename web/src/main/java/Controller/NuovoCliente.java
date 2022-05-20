@@ -1,7 +1,7 @@
 package Controller;
 
-import Model.Cliente;
-import Model.ClienteDAO;
+import Model.Cliente_.Cliente;
+import Model.Cliente_.ClienteDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

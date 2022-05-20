@@ -1,6 +1,8 @@
-package Model;
+package Model.MOBO_;
 
-public class Mobo extends Prodotto{
+import Model.Prodotto;
+
+public class Mobo extends Prodotto {
     private int forma;
     private int N_RAM;
     private int N_USB;

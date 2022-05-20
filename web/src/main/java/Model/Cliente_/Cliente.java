@@ -1,4 +1,4 @@
-package Model;
+package Model.Cliente_;
 
 public class Cliente {
     private String Mail, Pass, Nickname, Via, Provincia, Tel;

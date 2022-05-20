@@ -1,6 +1,8 @@
-package Model;
+package Model.RAM_;
 
-public class Ram extends Prodotto{
+import Model.Prodotto;
+
+public class Ram extends Prodotto {
 
     private float frequenza;
 

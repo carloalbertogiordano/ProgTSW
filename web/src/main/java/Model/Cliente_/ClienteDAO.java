@@ -1,4 +1,6 @@
-package Model;
+package Model.Cliente_;
+
+import Model.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

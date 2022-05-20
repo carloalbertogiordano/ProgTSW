@@ -1,5 +1,8 @@
-package Model;
-public class Hdd extends Prodotto{
+package Model.HDD_;
+
+import Model.Prodotto;
+
+public class Hdd extends Prodotto {
 
     private int MBs;
 

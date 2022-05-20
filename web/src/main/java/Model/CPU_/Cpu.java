@@ -1,4 +1,6 @@
-package Model;
+package Model.CPU_;
+
+import Model.Prodotto;
 
 import java.util.ArrayList;
 

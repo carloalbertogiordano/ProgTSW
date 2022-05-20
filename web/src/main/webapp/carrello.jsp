@@ -1,4 +1,4 @@
-<%@ page import="Model.Cliente" %><%--
+<%@ page import="Model.Cliente_.Cliente" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 20/05/22

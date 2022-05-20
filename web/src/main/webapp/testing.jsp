@@ -1,6 +1,14 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.*" %><%--
+<%@ page import="Model.*" %>
+<%@ page import="Model.CPU_.Cpu" %>
+<%@ page import="Model.CPU_.CpuDAO" %>
+<%@ page import="Model.HDD_.Hdd" %>
+<%@ page import="Model.HDD_.HddDAO" %>
+<%@ page import="Model.MOBO_.Mobo" %>
+<%@ page import="Model.MOBO_.MoboDAO" %>
+<%@ page import="Model.RAM_.Ram" %>
+<%@ page import="Model.RAM_.RamDAO" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22

@@ -1,4 +1,6 @@
-package Model;
+package Model.Carrello_;
+
+import Model.Prodotto;
 
 import java.util.List;
 
