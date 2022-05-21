@@ -12,7 +12,9 @@
 <%@ page import="Model.Archiviazione_.SDD_.SsdDAO" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Model.GPU_.Gpu" %>
-<%@ page import="Model.GPU_.GpuDAO" %><%--
+<%@ page import="Model.GPU_.GpuDAO" %>
+<%@ page import="Model.PSU_.PsuDAO" %>
+<%@ page import="Model.PSU_.Psu" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -104,6 +106,20 @@
         ArrayList<Gpu> gpus = gDAO.doRetriveByType();
         for (Gpu gpu : gpus) {
             out.println("<p>Gpu: " + gpu.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+    out.println("<br>");
+    out.println("<br>");
+    out.println("<br>");
+
+    PsuDAO pDAO = new PsuDAO();
+    try {
+        ArrayList<Psu> psus = pDAO.doRetriveByType();
+        for (Psu psu : psus) {
+            out.println("<p>Psu: " + psu.toString() + "</p>");
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);
