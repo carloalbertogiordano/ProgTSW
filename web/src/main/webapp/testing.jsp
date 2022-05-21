@@ -10,7 +10,9 @@
 <%@ page import="Model.RAM_.Ram" %>
 <%@ page import="Model.RAM_.RamDAO" %>
 <%@ page import="Model.Archiviazione_.SDD_.SsdDAO" %>
-<%@ page import="Model.Archiviazione_.SDD_.Ssd" %><%--
+<%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
+<%@ page import="Model.GPU_.Gpu" %>
+<%@ page import="Model.GPU_.GpuDAO" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -93,7 +95,19 @@
         throw new RuntimeException(e);
     }
 
+    out.println("<br>");
+    out.println("<br>");
+    out.println("<br>");
 
+    GpuDAO gDAO = new GpuDAO();
+    try {
+        ArrayList<Gpu> gpus = gDAO.doRetriveByType();
+        for (Gpu gpu : gpus) {
+            out.println("<p>Gpu: " + gpu.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
 
 
 %>
