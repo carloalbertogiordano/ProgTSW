@@ -1,4 +1,6 @@
-<%@ page import="Model.Cliente_.Cliente" %><%--
+<%@ page import="Model.Cliente_.Cliente" %>
+<%@ page import="Model.Prodotto" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 20/05/22
@@ -12,7 +14,12 @@
 </head>
 <body>
 <%
-
+    List<Prodotto> list = (List<Prodotto>) session.getAttribute("carrello");
+    out.println("<li>");
+    for(int i = 0; i < list.size(); i++) {
+        out.println("<ul>" + list.get(i).toString() + "</ul>");
+    }
+    out.println("</li>");
 %>
 %>
 </body>

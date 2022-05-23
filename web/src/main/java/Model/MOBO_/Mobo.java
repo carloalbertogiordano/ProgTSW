@@ -8,7 +8,7 @@ public class Mobo extends Prodotto {
     private int N_USB;
     private int N_PCI;
     public Mobo(int ID, String marca, String modello, double prezzo, int quantità,
-                int forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
+                short forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
         super( ID, marca, modello, prezzo, quantità, "MOBO", url, descrizione);
         this.forma = forma;
         this.N_RAM = N_RAM;
