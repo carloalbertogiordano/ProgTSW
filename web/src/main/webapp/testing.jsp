@@ -14,7 +14,9 @@
 <%@ page import="Model.GPU_.Gpu" %>
 <%@ page import="Model.GPU_.GpuDAO" %>
 <%@ page import="Model.PSU_.PsuDAO" %>
-<%@ page import="Model.PSU_.Psu" %><%--
+<%@ page import="Model.PSU_.Psu" %>
+<%@ page import="Model.CASE_.Case" %>
+<%@ page import="Model.CASE_.CaseDAO" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -120,6 +122,20 @@
         ArrayList<Psu> psus = pDAO.doRetriveByType();
         for (Psu psu : psus) {
             out.println("<p>Psu: " + psu.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+    out.println("<br>");
+    out.println("<br>");
+    out.println("<br>");
+
+    CaseDAO caseDAO = new CaseDAO();
+    try {
+        ArrayList<Case> cases = caseDAO.doRetriveByType();
+        for (Case case_ : cases) {
+            out.println("<p>Case: " + case_.toString() + "</p>");
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);
