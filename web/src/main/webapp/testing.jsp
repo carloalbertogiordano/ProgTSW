@@ -16,7 +16,9 @@
 <%@ page import="Model.PSU_.PsuDAO" %>
 <%@ page import="Model.PSU_.Psu" %>
 <%@ page import="Model.CASE_.Case" %>
-<%@ page import="Model.CASE_.CaseDAO" %><%--
+<%@ page import="Model.CASE_.CaseDAO" %>
+<%@ page import="Model.DISSIPATORE_.DissipatoreDAO" %>
+<%@ page import="Model.DISSIPATORE_.Dissipatore" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -136,6 +138,16 @@
         ArrayList<Case> cases = caseDAO.doRetriveByType();
         for (Case case_ : cases) {
             out.println("<p>Case: " + case_.toString() + "</p>");
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
+    DissipatoreDAO dDAO = new DissipatoreDAO();
+    try {
+        ArrayList<Dissipatore> ds = dDAO.doRetriveByType();
+        for (Dissipatore d : ds) {
+            out.println("<p>Dissipatore: " + d.toString() + "</p>");
         }
     } catch (SQLException e) {
         throw new RuntimeException(e);

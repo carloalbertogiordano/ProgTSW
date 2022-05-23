@@ -26,7 +26,7 @@ public class CaseDAO {
         return list;
     }
 
-    //Prende la lista di prodotti e fa il cast a lista di GPU
+    //Prende la lista di prodotti e fa il cast a lista di Case
     public ArrayList<Case> doRetriveByType() throws SQLException{
         CaseDAO cDAO = new CaseDAO();
         ArrayList<Prodotto> listP = cDAO.doRetrive();
