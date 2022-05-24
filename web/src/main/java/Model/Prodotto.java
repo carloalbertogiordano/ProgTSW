@@ -25,6 +25,16 @@ public abstract class Prodotto {
         this.quantità = quantità;
     }
 
+    public Prodotto(String marca, String modello, double prezzo, int quantità, String tipo, String url, String descrizione) {
+        this.marca = marca;
+        this.modello = modello;
+        this.prezzo = prezzo;
+        this.tipo = tipo;
+        this.url = url;
+        this.descrizione = descrizione;
+        this.quantità = quantità;
+    }
+
     public int getID() {
         return ID;
     }

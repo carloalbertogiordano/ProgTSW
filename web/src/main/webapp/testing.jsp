@@ -35,7 +35,7 @@
 
 <%
     CpuDAO cDAO = new CpuDAO();
-    Cpu testCpu = new Cpu();
+    Cpu testCpu = new Cpu("Intel", "i11", 30000, 1, 1000, 40, 12, "NoPicture", "NoDescription");
     try {
         cDAO.Upload(testCpu);
     } catch (SQLException e) {

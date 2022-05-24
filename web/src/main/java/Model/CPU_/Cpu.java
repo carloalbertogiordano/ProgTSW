@@ -18,6 +18,13 @@ public class Cpu extends Prodotto {
         this.N_Core = N_Core;
     }
 
+    public Cpu(String marca, String modello, double prezzo, int quantità, int wattaggio, float frequenza, int N_Core, String url, String descrizione) {
+        super(marca, modello, prezzo, quantità, "CPU", url, descrizione);
+        this.wattaggio = wattaggio;
+        this.frequenza = frequenza;
+        this.N_Core = N_Core;
+    }
+
     public String listCpus(ArrayList<Prodotto> lista){
         return super.toString() + " Wattaggio: " + wattaggio + " Frequenza: " + frequenza + " N_Core: " + N_Core + "\n";
     }
@@ -44,7 +51,8 @@ public class Cpu extends Prodotto {
 
     @Override
     public String toString() {
-        return "Cpu{" +
+        return super.toString() + "\n" +
+                "Cpu{" +
                 "N_Core=" + N_Core +
                 ", frequenza=" + frequenza +
                 ", wattaggio=" + wattaggio +
