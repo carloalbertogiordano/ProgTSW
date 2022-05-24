@@ -1,9 +1,11 @@
 package Model.DISSIPATORE_;
 
+import Model.CASE_.Case;
 import Model.ConPool;
 import Model.PSU_.Psu;
 import Model.PSU_.PsuDAO;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,4 +36,9 @@ public class DissipatoreDAO {
         }
         return listD;
     }
+
+    public void Upload(Dissipatore d) throws SQLException {
+        ProdottoDAO.Upload(d.getMarca(), d.getModello(), d.getPrezzo(), d.getQuantità(), null, d.getTipo(), null, null, null, null, null, null, null, null, d.getW_Cpu(), null, d.getUrl(), d.getDescrizione());
+    }
+
 }

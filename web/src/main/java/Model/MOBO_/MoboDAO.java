@@ -2,6 +2,7 @@ package Model.MOBO_;
 
 import Model.ConPool;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,5 +36,8 @@ public class MoboDAO {
         return listM;
     }
 
+    public void Upload(Mobo m) throws SQLException {
+        ProdottoDAO.Upload(m.getMarca(), m.getModello(), m.getPrezzo(), m.getQuantità(), null, m.getTipo(), null, null, m.getN_RAM(), m.getN_USB(), m.getN_PCI(), null, null, null, null, m.getForma(), m.getUrl(), m.getDescrizione());
+    }
 
 }

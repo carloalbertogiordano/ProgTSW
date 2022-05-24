@@ -1,5 +1,6 @@
 package Model.Archiviazione_.SDD_;
 
+import Model.Archiviazione_.ArchivioDatiDAO;
 import Model.Archiviazione_.HDD_.Hdd;
 import Model.Archiviazione_.HDD_.HddDAO;
 import Model.ConPool;
@@ -8,7 +9,7 @@ import Model.Prodotto;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class SsdDAO {
+public class SsdDAO extends ArchivioDatiDAO {
 
     private ArrayList<Prodotto> doRetrive() throws SQLException {
         ArrayList<Prodotto> list = new ArrayList<>();

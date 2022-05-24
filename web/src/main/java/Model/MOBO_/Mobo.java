@@ -3,7 +3,7 @@ package Model.MOBO_;
 import Model.Prodotto;
 
 public class Mobo extends Prodotto {
-    private int forma;
+    private short forma;
     private int N_RAM;
     private int N_USB;
     private int N_PCI;
@@ -16,7 +16,7 @@ public class Mobo extends Prodotto {
         this.N_PCI = N_PCI;
     }
 
-    public int getForma(){
+    public short getForma(){
         return forma;
     }
     public int getN_RAM(){
@@ -28,7 +28,7 @@ public class Mobo extends Prodotto {
     public int getN_PCI(){
         return N_PCI;
     }
-    public void setForma(int forma){
+    public void setForma(short forma){
         this.forma = forma;
     }
     public void setN_RAM(int N_RAM){

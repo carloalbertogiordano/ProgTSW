@@ -8,10 +8,10 @@ public class Cpu extends Prodotto {
 
 
     private int N_Core;
-    private double frequenza;
+    private float frequenza;
     private int wattaggio;
 
-    public Cpu(int ID, String marca, String modello, double prezzo, int quantità, int wattaggio, double frequenza, int N_Core, String url, String descrizione) {
+    public Cpu(int ID, String marca, String modello, double prezzo, int quantità, int wattaggio, float frequenza, int N_Core, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantità, "CPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
@@ -30,11 +30,24 @@ public class Cpu extends Prodotto {
         N_Core = n_Core;
     }
 
-    public double getFrequenza() {
+    public float getFrequenza() {
         return frequenza;
     }
 
-    public void setFrequenza(double frequenza) {
+    public void setFrequenza(float frequenza) {
         this.frequenza = frequenza;
+    }
+
+    public int getWattaggio() {return wattaggio;}
+
+    public void setWattaggio(int wattaggio) {this.wattaggio = wattaggio; }
+
+    @Override
+    public String toString() {
+        return "Cpu{" +
+                "N_Core=" + N_Core +
+                ", frequenza=" + frequenza +
+                ", wattaggio=" + wattaggio +
+                '}';
     }
 }

@@ -35,6 +35,12 @@
 
 <%
     CpuDAO cDAO = new CpuDAO();
+    Cpu testCpu = new Cpu();
+    try {
+        cDAO.Upload(testCpu);
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
     try {
         ArrayList<Cpu> cpus = cDAO.doRetriveByType();
         for (Cpu cpu : cpus) {

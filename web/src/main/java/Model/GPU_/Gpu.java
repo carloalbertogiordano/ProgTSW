@@ -4,10 +4,10 @@ import Model.Prodotto;
 
 public class Gpu extends Prodotto {
     private int wattaggio, frequenza;
-    private float vRam;
+    private int vRam;
 
     public Gpu(int ID, String marca, String modello, double prezzo, int quantità,
-               int wattaggio, int frequenza, float vRam, String url, String descrizione) {
+               int wattaggio, int frequenza, int vRam, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantità, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
@@ -22,7 +22,7 @@ public class Gpu extends Prodotto {
         return frequenza;
     }
 
-    public float getVRam() {
+    public int getVRam() {
         return vRam;
     }
 
@@ -34,7 +34,7 @@ public class Gpu extends Prodotto {
         this.frequenza = frequenza;
     }
 
-    public void setVRam(float vRam) {
+    public void setVRam(int vRam) {
         this.vRam = vRam;
     }
 

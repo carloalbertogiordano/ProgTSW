@@ -1,12 +1,13 @@
 package Model.Archiviazione_.HDD_;
 
+import Model.Archiviazione_.ArchivioDatiDAO;
 import Model.ConPool;
 import Model.Prodotto;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class HddDAO {
+public class HddDAO extends ArchivioDatiDAO {
 
     private ArrayList<Prodotto> doRetrive() throws SQLException {
         ArrayList<Prodotto> list = new ArrayList<>();

@@ -1,7 +1,9 @@
 package Model.RAM_;
 
 import Model.ConPool;
+import Model.MOBO_.Mobo;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,7 +36,8 @@ public class RamDAO {
         return listR;
     }
 
-
-
+    public void Upload(Ram r) throws SQLException {
+        ProdottoDAO.Upload(r.getMarca(), r.getModello(), r.getPrezzo(), r.getQuantità(), null, r.getTipo(), r.getFrequenza(), null, null, null, null, null, null, null, null, null, r.getUrl(), r.getDescrizione());
+    }
 
 }

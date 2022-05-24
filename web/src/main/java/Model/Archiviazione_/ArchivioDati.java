@@ -1,6 +1,9 @@
 package Model.Archiviazione_;
 
 import Model.Prodotto;
+import Model.ProdottoDAO;
+
+import java.sql.SQLException;
 
 public class ArchivioDati extends Prodotto {
 
@@ -23,4 +26,6 @@ public class ArchivioDati extends Prodotto {
     public String toString() {
         return super.toString() + "\nMBs: " + MBs;
     }
+
+
 }

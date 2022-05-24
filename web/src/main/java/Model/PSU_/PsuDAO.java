@@ -3,7 +3,9 @@ package Model.PSU_;
 import Model.ConPool;
 import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
+import Model.MOBO_.Mobo;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,5 +38,8 @@ public class PsuDAO {
         return listPs;
     }
 
+    public void Upload(Psu p) throws SQLException {
+        ProdottoDAO.Upload(p.getMarca(), p.getModello(), p.getPrezzo(), p.getQuantità(), null, p.getTipo(), null, null, null, null, null, null, null, p.getN_Watt(), null, null, p.getUrl(), p.getDescrizione());
+    }
 
 }

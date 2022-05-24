@@ -5,6 +5,7 @@ import Model.ConPool;
 import Model.CASE_.Case;
 
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,5 +38,8 @@ public class CaseDAO {
         return listC;
     }
 
+    public void Upload(Case c) throws SQLException {
+        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantità(), null, c.getTipo(), null, null, null, null, null, null, null, null, null, c.getFormaMobo(), c.getUrl(), c.getDescrizione());
+    }
 
 }
