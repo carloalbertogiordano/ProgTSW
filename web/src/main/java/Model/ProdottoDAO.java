@@ -84,6 +84,7 @@ public abstract class ProdottoDAO {
 
     }
 
+
     public static Prodotto doRetriveById(int ID) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();
