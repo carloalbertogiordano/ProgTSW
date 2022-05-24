@@ -10,6 +10,12 @@ public class Dissipatore extends Prodotto {
         super(ID, marca, modello, prezzo, quantità, "DISSIPATORE", url, descrizione);
         this.W_Cpu = W_Cpu;
     }
+
+    public Dissipatore (String marca, String modello, double prezzo, int quantità, int W_Cpu, String url, String descrizione) {
+        super(marca, modello, prezzo, quantità, "DISSIPATORE", url, descrizione);
+        this.W_Cpu = W_Cpu;
+    }
+
     public int getW_Cpu() {
         return W_Cpu;
     }

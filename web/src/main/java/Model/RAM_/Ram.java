@@ -11,6 +11,11 @@ public class Ram extends Prodotto {
         this.frequenza = frequenza;
     }
 
+    public Ram(String marca, String modello, double prezzo, int quantità, float frequenza, String url, String descrizione) {
+        super(marca, modello, prezzo, quantità, "RAM", url, descrizione);
+        this.frequenza = frequenza;
+    }
+
     public float getFrequenza() {
         return frequenza;
     }

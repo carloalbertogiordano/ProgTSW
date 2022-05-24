@@ -14,6 +14,11 @@ public class Case extends Prodotto {
         this.formaMobo = formaMobo;
     }
 
+    public Case(String marca, String modello, double prezzo, int quantità, short formaMobo, String url, String descrizione){
+        super(marca, modello, prezzo, quantità, "CASE", url, descrizione);
+        this.formaMobo = formaMobo;
+    }
+
     public short getFormaMobo() { return formaMobo; }
 
     public void setFormaMobo(short formaMobo) {this.formaMobo = formaMobo;}

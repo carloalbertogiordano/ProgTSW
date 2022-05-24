@@ -16,6 +16,15 @@ public class Mobo extends Prodotto {
         this.N_PCI = N_PCI;
     }
 
+    public Mobo(String marca, String modello, double prezzo, int quantità,
+                short forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
+        super(marca, modello, prezzo, quantità, "MOBO", url, descrizione);
+        this.forma = forma;
+        this.N_RAM = N_RAM;
+        this.N_USB = N_USB;
+        this.N_PCI = N_PCI;
+    }
+
     public short getForma(){
         return forma;
     }

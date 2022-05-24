@@ -14,6 +14,14 @@ public class Gpu extends Prodotto {
         this.vRam = vRam;
     }
 
+    public Gpu(String marca, String modello, double prezzo, int quantità,
+               int wattaggio, int frequenza, int vRam, String url, String descrizione) {
+        super(marca, modello, prezzo, quantità, "GPU", url, descrizione);
+        this.wattaggio = wattaggio;
+        this.frequenza = frequenza;
+        this.vRam = vRam;
+    }
+
     public int getWattaggio() {
         return wattaggio;
     }
