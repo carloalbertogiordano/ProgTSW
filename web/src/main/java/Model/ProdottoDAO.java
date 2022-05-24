@@ -1,28 +1,16 @@
 package Model;
 
+import Model.CASE_.Case;
+import Model.CPU_.Cpu;
+import Model.DISSIPATORE_.Dissipatore;
+import Model.GPU_.Gpu;
+import Model.MOBO_.Mobo;
+import Model.PSU_.Psu;
+import Model.RAM_.Ram;
+
 import java.sql.*;
 
 public abstract class ProdottoDAO {
-
-    /*public static void Upload(String marca, String modello,
-                              Double prezzo, Integer quantita, Integer wattaggio, String tipo,
-                              Float frequenza, Integer N_Core, Integer N_Ram, Integer N_Usb, Integer N_Pci,
-                              Integer MBs, Integer Vram, Integer N_Watt, Integer W_Cpu, Short formaMobo,
-                              String url, String Descrizione) throws SQLException {
-
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        String insProd = "INSERT INTO Pezzo (Marca, Modello, Prezzo, Quantita, Wattaggio, " +
-                "Tipo, Frequenza, N_Core, N_Ram, N_USB, N_PCI, MBs, VRAM, N_Watt, W_Cpu," +
-                " FormaMobo, url, Descrizione) " +
-                "VALUES('" + marca + "','" + modello +
-                "','" + prezzo + "','" + quantita + "','" + wattaggio
-                + "','" + tipo + "','" + frequenza + "','" + N_Core + "','" + N_Ram + "','"
-                + N_Usb + "','" + N_Pci + "','" + MBs + "','" + Vram + "','" + N_Watt + "','"
-                + W_Cpu + "','" + formaMobo + "','" + url + "','" + Descrizione + "')";
-        PreparedStatement pdstmt = con.prepareStatement(insProd);
-        pdstmt.executeUpdate();
-    }*/
 
     public static void Upload(String marca, String modello,
                               Double prezzo, Integer quantita, Integer wattaggio, String tipo,
@@ -93,6 +81,50 @@ public abstract class ProdottoDAO {
         else pdstmt.setNull(18, Types.VARCHAR);
 
         pdstmt.executeUpdate();
+
+    }
+
+    public Prodotto doRetriveById(int ID) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM Prodotto WHERE Id = ?");
+        ps.setInt(1, ID);
+        ResultSet rs = ps.executeQuery();
+        String type = rs.getString(7);
+        switch (type) {
+            case "CPU":{
+                Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                return cpu;
+            }
+            case "MOBO":{
+                Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+                return mobo;
+            }
+            case "CASE":{
+                Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
+                return case_;
+            }
+            case "DISSIPATORE":{
+                Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
+                return dissipatore;
+            }
+            case "GPU":{
+                Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
+                return gpu;
+            }
+            case "PSU":{
+                Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                return psu;
+            }
+            case "RAM":{
+                Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+                return ram;
+            }
+            default:{
+                Prodotto prodotto = null;
+                return prodotto;
+            }
+        }
 
     }
 
