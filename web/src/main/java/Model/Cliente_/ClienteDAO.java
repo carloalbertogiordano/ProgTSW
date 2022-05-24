@@ -75,4 +75,22 @@ public class ClienteDAO {
         }
         return nick;
     }
+
+    public boolean isAdministrator(String mail) {
+        try {
+            Connection con = ConPool.getConnection();
+            Statement stmt = (Statement) con.createStatement();
+            PreparedStatement pdstmt = con.prepareStatement("SELECT Administrator FROM Cliente WHERE Mail = ? ");
+            pdstmt.setString(1, mail);
+            ResultSet rs = pdstmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getBoolean(1)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

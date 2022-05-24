@@ -5,6 +5,7 @@ import Model.Carrello_.Carrello;
 import Model.Cliente_.*;
 import Model.Cliente_.Cliente;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -36,7 +37,7 @@ public class CarrelloServlet extends HttpServlet {
                 for (int i = 0; i < carrelloDB.size(); i++) {
                     CarrelloDAO item = new CarrelloDAO();
                     try {
-                        tmp.add(item.doRetriveById(carrelloDB.get(i)));
+                        tmp.add(ProdottoDAO.doRetriveById(carrelloDB.get(i)));
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
