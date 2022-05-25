@@ -23,40 +23,25 @@ public class CarrelloServlet extends HttpServlet {
         Cliente c = (Cliente) session.getAttribute("cliente");
         if(c != null){
             //L'utente è loggato
+            //Prendo il carrello dalla sessione
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             if(carrello != null) {
                 //join tra il carrello nella sessione e carrello dell'utente nel database (tabella Ordine)
-                CarrelloDAO carrelloDAO = new CarrelloDAO();
-                ArrayList<Integer> carrelloDB;
-                try {
-                    carrelloDB = carrelloDAO.doRetriveByMailCliente(c.getMail());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                List<Prodotto> tmp = new ArrayList<Prodotto>();
-                for (int i = 0; i < carrelloDB.size(); i++) {
-                    CarrelloDAO item = new CarrelloDAO();
-                    try {
-                        tmp.add(ProdottoDAO.doRetriveById(carrelloDB.get(i)));
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                for(int i = 0; i < carrello.getCarrello().size(); i++){
-                    tmp.add(carrello.getCarrello().get(i));
-                }
-                Carrello newCarrello = new Carrello();
-                newCarrello.setCarrello(tmp);
-                session.setAttribute("carrello", newCarrello);
+
             }
             else{
                 //caricare il carrello dell'utente dal database (tabella Ordine)
-                CarrelloDAO carrelloDAO = new CarrelloDAO();
+
+                List<Prodotto> carrelloDB = new ArrayList<Prodotto>();
+                CarrelloDAO service = new CarrelloDAO();
                 try {
-                    session.setAttribute("carrello", carrelloDAO.doRetriveByMailCliente(c.getMail()));
+                    carrelloDB = service.doRetriveByMailCliente(c.getMail());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+                Carrello newCarrello = new Carrello();
+                newCarrello.setCarrello(carrelloDB);
+                session.setAttribute("carrello", newCarrello);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
             dispatcher.forward(request, response);

@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Archiviazione_.HDD_.Hdd;
+import Model.Archiviazione_.SDD_.Ssd;
 import Model.CASE_.Case;
 import Model.CPU_.Cpu;
 import Model.DISSIPATORE_.Dissipatore;
@@ -85,48 +87,73 @@ public abstract class ProdottoDAO {
     }
 
 
-    public static Prodotto doRetriveById(int ID) throws SQLException {
+    public static Prodotto doRetriveById(Integer ID) throws SQLException {
+        System.out.println("Metodo doRetriveById, parametro: " + ID);
+        int x = ID;
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM Prodotto WHERE Id = ?");
-        ps.setInt(1, ID);
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM Pezzo WHERE Id = ?");
+        ps.setInt(1, x);
         ResultSet rs = ps.executeQuery();
-        String type = rs.getString(7);
-        switch (type) {
-            case "CPU":{
-                Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
-                return cpu;
-            }
-            case "MOBO":{
-                Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
-                return mobo;
-            }
-            case "CASE":{
-                Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
-                return case_;
-            }
-            case "DISSIPATORE":{
-                Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
-                return dissipatore;
-            }
-            case "GPU":{
-                Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
-                return gpu;
-            }
-            case "PSU":{
-                Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
-                return psu;
-            }
-            case "RAM":{
-                Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
-                return ram;
-            }
-            default:{
-                Prodotto prodotto = null;
-                return prodotto;
+        System.out.println("Ciao");
+        while(rs.next()){
+            System.out.println("Ciao");
+            String type = rs.getString(7);
+            System.out.println("Metodo doRetriveById, tipo: " + type);
+
+            switch (type) {
+                case "CPU":{
+                    Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                    System.out.println(cpu.toString());
+                    return cpu;
+                }
+                case "MOBO":{
+                    Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+                    System.out.println(mobo.toString());
+                    return mobo;
+                }
+                case "CASE":{
+                    Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
+                    System.out.println(case_.toString());
+                    return case_;
+                }
+                case "DISSIPATORE":{
+                    Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
+                    System.out.println(dissipatore.toString());
+                    return dissipatore;
+                }
+                case "GPU":{
+                    Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    System.out.println(gpu.toString());
+                    return gpu;
+                }
+                case "PSU":{
+                    Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                    System.out.println(psu.toString());
+                    return psu;
+                }
+                case "RAM":{
+                    Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+                    System.out.println(ram.toString());
+                    return ram;
+                }
+                case "HDD":{
+                    Hdd hdd = new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    System.out.println(hdd.toString());
+                    return hdd;
+                }
+                case "SSD":{
+                    Ssd ssd = new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    System.out.println(ssd.toString());
+                    return ssd;
+                }
+                default:{
+                    Prodotto prodotto = null;
+                    return prodotto;
+                }
             }
         }
-
+        return null;
     }
 
 }
