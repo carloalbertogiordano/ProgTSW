@@ -156,4 +156,11 @@ public abstract class ProdottoDAO {
         return null;
     }
 
+    public static void elimina(int id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("DELETE FROM Pezzo WHERE Id=?");
+        ps.setString(1, String.valueOf(id));
+        ps.executeUpdate();
+    }
 }
