@@ -48,10 +48,16 @@ public class Gpu extends Prodotto {
 
     @Override
     public String toString() {
-        return super.toString() + "Gpu{" +
-                "wattaggio=" + wattaggio +
+        return  "Gpu{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                ", wattaggio=" + wattaggio +
                 ", frequenza=" + frequenza +
                 ", vRam=" + vRam +
-                '}';
+                "}\n";
     }
 }

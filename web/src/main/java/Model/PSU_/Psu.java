@@ -26,7 +26,13 @@ public class Psu extends Prodotto {
 
     @Override
     public String toString(){
-        return super.toString() + "\n" +
-                "N. Watt: " + N_Watt + "\n";
+        return "Psu{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                "N. Watt: " + N_Watt + "}\n";
     }
 }

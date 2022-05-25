@@ -24,8 +24,14 @@ public class Case extends Prodotto {
     public void setFormaMobo(short formaMobo) {this.formaMobo = formaMobo;}
 
     public String toString() {
-        return super.toString() + "\n" +
-                "Forma MOBO: " + formaMobo + "\n";
+        return  "Case{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                        ", Forma MOBO: " + formaMobo + "}\n";
     }
 
 }

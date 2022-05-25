@@ -25,7 +25,14 @@ public class Ram extends Prodotto {
     }
 
     public String toString() {
-        return super.toString() + "Frequenza: " + frequenza;
+        return "RAM{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                "Frequenza: " + frequenza + "}\n";
     }
 
 }

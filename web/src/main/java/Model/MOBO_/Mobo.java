@@ -55,6 +55,20 @@ public class Mobo extends Prodotto {
                 getUrl() + "\nDescrizione: " + getDescrizione() + "\nForma: " + getForma() +
                 "\nN_RAM: " + getN_RAM() + "\nN_USB: " + getN_USB() + "\nN_PCI: " + getN_PCI();
     }
+    
+   /* public String toString(){
+        return  "Mobo{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                ", Forma= " + forma +
+                ", Numero slot RAM= " + N_RAM +
+                ", Numero porte USB= " + N_USB +
+                ", Numero slot PCI= " + N_PCI + "}\n";
+    }*/
 
 
 }

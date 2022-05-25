@@ -99,8 +99,8 @@ public abstract class Prodotto {
         this.descrizione = descrizione;
     }
 
-    @Override
-    public String toString() {
+    //@Override
+    /*public String toString() {
         return "Prodotto{" +
                 "ID=" + ID +
                 ", marca='" + marca + '\'' +
@@ -110,5 +110,5 @@ public abstract class Prodotto {
                 ", url='" + url + '\'' +
                 ", descrizione='" + descrizione + '\'' +
                 '}';
-    }
+    }*/
 }

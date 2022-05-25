@@ -51,11 +51,16 @@ public class Cpu extends Prodotto {
 
     @Override
     public String toString() {
-        return super.toString() + "\n" +
-                "Cpu{" +
-                "N_Core=" + N_Core +
-                ", frequenza=" + frequenza +
-                ", wattaggio=" + wattaggio +
-                '}';
+               return  "Cpu{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                       ", url= "  + super.getUrl() +
+                       ", Descrizione= " + super.getDescrizione() +
+                ", N_Core= " + N_Core +
+                ", frequenza= " + frequenza +
+                ", wattaggio= " + wattaggio +
+                '}' + "\n";
     }
 }

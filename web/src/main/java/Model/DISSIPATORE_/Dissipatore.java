@@ -26,8 +26,14 @@ public class Dissipatore extends Prodotto {
 
     @Override
     public String toString() {
-        return super.toString() + "\n" +
-                "Dissipatore{" + "W_Cpu=" + W_Cpu + '}';
+        return  "Dissipatore{"+
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                ", Dissipatore{" + "W_Cpu=" + W_Cpu + "}\n";
     }
 
 }
