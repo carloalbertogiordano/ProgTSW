@@ -18,5 +18,6 @@ public class Elimina extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        response.sendRedirect("admin.jsp");
     }
 }
