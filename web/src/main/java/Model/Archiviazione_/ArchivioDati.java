@@ -6,7 +6,9 @@ import Model.ProdottoDAO;
 import java.sql.SQLException;
 
 public class ArchivioDati extends Prodotto {
-
+//ArchivioDati estende prodotto ed è superclasse per HDD e SSD che contengono fondamentalmente gli stessi valori
+//quindi hanno metodi e variabili comuni. La divisione data, sia nel db sia nella classe
+//è logica.
     private int MBs;
 
     public ArchivioDati (int ID, String marca, String modello, double prezzo, int quantità, String tipo, int MBs,String url, String descrizione) {

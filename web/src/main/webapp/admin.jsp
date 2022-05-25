@@ -20,7 +20,7 @@
     <p id="p">Premi un pulsante.</p>
 
 <script>
-
+    //funzione per l'aggionamento della quantità nel DB
     function aggiorna(){
         document.getElementById("p").innerHTML =
             "<form action=\"Aggiorna\" method=\"get\">" +
@@ -52,6 +52,7 @@
         document.getElementById("formaMobo").disabled = false;
     }
 
+    //prende il tipo di prodotto scelto e disabilita i campi non necessari
     function controllo() {
             let tipo = document.getElementById("tipo").value;
             console.log(tipo);
@@ -188,11 +189,12 @@
 
             }
     }
-
+        //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
         function nuovo() {
             document.getElementById("p").innerHTML =
                 "<form action=\"Upload\" method=\"get\">" +
                 "<table>" +
+                //La funzione controllo() è chiamata per disabilitare i campi del form in base al tipo di prodotto scelto
                 "<select name=\"tipo\" id=\"tipo\" onchange =\"controllo()\">" +
                 "<option value=\"HDD\">Hdd</option>" +
                 "<option value=\"SSD\">Ssd</option>" +
@@ -278,6 +280,7 @@
             controllo();
         }
 
+    //Funzione che elimina un prodotto nel db dato l'id
     function elimina () {
         document.getElementById("p").innerHTML =
         "<form action=\"Elimina\" method=\"get\">" +
@@ -292,9 +295,5 @@
     }
 
 </script>
-
-
-
-
 </body>
 </html>

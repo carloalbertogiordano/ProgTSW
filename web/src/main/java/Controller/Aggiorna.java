@@ -15,6 +15,7 @@ public class Aggiorna extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("ID"));
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         try {
+            //Aggiorna lo stock del prodotto
             ProdottoDAO.aggiorna(id, quantita);
         } catch (SQLException e) {
             throw new RuntimeException(e);

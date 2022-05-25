@@ -14,6 +14,7 @@ import java.sql.*;
 
 public abstract class ProdottoDAO {
 
+    //Aggiorna lo stock di un prodotto
     public static void aggiorna(int id, int q) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();
@@ -23,13 +24,13 @@ public abstract class ProdottoDAO {
         ps.executeUpdate();
     }
 
-
+    //Carica un prodotto nel db
     public static void Upload(String marca, String modello,
                               Double prezzo, Integer quantita, Integer wattaggio, String tipo,
                               Float frequenza, Integer N_Core, Integer N_Ram, Integer N_Usb, Integer N_Pci,
                               Integer MBs, Integer Vram, Integer N_Watt, Integer W_Cpu, Short formaMobo,
                               String url, String Descrizione) throws SQLException {
-
+        //Inizializza la stringa di connessione
         String insProd = "INSERT INTO Pezzo (Marca, Modello, Prezzo, Quantita, " +
                 "Wattaggio, Tipo, Frequenza, N_Core, N_Ram, N_USB, N_PCI, MBs, " +
                 "VRAM, N_Watt, W_Cpu, FormaMobo, url, Descrizione)"
@@ -37,7 +38,7 @@ public abstract class ProdottoDAO {
 
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement(insProd);
-
+        //Se l'oggetto passato non è null ne viene inserito il valore nela query, altrimenti viene inserito null in quella posizione
         if (marca != null) pdstmt.setString(1, marca);
         else pdstmt.setNull(1, Types.VARCHAR);
 
@@ -96,7 +97,7 @@ public abstract class ProdottoDAO {
 
     }
 
-
+    //Metodo per prendere un prodotto dal database dato l'ID
     public static Prodotto doRetriveById(Integer ID) throws SQLException {
         System.out.println("Metodo doRetriveById, parametro: " + ID);
         int x = ID;
@@ -110,7 +111,7 @@ public abstract class ProdottoDAO {
             System.out.println("Ciao");
             String type = rs.getString(7);
             System.out.println("Metodo doRetriveById, tipo: " + type);
-
+            //In base al valore contenuto nel parametro type viene istanziato un oggetto di quella classe
             switch (type) {
                 case "CPU":{
                     Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
@@ -165,7 +166,7 @@ public abstract class ProdottoDAO {
         }
         return null;
     }
-
+    //Elimina un prodotto dal DB
     public static void elimina(int id) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();

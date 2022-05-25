@@ -18,6 +18,7 @@ public class Upload extends HttpServlet {
         int quantità = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");
 
+        //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
         Integer wattaggio = null;
         if(request.getParameter("wattaggio") != null) {
             wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
@@ -65,6 +66,7 @@ public class Upload extends HttpServlet {
         String url = request.getParameter("url");
         String descrizione = request.getParameter("descrizione");
         try {
+            //Carica il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
             ProdottoDAO.Upload(marca, modello, prezzo, quantità, wattaggio, tipo, frequenza, N_Core, N_Ram, N_Usb, N_Pci, MBs, Vram, N_Watt, W_Cpu, formaMobo, url, descrizione);
         } catch (SQLException e) {
             throw new RuntimeException(e);
