@@ -14,6 +14,16 @@ import java.sql.*;
 
 public abstract class ProdottoDAO {
 
+    public static void aggiorna(int id, int q) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("UPDATE Pezzo SET quantita=? WHERE Id=?");
+        ps.setString(1, String.valueOf(q));
+        ps.setString(2, String.valueOf(id));
+        ps.executeUpdate();
+    }
+
+
     public static void Upload(String marca, String modello,
                               Double prezzo, Integer quantita, Integer wattaggio, String tipo,
                               Float frequenza, Integer N_Core, Integer N_Ram, Integer N_Usb, Integer N_Pci,

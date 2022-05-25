@@ -15,19 +15,53 @@ public class Upload extends HttpServlet {
         String marca = request.getParameter("marca");
         String modello = request.getParameter("modello");
         double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-        int quantità = Integer.parseInt(request.getParameter("quantità"));
-        int wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
+        int quantità = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");
-        float frequenza = Float.parseFloat(request.getParameter("frequenza"));
-        int N_Core = Integer.parseInt(request.getParameter("N_Core"));
-        int N_Ram = Integer.parseInt(request.getParameter("N_Ram"));
-        int N_Usb = Integer.parseInt(request.getParameter("N_Usb"));
-        int N_Pci = Integer.parseInt(request.getParameter("N_Pci"));
-        int MBs = Integer.parseInt(request.getParameter("MBs"));
-        int Vram = Integer.parseInt(request.getParameter("Vram"));
-        int N_Watt = Integer.parseInt(request.getParameter("N_Watt"));
-        int W_Cpu = Integer.parseInt(request.getParameter("W_Cpu"));
-        short formaMobo = Short.parseShort(request.getParameter("formaMobo"));
+
+        Integer wattaggio = null;
+        if(request.getParameter("wattaggio") != null) {
+            wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
+        }
+        Float frequenza = null;
+        if(request.getParameter("frequenza") != null) {
+            frequenza = Float.parseFloat(request.getParameter("frequenza"));
+        }
+        Integer N_Core = null;
+        if(request.getParameter("N_Core") != null) {
+            N_Core = Integer.parseInt(request.getParameter("N_Core"));
+        }
+        Integer N_Ram = null;
+        if(request.getParameter("N_Ram") != null) {
+            N_Ram = Integer.parseInt(request.getParameter("N_Ram"));
+        }
+        Integer N_Usb = null;
+        if(request.getParameter("N_Usb") != null) {
+            N_Usb = Integer.parseInt(request.getParameter("N_Usb"));
+        }
+        Integer N_Pci = null;
+        if(request.getParameter("N_Pci") != null) {
+            N_Pci = Integer.parseInt(request.getParameter("N_Pci"));
+        }
+        Integer MBs = null;
+        if(request.getParameter("MBs") != null) {
+            MBs = Integer.parseInt(request.getParameter("MBs"));
+        }
+        Integer Vram = null;
+        if(request.getParameter("Vram") != null) {
+            Vram = Integer.parseInt(request.getParameter("Vram"));
+        }
+        Integer N_Watt = null;
+        if(request.getParameter("N_Watt") != null) {
+            N_Watt = Integer.parseInt(request.getParameter("N_Watt"));
+        }
+        Integer W_Cpu = null;
+        if(request.getParameter("W_Cpu") != null) {
+            W_Cpu = Integer.parseInt(request.getParameter("W_Cpu"));
+        }
+        Short formaMobo = null;
+        if(request.getParameter("formaMobo") != null) {
+            formaMobo = Short.parseShort(request.getParameter("formaMobo"));
+        }
         String url = request.getParameter("url");
         String descrizione = request.getParameter("descrizione");
         try {
