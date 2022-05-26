@@ -175,52 +175,6 @@ public abstract class ProdottoDAO {
         ps.executeUpdate();
     }
 
-    public static List<?> doRetriveByType(String type) throws SQLException {
-        List<?> list = new ArrayList<>();
-            switch (type) {
-                case "CPU":
-                    CpuDAO cDAO = new CpuDAO();
-                    list = cDAO.doRetriveByType();
-                    break;
-                case "MOBO":
-                    MoboDAO mDAO = new MoboDAO();
-                    list= mDAO.doRetriveByType();
-                    break;
-                case "CASE":
-                    CaseDAO caDAO = new CaseDAO();
-                    list = caDAO.doRetriveByType();
-                    break;
-                case "DISSIPATORE":
-                    DissipatoreDAO dDAO = new DissipatoreDAO();
-                    list = dDAO.doRetriveByType();
-                    break;
-                case "GPU":
-                    GpuDAO gDAO = new GpuDAO();
-                    list = gDAO.doRetriveByType();
-                    break;
-                case "PSU":
-                    PsuDAO pDAO = new PsuDAO();
-                    list = pDAO.doRetriveByType();
-                    break;
-                case "RAM":
-                    RamDAO rDAO = new RamDAO();
-                    list = rDAO.doRetriveByType();
-                    break;
-                case "HDD":
-                    HddDAO hDAO = new HddDAO();
-                    list = hDAO.doRetriveByType();
-                    break;
-                case "SSD":
-                    SsdDAO sDAO = new SsdDAO();
-                    list = sDAO.doRetriveByType();
-                    break;
-                default:
-                    Prodotto prodotto = null;
-                    break;
-        }
-        return list;
-    }
-
     public static boolean doCheckDisponibilita(Prodotto p) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("SELECT Quanita FROM Comporre WHERE Id = ?");

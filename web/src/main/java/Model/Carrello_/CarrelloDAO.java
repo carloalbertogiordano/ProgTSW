@@ -85,7 +85,7 @@ public class CarrelloDAO {
 
     public Carrello joinCarrelli(Carrello carrelloDB, Carrello carrelloSession){
         Carrello newCarrello = new Carrello();
-        flag = false;
+        boolean flag = false;
         for(int i = 0; i < carrelloDB.getCarrello().size(); i++){
             for(int j = 0; j < carrelloSession.getCarrello().size(); j++){
                 if(carrelloSession.getCarrello().get(i).getID() == carrelloDB.getCarrello().get(j).getID()){
