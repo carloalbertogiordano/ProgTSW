@@ -24,6 +24,5 @@
     }
     out.println("</li>");
 %>
-%>
 </body>
 </html>
