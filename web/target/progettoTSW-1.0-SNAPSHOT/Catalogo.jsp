@@ -37,65 +37,47 @@
         List<Ssd> ssdList = new ArrayList<Ssd>();
 
         try {
-            System.out.println("CPU");
             cpuList = ProdottoDAO.doRetriveByType("CPU").stream().map(x -> (Cpu) x).collect(Collectors.toList());
-            System.out.println("CPU fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("CASE");
             caseList = ProdottoDAO.doRetriveByType("CASE").stream().map(x -> (Case) x).collect(Collectors.toList());
-            System.out.println("CASE fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("DISSIPATORE");
             dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE").stream().map(x -> (Dissipatore) x).collect(Collectors.toList());
-            System.out.println("DISSIPATORE fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("GPU");
             gpuList = ProdottoDAO.doRetriveByType("GPU").stream().map(x -> (Gpu) x).collect(Collectors.toList());
-            System.out.println("GPU fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("MOBO");
             moboList = ProdottoDAO.doRetriveByType("MOBO").stream().map(x -> (Mobo) x).collect(Collectors.toList());
-            System.out.println("MOBO fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("PSU");
             psuList = ProdottoDAO.doRetriveByType("PSU").stream().map(x -> (Psu) x).collect(Collectors.toList());
-            System.out.println("PSU fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("RAM");
             ramList = ProdottoDAO.doRetriveByType("RAM").stream().map(x -> (Ram) x).collect(Collectors.toList());
-            System.out.println("RAM fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("HDD");
             hddList = ProdottoDAO.doRetriveByType("HDD").stream().map(x -> (Hdd) x).collect(Collectors.toList());
-            System.out.println("HDD fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            System.out.println("SSD");
             ssdList = ProdottoDAO.doRetriveByType("SSD").stream().map(x -> (Ssd) x).collect(Collectors.toList());
-            System.out.println("SSD fine");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
