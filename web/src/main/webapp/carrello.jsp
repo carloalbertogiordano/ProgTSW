@@ -19,8 +19,8 @@
     carrello = (Carrello) session.getAttribute("carrello");
     List<Prodotto> carrelloList = carrello.getCarrello();
     out.println("<li>");
-    for(int i = 0; i < carrelloList.size(); i++) {
-        out.println("<ul>" + carrelloList.get(i).toString() + "</ul>");
+    for (Prodotto prodotto : carrelloList) {
+        out.println("<ul>" + prodotto.toString() + "</ul>");
     }
     out.println("</li>");
 %>
