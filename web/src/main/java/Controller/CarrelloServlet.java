@@ -52,6 +52,8 @@ public class CarrelloServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
             dispatcher.forward(request, response);
         }
+
+        //L'utente non è loggato e il carrello (è vuoto/pieno)
     }
 
     @Override

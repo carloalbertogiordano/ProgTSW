@@ -83,18 +83,20 @@ public class CarrelloDAO {
         return carrello;
     }
 
+    //Quanrtità pezzo è quantità richiesta
     public Carrello joinCarrelli(Carrello carrelloDB, Carrello carrelloSession){
-        Carrello newCarrello = new Carrello();
-        boolean flag = false;
-        for(int i = 0; i < carrelloDB.getCarrello().size(); i++){
-            for(int j = 0; j < carrelloSession.getCarrello().size(); j++){
+        for(int i = 0; i < carrelloSession.getCarrello().size(); i++){
+            for(int j = 0; j < carrelloDB.getCarrello().size(); j++){
                 if(carrelloSession.getCarrello().get(i).getID() == carrelloDB.getCarrello().get(j).getID()){
-                     carrelloSession.aggiornaQuantita(carrelloDB.getCarrello().get(i).getID());
-                     flag = true;
+                    int quantita = carrelloSession.getCarrello().get(i).getQuantità() +  carrelloDB.getCarrello().get(j).getQuantità();
+                    carrelloSession.getCarrello().get(i).setQuantità(quantita);
+                    carrelloDB.getCarrello().remove(j);
                 }
             }
         }
-        carrelloDB.setPrezzo(carrelloDB.getPrezzo()+carrelloDB.getPrezzo());
-        return carrelloDB;
+        for(Prodotto p : carrelloDB.getCarrello()){
+            carrelloSession.getCarrello().add(p);
+        }
+        return carrelloSession;
     }
 }
