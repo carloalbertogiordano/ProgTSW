@@ -5,7 +5,8 @@
 <%@ page import="Model.CPU_.Cpu" %>
 <%@ page import="Model.CASE_.Case" %>
 <%@ page import="Model.DISSIPATORE_.Dissipatore" %>
-<%@ page import="Model.GPU_.Gpu" %><%--
+<%@ page import="Model.GPU_.Gpu" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 25/05/22
@@ -29,15 +30,51 @@
         List<Prodotto> hddList = new ArrayList<Prodotto>();
         List<Prodotto> ssdList = new ArrayList<Prodotto>();
 
-        cpuList = ProdottoDAO.doRetriveByType("CPU");
-        caseList = ProdottoDAO.doRetriveByType("CASE");
-        dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE");
-        gpuList = ProdottoDAO.doRetriveByType("CPU");
-        moboList = ProdottoDAO.doRetriveByType("MOBO");
-        psuList = ProdottoDAO.doRetriveByType("PSU");
-        ramList = ProdottoDAO.doRetriveByType("RAM");
-        hddList = ProdottoDAO.doRetriveByType("HDD");
-        ssdList = ProdottoDAO.doRetriveByType("SSD");
+        try {
+            cpuList = ProdottoDAO.doRetriveByType("CPU");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            caseList = ProdottoDAO.doRetriveByType("CASE");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            gpuList = ProdottoDAO.doRetriveByType("CPU");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            moboList = ProdottoDAO.doRetriveByType("MOBO");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            psuList = ProdottoDAO.doRetriveByType("PSU");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            ramList = ProdottoDAO.doRetriveByType("RAM");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            hddList = ProdottoDAO.doRetriveByType("HDD");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            ssdList = ProdottoDAO.doRetriveByType("SSD");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     %>
     <div class="wrapper">
         <div class="CPU-list">
