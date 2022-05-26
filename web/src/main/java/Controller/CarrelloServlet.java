@@ -32,15 +32,13 @@ public class CarrelloServlet extends HttpServlet {
             else{
                 //caricare il carrello dell'utente dal database (tabella Ordine)
 
-                List<Prodotto> carrelloDB = new ArrayList<Prodotto>();
                 CarrelloDAO service = new CarrelloDAO();
+                Carrello newCarrello = new Carrello();
                 try {
-                    carrelloDB = service.doRetriveByMailCliente(c.getMail());
+                    newCarrello = service.doRetriveByMailCliente(c.getMail());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                Carrello newCarrello = new Carrello();
-                newCarrello.setCarrello(carrelloDB);
                 session.setAttribute("carrello", newCarrello);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");

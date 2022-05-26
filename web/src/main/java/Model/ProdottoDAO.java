@@ -220,4 +220,19 @@ public abstract class ProdottoDAO {
         }
         return list;
     }
+
+    public static boolean doCheckDisponibilita(Prodotto p) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Quanita FROM Comporre WHERE Id = ?");
+        pdstmt.setInt(1, p.getID());
+        ResultSet rs = pdstmt.executeQuery();
+        Integer quantita = null;
+        while (rs.next()) {
+            quantita = rs.getInt(1);
+        }
+        if (quantita < p.getQuantità()){
+            return true;
+        }
+        return false;
+    }
 }
