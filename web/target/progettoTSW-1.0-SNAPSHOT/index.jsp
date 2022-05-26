@@ -36,7 +36,7 @@
     </div>
 
 <a href = "CarrelloServlet">Carrello</a>
-
+<a href = "Catalogo.jsp">Catalogo</a>
 <p>Testing: <a href="testing.jsp"> TEST </a></p>
 
 </body>

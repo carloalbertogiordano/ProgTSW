@@ -79,10 +79,10 @@
     <div class="wrapper">
         <div class="CPU-list">
             <%
-                for(int i = 0; i < cpuList.size(); i++){
+                for (Prodotto prodotto : cpuList) {
                     Cpu cpu = new Cpu();
-                    if(cpuList.get(i) instanceof Cpu){
-                        cpu = (Cpu) cpuList.get(i);
+                    if (prodotto instanceof Cpu) {
+                        cpu = (Cpu) prodotto;
                     }
                     out.println("<div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
