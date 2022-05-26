@@ -25,7 +25,7 @@ import java.util.List;
 
 public abstract class ProdottoDAO {
 
-    //Aggiorna lo stock di un prodotto
+    //Aggiorna lo stock di un prodotto (riservato admin)
     public static void aggiorna(int id, int q) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();

@@ -59,7 +59,21 @@ public class Carrello {
         return carrello;
     }
 
-    public void aggiornaQuantita(int id){
-
+    //Quanrtità pezzo è quantità richiesta
+    public  Carrello joinCarrelli(Carrello carrelloDB){
+        Carrello carrelloSession = this;
+        for(int i = 0; i < carrelloSession.getCarrello().size(); i++){
+            for(int j = 0; j < carrelloDB.getCarrello().size(); j++){
+                if(carrelloSession.getCarrello().get(i).getID() == carrelloDB.getCarrello().get(j).getID()){
+                    int quantita = carrelloSession.getCarrello().get(i).getQuantità() +  carrelloDB.getCarrello().get(j).getQuantità();
+                    carrelloSession.getCarrello().get(i).setQuantità(quantita);
+                    carrelloDB.getCarrello().remove(j);
+                }
+            }
+        }
+        for(Prodotto p : carrelloDB.getCarrello()){
+            carrelloSession.getCarrello().add(p);
+        }
+        return carrelloSession;
     }
 }
