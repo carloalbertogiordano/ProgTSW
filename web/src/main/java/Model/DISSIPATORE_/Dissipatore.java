@@ -16,6 +16,10 @@ public class Dissipatore extends Prodotto {
         this.W_Cpu = W_Cpu;
     }
 
+    public Dissipatore() {
+
+    }
+
     public int getW_Cpu() {
         return W_Cpu;
     }
@@ -33,7 +37,7 @@ public class Dissipatore extends Prodotto {
                 ", Quantità disponibile= " + super.getQuantità() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
-                ", Dissipatore{" + "W_Cpu=" + W_Cpu + "}\n";
+                ", W_Cpu=" + W_Cpu + "}\n";
     }
 
 }

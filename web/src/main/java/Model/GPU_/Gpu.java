@@ -22,6 +22,10 @@ public class Gpu extends Prodotto {
         this.vRam = vRam;
     }
 
+    public Gpu() {
+
+    }
+
     public int getWattaggio() {
         return wattaggio;
     }

@@ -11,6 +11,8 @@ import Model.PSU_.Psu;
 import Model.RAM_.Ram;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ProdottoDAO {
 
@@ -106,51 +108,40 @@ public abstract class ProdottoDAO {
         PreparedStatement ps = con.prepareStatement("SELECT * FROM Pezzo WHERE Id = ?");
         ps.setInt(1, x);
         ResultSet rs = ps.executeQuery();
-        System.out.println("Ciao");
         while(rs.next()){
-            System.out.println("Ciao");
             String type = rs.getString(7);
-            System.out.println("Metodo doRetriveById, tipo: " + type);
             //In base al valore contenuto nel parametro type viene istanziato un oggetto di quella classe
             switch (type) {
                 case "CPU":{
                     Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
-                    System.out.println(cpu.toString());
                     return cpu;
                 }
                 case "MOBO":{
                     Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
-                    System.out.println(mobo.toString());
                     return mobo;
                 }
                 case "CASE":{
                     Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
-                    System.out.println(case_.toString());
                     return case_;
                 }
                 case "DISSIPATORE":{
                     Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
-                    System.out.println(dissipatore.toString());
                     return dissipatore;
                 }
                 case "GPU":{
                     Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
-                    System.out.println(gpu.toString());
                     return gpu;
                 }
                 case "PSU":{
                     Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
-                    System.out.println(psu.toString());
                     return psu;
                 }
                 case "RAM":{
                     Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
-                    System.out.println(ram.toString());
                     return ram;
                 }
                 case "HDD":{
                     Hdd hdd = new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
-                    System.out.println(hdd.toString());
                     return hdd;
                 }
                 case "SSD":{
@@ -173,5 +164,58 @@ public abstract class ProdottoDAO {
         PreparedStatement ps = con.prepareStatement("DELETE FROM Pezzo WHERE Id=?");
         ps.setString(1, String.valueOf(id));
         ps.executeUpdate();
+    }
+
+    public static List<Prodotto> doRetriveByType(String type) throws SQLException {
+        List<Prodotto> list = new ArrayList<Prodotto>();
+        Connection con = ConPool.getConnection();
+        Statement stmt = con.createStatement();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM Pezzo WHERE Tipo = ?");
+        ps.setString(1, type);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            switch (type) {
+                case "CPU":{
+                    Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                    list.add(cpu);
+                }
+                case "MOBO":{
+                    Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+                    list.add(mobo);
+                }
+                case "CASE":{
+                    Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
+                    list.add(case_);
+                }
+                case "DISSIPATORE":{
+                    Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
+                    list.add(dissipatore);
+                }
+                case "GPU":{
+                    Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    list.add(gpu);
+                }
+                case "PSU":{
+                    Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                    list.add(psu);
+                }
+                case "RAM":{
+                    Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+                    list.add(ram);
+                }
+                case "HDD":{
+                    Hdd hdd = new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    list.add(hdd);
+                }
+                case "SSD":{
+                    Ssd ssd = new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    list.add(ssd);
+                }
+                default:{
+                    Prodotto prodotto = null;
+                }
+            }
+        }
+        return list;
     }
 }

@@ -18,6 +18,10 @@ public class Cpu extends Prodotto {
         this.N_Core = N_Core;
     }
 
+    public Cpu(){
+
+    }
+
     public Cpu(String marca, String modello, double prezzo, int quantità, int wattaggio, float frequenza, int N_Core, String url, String descrizione) {
         super(marca, modello, prezzo, quantità, "CPU", url, descrizione);
         this.wattaggio = wattaggio;
