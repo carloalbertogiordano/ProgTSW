@@ -14,7 +14,9 @@ public class Upload extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String marca = request.getParameter("marca");
         String modello = request.getParameter("modello");
-        double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+        String prezzo1 = request.getParameter("prezzo");
+        prezzo1.replace(",", ".");
+        double prezzo = Double.parseDouble(prezzo1);
         int quantità = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");
 
