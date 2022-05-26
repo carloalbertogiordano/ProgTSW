@@ -1,7 +1,9 @@
 package Model.Carrello_;
 
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Carrello {
@@ -39,5 +41,25 @@ public class Carrello {
 
     public void setCarrelloCod(int carrelloCod) {
         CarrelloCod = carrelloCod;
+    }
+
+    public Carrello doCheckList(Carrello carrello) throws SQLException {
+        for(int i = 0; i < carrello.getCarrello().size(); i++){
+            if(!ProdottoDAO.doCheckDisponibilita(carrello.getCarrello().get(i))){
+                if(carrello.getCarrello().get(i).getQuantità() == 0){
+                    carrello.getCarrello().remove(i);
+                }
+                else{
+                    int quantitaDisponible = carrello.getCarrello().get(i).getQuantità();
+                    CarrelloDAO service = new CarrelloDAO();
+                    service.doUpdateQuantitaRichiestaById(carrello.getCarrello().get(i).getID(), quantitaDisponible);
+                }
+            }
+        }
+        return carrello;
+    }
+
+    public void aggiornaQuantita(int id){
+
     }
 }

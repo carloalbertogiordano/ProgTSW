@@ -27,11 +27,19 @@ public class CarrelloServlet extends HttpServlet {
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             if(carrello != null) {
                 //join tra il carrello nella sessione e carrello dell'utente nel database (tabella Ordine)
+                //Prendo il carrello dal DB
+                CarrelloDAO service = new CarrelloDAO();
+                Carrello newCarrello = new Carrello();
+                try {
+                    newCarrello = service.doRetriveByMailCliente(c.getMail());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                //Richiamo il metodo per joinare i carrelli della sessione e del DB
 
             }
             else{
                 //caricare il carrello dell'utente dal database (tabella Ordine)
-
                 CarrelloDAO service = new CarrelloDAO();
                 Carrello newCarrello = new Carrello();
                 try {

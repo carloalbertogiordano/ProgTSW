@@ -16,14 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrelloDAO {
-    public List<Prodotto> doRetriveByIdLis(ArrayList<Integer> idList) throws SQLException {
-        List<Prodotto> carrello = new ArrayList<Prodotto>();
-        for(int i = 0; i < idList.size(); i++){
-            carrello.add(ProdottoDAO.doRetriveById(idList.get(i)));
-        }
-        return carrello;
-    }
-
     public int doRetriveCarrelloCodByMailCLiente(String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
@@ -63,27 +55,12 @@ public class CarrelloDAO {
         return quantita;
     }
 
-    private void doUpdateQuantitaRichiestaById(int id, int carrelloCod) throws SQLException {
+    public void doUpdateQuantitaRichiestaById(int id, int carrelloCod) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita WHERE PezzoID = ? AND CarrelloCod = ?");
         pdstmt.setInt(1, id);
         pdstmt.setInt(2, carrelloCod);
         pdstmt.executeUpdate();
-    }
-
-    public Carrello doCheckList(Carrello carrello) throws SQLException {
-        for(int i = 0; i < carrello.getCarrello().size(); i++){
-            if(!ProdottoDAO.doCheckDisponibilita(carrello.getCarrello().get(i))){
-                if(carrello.getCarrello().get(i).getQuantità() == 0){
-                    carrello.getCarrello().remove(i);
-                }
-                else{
-                    int quantitaDisponible = carrello.getCarrello().get(i).getQuantità();
-                    doUpdateQuantitaRichiestaById(carrello.getCarrello().get(i).getID(), quantitaDisponible);
-                }
-            }
-        }
-        return carrello;
     }
 
     public Carrello doRetriveByMailCliente(String mail) throws SQLException {
@@ -102,7 +79,22 @@ public class CarrelloDAO {
         }
         int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
-        Carrello carrello = new Carrello(doRetriveByIdLis(prodotti), carrelloCod, totaleCarrello);
+        Carrello carrello = new Carrello(Prodotto.doRetriveByIdLis(prodotti), carrelloCod, totaleCarrello);
         return carrello;
+    }
+
+    public Carrello joinCarrelli(Carrello carrelloDB, Carrello carrelloSession){
+        Carrello newCarrello = new Carrello();
+        flag = false;
+        for(int i = 0; i < carrelloDB.getCarrello().size(); i++){
+            for(int j = 0; j < carrelloSession.getCarrello().size(); j++){
+                if(carrelloSession.getCarrello().get(i).getID() == carrelloDB.getCarrello().get(j).getID()){
+                     carrelloSession.aggiornaQuantita(carrelloDB.getCarrello().get(i).getID());
+                     flag = true;
+                }
+            }
+        }
+        carrelloDB.setPrezzo(carrelloDB.getPrezzo()+carrelloDB.getPrezzo());
+        return carrelloDB;
     }
 }

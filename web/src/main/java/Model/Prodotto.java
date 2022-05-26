@@ -1,5 +1,9 @@
 package Model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Prodotto {
     private int ID;
     private String marca;
@@ -9,8 +13,6 @@ public abstract class Prodotto {
     private String url;
     private String descrizione;
     private int quantità;
-
-
 
     public Prodotto() {}
 
@@ -99,16 +101,11 @@ public abstract class Prodotto {
         this.descrizione = descrizione;
     }
 
-    //@Override
-    /*public String toString() {
-        return "Prodotto{" +
-                "ID=" + ID +
-                ", marca='" + marca + '\'' +
-                ", modello='" + modello + '\'' +
-                ", prezzo=" + prezzo +
-                ", tipo='" + tipo + '\'' +
-                ", url='" + url + '\'' +
-                ", descrizione='" + descrizione + '\'' +
-                '}';
-    }*/
+    public static List<Prodotto> doRetriveByIdLis(ArrayList<Integer> idList) throws SQLException {
+        List<Prodotto> carrello = new ArrayList<Prodotto>();
+        for(int i = 0; i < idList.size(); i++){
+            carrello.add(ProdottoDAO.doRetriveById(idList.get(i)));
+        }
+        return carrello;
+    }
 }
