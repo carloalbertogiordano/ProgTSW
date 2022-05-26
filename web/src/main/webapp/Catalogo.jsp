@@ -12,7 +12,8 @@
 <%@ page import="Model.PSU_.Psu" %>
 <%@ page import="Model.RAM_.Ram" %>
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
-<%@ page import="Model.Archiviazione_.SDD_.Ssd" %><%--
+<%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
+<%@ page import="Controller.CatalogoDAO" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 25/05/22
@@ -36,48 +37,50 @@
         List<Hdd> hddList = new ArrayList<Hdd>();
         List<Ssd> ssdList = new ArrayList<Ssd>();
 
+        CatalogoDAO catalogoDAO = new CatalogoDAO();
+
         try {
-            cpuList = ProdottoDAO.doRetriveByType("CPU").stream().map(x -> (Cpu) x).collect(Collectors.toList());
+            cpuList = catalogoDAO.doRetriveByType("CPU").stream().map(x -> (Cpu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            caseList = ProdottoDAO.doRetriveByType("CASE").stream().map(x -> (Case) x).collect(Collectors.toList());
+            caseList = catalogoDAO.doRetriveByType("CASE").stream().map(x -> (Case) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE").stream().map(x -> (Dissipatore) x).collect(Collectors.toList());
+            dissipatoreList = catalogoDAO.doRetriveByType("DISSIPATORE").stream().map(x -> (Dissipatore) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            gpuList = ProdottoDAO.doRetriveByType("GPU").stream().map(x -> (Gpu) x).collect(Collectors.toList());
+            gpuList = catalogoDAO.doRetriveByType("GPU").stream().map(x -> (Gpu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            moboList = ProdottoDAO.doRetriveByType("MOBO").stream().map(x -> (Mobo) x).collect(Collectors.toList());
+            moboList = catalogoDAO.doRetriveByType("MOBO").stream().map(x -> (Mobo) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            psuList = ProdottoDAO.doRetriveByType("PSU").stream().map(x -> (Psu) x).collect(Collectors.toList());
+            psuList = catalogoDAO.doRetriveByType("PSU").stream().map(x -> (Psu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            ramList = ProdottoDAO.doRetriveByType("RAM").stream().map(x -> (Ram) x).collect(Collectors.toList());
+            ramList = catalogoDAO.doRetriveByType("RAM").stream().map(x -> (Ram) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            hddList = ProdottoDAO.doRetriveByType("HDD").stream().map(x -> (Hdd) x).collect(Collectors.toList());
+            hddList = catalogoDAO.doRetriveByType("HDD").stream().map(x -> (Hdd) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            ssdList = ProdottoDAO.doRetriveByType("SSD").stream().map(x -> (Ssd) x).collect(Collectors.toList());
+            ssdList = catalogoDAO.doRetriveByType("SSD").stream().map(x -> (Ssd) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
