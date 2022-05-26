@@ -6,7 +6,13 @@
 <%@ page import="Model.CASE_.Case" %>
 <%@ page import="Model.DISSIPATORE_.Dissipatore" %>
 <%@ page import="Model.GPU_.Gpu" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="Model.MOBO_.Mobo" %>
+<%@ page import="Model.PSU_.Psu" %>
+<%@ page import="Model.RAM_.Ram" %>
+<%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
+<%@ page import="Model.Archiviazione_.SDD_.Ssd" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 25/05/22
@@ -20,58 +26,58 @@
 </head>
 <body>
     <%
-        List<Prodotto> cpuList = new ArrayList<Prodotto>();
-        List<Prodotto> caseList = new ArrayList<Prodotto>();
-        List<Prodotto> dissipatoreList = new ArrayList<Prodotto>();
-        List<Prodotto> gpuList = new ArrayList<Prodotto>();
-        List<Prodotto> moboList = new ArrayList<Prodotto>();
-        List<Prodotto> psuList = new ArrayList<Prodotto>();
-        List<Prodotto> ramList = new ArrayList<Prodotto>();
-        List<Prodotto> hddList = new ArrayList<Prodotto>();
-        List<Prodotto> ssdList = new ArrayList<Prodotto>();
+        List<Cpu> cpuList = new ArrayList<Cpu>();
+        List<Case> caseList = new ArrayList<Case>();
+        List<Dissipatore> dissipatoreList = new ArrayList<Dissipatore>();
+        List<Gpu> gpuList = new ArrayList<Gpu>();
+        List<Mobo> moboList = new ArrayList<Mobo>();
+        List<Psu> psuList = new ArrayList<Psu>();
+        List<Ram> ramList = new ArrayList<Ram>();
+        List<Hdd> hddList = new ArrayList<Hdd>();
+        List<Ssd> ssdList = new ArrayList<Ssd>();
 
         try {
-            cpuList = ProdottoDAO.doRetriveByType("CPU");
+            cpuList = ProdottoDAO.doRetriveByType("CPU").stream().map(x -> (Cpu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            caseList = ProdottoDAO.doRetriveByType("CASE");
+            caseList = ProdottoDAO.doRetriveByType("CASE").stream().map(x -> (Case) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE");
+            dissipatoreList = ProdottoDAO.doRetriveByType("DISSIPATORE").stream().map(x -> (Dissipatore) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            gpuList = ProdottoDAO.doRetriveByType("CPU");
+            gpuList = ProdottoDAO.doRetriveByType("GPU").stream().map(x -> (Gpu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            moboList = ProdottoDAO.doRetriveByType("MOBO");
+            moboList = ProdottoDAO.doRetriveByType("MOBO").stream().map(x -> (Mobo) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            psuList = ProdottoDAO.doRetriveByType("PSU");
+            psuList = ProdottoDAO.doRetriveByType("PSU").stream().map(x -> (Psu) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            ramList = ProdottoDAO.doRetriveByType("RAM");
+            ramList = ProdottoDAO.doRetriveByType("RAM").stream().map(x -> (Ram) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            hddList = ProdottoDAO.doRetriveByType("HDD");
+            hddList = ProdottoDAO.doRetriveByType("HDD").stream().map(x -> (Hdd) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            ssdList = ProdottoDAO.doRetriveByType("SSD");
+            ssdList = ProdottoDAO.doRetriveByType("SSD").stream().map(x -> (Ssd) x).collect(Collectors.toList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
