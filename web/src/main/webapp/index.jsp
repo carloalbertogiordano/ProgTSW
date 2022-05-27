@@ -38,8 +38,6 @@
 <a href = "CarrelloServlet">Carrello</a>
 <a href = "Catalogo.jsp">Catalogo</a>
 <p>Testing test: <a href="testing.jsp"> TEST </a></p>
-<p>Catalogo test: <a href="Catalogo.jsp"> TEST </a></p>
-
 
 </body>
 </html>
