@@ -9,6 +9,6 @@ public class Ssd extends ArchivioDati {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "SSD" + super.toString();
     }
 }

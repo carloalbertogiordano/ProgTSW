@@ -52,7 +52,7 @@ public class Carrello {
                 else{
                     int quantitaDisponible = carrello.getCarrello().get(i).getQuantità();
                     CarrelloDAO service = new CarrelloDAO();
-                    service.doUpdateQuantitaRichiestaById(carrello.getCarrello().get(i).getID(), quantitaDisponible);
+                    service.doUpdateQuantitaRichiestaById(carrello.getCarrello().get(i).getID(), carrello.getCarrelloCod(), quantitaDisponible);
                 }
             }
         }
@@ -75,5 +75,13 @@ public class Carrello {
             carrelloSession.getCarrello().add(p);
         }
         return carrelloSession;
+    }
+
+    public String toString(){
+        String s = "";
+        for(int i = 0; i < carrello.size(); i++){
+            s = s + "\n" + carrello.get(i).toString();
+        }
+        return s;
     }
 }

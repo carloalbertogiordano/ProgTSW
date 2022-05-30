@@ -19,6 +19,8 @@ public class HomeServlet extends HttpServlet {
         HttpSession ss = request.getSession();
         Cliente c = (Cliente) ss.getAttribute("cliente");
         CatalogoDAO service = new CatalogoDAO();
+        boolean joinDone = false;
+        ss.setAttribute("join", joinDone);
         if(ss.isNew()){
             Catalogo catalogo = new Catalogo();
             try {
@@ -26,6 +28,7 @@ public class HomeServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            System.out.println(catalogo.getCatalogo());
             ss.setAttribute("catalogo", catalogo);
         }
         else{
@@ -37,6 +40,9 @@ public class HomeServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+                ss.setAttribute("catalogo", catalogo);
+            }
+            else{
                 ss.setAttribute("catalogo", catalogo);
             }
         }

@@ -26,25 +26,30 @@ public class CarrelloServlet extends HttpServlet {
             //L'utente è loggato
             //Prendo il carrello dalla sessione
             Carrello carrello = (Carrello) session.getAttribute("carrello");
-            Carrello carrelloDB = null;
+            Carrello carrelloDB = new Carrello();
+            boolean joinDone = (boolean) session.getAttribute("join");
             if (carrello != null) {
-                //join tra il carrello nella sessione e carrello dell'utente nel database (tabella Ordine)
-                //Prendo il carrello dal DB
-                CarrelloDAO service = new CarrelloDAO();
-                carrelloDB = new Carrello();
-                try {
-                    carrelloDB = service.doRetriveByMailCliente(c.getMail());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                if(!joinDone){
+                    System.out.println("Sono nel caso in cui devo caricare il carrello del DB più quello della sessione");
+                    //join tra il carrello nella sessione e carrello dell'utente nel database (tabella Ordine)
+                    //Prendo il carrello dal DB
+                    CarrelloDAO service = new CarrelloDAO();
+                    try {
+                        carrelloDB = service.doRetriveByMailCliente(c.getMail());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Richiamo il metodo per joinare i carrelli della sessione e del DB
+                    carrello = carrello.joinCarrelli(carrelloDB);
+                    session.setAttribute("join", true);
+                    Catalogo cat = new Catalogo();
+                    cat = (Catalogo) session.getAttribute("catalogo");
+                    cat.aggiornaQuantita(carrello);
+                    session.setAttribute("catalogo", cat);
+                    session.setAttribute("carrello", carrello);
                 }
-                //Richiamo il metodo per joinare i carrelli della sessione e del DB
-                carrello = carrello.joinCarrelli(carrelloDB);
-                Catalogo cat = new Catalogo();
-                cat = (Catalogo) session.getAttribute("catalogo");
-                cat.aggiornaQuantita(carrelloDB);
-                session.setAttribute("catalogo", cat);
-                session.setAttribute("carrello", carrello);
             } else {
+                System.out.println("Sono nel caso in cui devo caricare solo il carrello del DB");
                 //caricare il carrello dell'utente dal database (tabella Ordine)
                 CarrelloDAO service = new CarrelloDAO();
                 Carrello carrelloDb = new Carrello();
@@ -55,14 +60,14 @@ public class CarrelloServlet extends HttpServlet {
                 }
                 Catalogo cat = new Catalogo();
                 cat = (Catalogo) session.getAttribute("catalogo");
-                cat.aggiornaQuantita(carrelloDB);
+                cat.aggiornaQuantita(carrelloDb);
                 session.setAttribute("catalogo", cat);
                 session.setAttribute("carrello", carrelloDb);
+                session.setAttribute("join", true);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
-            dispatcher.forward(request, response);
         }
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
+        dispatcher.forward(request, response);
         //L'utente non è loggato e il carrello (è vuoto/pieno)
     }
 

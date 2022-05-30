@@ -110,7 +110,6 @@ public abstract class ProdottoDAO {
 
     //Metodo per prendere un prodotto dal database dato l'ID
     public static Prodotto doRetriveById(Integer ID) throws SQLException {
-        System.out.println("Metodo doRetriveById, parametro: " + ID);
         int x = ID;
         Connection con = ConPool.getConnection();
         Statement stmt = con.createStatement();
@@ -155,7 +154,6 @@ public abstract class ProdottoDAO {
                 }
                 case "SSD":{
                     Ssd ssd = new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
-                    System.out.println(ssd.toString());
                     return ssd;
                 }
                 default:{

@@ -26,8 +26,16 @@ public class ArchivioDati extends Prodotto {
 
     @Override
     public String toString() {
-        return super.toString() + "\nMBs: " + MBs;
+        return  "{" +
+                "Marca= " + super.getMarca() +
+                ", Modello= "  + super.getModello() +
+                ", Prezzo= " + super.getPrezzo() +
+                ", Quantità disponibile= " + super.getQuantità() +
+                ", url= " + super.getUrl() +
+                ", Descrizione= " + super.getDescrizione() +
+                ", Forma MOBO: " + MBs + "}\n";
     }
+
 
 
 }

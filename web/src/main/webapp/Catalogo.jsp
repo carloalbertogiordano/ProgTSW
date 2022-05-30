@@ -14,7 +14,8 @@
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Controller.CatalogoDAO" %>
-<%@ page import="Model.Catalogo" %><%--
+<%@ page import="Model.Catalogo" %>
+<%@ page import="Model.Carrello_.Carrello" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 25/05/22
@@ -102,7 +103,8 @@
                             "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
                             "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                             "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
-                            "<li>Url: " + cpu.getUrl() + "</li></ul></div>");
+                            "<li>Url: " + cpu.getUrl() + "</li>" +
+                            "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div>");
                 }
             %>
         </div>
@@ -119,8 +121,8 @@
                             "<li>Prezzo: " + case_.getPrezzo() + "</li>" +
                             "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                             "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
-                            "<li>Url: " + case_.getUrl() + "</li></ul></div>");
-                }
+                            "<li>Url: " + case_.getUrl() + "</li>" +
+                            "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div>");                 }
             %>
         </div>
         <div class="dissipatore-list">
@@ -136,8 +138,8 @@
                             "<li>Prezzo: " + dissipatore.getPrezzo() + "</li>" +
                             "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                             "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
-                            "<li>Url: " + dissipatore.getUrl() + "</li></ul></div>");
-                }
+                            "<li>Url: " + dissipatore.getUrl() + "</li>" +
+                            "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div>");                 }
             %>
         </div>
         <div class="gpu-list">
@@ -155,8 +157,8 @@
                             "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
                             "<li>vRam:" + gpu.getVRam() + "</li>" +
                             "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
-                            "<li>Url: " + gpu.getUrl() + "</li></ul></div>");
-                }
+                            "<li>Url: " + gpu.getUrl() + "</li>" +
+                            "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div>");                 }
             %>
         </div>
         <div class="mobo-list">

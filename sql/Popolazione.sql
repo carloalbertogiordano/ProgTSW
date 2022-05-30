@@ -10,11 +10,11 @@ insert into Cliente values ("admin@placeholdermail.com", "4e7afebcfbae000b22c7c8
 insert into Carrello values (1, 100);
 insert into Carrello (Totale) values (1000);
 insert into Carrello (Totale) values (10000);
-insert into Carrello(Totale) values (200);
+insert into Carrello (Totale) values (200);
 
 #Ordini
 insert into Ordine values ("cliente1@placeholdermail.com", 1, false);
-insert into Ordine values ("cliente1@placeholdermail.com", 4, false);
+insert into Ordine values ("cliente1@placeholdermail.com", 4, true);
 insert into Ordine values ("cliente2@placeholdermail.com", 2, true);
 insert into Ordine values ("cliente3@placeholdermail.com", 3, true);
 
@@ -75,6 +75,7 @@ insert into Applicare values('2023-12-24', '2024-12-26', 10);
 insert into Comporre values (3, 1, 2);
 insert into Comporre values (10, 1, 1);
 insert into Comporre values (1, 1, 1);
+insert into Comporre values (15, 1, 4)
 
 
 

@@ -11,7 +11,7 @@ public class Hdd extends ArchivioDati {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "HDD" + super.toString();
     }
 
 

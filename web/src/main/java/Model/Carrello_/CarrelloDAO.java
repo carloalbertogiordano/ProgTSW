@@ -32,7 +32,7 @@ public class CarrelloDAO {
     public double doRetrivePrezzoByIdCarrello(int id) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Totale FROM Carrello WHERE CarrelloCod = ?;");
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Totale FROM Carrello WHERE Cod = ?;");
         pdstmt.setInt(1, id);
         ResultSet rs = pdstmt.executeQuery();
         double totale = -1;
@@ -46,7 +46,7 @@ public class CarrelloDAO {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("SELECT Quantita FROM Comporre WHERE PezzoId = ? AND CarrelloCod = ?");
         pdstmt.setInt(1, id);
-        pdstmt.setInt(1, carrelloCod);
+        pdstmt.setInt(2, carrelloCod);
         ResultSet rs = pdstmt.executeQuery();
         int quantita = -1;
         while(rs.next()){
@@ -55,18 +55,19 @@ public class CarrelloDAO {
         return quantita;
     }
 
-    public void doUpdateQuantitaRichiestaById(int id, int carrelloCod) throws SQLException {
+    public void doUpdateQuantitaRichiestaById(int id, int carrelloCod, int quantita) throws SQLException {
         Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita WHERE PezzoID = ? AND CarrelloCod = ?");
-        pdstmt.setInt(1, id);
-        pdstmt.setInt(2, carrelloCod);
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ? WHERE PezzoID = ? AND CarrelloCod = ?");
+        pdstmt.setInt(1, quantita);
+        pdstmt.setInt(2, id);
+        pdstmt.setInt(3, carrelloCod);
         pdstmt.executeUpdate();
     }
 
     public Carrello doRetriveByMailCliente(String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT PezzoID FROM Comporre WHERE CarrelloCod IN (SELECT CarrelloCod FROM Ordine WHERE ClienteMail = ? AND Evaso != true);");
+        PreparedStatement pdstmt = con.prepareStatement("SELECT PezzoID FROM Comporre WHERE CarrelloCod = (SELECT CarrelloCod FROM Ordine WHERE ClienteMail = ? AND Evaso != true);");
         pdstmt.setString(1, mail);
         ResultSet rs = pdstmt.executeQuery();
         ArrayList<Integer> prodotti = new ArrayList<Integer>();
@@ -79,7 +80,13 @@ public class CarrelloDAO {
         }
         int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
-        Carrello carrello = new Carrello(Prodotto.doRetriveByIdLis(prodotti), carrelloCod, totaleCarrello);
+        List<Prodotto> listProdotti = new ArrayList<Prodotto>();
+        listProdotti = Prodotto.doRetriveByIdLis(prodotti);
+        for(int i = 0; i < listProdotti.size(); i++){
+            int quantitaRichiesta = getComporreQuantita(listProdotti.get(i).getID(), carrelloCod);
+            listProdotti.get(i).setQuantità(quantitaRichiesta);
+        }
+        Carrello carrello = new Carrello(listProdotti, carrelloCod, totaleCarrello);
         return carrello;
     }
 }

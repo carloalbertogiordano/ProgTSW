@@ -14,7 +14,7 @@ Administrator boolean not null default false
 
 create table Carrello(
 	Cod int auto_increment primary key,
-    Totale int not null
+    Totale double not null
 );
 
 create table Ordine(
@@ -30,7 +30,7 @@ create table Pezzo(
 	Id int auto_increment primary key,
     Marca varchar (30) not null,
     Modello varchar (30) not null,
-    Prezzo int not null,
+    Prezzo double not null,
     Quantita int not null,
     Wattaggio int,
     Tipo varchar (20) not null,
@@ -77,7 +77,7 @@ create table Carta(
 create table Comporre(
 	PezzoID int,
     CarrelloCod int,
-    Quantità int not null,
+    Quantita int not null,
 	foreign key (PezzoID) references Pezzo(ID),
    	foreign key (CarrelloCod) references Carrello(Cod),
 	primary key (PezzoID, CarrelloCod)

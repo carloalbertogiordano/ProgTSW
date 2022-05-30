@@ -1,16 +1,10 @@
-body{
+.body{
     margin: 0px;
     padding: 0px;
     max-width: 100%;
 }
 
-img {
-    height: 4%;
-    width: 4%;
-    object-fit: contain;
-}
-
-divide {
+.divide {
     border: 2px solid black;
     border-radius: 5px;
     padding: 2px;
@@ -61,4 +55,18 @@ divide {
 
 .login:visited {
     text-decoration: none;
+}
+
+div {
+    text-align: justify;
+}
+
+div img {
+    display: inline-block;
+    width: 33%;
+}
+div:after {
+    content: '';
+    display: inline-block;
+    width: 33%;
 }
