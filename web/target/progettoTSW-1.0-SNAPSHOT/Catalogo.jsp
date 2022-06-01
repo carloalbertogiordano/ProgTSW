@@ -13,7 +13,7 @@
 <%@ page import="Model.RAM_.Ram" %>
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
-<%@ page import="Controller.CatalogoDAO" %>
+<%@ page import="Model.CatalogoDAO" %>
 <%@ page import="Model.Catalogo" %>
 <%@ page import="Model.Carrello_.Carrello" %><%--
   Created by IntelliJ IDEA.
@@ -29,84 +29,37 @@
 </head>
 <body>
     <%
-        List<Cpu> cpuList = new ArrayList<Cpu>();
-        List<Case> caseList = new ArrayList<Case>();
-        List<Dissipatore> dissipatoreList = new ArrayList<Dissipatore>();
-        List<Gpu> gpuList = new ArrayList<Gpu>();
-        List<Mobo> moboList = new ArrayList<Mobo>();
-        List<Psu> psuList = new ArrayList<Psu>();
-        List<Ram> ramList = new ArrayList<Ram>();
-        List<Hdd> hddList = new ArrayList<Hdd>();
-        List<Ssd> ssdList = new ArrayList<Ssd>();
-
         Catalogo catalogo = new Catalogo();
         HttpSession ss = request.getSession();
         catalogo = (Catalogo) ss.getAttribute("catalogo");
-        Carrello carrello = (Carrello) ss.getAttribute("carrello");
-        catalogo.aggiornaQuantita(carrello);
 
-        try {
-            cpuList = catalogo.doRetriveByType("CPU").stream().map(x -> (Cpu) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            caseList = catalogo.doRetriveByType("CASE").stream().map(x -> (Case) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            dissipatoreList = catalogo.doRetriveByType("DISSIPATORE").stream().map(x -> (Dissipatore) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            gpuList = catalogo.doRetriveByType("GPU").stream().map(x -> (Gpu) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            moboList = catalogo.doRetriveByType("MOBO").stream().map(x -> (Mobo) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            psuList = catalogo.doRetriveByType("PSU").stream().map(x -> (Psu) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            ramList = catalogo.doRetriveByType("RAM").stream().map(x -> (Ram) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            hddList = catalogo.doRetriveByType("HDD").stream().map(x -> (Hdd) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            ssdList = catalogo.doRetriveByType("SSD").stream().map(x -> (Ssd) x).collect(Collectors.toList());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<Cpu> cpuList = (List<Cpu>) catalogo.doRetriveByType("CPU");
+        List<Case> caseList = (List<Case>) catalogo.doRetriveByType("CASE");
+        List<Dissipatore> dissipatoreList = (List<Dissipatore>) catalogo.doRetriveByType("DISSIPATORE");
+        List<Gpu> gpuList = (List<Gpu>) catalogo.doRetriveByType("GPU");
+        /*List<Mobo> moboList = new ArrayList<Mobo>();
+        List<Psu> psuList = new ArrayList<Psu>();
+        List<Ram> ramList = new ArrayList<Ram>();
+        List<Hdd> hddList = new ArrayList<Hdd>();
+        List<Ssd> ssdList = new ArrayList<Ssd>();*/
     %>
     <div class="wrapper">
         <div class="CPU-list">
             <%
-                for (Prodotto prodotto : cpuList) {
+                for (int i = 0; i < cpuList.size(); i++) {
                     Cpu cpu = new Cpu();
-                    if (prodotto instanceof Cpu) {
-                        cpu = (Cpu) prodotto;
+                    if (cpuList.get(i) instanceof Cpu) {
+                        cpu = (Cpu) cpuList.get(i);
                     }
-                    out.println("<div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + cpuList.get(i).getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
                             "<li>Modello: " + cpu.getModello() + "</li>" +
                             "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
                             "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                             "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
                             "<li>Url: " + cpu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div>");
+                            "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
+
                 }
             %>
         </div>
@@ -117,14 +70,14 @@
                     if(caseList.get(i) instanceof Case){
                         case_ = (Case) caseList.get(i);
                     }
-                    out.println("<div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + caseList.get(i).getID() + "\"><div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             case_.getMarca() + "</li>" +
                             "<li>Modello: " + case_.getModello() + "</li>" +
                             "<li>Prezzo: " + case_.getPrezzo() + "</li>" +
                             "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                             "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
                             "<li>Url: " + case_.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div>");                 }
+                            "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div></a>");                 }
             %>
         </div>
         <div class="dissipatore-list">
@@ -134,14 +87,14 @@
                     if(dissipatoreList.get(i) instanceof Dissipatore){
                         dissipatore = (Dissipatore) dissipatoreList.get(i);
                     }
-                    out.println("<div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + dissipatoreList.get(i).getID() + "\"><div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             dissipatore.getMarca() + "</li>" +
                             "<li>Modello: " + dissipatore.getModello() + "</li>" +
                             "<li>Prezzo: " + dissipatore.getPrezzo() + "</li>" +
                             "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                             "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
                             "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div>");                 }
+                            "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div></a>");                 }
             %>
         </div>
         <div class="gpu-list">
@@ -151,7 +104,7 @@
                     if(gpuList.get(i) instanceof Gpu){
                         gpu = (Gpu) gpuList.get(i);
                     }
-                    out.println("<div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + gpuList.get(i).getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             gpu.getMarca() + "</li>" +
                             "<li>Modello: " + gpu.getModello() + "</li>" +
                             "<li>Prezzo: " + gpu.getPrezzo() + "</li>" +
@@ -160,7 +113,7 @@
                             "<li>vRam:" + gpu.getVRam() + "</li>" +
                             "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
                             "<li>Url: " + gpu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div>");                 }
+                            "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");                 }
             %>
         </div>
         <div class="mobo-list">

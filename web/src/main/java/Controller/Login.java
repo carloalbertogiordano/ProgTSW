@@ -39,10 +39,14 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
-                if(CDAO.isAdministrator(mail))
+                if(CDAO.isAdministrator(mail)) {
+                    System.out.println("Duce trovato");
                     response.sendRedirect("admin.jsp");
-                else
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+                else{
+                    System.out.println("DVCE trovato");
+                    response.sendRedirect(".");
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

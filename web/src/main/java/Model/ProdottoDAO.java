@@ -175,7 +175,7 @@ public abstract class ProdottoDAO {
 
     public static boolean doCheckDisponibilita(Prodotto p) throws SQLException {
         Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Quanita FROM Comporre WHERE Id = ?");
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Quantita FROM Comporre WHERE PezzoID = ?");
         pdstmt.setInt(1, p.getID());
         ResultSet rs = pdstmt.executeQuery();
         Integer quantita = null;

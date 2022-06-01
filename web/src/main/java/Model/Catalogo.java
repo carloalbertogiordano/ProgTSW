@@ -2,10 +2,14 @@ package Model;
 
 import Model.Archiviazione_.HDD_.HddDAO;
 import Model.Archiviazione_.SDD_.SsdDAO;
+import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
+import Model.CPU_.Cpu;
 import Model.CPU_.CpuDAO;
 import Model.Carrello_.Carrello;
+import Model.DISSIPATORE_.Dissipatore;
 import Model.DISSIPATORE_.DissipatoreDAO;
+import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
 import Model.MOBO_.MoboDAO;
 import Model.PSU_.PsuDAO;
@@ -44,50 +48,70 @@ public class Catalogo {
             }
         }
     }
-
-    public static List<?> doRetriveByType(String type) throws SQLException {
-        List<?> list = new ArrayList<>();
-        switch (type) {
-            case "CPU":
-                CpuDAO cDAO = new CpuDAO();
-                list = cDAO.doRetriveByType();
-                break;
-            case "MOBO":
-                MoboDAO mDAO = new MoboDAO();
-                list= mDAO.doRetriveByType();
-                break;
-            case "CASE":
-                CaseDAO caDAO = new CaseDAO();
-                list = caDAO.doRetriveByType();
-                break;
-            case "DISSIPATORE":
-                DissipatoreDAO dDAO = new DissipatoreDAO();
-                list = dDAO.doRetriveByType();
-                break;
-            case "GPU":
-                GpuDAO gDAO = new GpuDAO();
-                list = gDAO.doRetriveByType();
-                break;
-            case "PSU":
-                PsuDAO pDAO = new PsuDAO();
-                list = pDAO.doRetriveByType();
-                break;
-            case "RAM":
-                RamDAO rDAO = new RamDAO();
-                list = rDAO.doRetriveByType();
-                break;
-            case "HDD":
-                HddDAO hDAO = new HddDAO();
-                list = hDAO.doRetriveByType();
-                break;
-            case "SSD":
-                SsdDAO sDAO = new SsdDAO();
-                list = sDAO.doRetriveByType();
-                break;
-            default:
-                Prodotto prodotto = null;
-                break;
+    public void aggiornaQuantita(Prodotto p,int quantita){
+        //Le quantità relative ai pezzi nel carrello sono le quantità richieste
+        //Le quantità relative ai pezzi del catalo sono le quantità disponibili
+        for(int i = 0; i < catalogo.size(); i++){
+                if(catalogo.get(i).getID()==p.getID()){
+                    System.out.println("Quantità disponibile: " + catalogo.get(i).getQuantità());
+                    //System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
+                    catalogo.get(i).setQuantità((catalogo.get(i).getQuantità() + p.getQuantità())-quantita);
+                    //p.setQuantità(quantita);
+                    System.out.println("Quantità rimanente: " +  catalogo.get(i).getQuantità());
+                }
         }
-        return list;
+    }
+
+    public void aggiornaQuantita(Prodotto p){
+        //Le quantità relative ai pezzi nel carrello sono le quantità richieste
+        //Le quantità relative ai pezzi del catalo sono le quantità disponibili
+        for(int i = 0; i < catalogo.size(); i++){
+            if(catalogo.get(i).getID()==p.getID()){
+                System.out.println("Quantità disponibile: " + catalogo.get(i).getQuantità());
+                //System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
+                catalogo.get(i).setQuantità((catalogo.get(i).getQuantità() - p.getQuantità()));
+                //p.setQuantità(quantita);
+                System.out.println("Quantità rimanente: " +  catalogo.get(i).getQuantità());
+            }
+        }
+    }
+    public List<?> doRetriveByType(String type){
+        switch (type){
+            case "CPU":
+                List<Cpu> listCpu = new ArrayList();
+                for(Prodotto p: catalogo)
+                    if(p instanceof Cpu)
+                        listCpu.add((Cpu) p);
+                return listCpu;
+            case "CASE":
+                List<Case> listCase = new ArrayList();
+                for(Prodotto p: catalogo)
+                    if(p instanceof Case)
+                        listCase.add((Case) p);
+                return listCase;
+            case "GPU":
+                List<Gpu> listGpu = new ArrayList();
+                for(Prodotto p: catalogo)
+                    if(p instanceof Gpu)
+                        listGpu.add((Gpu) p);
+                return listGpu;
+            case "DISSIPATORE":
+                List<Dissipatore> listDissipatore = new ArrayList();
+                for(Prodotto p: catalogo)
+                    if(p instanceof Dissipatore)
+                        listDissipatore.add((Dissipatore) p);
+                return listDissipatore;
+            default:
+                return null;
+        }
+    }
+
+    public Prodotto doRetriveById(int id){
+        for(int i = 0; i < catalogo.size(); i++){
+            if(id == catalogo.get(i).getID()){
+                return catalogo.get(i);
+            }
+        }
+        return null;
     }
 }
