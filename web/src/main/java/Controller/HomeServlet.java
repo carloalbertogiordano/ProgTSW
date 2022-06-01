@@ -16,12 +16,20 @@ import java.sql.SQLException;
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Take session
         HttpSession ss = request.getSession();
-        CatalogoDAO service = new CatalogoDAO();
+
+        //Take Attribute from session
         Cliente c = (Cliente) ss.getAttribute("cliente");
+
+        //Create new instance
+        CatalogoDAO service = new CatalogoDAO();
+        Catalogo catalogo = new Catalogo();
+
+        //Check if session is new
         if(ss.isNew()){
+            //if the session is new we need to take all elements from database, set it in a catalogo, create a new empty carrello, and add catalogo and carrello as session Attribute
             Carrello carrello = new Carrello();
-            Catalogo catalogo = new Catalogo();
             try {
                 catalogo = service.doRetriveAll();
             } catch (SQLException e) {
@@ -30,54 +38,60 @@ public class HomeServlet extends HttpServlet {
             ss.setAttribute("catalogo", catalogo);
             ss.setAttribute("carrello", carrello);
         }
+        //The session isn't new
         else{
-            Catalogo catalogo = new Catalogo();
+            //We need to take catalogo from session because in this attribute we have the updated quantity
             catalogo = (Catalogo) ss.getAttribute("catalogo");
+            //check catalogo is null or not
             if(catalogo == null){
                 try {
+                    //if is null we take all elements from database and set session attribute catalogo
                     catalogo = service.doRetriveAll();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 ss.setAttribute("catalogo", catalogo);
             }
-            else{
+            /*else{
                 ss.setAttribute("catalogo", catalogo);
-            }
-
+            }*/
+            //If the session isn't new we need to control if the Cliente is null or not to check if he's logged in
             if(c != null) {
-                //L'utente è loggato
-                //Prendo il carrello dalla sessione
+                //Cliente is logged
+                //Take Carrello from session
                 Carrello carrello = (Carrello) ss.getAttribute("carrello");
+                //create a new Carrello where we put carrello from DataBase
                 Carrello carrelloDB = new Carrello();
                 CarrelloDAO serviceCarrello = new CarrelloDAO();
+                //If session Carrello isn't null we need to do join between session Carrello and DataBase Carrello
                 if (carrello != null) {
-                        //join tra il carrello nella sessione e carrello dell'utente nel database (tabella Ordine)
-                        //Prendo il carrello dal DB
+                        //Take Carrello from DataBase using the mail of Cliente
                         try {
                             carrelloDB = serviceCarrello.doRetriveByMailCliente(c.getMail());
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
                         }
-                        //Richiamo il metodo per joinare i carrelli della sessione e del DB
+                        //Do join
                         carrello = carrello.joinCarrelli(carrelloDB);
-                        Catalogo cat = new Catalogo();
-                        cat = (Catalogo) ss.getAttribute("catalogo");
-                        cat.aggiornaQuantita(carrello);
-                        ss.setAttribute("catalogo", cat);
+                        //Use Catalogo to store the session Catalogo and update the quantit
+                        catalogo = (Catalogo) ss.getAttribute("catalogo");
+                        catalogo.aggiornaQuantita(carrello);
+                        //set session attribute catalogo and carrello
+                        ss.setAttribute("catalogo", catalogo);
                         ss.setAttribute("carrello", carrello);
                 } else {
-                    //caricare il carrello dell'utente dal database (tabella Ordine)
+                    //If session Carrello is null we need to take Carrello from the DataBase and set it as session Carrello
                     Carrello carrelloDb = new Carrello();
                     try {
                         carrelloDb = serviceCarrello.doRetriveByMailCliente(c.getMail());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    Catalogo cat = new Catalogo();
-                    cat = (Catalogo) ss.getAttribute("catalogo");
-                    cat.aggiornaQuantita(carrelloDb);
-                    ss.setAttribute("catalogo", cat);
+                    //Create new Catalogo and use it to store the session Catalogo and update the quantity
+                    catalogo = (Catalogo) ss.getAttribute("catalogo");
+                    catalogo.aggiornaQuantita(carrelloDb);
+                    //set session attribute catalogo and carrello
+                    ss.setAttribute("catalogo", catalogo);
                     ss.setAttribute("carrello", carrelloDb);
                 }
             }
