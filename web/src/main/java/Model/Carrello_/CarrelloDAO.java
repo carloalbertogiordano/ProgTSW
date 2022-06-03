@@ -111,7 +111,6 @@ public class CarrelloDAO {
         pdstmt.setString(2, mail);
         pdstmt.setInt(3, codCarrello);
         pdstmt.executeUpdate();
-        System.out.println("Ordine Evaso");
     }
 
     public void scalaProdotti(Carrello c) throws SQLException {
@@ -125,6 +124,5 @@ public class CarrelloDAO {
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - 1 WHERE Id = ?");
         pdstmt.setInt(1, id);
         pdstmt.executeUpdate();
-        System.out.println("Rimosso 1 di "+id);
     }
 }
