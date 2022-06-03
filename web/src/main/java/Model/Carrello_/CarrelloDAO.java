@@ -104,6 +104,7 @@ public class CarrelloDAO {
 
     }
 
+    //Setta a vero l'attributo Evaso nella tabella Ordine
     public void setOrdineEvaso(String mail, int codCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Ordine SET Evaso = ? WHERE ClienteMail = ? AND CarrelloCod = ?");
@@ -113,12 +114,14 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
+    //Scala una lista di prodotti dal db dato un carrello
     public void scalaProdotti(Carrello c) throws SQLException {
         for(Prodotto p : c.getCarrello()){
             scalaProdotto(p.getID());
         }
     }
 
+    //Scala un prodotto dal db dato un id
     private void scalaProdotto(int id) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - 1 WHERE Id = ?");
