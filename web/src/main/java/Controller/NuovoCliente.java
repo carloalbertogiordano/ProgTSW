@@ -32,7 +32,7 @@ public class NuovoCliente extends HttpServlet {
                 //Aggiungi cliente ad DB
                 CDAO.addCliente(c);
                 System.out.println("Cliente aggiunto");
-                request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

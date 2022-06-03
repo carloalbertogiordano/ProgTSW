@@ -40,11 +40,9 @@ public class Login extends HttpServlet {
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
                 if(CDAO.isAdministrator(mail)) {
-                    System.out.println("Duce trovato");
                     response.sendRedirect("admin.jsp");
                 }
                 else{
-                    System.out.println("DVCE trovato");
                     response.sendRedirect(".");
                 }
             }
