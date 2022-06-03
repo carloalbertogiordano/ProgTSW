@@ -29,11 +29,7 @@
                     "</ul>" +
                     "<form action=\"addCart\" id=\"buy\">" +
                     "<input type=\"hidden\" name=\"Id\" value=" + cpu.getID() + ">" +
-                    "<select name=\"quantity\" id=\"quantity\" form=\"buy\">");
-            for(int i = 1; i < cpu.getQuantità(); i++){
-                out.println("<option value=\""+ i + "\">" + i + "</option>");
-            }
-            out.println("</select>" +
+                    "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + cpu.getQuantità() + "\">"+
                     "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                     "</div>");
 
@@ -46,11 +42,7 @@
                     "</ul>" +
                     "<form action=\"addCart\">" +
                     "<input type=\"hidden\" name=\"Id\" value=" + case_.getID() + ">" +
-                    "<select name=\"quantity\" id=\"quantity\" form=\"buy\">");
-            for(int i = 1; i < case_.getQuantità(); i++){
-                out.println("<option value=\""+ i + "\">" + i + "</option>");
-            }
-            out.println("</select>" +
+                    "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + case_.getQuantità() + "\">"+
                     "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                     "</div>");
         }
@@ -62,11 +54,7 @@
                     "</ul>" +
                     "<form action=\"addCart\">" +
                     "<input type=\"hidden\" name=\"Id\" value=" + gpu.getID() + ">" +
-                    "<select name=\"quantity\" id=\"quantity\" form=\"buy\">");
-            for(int i = 1; i < gpu.getQuantità(); i++){
-                out.println("<option value=\""+ i + "\">" + i + "</option>");
-            }
-            out.println("</select>" +
+                    "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + gpu.getQuantità() + "\">"+
                     "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                     "</div>");
         }
@@ -78,11 +66,7 @@
                     "</ul>" +
                     "<form action=\"addCart\">" +
                     "<input type=\"hidden\" name=\"Id\" value=" + dissipatore.getID() + ">" +
-                    "<select name=\"quantity\" id=\"quantity\" form=\"buy\">");
-            for(int i = 1; i < dissipatore.getQuantità(); i++){
-                out.println("<option value=\""+ i + "\">" + i + "</option>");
-            }
-            out.println("</select>" +
+                    "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + dissipatore.getQuantità() + "\">"+
                     "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                     "</div>");
         }

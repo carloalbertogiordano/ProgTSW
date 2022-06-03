@@ -95,7 +95,7 @@ public class Carrello {
         return s;
     }
 
-    public void addProduct(Prodotto prodotto){
+    public void addProduct(Prodotto prodotto) {
         boolean flag = false;
         int index=-1;
         for(int i = 0; i < carrello.size(); i++){
@@ -108,7 +108,28 @@ public class Carrello {
             carrello.add(prodotto);
         }
         else{
-            carrello.get(index).setQuantità(carrello.get(index).getQuantità()+1);
+            carrello.get(index).setQuantità(carrello.get(index).getQuantità()+prodotto.getQuantità());
         }
+    }
+
+    public void addProduct(Prodotto prodotto,int quantita) {
+        boolean flag = false;
+        int index=-1;
+        for(int i = 0; i < carrello.size(); i++){
+            if(prodotto.getID()==carrello.get(i).getID()){
+                flag = true;
+                index=i;
+            }
+        }
+        if(flag==false){
+            carrello.add(prodotto);
+        }
+        else{
+            carrello.get(index).setQuantità(carrello.get(index).getQuantità()+quantita);
+        }
+    }
+
+    public void addProduct(){
+
     }
 }
