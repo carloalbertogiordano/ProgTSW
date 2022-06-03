@@ -29,9 +29,17 @@
 </head>
 <body>
     <%
-        Catalogo catalogo = new Catalogo();
         HttpSession ss = request.getSession();
-        catalogo = (Catalogo) ss.getAttribute("catalogo");
+        Catalogo catalogo = null;
+        if(ss.getAttribute("catalogo") == null){
+            System.out.println("Catalogo non presente in sessione");
+            catalogo = new Catalogo();
+
+        }
+        else{
+            System.out.println("Catalogo presente in sessione");
+            catalogo = (Catalogo) ss.getAttribute("catalogo");
+        }
 
         List<Cpu> cpuList = (List<Cpu>) catalogo.doRetriveByType("CPU");
         List<Case> caseList = (List<Case>) catalogo.doRetriveByType("CASE");
@@ -46,12 +54,12 @@
     <div class="wrapper">
         <div class="CPU-list">
             <%
-                for (int i = 0; i < cpuList.size(); i++) {
+                for (Cpu value : cpuList) {
                     Cpu cpu = new Cpu();
-                    if (cpuList.get(i) instanceof Cpu) {
-                        cpu = (Cpu) cpuList.get(i);
+                    if (value instanceof Cpu) {
+                        cpu = (Cpu) value;
                     }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + cpuList.get(i).getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
                             "<li>Modello: " + cpu.getModello() + "</li>" +
                             "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
