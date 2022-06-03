@@ -1,15 +1,7 @@
 package Model.Carrello_;
 
-import Model.CASE_.Case;
-import Model.CPU_.Cpu;
 import Model.ConPool;
-import Model.DISSIPATORE_.Dissipatore;
-import Model.GPU_.Gpu;
-import Model.MOBO_.Mobo;
-import Model.PSU_.Psu;
 import Model.Prodotto;
-import Model.ProdottoDAO;
-import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -106,5 +98,33 @@ public class CarrelloDAO {
         pdstmt.setInt(2, idPezzo);
         pdstmt.setInt(3, idCarrello);
         pdstmt.executeUpdate();
+    }
+
+    public void evadiOrdine(int carrelloCod, String mail) throws SQLException {
+
+    }
+
+    public void setOrdineEvaso(String mail, int codCarrello) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Ordine SET Evaso = ? WHERE ClienteMail = ? AND CarrelloCod = ?");
+        pdstmt.setInt(1, 1);
+        pdstmt.setString(2, mail);
+        pdstmt.setInt(3, codCarrello);
+        pdstmt.executeUpdate();
+        System.out.println("Ordine Evaso");
+    }
+
+    public void scalaProdotti(Carrello c) throws SQLException {
+        for(Prodotto p : c.getCarrello()){
+            scalaProdotto(p.getID());
+        }
+    }
+
+    private void scalaProdotto(int id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - 1 WHERE Id = ?");
+        pdstmt.setInt(1, id);
+        pdstmt.executeUpdate();
+        System.out.println("Rimosso 1 di "+id);
     }
 }

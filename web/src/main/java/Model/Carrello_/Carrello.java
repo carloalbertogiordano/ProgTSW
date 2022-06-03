@@ -89,8 +89,8 @@ public class Carrello {
 
     public String toString() {
         String s = "";
-        for (int i = 0; i < carrello.size(); i++) {
-            s = s + "\n" + carrello.get(i).toString();
+        for (Prodotto prodotto : carrello) {
+            s = s + "\n" + prodotto.toString();
         }
         return s;
     }

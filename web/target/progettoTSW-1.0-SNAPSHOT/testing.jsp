@@ -18,7 +18,11 @@
 <%@ page import="Model.CASE_.Case" %>
 <%@ page import="Model.CASE_.CaseDAO" %>
 <%@ page import="Model.DISSIPATORE_.DissipatoreDAO" %>
-<%@ page import="Model.DISSIPATORE_.Dissipatore" %><%--
+<%@ page import="Model.DISSIPATORE_.Dissipatore" %>
+<%@ page import="Model.Carrello_.Carrello" %>
+<%@ page import="Model.Carrello_.CarrelloDAO" %>
+<%@ page import="Controller.HomeServlet" %>
+<%@ page import="Model.Cliente_.Cliente" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -33,13 +37,25 @@
 </head>
 <body>
 <h1>TESTING:</h1>
-
+<!--
 <div>
-    <!--- esempio allineament immagini -->
         <img style="text-align:left; ; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.cGENS80aJXqCUjjr-89iEAHaFW%26pid%3DApi&f=1">
         <img style="text-align:center; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.4_Hj249scMG4teQlFKNpuAHaEo%26pid%3DApi&f=1">
         <img style="text-align:right; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.K3uLMvo1rUfVscOsceW8ZAHaE8%26pid%3DApi&f=1">
 </div>
+-->
+
+out.println("TestAcquistoCarrello");
+<%
+    HttpSession ss = request.getSession();
+    Carrello carrello = (Carrello) ss.getAttribute("carrello");
+    Cliente cliente = (Cliente) ss.getAttribute("cliente");
+    String mail = cliente.getMail();
+    int carrelloCod = carrello.getCarrelloCod();
+%>
+    <form action="EvadiOrdine">
+        <input type="submit" value="Evadi Ordine"/>
+    </form>
 
 </body>
 </html>
