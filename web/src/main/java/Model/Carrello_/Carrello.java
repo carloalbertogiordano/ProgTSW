@@ -95,7 +95,7 @@ public class Carrello {
         return s;
     }
 
-    public void addProduct(Prodotto prodotto) {
+    public void addProduct(Prodotto prodotto) throws SQLException {
         boolean flag = false;
         int index=-1;
         for(int i = 0; i < carrello.size(); i++){
@@ -104,28 +104,16 @@ public class Carrello {
                 index=i;
             }
         }
+        CarrelloDAO service = new CarrelloDAO();
         if(flag==false){
+            //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
             carrello.add(prodotto);
+            service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
         }
         else{
+            //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
             carrello.get(index).setQuantità(carrello.get(index).getQuantità()+prodotto.getQuantità());
-        }
-    }
-
-    public void addProduct(Prodotto prodotto,int quantita) {
-        boolean flag = false;
-        int index=-1;
-        for(int i = 0; i < carrello.size(); i++){
-            if(prodotto.getID()==carrello.get(i).getID()){
-                flag = true;
-                index=i;
-            }
-        }
-        if(flag==false){
-            carrello.add(prodotto);
-        }
-        else{
-            carrello.get(index).setQuantità(carrello.get(index).getQuantità()+quantita);
+            service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
         }
     }
 

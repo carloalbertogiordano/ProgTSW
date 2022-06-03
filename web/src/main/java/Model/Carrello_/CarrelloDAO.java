@@ -89,4 +89,22 @@ public class CarrelloDAO {
         Carrello carrello = new Carrello(listProdotti, carrelloCod, totaleCarrello);
         return carrello;
     }
+
+    public void addCartDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Comporre VALUES (?, ?, ?)");
+        pdstmt.setInt(1, idPezzo);
+        pdstmt.setInt(2, idCarrello);
+        pdstmt.setInt(3, quantity);
+        System.out.println("Id Pezzo: " + idPezzo +", Id carrello: " + idCarrello + ", quantità: " + quantity);
+        pdstmt.executeUpdate();
+    }
+    public void updateCarrelloDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ? WHERE PezzoID = ? AND CarrelloCod = ?");
+        pdstmt.setInt(1, quantity);
+        pdstmt.setInt(2, idPezzo);
+        pdstmt.setInt(3, idCarrello);
+        pdstmt.executeUpdate();
+    }
 }
