@@ -129,7 +129,7 @@ public class Carrello {
         }
     }
 
-    public void addProduct(){
-
+    public boolean isEmpty(){
+        return carrello.isEmpty();
     }
 }

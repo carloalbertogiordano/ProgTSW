@@ -95,6 +95,14 @@ public class HomeServlet extends HttpServlet {
                     ss.setAttribute("carrello", carrelloDb);
                 }
             }
+            else{
+                //il cliente non è loggato
+                Carrello carrelloSession = (Carrello) ss.getAttribute("carrello");
+                if(carrelloSession == null){
+                    Carrello carrello = new Carrello();
+                    ss.setAttribute("carrello", carrello);
+                }
+            }
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);

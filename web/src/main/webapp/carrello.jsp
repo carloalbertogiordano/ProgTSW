@@ -17,12 +17,17 @@
 <%
     Carrello carrello = new Carrello();
     carrello = (Carrello) session.getAttribute("carrello");
-    List<Prodotto> carrelloList = carrello.getCarrello();
-    out.println("<li>");
-    for (Prodotto prodotto : carrelloList) {
-        out.println("<ul>" + prodotto.toString() + "</ul>");
+    if(!carrello.isEmpty()){
+        List<Prodotto> carrelloList = carrello.getCarrello();
+        out.println("<li>");
+        for (Prodotto prodotto : carrelloList) {
+            out.println("<ul>" + prodotto.toString() + "</ul>");
+        }
+        out.println("</li>");
     }
-    out.println("</li>");
+    else{
+        out.println("<h1>Il carrello è vuoto</h1>");
+    }
 %>
 </body>
 </html>
