@@ -117,7 +117,35 @@ public class Carrello {
         }
     }
 
+    public void addSessionProduct(Prodotto prodotto) {
+            boolean flag = false;
+            int index=-1;
+            for(int i = 0; i < carrello.size(); i++){
+                if(prodotto.getID()==carrello.get(i).getID()){
+                    flag = true;
+                    index=i;
+                }
+            }
+            CarrelloDAO service = new CarrelloDAO();
+            if(flag==false){
+                //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
+                carrello.add(prodotto);
+            }
+            else {
+                //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
+                carrello.get(index).setQuantità(carrello.get(index).getQuantità() + prodotto.getQuantità());
+            }
+    }
+
     public boolean isEmpty(){
         return carrello.isEmpty();
+    }
+
+    public double calculateTotal(){
+        int sum = 0;
+        for(int i = 0; i < getCarrello().size(); i++){
+            sum += getCarrello().get(i).getPrezzo();
+        }
+        return sum;
     }
 }

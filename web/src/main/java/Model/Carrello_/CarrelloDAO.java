@@ -100,6 +100,14 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
+    public void updateTotalCarrello(Carrello carrello) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Carrello SET Totale = ? WHERE Cod = ?");
+        pdstmt.setDouble(1, carrello.calculateTotal());
+        pdstmt.setInt(2, carrello.getCarrelloCod());
+        pdstmt.executeUpdate();
+    }
+
     public void evadiOrdine(int carrelloCod, String mail) throws SQLException {
 
     }

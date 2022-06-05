@@ -45,14 +45,7 @@
 </div>
 -->
 
-out.println("TestAcquistoCarrello");
-<%
-    HttpSession ss = request.getSession();
-    Carrello carrello = (Carrello) ss.getAttribute("carrello");
-    Cliente cliente = (Cliente) ss.getAttribute("cliente");
-    String mail = cliente.getMail();
-    int carrelloCod = carrello.getCarrelloCod();
-%>
+<h1>TestAcquistoCarrello</h1>
     <form action="EvadiOrdine">
         <input type="submit" value="Evadi Ordine"/>
     </form>

@@ -70,17 +70,3 @@ div:after {
     display: inline-block;
     width: 33%;
 }
-
-div {
-    text-align: justify;
-}
-
-div img {
-    display: inline-block;
-    width: 33%;
-}
-div:after {
-    content: '';
-    display: inline-block;
-    width: 33%;
-}

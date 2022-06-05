@@ -8,6 +8,7 @@ import Model.CatalogoDAO;
 import Model.Cliente_.Cliente;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.GPU_.Gpu;
+import Model.Prodotto;
 import Model.ProdottoDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -19,9 +20,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "addCart", value = "/addCart")
-public class addCart extends HttpServlet{
+public class addCart extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //take product id
@@ -32,55 +34,74 @@ public class addCart extends HttpServlet{
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
-        if(catalogo.doRetriveById(id) instanceof Cpu){
+        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        if (catalogo.doRetriveById(id) instanceof Cpu) {
             //take the product from catalogo by his id
             Cpu cpu = (Cpu) catalogo.doRetriveById(id);
             //take the product from carrello by his id (we need it to update quantity in catalogo)
-            Cpu cpu_carrello=new Cpu(cpu.getID(),cpu.getMarca(),cpu.getModello(),cpu.getPrezzo(),quantity,cpu.getWattaggio(),cpu.getFrequenza(),cpu.getN_Core(),cpu.getUrl(),cpu.getDescrizione());
-            try {
-                carrello.addProduct(cpu_carrello);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            Cpu cpu_carrello = new Cpu(cpu.getID(), cpu.getMarca(), cpu.getModello(), cpu.getPrezzo(), quantity, cpu.getWattaggio(), cpu.getFrequenza(), cpu.getN_Core(), cpu.getUrl(), cpu.getDescrizione());
+            if (cliente != null) {
+                try {
+                    carrello.addProduct(cpu_carrello);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                catalogo.aggiornaQuantita(cpu_carrello);
+            } else {
+                carrello.addSessionProduct(cpu_carrello);
+                catalogo.aggiornaQuantita(cpu_carrello);
             }
-            catalogo.aggiornaQuantita(cpu_carrello);
         }
         //We can repeat the process for all type of product
-        else if(catalogo.doRetriveById(id) instanceof Case){
+        else if (catalogo.doRetriveById(id) instanceof Case) {
             Case case_ = (Case) catalogo.doRetriveById(id);
-            Case case_carrello= new Case(case_.getID(), case_.getMarca(), case_.getModello(), case_.getPrezzo(), quantity, case_.getFormaMobo(), case_.getUrl(), case_.getDescrizione());
-            try {
-                carrello.addProduct(case_carrello);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            Case case_carrello = new Case(case_.getID(), case_.getMarca(), case_.getModello(), case_.getPrezzo(), quantity, case_.getFormaMobo(), case_.getUrl(), case_.getDescrizione());
+            if (cliente != null) {
+                try {
+                    carrello.addProduct(case_carrello);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                catalogo.aggiornaQuantita(case_carrello);
+            } else {
+                carrello.addSessionProduct(case_carrello);
+                catalogo.aggiornaQuantita(case_carrello);
             }
-            catalogo.aggiornaQuantita(case_carrello);
-        }
-        else if(catalogo.doRetriveById(id) instanceof Gpu){
+        } else if (catalogo.doRetriveById(id) instanceof Gpu) {
             Gpu gpu = (Gpu) catalogo.doRetriveById(id);
-            Gpu gpu_carrello= new Gpu(gpu.getID(), gpu.getMarca(), gpu.getModello(), gpu.getPrezzo(), quantity, gpu.getWattaggio(), gpu.getFrequenza(), gpu.getVRam(), gpu.getUrl(), gpu.getDescrizione());
-            try {
-                carrello.addProduct(gpu_carrello);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            Gpu gpu_carrello = new Gpu(gpu.getID(), gpu.getMarca(), gpu.getModello(), gpu.getPrezzo(), quantity, gpu.getWattaggio(), gpu.getFrequenza(), gpu.getVRam(), gpu.getUrl(), gpu.getDescrizione());
+            if (cliente != null) {
+                try {
+                    carrello.addProduct(gpu_carrello);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                catalogo.aggiornaQuantita(gpu_carrello);
+            } else {
+                carrello.addSessionProduct(gpu_carrello);
+                catalogo.aggiornaQuantita(gpu_carrello);
             }
-            catalogo.aggiornaQuantita(gpu_carrello);
-        }
-        else if(catalogo.doRetriveById(id) instanceof Dissipatore){
+        } else if (catalogo.doRetriveById(id) instanceof Dissipatore) {
             Dissipatore dissipatore = (Dissipatore) catalogo.doRetriveById(id);
-            Dissipatore dissipatore_carrello= new Dissipatore(dissipatore.getID(), dissipatore.getMarca(), dissipatore.getModello(), dissipatore.getPrezzo(), quantity, dissipatore.getW_Cpu(), dissipatore.getUrl(), dissipatore.getDescrizione());
-            try {
-                carrello.addProduct(dissipatore_carrello);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            Dissipatore dissipatore_carrello = new Dissipatore(dissipatore.getID(), dissipatore.getMarca(), dissipatore.getModello(), dissipatore.getPrezzo(), quantity, dissipatore.getW_Cpu(), dissipatore.getUrl(), dissipatore.getDescrizione());
+            if (cliente != null) {
+                try {
+                    carrello.addProduct(dissipatore_carrello);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                catalogo.aggiornaQuantita(dissipatore_carrello);
+            } else {
+                carrello.addSessionProduct(dissipatore_carrello);
+                catalogo.aggiornaQuantita(dissipatore_carrello);
             }
-            catalogo.aggiornaQuantita(dissipatore_carrello);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response){
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
 
     }
 }
