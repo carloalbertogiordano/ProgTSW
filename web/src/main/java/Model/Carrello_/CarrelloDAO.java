@@ -8,6 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrelloDAO {
+    public int createCarrello() throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Carrello (totale) VALUES (0)", Statement.RETURN_GENERATED_KEYS);
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        int idCarrello = rs.getInt(1);
+        return idCarrello;
+    }
     public int doRetriveCarrelloCodByMailCLiente(String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
@@ -82,6 +91,15 @@ public class CarrelloDAO {
         return carrello;
     }
 
+    public void updateCarrello(Carrello carrello) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("DELETE FROM Comporre WHERE CarrelloCod = ?");
+        pdstmt.setInt(1, carrello.getCarrelloCod());
+        pdstmt.executeUpdate();
+        for(int i = 0; i < carrello.getCarrello().size(); i++){
+            addCartDB(carrello.getCarrello().get(i).getID(), carrello.getCarrelloCod(), carrello.getCarrello().get(i).getQuantità());
+        }
+    }
     public void addCartDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Comporre VALUES (?, ?, ?)");
@@ -89,14 +107,6 @@ public class CarrelloDAO {
         pdstmt.setInt(2, idCarrello);
         pdstmt.setInt(3, quantity);
         System.out.println("Id Pezzo: " + idPezzo +", Id carrello: " + idCarrello + ", quantità: " + quantity);
-        pdstmt.executeUpdate();
-    }
-    public void updateCarrelloDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
-        Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ? WHERE PezzoID = ? AND CarrelloCod = ?");
-        pdstmt.setInt(1, quantity);
-        pdstmt.setInt(2, idPezzo);
-        pdstmt.setInt(3, idCarrello);
         pdstmt.executeUpdate();
     }
 
@@ -122,18 +132,21 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    //Scala una lista di prodotti dal db dato un carrello
-    public void scalaProdotti(Carrello c) throws SQLException {
-        for(Prodotto p : c.getCarrello()){
-            scalaProdotto(p.getID());
-        }
+    //Scala un prodotto dal db dato un id
+    protected void scalaProdotto(int id, int quantity) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - ? WHERE Id = ?");
+        pdstmt.setInt(1, quantity);
+        pdstmt.setInt(2, id);
+        pdstmt.executeUpdate();
     }
 
-    //Scala un prodotto dal db dato un id
-    private void scalaProdotto(int id) throws SQLException {
+    public void createNewOrdine(String mail, int idCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - 1 WHERE Id = ?");
-        pdstmt.setInt(1, id);
+        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Ordine VALUES (?, ?, ?)");
+        pdstmt.setString(1, mail);
+        pdstmt.setInt(2, idCarrello);
+        pdstmt.setInt(3, 0);
         pdstmt.executeUpdate();
     }
 }

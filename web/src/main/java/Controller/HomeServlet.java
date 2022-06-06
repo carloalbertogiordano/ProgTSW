@@ -5,9 +5,13 @@ import Model.Carrello_.CarrelloDAO;
 import Model.Catalogo;
 import Model.CatalogoDAO;
 import Model.Cliente_.Cliente;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,7 +31,7 @@ public class HomeServlet extends HttpServlet {
         Catalogo catalogo = new Catalogo();
 
         //Check if session is new
-        if(ss.isNew()){
+        if (ss.isNew()) {
             //if the session is new we need to take all elements from database, set it in a catalogo, create a new empty carrello, and add catalogo and carrello as session Attribute
             Carrello carrello = new Carrello();
             try {
@@ -39,11 +43,11 @@ public class HomeServlet extends HttpServlet {
             ss.setAttribute("carrello", carrello);
         }
         //The session isn't new
-        else{
+        else {
             //We need to take catalogo from session because in this attribute we have the updated quantity
             catalogo = (Catalogo) ss.getAttribute("catalogo");
             //check catalogo is null or not
-            if(catalogo == null){
+            if (catalogo == null) {
                 try {
                     //if is null we take all elements from database and set session attribute catalogo
                     catalogo = service.doRetriveAll();
@@ -56,7 +60,7 @@ public class HomeServlet extends HttpServlet {
                 ss.setAttribute("catalogo", catalogo);
             }*/
             //If the session isn't new we need to control if the Cliente is null or not to check if he's logged in
-            if(c != null) {
+            if (c != null) {
                 //Cliente is logged
                 //Take Carrello from session
                 Carrello carrello = (Carrello) ss.getAttribute("carrello");
@@ -65,20 +69,25 @@ public class HomeServlet extends HttpServlet {
                 CarrelloDAO serviceCarrello = new CarrelloDAO();
                 //If session Carrello isn't null we need to do join between session Carrello and DataBase Carrello
                 if (carrello != null) {
-                        //Take Carrello from DataBase using the mail of Cliente
-                        try {
-                            carrelloDB = serviceCarrello.doRetriveByMailCliente(c.getMail());
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                        //Do join
-                        carrello = carrello.joinCarrelli(carrelloDB);
-                        //Use Catalogo to store the session Catalogo and update the quantit
-                        catalogo = (Catalogo) ss.getAttribute("catalogo");
-                        catalogo.aggiornaQuantita(carrello);
-                        //set session attribute catalogo and carrello
-                        ss.setAttribute("catalogo", catalogo);
-                        ss.setAttribute("carrello", carrello);
+                    //Take Carrello from DataBase using the mail of Cliente
+                    try {
+                        carrelloDB = serviceCarrello.doRetriveByMailCliente(c.getMail());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Do join
+                    carrello = carrello.joinCarrelli(carrelloDB);
+                    try {
+                        serviceCarrello.updateCarrello(carrello);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Use Catalogo to store the session Catalogo and update the quantit
+                    catalogo = (Catalogo) ss.getAttribute("catalogo");
+                    catalogo.aggiornaQuantita(carrello);
+                    //set session attribute catalogo and carrello
+                    ss.setAttribute("catalogo", catalogo);
+                    ss.setAttribute("carrello", carrello);
                 } else {
                     //If session Carrello is null we need to take Carrello from the DataBase and set it as session Carrello
                     Carrello carrelloDb = new Carrello();
@@ -94,11 +103,10 @@ public class HomeServlet extends HttpServlet {
                     ss.setAttribute("catalogo", catalogo);
                     ss.setAttribute("carrello", carrelloDb);
                 }
-            }
-            else{
+            } else {
                 //il cliente non è loggato
                 Carrello carrelloSession = (Carrello) ss.getAttribute("carrello");
-                if(carrelloSession == null){
+                if (carrelloSession == null) {
                     Carrello carrello = new Carrello();
                     ss.setAttribute("carrello", carrello);
                 }

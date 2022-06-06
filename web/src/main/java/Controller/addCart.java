@@ -42,6 +42,7 @@ public class addCart extends HttpServlet {
             Cpu cpu_carrello = new Cpu(cpu.getID(), cpu.getMarca(), cpu.getModello(), cpu.getPrezzo(), quantity, cpu.getWattaggio(), cpu.getFrequenza(), cpu.getN_Core(), cpu.getUrl(), cpu.getDescrizione());
             if (cliente != null) {
                 try {
+                    System.out.println(carrello.getCarrelloCod());
                     carrello.addProduct(cpu_carrello);
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

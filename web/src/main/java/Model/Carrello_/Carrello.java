@@ -84,6 +84,7 @@ public class Carrello {
         for(Prodotto p : carrelloDB.getCarrello()){
             carrelloSession.getCarrello().add(p);
         }
+        carrelloSession.setCarrelloCod(carrelloDB.getCarrelloCod());
         return carrelloSession;
     }
 
@@ -108,12 +109,14 @@ public class Carrello {
         if(flag==false){
             //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
             carrello.add(prodotto);
-            service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
+            //service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
+            service.updateCarrello(this);
         }
         else{
             //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
             carrello.get(index).setQuantità(carrello.get(index).getQuantità()+prodotto.getQuantità());
-            service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
+            //service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
+            service.updateCarrello(this);
         }
     }
 
@@ -147,5 +150,30 @@ public class Carrello {
             sum += getCarrello().get(i).getPrezzo();
         }
         return sum;
+    }
+
+    public void removeProductByIdFromSession(int id){
+        for(int i = 0; i < carrello.size(); i++){
+            if(carrello.get(i).getID() == id){
+                carrello.remove(i);
+            }
+        }
+    }
+
+    //Scala una lista di prodotti dal db dato un carrello
+    public static void scalaProdotti(Carrello c) throws SQLException {
+        CarrelloDAO service = new CarrelloDAO();
+        for(Prodotto p : c.getCarrello()){
+            service.scalaProdotto(p.getID(), p.getQuantità());
+        }
+    }
+
+    public static Carrello createNewCarrello(String mail) throws SQLException {
+        CarrelloDAO service = new CarrelloDAO();
+        int idCarrello = service.createCarrello();
+        service.createNewOrdine(mail, idCarrello);
+        Carrello newCarrello = new Carrello();
+        newCarrello.setCarrelloCod(idCarrello);
+        return newCarrello;
     }
 }

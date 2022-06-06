@@ -21,9 +21,19 @@
         List<Prodotto> carrelloList = carrello.getCarrello();
         out.println("<li>");
         for (Prodotto prodotto : carrelloList) {
-            out.println("<ul>" + prodotto.toString() + "</ul>");
+            out.println("<ul>" + prodotto.toString() +
+                    "<form action=\"removeCart\" method=\"GET\">" +
+                    "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" value=\"" + prodotto.getID() + "\">" +
+                    "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
+                    "</ul>");
         }
         out.println("</li>");
+        out.println("<div>" +
+                "<form action=\"expireCart\" method=\"\">" +
+                "<input type=\"hidden\" name=\"idCarrello\" id=\"idCarrello\" value=\"" + carrello.getCarrelloCod() + "\">" +
+                "<input type=\"submit\" value=\"Concludi ordine\" id=\"submit\">" +
+                "</form>" +
+                "</div>");
     }
     else{
         out.println("<h1>Il carrello è vuoto</h1>");
