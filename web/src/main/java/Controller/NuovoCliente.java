@@ -31,7 +31,7 @@ public class NuovoCliente extends HttpServlet {
         }
         else{
             ClienteDAO CDAO = new ClienteDAO();
-            Cliente c = new Cliente(nikName, password, email, telefono, cap, provincia, false);
+            Cliente c = new Cliente(email, password, nikName, telefono, cap, provincia, false);
             try {
                 //Aggiungi cliente ad DB
                 CDAO.addCliente(c);
