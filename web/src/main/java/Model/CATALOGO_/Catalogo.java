@@ -1,4 +1,4 @@
-package Model;
+package Model.CATALOGO_;
 
 import Model.Archiviazione_.HDD_.HddDAO;
 import Model.Archiviazione_.SDD_.SsdDAO;
@@ -13,6 +13,7 @@ import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
 import Model.MOBO_.MoboDAO;
 import Model.PSU_.PsuDAO;
+import Model.Prodotto;
 import Model.RAM_.RamDAO;
 
 import java.sql.SQLException;

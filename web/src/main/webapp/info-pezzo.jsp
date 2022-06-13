@@ -4,7 +4,7 @@
 <%@ page import="Model.CASE_.Case" %>
 <%@ page import="Model.DISSIPATORE_.Dissipatore" %>
 <%@ page import="Model.GPU_.Gpu" %>
-<%@ page import="Model.Catalogo" %><%--
+<%@ page import="Model.CATALOGO_.Catalogo" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere
   Date: 30/05/22

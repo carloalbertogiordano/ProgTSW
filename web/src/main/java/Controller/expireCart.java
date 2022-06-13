@@ -2,8 +2,8 @@ package Controller;
 
 import Model.Carrello_.Carrello;
 import Model.Carrello_.CarrelloDAO;
-import Model.Catalogo;
-import Model.CatalogoDAO;
+import Model.CATALOGO_.Catalogo;
+import Model.CATALOGO_.CatalogoDAO;
 import Model.Cliente_.Cliente;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

@@ -13,8 +13,8 @@
 <%@ page import="Model.RAM_.Ram" %>
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
-<%@ page import="Model.CatalogoDAO" %>
-<%@ page import="Model.Catalogo" %>
+<%@ page import="Model.CATALOGO_.CatalogoDAO" %>
+<%@ page import="Model.CATALOGO_.Catalogo" %>
 <%@ page import="Model.Carrello_.Carrello" %><%--
   Created by IntelliJ IDEA.
   User: mattiacavaliere

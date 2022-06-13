@@ -1,21 +1,11 @@
 package Controller;
 
-import Model.Carrello_.CarrelloDAO;
 import Model.Carrello_.Carrello;
-import Model.Catalogo;
-import Model.Cliente_.*;
-import Model.Cliente_.Cliente;
-import Model.Prodotto;
-import Model.ProdottoDAO;
-import com.oracle.wls.shaded.org.apache.xalan.xsltc.compiler.util.Util;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "CarrelloServlet", value = "/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet {

@@ -1,16 +1,10 @@
 package Controller;
 
-import Model.Carrello_.Carrello;
-import Model.Catalogo;
-import Model.CatalogoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.SQLException;
 
 @WebServlet(name = "Logout", value = "/Logout")
 public class Logout extends HttpServlet {

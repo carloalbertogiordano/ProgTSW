@@ -3,13 +3,10 @@ package Controller;
 import Model.CASE_.Case;
 import Model.CPU_.Cpu;
 import Model.Carrello_.Carrello;
-import Model.Catalogo;
-import Model.CatalogoDAO;
+import Model.CATALOGO_.Catalogo;
 import Model.Cliente_.Cliente;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.GPU_.Gpu;
-import Model.Prodotto;
-import Model.ProdottoDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +17,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(name = "addCart", value = "/addCart")
 public class addCart extends HttpServlet {

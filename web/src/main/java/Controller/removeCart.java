@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Carrello_.Carrello;
 import Model.Carrello_.CarrelloDAO;
-import Model.Catalogo;
+import Model.CATALOGO_.Catalogo;
 import Model.Cliente_.Cliente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package Model;
+package Model.CATALOGO_;
 
 import Model.Archiviazione_.HDD_.Hdd;
 import Model.Archiviazione_.HDD_.HddDAO;
@@ -8,7 +8,6 @@ import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
 import Model.CPU_.Cpu;
 import Model.CPU_.CpuDAO;
-import Model.Catalogo;
 import Model.ConPool;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.DISSIPATORE_.DissipatoreDAO;

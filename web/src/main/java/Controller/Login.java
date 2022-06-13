@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Cliente_.Cliente;
 import Model.Cliente_.ClienteDAO;
+import Model.PasswordEncrypter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,8 +15,6 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response, String password) throws ServletException, IOException {
         String mail = request.getParameter("Mail");
         ClienteDAO CDAO = new ClienteDAO();
-
-        System.out.println("Mail: "+mail+"  Password: "+password);
 
         //Questo try deve essere fatto prima dell'if successivo perchè la terza condizione può dare errore
         try {
@@ -55,6 +54,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Prendi la password dal form
         String password = request.getParameter("Password");
-        doGet(request, response, password);
+        //Prima di passare al doGet fai l'hash della password
+        doGet(request, response, PasswordEncrypter.encryptThisString(password));
     }
 }
