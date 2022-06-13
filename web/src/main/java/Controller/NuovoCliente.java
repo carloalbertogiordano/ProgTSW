@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Cliente_.Cliente;
 import Model.Cliente_.ClienteDAO;
+import Model.PasswordEncrypter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,13 +15,16 @@ public class NuovoCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nikName = request.getParameter("NikName");
-        String password = request.getParameter("Password");
+        String plainTxtPassword = request.getParameter("Password");
         String email = request.getParameter("Email");
         String telefono = request.getParameter("Telefono");
         String cap = request.getParameter("CAP");
         String provincia = request.getParameter("Provincia");
 
-        //Se uno dei dati nopn è stato inserito
+        //Hash della password
+        String password = PasswordEncrypter.encryptThisString(plainTxtPassword);
+
+        //Se uno dei dati non è stato inserito
         if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || cap.equals("") || provincia.equals("")){
             request.setAttribute("register.error", "Compilare tutti i campi");
             request.getRequestDispatcher("/WEB-INF/jsp/CreazioneUtente.jsp").forward(request, response);
