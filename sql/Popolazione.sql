@@ -1,10 +1,10 @@
 USE Ecommerce;
 
 #Clienti
-insert into Cliente values ("cliente1@placeholdermail.com", "8890faaaf4bf2f913be5ccff9e5f23b88657bd15","Cliente1","+391111111111","Via del cliente 1","CE",false); #Password=Cliente1
-insert into Cliente values ("cliente2@placeholdermail.com", "0b2646fdcdc7d726f41cb457877840fa4ef5cd2f","Cliente2","+392222222222","Via del cliente 2","NA",false); #Password=Cliente2
-insert into Cliente values ("cliente3@placeholdermail.com", "cd5883c1e209563a8dfca43d005e2f6a87af573d","Cliente3","+393333333333","Via del cliente 3","SA",false); #Password=Cliente3
-insert into Cliente values ("admin@placeholdermail.com", "4e7afebcfbae000b22c7c85e5560f89a2a0280b4","Admin","+39000000000","Via degli Admin","GE",true); #Password=Admin
+insert into Cliente values ("cliente1@placeholdermail.com", "1e0fe6e208b6be55e3abcbeb137bb4024ff0f0409beaaeda926aeed7340a7fb997ed506114ee8529e1215b7be621368f10720fbe5ac4f1b8822a9b2edb3c4e80","Cliente1","+391111111111","Via del cliente 1","CE",false); #Password=Cliente1
+insert into Cliente values ("cliente2@placeholdermail.com", "50f85a2051c767477c2133d65070d42a3d0ebc6eb2b1181f39d9e207e4b0e68fc9b4d0f1b7588b24c098bda3b5f00adb96a5bae8140f4103cddc6875453b89a4","Cliente2","+392222222222","Via del cliente 2","NA",false); #Password=Cliente2
+insert into Cliente values ("cliente3@placeholdermail.com", "24dbe144d49e0f95d42e57ad1f1747e498dfea0443e47366e4aea53da7ec2ea196fd4b865c34ba09b8143542913bb2d7140f8fe3b59e496649e07eb9e96fea8f","Cliente3","+393333333333","Via del cliente 3","SA",false); #Password=Cliente3
+insert into Cliente values ("admin@placeholdermail.com", "887375daec62a9f02d32a63c9e14c7641a9a8a42e4fa8f6590eb928d9744b57bb5057a1d227e4d40ef911ac030590bbce2bfdb78103ff0b79094cee8425601f5","Admin","+39000000000","Via degli Admin","GE",true); #Password=Admin
 
 #Carrelli
 insert into Carrello values (1, 100);

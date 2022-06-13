@@ -4,7 +4,7 @@ USE Ecommerce;
 
 create table Cliente(
 Mail varchar(70) PRIMARY KEY,
-Pass varchar(50) not null unique,
+Pass char(130) not null, #varchar(50) not null unique,
 Nickname varchar(50) not null unique,
 Tel varchar(13) not null unique,
 Via varchar(100) not null,

@@ -49,6 +49,12 @@
     <form action="EvadiOrdine">
         <input type="submit" value="Evadi Ordine"/>
     </form>
+<br>
+<br>
+<%
+    String pass = PasswordEncrypter.encryptThisString("Password Di Test");
+    out.println(pass);
+%>
 
 </body>
 </html>
