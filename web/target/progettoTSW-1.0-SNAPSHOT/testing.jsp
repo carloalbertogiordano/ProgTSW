@@ -62,6 +62,7 @@
 
     for(Prodotto p : catalogo.getCatalogo()) {
         String imgUrl = p.getUrl()+"/2.jpg";
+        System.out.println("looking at: "+p.getID()+" with url: "+imgUrl);
         out.println(" <img src="+imgUrl+" alt=\"\" width=\"500\" height=\"500\">");
     }
 
