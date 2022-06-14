@@ -37,24 +37,22 @@
 </head>
 <body>
 <h1>TESTING:</h1>
-<!--
-<div>
-        <img style="text-align:left; ; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.cGENS80aJXqCUjjr-89iEAHaFW%26pid%3DApi&f=1">
-        <img style="text-align:center; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.4_Hj249scMG4teQlFKNpuAHaEo%26pid%3DApi&f=1">
-        <img style="text-align:right; height:500px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.K3uLMvo1rUfVscOsceW8ZAHaE8%26pid%3DApi&f=1">
-</div>
--->
+<html>
+<head></head>
+<body>
+<form action="ImageUploader" method="post" enctype="multipart/form-data">
+    Select Image to Upload:<input type="file" name="image">
+    <br>
+    <input type="submit" value="Upload">
 
-<h1>TestAcquistoCarrello</h1>
-    <form action="EvadiOrdine">
-        <input type="submit" value="Evadi Ordine"/>
-    </form>
-<br>
-<br>
-<%
-    String pass = PasswordEncrypter.encryptThisString("Password Di Test");
-    out.println(pass);
-%>
+    <br>
+    <%
+        String s = request.getContextPath();
+        out.println(s);
+    %>
+</form>
+</body>
+</html>
 
 </body>
 </html>

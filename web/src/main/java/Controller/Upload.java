@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ImageManager;
 import Model.ProdottoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -7,6 +8,11 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+@MultipartConfig(location = "/tmp/"
+        , fileSizeThreshold = 1024 * 1024
+        , maxFileSize = 1024 * 1024 * 5
+        , maxRequestSize = 1024 * 1024 * 5 * 5)
 
 @WebServlet(name = "Upload", value = "/Upload")
 public class Upload extends HttpServlet {
@@ -19,6 +25,8 @@ public class Upload extends HttpServlet {
         double prezzo = Double.parseDouble(prezzo1);
         int quantità = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");
+        //ImageManager necessario per salvare l'immagine
+        ImageManager imgManager = new ImageManager();
 
         //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
         Integer wattaggio = null;
@@ -65,7 +73,13 @@ public class Upload extends HttpServlet {
         if(request.getParameter("formaMobo") != null) {
             formaMobo = Short.parseShort(request.getParameter("formaMobo"));
         }
-        String url = request.getParameter("url");
+
+        //Restituisce la posizione relativa dell'immagine salvata partendo dalla radice del server
+        //Prende in input 1:la path da "/" fino alla radice del server
+        //                2:Il file da uploadare sottoforma di file Part
+        //                3:Il nome con cui salvare il file
+        String url = imgManager.saveImage(String.valueOf(request.getServletContext().getResource("/")), request.getPart("image"), marca+modello);
+
         String descrizione = request.getParameter("descrizione");
         try {
             //Carica il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
@@ -74,5 +88,9 @@ public class Upload extends HttpServlet {
             throw new RuntimeException(e);
         }
         response.sendRedirect("admin.jsp");
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

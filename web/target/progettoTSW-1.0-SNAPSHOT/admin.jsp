@@ -192,7 +192,7 @@
         //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
         function nuovo() {
             document.getElementById("p").innerHTML =
-                "<form action=\"Upload\" method=\"get\">" +
+                "<form action=\"Upload\" method=\"post\" enctype=\"multipart/form-data\" >" +
                 "<table>" +
                 //La funzione controllo() è chiamata per disabilitare i campi del form in base al tipo di prodotto scelto
                 "<select name=\"tipo\" id=\"tipo\" onchange =\"controllo()\">" +
@@ -267,8 +267,8 @@
                 "<td><input type=\"text\" name=\"formaMobo\" id=\"formaMobo\"/></td>" +
                 "</tr>" +
                 "<tr>" +
-                "<td>url Immagine</td>" +
-                "<td><input type=\"text\" name=\"url\" id=\"url\"/></td>" +
+                "<td>Immagine</td>" +
+                "<td><input type=\"file\" name=\"image\" id=\"url\"/></td>" +
                 "</tr>" +
                 "<tr>" +
                 "<td>Descrizione</td>" +
