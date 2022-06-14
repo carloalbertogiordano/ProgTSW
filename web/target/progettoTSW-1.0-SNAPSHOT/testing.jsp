@@ -22,7 +22,18 @@
 <%@ page import="Model.Carrello_.Carrello" %>
 <%@ page import="Model.Carrello_.CarrelloDAO" %>
 <%@ page import="Controller.HomeServlet" %>
-<%@ page import="Model.Cliente_.Cliente" %><%--
+<%@ page import="Model.Cliente_.Cliente" %>
+<%@ page import="Model.CATALOGO_.Catalogo" %>
+<%@ page import="java.nio.file.Files" %>
+<%@ page import="java.nio.file.Paths" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.Base64" %>
+<%@ page import="javax.imageio.ImageIO" %>
+<%@ page import="java.awt.image.BufferedImage" %>
+<%@ page import="java.io.ByteArrayOutputStream" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.UncheckedIOException" %><%--
   Created by IntelliJ IDEA.
   User: carlo
   Date: 5/20/22
@@ -36,23 +47,5 @@
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
 <body>
-<h1>TESTING:</h1>
-<html>
-<head></head>
-<body>
-<form action="ImageUploader" method="post" enctype="multipart/form-data">
-    Select Image to Upload:<input type="file" name="image">
-    <br>
-    <input type="submit" value="Upload">
-
-    <br>
-    <%
-        String s = request.getContextPath();
-        out.println(s);
-    %>
-</form>
-</body>
-</html>
-
 </body>
 </html>

@@ -79,7 +79,6 @@ public class Upload extends HttpServlet {
         //                2:Il file da uploadare sottoforma di file Part
         //                3:Il nome con cui salvare il file
         String url = imgManager.saveImage(String.valueOf(request.getServletContext().getResource("/")), request.getPart("image"), marca+modello);
-
         String descrizione = request.getParameter("descrizione");
         try {
             //Carica il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
