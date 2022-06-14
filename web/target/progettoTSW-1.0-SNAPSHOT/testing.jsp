@@ -47,5 +47,26 @@
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
 </head>
 <body>
+<%
+    HttpSession ss = request.getSession();
+    Catalogo catalogo = null;
+    if(ss.getAttribute("catalogo") == null){
+        System.out.println("Catalogo non presente in sessione");
+        catalogo = new Catalogo();
+
+    }
+    else{
+        System.out.println("Catalogo presente in sessione");
+        catalogo = (Catalogo) ss.getAttribute("catalogo");
+    }
+
+    for(Prodotto p : catalogo.getCatalogo()) {
+        String imgUrl = p.getUrl()+"/2.jpg";
+        out.println(" <img src="+imgUrl+" alt=\"\" width=\"500\" height=\"500\">");
+    }
+
+%>
+
+
 </body>
 </html>
