@@ -19,46 +19,46 @@ insert into Ordine values ("cliente2@placeholdermail.com", 2, 1);
 insert into Ordine values ("cliente3@placeholdermail.com", 3, 1);
 
 #CPU
-insert into Pezzo (Id, tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values (1, "CPU", "Intel", "i7", 200, 50, 300, 4.2, 8, "https://www.intel.com/content/dam/www/global/badges/11th-gen-core-i7-processors-badge-rwd.png.rendition.intel.web.64.64.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 150, 200, 100, 3.2, 6, "https://drh1.img.digitalriver.com/DRHM/Storefront/Company/amd/images/product/thumbnail/930348-ryzen-5700g-100x100.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 250, 250, 20, 4.4, 8, "https://drh1.img.digitalriver.com/DRHM/Storefront/Company/amd/images/product/thumbnail/930348-ryzen-5600g-100x100.png");
+insert into Pezzo (Id, tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values (1, "CPU", "Intel", "i7", 200, 50, 300, 4.2, 8, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 150, 200, 100, 3.2, 6, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 250, 250, 20, 4.4, 8, "Images/placeHolder");
 
 #Mobo #matx=0, atx=1, eatx=2
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "Asrock", "Z590 OC Formula", 300, 40, 2, 6, 3, 1, "https://www.asrock.com/mb/photo/Z590%20OC%20Formula(M1).png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "MSI", "MPG Z690", 600, 300, 8, 8, 5, 2, "https://asset.msi.com/resize/image/global/product/product_1635821283ae6029bbcbf048b318d8281c8f1511f8.png62405b38c58fe0f07fcef2367d8a9ba1/400.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "Asus", "ROG Crossair VIII Impact", 300, 180, 2, 6, 3, 0, "https://dlcdnwebimgs.asus.com/gain/75CA7716-EAE6-4638-A66A-AA19057F5DF6/w717/h525/w292");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "Asrock", "Z590 OC Formula", 300, 40, 2, 6, 3, 1, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "MSI", "MPG Z690", 600, 300, 8, 8, 5, 2, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "Asus", "ROG Crossair VIII Impact", 300, 180, 2, 6, 3, 0, "Images/placeHolder");
 
 #RAM
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "Corsair", "Vengeance", 150, 125,2666, "https://www.corsair.com/us/en/medias/sys_master/images/images/h72/h48/9838337654814/CMN32GX4M2Z3600C18W/Gallery/VENGEANCE_RGB_RT_WHITE_01/-CMN32GX4M2Z3600C18W-Gallery-VENGEANCE-RGB-RT-WHITE-01.png_515Wx515H");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "G.SKILL", "Trident Z RGB", 250, 168, 3000, "https://www.gskill.com/_upload/images/1809101101450.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "Corsair", "Platinum Dominator", 100, 245, 3200, "https://www.corsair.com/medias/sys_master/images/images/hce/h54/9255149633566/-CMT32GX4M2K4000C19-Gallery-DOMINATOR-PLAT-RGB-01.png");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "Corsair", "Vengeance", 150, 125,2666, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "G.SKILL", "Trident Z RGB", 250, 168, 3000, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url) values ("RAM", "Corsair", "Platinum Dominator", 100, 245, 3200, "Images/placeHolder");
 
 #HDD
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("HDD", "Western Digital", "HC550", 100, 80, 300, "https://www.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/ultrastar-dc-hc550-hdd/gallery/ultrastar-dc-hc550-hdd-16tb.png.wdthumb.319.319.webp");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("HDD", "Segate", "Barracuda", 150, 400, 400, "https://www.seagate.com/www-content/products/hard-drives/barracuda-hard-drive/_shared/images/barracuda-2-5-5tb-hero-left-400x400_l.png");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("HDD", "Western Digital", "HC550", 100, 80, 300, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("HDD", "Segate", "Barracuda", 150, 400, 400, "Images/placeHolder");
 #SSD
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("SSD","Kingstone", "A400", 200, 300, 1300, "https://media.kingston.com/kingston/product/ktc-product-ssd-a400-sa400s37-family-1-tn.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("SSD","Kingstone", "KC600", 300, 270, 2000, "https://media.kingston.com/kingston/product-card/ktc-product-ssd-kc600-skc600-1-tn.png");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("SSD","Kingstone", "A400", 200, 300, 1300, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, MBs, url) values ("SSD","Kingstone", "KC600", 300, 270, 2000, "Images/placeHolder");
 
 #GPU
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "EVGA", "RTX3090TI", 2000, 100, 200, 1200, 6, "https://images.evga.com/products/gallery/png/24G-P5-4985-KR_LG_1.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "EVGA", "2060", 300, 20, 600, 1500, 8, "https://images.evga.com/products/gallery//png/06G-P4-2068-KR_LG_1.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "MSI", "RTX3070", 1700, 45, 600, 2000, 8, "https://asset.msi.com/resize/image/global/product/product_160586327231263767b2bf0bf40643500523f6553d.png62405b38c58fe0f07fcef2367d8a9ba1/400.png");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "EVGA", "RTX3090TI", 2000, 100, 200, 1200, 6, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "EVGA", "2060", 300, 20, 600, 1500, 8, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url) values ("GPU", "MSI", "RTX3070", 1700, 45, 600, 2000, 8, "Images/placeHolder");
 
 #PSU #Si dice psu non apu
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Seasonic", "FOCUS GX-650", 200, 100, 500, "https://www.avtrend.it/wp-content/uploads/2020/10/Seasonic-FOCUS-GX-650-500x398.jpg");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Corsair", "HX1200", 250, 200, 800, "https://www.avtrend.it/wp-content/uploads/2021/05/Corsair-HX1200.jpg");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Asus", "ROG Strix", 400, 180, 1200, "https://www.avtrend.it/wp-content/uploads/2021/05/Asus-ROG-Strix-750W.jpg");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Seasonic", "FOCUS GX-650", 200, 100, 500, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Corsair", "HX1200", 250, 200, 800, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url) values ("PSU", "Asus", "ROG Strix", 400, 180, 1200, "Images/placeHolder");
 
 #Case #matx=0, atx=1, eatx=2
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Corsair", "4000D", 200, 10, 1, "https://www.corsair.com/medias/sys_master/images/images/h44/h3b/9631023169566/base-4000d-airflow-config/Gallery/4000D_AF_BLACK_01/-base-4000d-airflow-config-Gallery-4000D-AF-BLACK-01.png_515Wx515H");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Corsair", "700D", 300, 20, 2, "https://www.corsair.com/medias/sys_master/images/images/h3e/heb/8840365441054/-CC700D-Gallery-700d-001.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Thermaltake", "Divider 200 TG Air Snow Micro", 100, 20, 0, "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/0b6cd258d732892ac0f7248ef9ed4204/d/i/divider200tgair_w01.jpg");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Corsair", "4000D", 200, 10, 1, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Corsair", "700D", 300, 20, 2, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url) values ("CASE", "Thermaltake", "Divider 200 TG Air Snow Micro", 100, 20, 0, "Images/placeHolder");
 
 #Dissipatore
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Cooler Master", "MA612", 100, 100, 300, "https://cdn.coolermaster.com/media/assets/1003/masterair-ma612-stealth-380x380-2-hover.png");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Noctua", "NH-D12L", 400, 70, 700, "https://noctua.at/pub/media/catalog/product/cache/0cdbea399f8ed06da39b3854134f6934/n/h/nh_d12l_5.jpg");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Deep Cool", "GAMMAXX GT BK", 35, 65, 150, "https://cdn.deepcool.com/public/ProductFile/DEEPCOOL/Cooling/CPUAirCoolers/GAMMAXX_GT_BK/Gallery/608X760/04.jpg?fm=webp&q=60");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Cooler Master", "MA612", 100, 100, 300, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Noctua", "NH-D12L", 400, 70, 700, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url) values ("DISSIPATORE", "Deep Cool", "GAMMAXX GT BK", 35, 65, 150, "Images/placeHolder");
 
 #Sconto
 insert into Sconto values('2023-12-24', '2024-12-26', 40);
