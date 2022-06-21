@@ -24,7 +24,7 @@ public class Catalogo {
     private List<Prodotto> catalogo;
 
     public Catalogo(){
-
+        catalogo = new ArrayList<Prodotto>();
     }
 
     public List<Prodotto> getCatalogo() {
@@ -115,4 +115,19 @@ public class Catalogo {
         }
         return null;
     }
+
+    public void addProdotto(Prodotto p){
+        catalogo.add(p);
+    }
+
+    public Catalogo filterByMarca(String marca){
+        System.out.println("Cerco marca"+marca);
+        Catalogo newCatalogo = new Catalogo();
+        for(Prodotto p : catalogo){
+            if(p.getMarca().equals(marca))
+                newCatalogo.addProdotto(p);
+        }
+        return newCatalogo;
+    }
+
 }

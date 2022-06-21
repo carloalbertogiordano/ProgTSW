@@ -25,6 +25,8 @@ public class Mobo extends Prodotto {
         this.N_PCI = N_PCI;
     }
 
+    public Mobo(){}
+
     public short getForma(){
         return forma;
     }

@@ -6,6 +6,8 @@ public class Psu extends Prodotto {
 
     private int N_Watt;
 
+    public Psu(){}
+
     public Psu(int ID, String marca, String modello, double prezzo, int quantità, int N_Watt ,String url, String descrizione){
         super(ID, marca, modello, prezzo, quantità, "PSU",url, descrizione);
         this.N_Watt = N_Watt;

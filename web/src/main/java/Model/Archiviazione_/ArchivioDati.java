@@ -11,6 +11,8 @@ public class ArchivioDati extends Prodotto {
 //è logica.
     private int MBs;
 
+    public ArchivioDati() {}
+
     public ArchivioDati (int ID, String marca, String modello, double prezzo, int quantità, String tipo, int MBs,String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantità, tipo, url, descrizione);
         this.MBs = MBs;
