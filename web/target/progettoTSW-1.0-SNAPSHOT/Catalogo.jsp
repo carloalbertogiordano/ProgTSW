@@ -29,7 +29,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#cerca').click(function () {
+            $('#input_cerca').keyup(function () {
                 $.ajax({
                     url: 'FilterName',
                     type: 'POST',
@@ -44,8 +44,7 @@
 </head>
 <body>
 <h2>Filtra per nome: </h2>
-<input type="text" id="input_cerca" placeholder="Nome da cercare"></input>
-<button id="cerca">Cerca</button>
+<input type="text" id="input_cerca" placeholder="Marca da cercare"></input>
 <br><br>
 
     <%
@@ -74,12 +73,8 @@
     <div id="divCatalogo" class="wrapper">
         <div>
             <%
-                for (Cpu value : cpuList) {
-                    Cpu cpu = new Cpu();
-                    if (value instanceof Cpu) {
-                        cpu = (Cpu) value;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Cpu cpu : cpuList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + cpu.getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
                             "<li>Modello: " + cpu.getModello() + "</li>" +
                             "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
@@ -93,12 +88,8 @@
         </div>
         <div>
             <%
-                for (Case aCase : caseList) {
-                    Case case_ = new Case();
-                    if (aCase instanceof Case) {
-                        case_ = (Case) aCase;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + aCase.getID() + "\"><div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Case case_ : caseList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + case_.getID() + "\"><div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             case_.getMarca() + "</li>" +
                             "<li>Modello: " + case_.getModello() + "</li>" +
                             "<li>Prezzo: " + case_.getPrezzo() + "</li>" +
@@ -111,12 +102,8 @@
         </div>
         <div>
             <%
-                for (Dissipatore item : dissipatoreList) {
-                    Dissipatore dissipatore = new Dissipatore();
-                    if (item instanceof Dissipatore) {
-                        dissipatore = (Dissipatore) item;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + item.getID() + "\"><div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Dissipatore dissipatore : dissipatoreList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + dissipatore.getID() + "\"><div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             dissipatore.getMarca() + "</li>" +
                             "<li>Modello: " + dissipatore.getModello() + "</li>" +
                             "<li>Prezzo: " + dissipatore.getPrezzo() + "</li>" +
@@ -129,12 +116,8 @@
         </div>
         <div>
             <%
-                for (Gpu item : gpuList) {
-                    Gpu gpu = new Gpu();
-                    if (item instanceof Gpu) {
-                        gpu = (Gpu) item;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + item.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Gpu gpu : gpuList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + gpu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             gpu.getMarca() + "</li>" +
                             "<li>Modello: " + gpu.getModello() + "</li>" +
                             "<li>Prezzo: " + gpu.getPrezzo() + "</li>" +
@@ -147,16 +130,10 @@
                 }
             %>
         </div>
-        </div>
-
         <div>
             <%
-                for (Mobo value : moboList) {
-                    Mobo mobo = new Mobo();
-                    if (value instanceof Mobo) {
-                        mobo = (Mobo) value;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Mobo mobo : moboList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + mobo.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             mobo.getMarca() + "</li>" +
                             "<li>Modello: " + mobo.getModello() + "</li>" +
                             "<li>Prezzo: " + mobo.getPrezzo() + "</li>" +
@@ -172,12 +149,8 @@
         </div>
         <div>
             <%
-                for (Psu value : psuList) {
-                    Psu psu = new Psu();
-                    if (value instanceof Psu) {
-                        psu = (Psu) value;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Psu psu : psuList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + psu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             psu.getMarca() + "</li>" +
                             "<li>Modello: " + psu.getModello() + "</li>" +
                             "<li>Prezzo: " + psu.getPrezzo() + "</li>" +
@@ -190,12 +163,8 @@
         </div>
         <div>
             <%
-                for (Ram value : ramList) {
-                    Ram ram = new Ram();
-                    if (value instanceof Ram) {
-                        ram = (Ram) value;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Ram ram : ramList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + ram.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ram.getMarca() + "</li>" +
                             "<li>Modello: " + ram.getModello() + "</li>" +
                             "<li>Prezzo: " + ram.getPrezzo() + "</li>" +
@@ -208,30 +177,22 @@
         </div>
         <div class="hdd-list">
             <%
-            for (Hdd value : hddList) {
-                Hdd hdd = new Hdd();
-                if (value instanceof Hdd) {
-                    hdd = (Hdd) value;
+                for (Hdd hdd : hddList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + hdd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                            hdd.getMarca() + "</li>" +
+                            "<li>Modello: " + hdd.getModello() + "</li>" +
+                            "<li>Prezzo: " + hdd.getPrezzo() + "</li>" +
+                            "<li>MB/s: " + hdd.getMBs() + "</li>" +
+                            "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
+                            "<li>Url: " + hdd.getUrl() + "</li>" +
+                            "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>");
                 }
-                out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        hdd.getMarca() + "</li>" +
-                        "<li>Modello: " + hdd.getModello() + "</li>" +
-                        "<li>Prezzo: " + hdd.getPrezzo() + "</li>" +
-                        "<li>MB/s: " + hdd.getMBs() + "</li>" +
-                        "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
-                        "<li>Url: " + hdd.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>");
-            }
-        %>
+            %>
         </div>
-        <div class="ssd-list">
+        <div>
             <%
-                for (Ssd value : ssdList) {
-                    Ssd ssd = new Ssd();
-                    if (value instanceof Ssd) {
-                        ssd = (Ssd) value;
-                    }
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + value.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                for (Ssd ssd : ssdList) {
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + ssd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ssd.getMarca() + "</li>" +
                             "<li>Modello: " + ssd.getModello() + "</li>" +
                             "<li>Prezzo: " + ssd.getPrezzo() + "</li>" +
@@ -242,5 +203,6 @@
                 }
             %>
         </div>
+    </div>
 </body>
 </html>

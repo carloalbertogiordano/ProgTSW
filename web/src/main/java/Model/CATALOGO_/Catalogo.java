@@ -76,35 +76,51 @@ public class Catalogo {
             }
         }
     }
-    public List<?> doRetriveByType(String type){
-        switch (type){
+
+    public static List<?> doRetriveByType(String type) throws SQLException {
+        List<?> list = new ArrayList<>();
+        switch (type) {
             case "CPU":
-                List<Cpu> listCpu = new ArrayList();
-                for(Prodotto p: catalogo)
-                    if(p instanceof Cpu)
-                        listCpu.add((Cpu) p);
-                return listCpu;
+                CpuDAO cDAO = new CpuDAO();
+                list = cDAO.doRetriveByType();
+                break;
+            case "MOBO":
+                MoboDAO mDAO = new MoboDAO();
+                list= mDAO.doRetriveByType();
+                break;
             case "CASE":
-                List<Case> listCase = new ArrayList();
-                for(Prodotto p: catalogo)
-                    if(p instanceof Case)
-                        listCase.add((Case) p);
-                return listCase;
-            case "GPU":
-                List<Gpu> listGpu = new ArrayList();
-                for(Prodotto p: catalogo)
-                    if(p instanceof Gpu)
-                        listGpu.add((Gpu) p);
-                return listGpu;
+                CaseDAO caDAO = new CaseDAO();
+                list = caDAO.doRetriveByType();
+                break;
             case "DISSIPATORE":
-                List<Dissipatore> listDissipatore = new ArrayList();
-                for(Prodotto p: catalogo)
-                    if(p instanceof Dissipatore)
-                        listDissipatore.add((Dissipatore) p);
-                return listDissipatore;
+                DissipatoreDAO dDAO = new DissipatoreDAO();
+                list = dDAO.doRetriveByType();
+                break;
+            case "GPU":
+                GpuDAO gDAO = new GpuDAO();
+                list = gDAO.doRetriveByType();
+                break;
+            case "PSU":
+                PsuDAO pDAO = new PsuDAO();
+                list = pDAO.doRetriveByType();
+                break;
+            case "RAM":
+                RamDAO rDAO = new RamDAO();
+                list = rDAO.doRetriveByType();
+                break;
+            case "HDD":
+                HddDAO hDAO = new HddDAO();
+                list = hDAO.doRetriveByType();
+                break;
+            case "SSD":
+                SsdDAO sDAO = new SsdDAO();
+                list = sDAO.doRetriveByType();
+                break;
             default:
-                return null;
+                Prodotto prodotto = null;
+                break;
         }
+        return list;
     }
 
     public Prodotto doRetriveById(int id){
@@ -121,7 +137,6 @@ public class Catalogo {
     }
 
     public Catalogo filterByMarca(String marca){
-        System.out.println("Cerco marca"+marca);
         Catalogo newCatalogo = new Catalogo();
         for(Prodotto p : catalogo){
             if(p.getMarca().equals(marca))

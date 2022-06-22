@@ -18,11 +18,6 @@ import static java.lang.System.out;
 public class FilterName extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String marca = request.getParameter("input_cerca");
         System.out.println("MARCA: "+marca);
 
@@ -47,13 +42,13 @@ public class FilterName extends HttpServlet {
                     response.getWriter().println(
                             "<a href=\"info-pezzo.jsp?Id=" + cpu.getID()
                                     + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            cpu.getMarca() + "</li>" +
-                            "<li>Modello: " + cpu.getModello() + "</li>" +
-                            "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
-                            "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
-                            "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
-                            "<li>Url: " + cpu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
+                                    cpu.getMarca() + "</li>" +
+                                    "<li>Modello: " + cpu.getModello() + "</li>" +
+                                    "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
+                                    "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
+                                    "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
+                                    "<li>Url: " + cpu.getUrl() + "</li>" +
+                                    "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
                     break;
                 case "Gpu":
                     Gpu gpu = (Gpu) p;
@@ -68,13 +63,15 @@ public class FilterName extends HttpServlet {
                             "<li>Url: " + gpu.getUrl() + "</li>" +
                             "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");
                     break;
+
                 default:
                     response.getWriter().println("Errore");
             }
         }
+    }
 
-
-
-
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }
