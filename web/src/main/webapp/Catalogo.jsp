@@ -26,10 +26,7 @@
             return choice;
         }
         $(document).ready(function() {
-            console.log("Page is new");
             let oldCatalog = $('#divCatalogo').html();
-            console.log("Saved current page state");
-            console.log("as: "+oldCatalog);
             $('#input_cerca').keyup(function () {
                 if($('#input_cerca').val() !== '') {
                     $.ajax({
@@ -42,7 +39,6 @@
                     });
                 }
                 else {
-                    console.log("Page set back to default");
                     $('#divCatalogo').html(oldCatalog);
                 }
             });
