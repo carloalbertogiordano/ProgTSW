@@ -1,52 +1,62 @@
-<%@ page import="Model.Prodotto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="Model.ProdottoDAO" %>
 <%@ page import="Model.CPU_.Cpu" %>
 <%@ page import="Model.CASE_.Case" %>
 <%@ page import="Model.DISSIPATORE_.Dissipatore" %>
 <%@ page import="Model.GPU_.Gpu" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.stream.Collectors" %>
 <%@ page import="Model.MOBO_.Mobo" %>
 <%@ page import="Model.PSU_.Psu" %>
 <%@ page import="Model.RAM_.Ram" %>
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
-<%@ page import="Model.CATALOGO_.CatalogoDAO" %>
 <%@ page import="Model.CATALOGO_.Catalogo" %>
-<%@ page import="Model.Carrello_.Carrello" %><%--
-  Created by IntelliJ IDEA.
-  User: mattiacavaliere
-  Date: 25/05/22
-  Time: 15:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Catalogo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
+        function getChoice(){
+            const ch = document.getElementsByName('choice');
+            let choice = 'noChoice';
+            for (let i = 0; i < ch.length; i++) {
+                if (ch[i].checked)
+                    choice = ch[i].value;
+            }
+            return choice;
+        }
         $(document).ready(function() {
+            console.log("Page is new");
+            let oldCatalog = $('#divCatalogo').html();
+            console.log("Saved current page state");
+            console.log("as: "+oldCatalog);
             $('#input_cerca').keyup(function () {
-                $.ajax({
-                    url: 'FilterName',
-                    type: 'POST',
-                    data: 'input_cerca='+$('#input_cerca').val(),
-                    success: function (response) {
-                        $('#divCatalogo').html(response);
-                    }
-                });
+                if($('#input_cerca').val() !== '') {
+                    $.ajax({
+                        url: 'FilterName',
+                        type: 'POST',
+                        data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()},
+                        success: function (response) {
+                            $('#divCatalogo').html(response);
+                        }
+                    });
+                }
+                else {
+                    console.log("Page set back to default");
+                    $('#divCatalogo').html(oldCatalog);
+                }
             });
         });
     </script>
 </head>
 <body>
 <h2>Filtra per nome: </h2>
-<input type="text" id="input_cerca" placeholder="Marca da cercare"></input>
+<div style="border-style: solid; border-color: grey">
+<input type="text" id="input_cerca" placeholder="Marca da cercare">
+<input type="radio" id="radMarca" name="choice" value="Marca">
+<input type="radio" id="radModello" name="choice" value="Modello">
+</div>
 <br><br>
-
     <%
         HttpSession ss = request.getSession();
         Catalogo catalogo = null;
