@@ -139,10 +139,53 @@ public class Catalogo {
     public Catalogo filterByMarca(String marca){
         Catalogo newCatalogo = new Catalogo();
         for(Prodotto p : catalogo){
-            if(p.getMarca().equals(marca))
+            if((p.getMarca().toLowerCase()).contains(marca.toLowerCase())) {
+                System.out.println("Vero per str: " + marca);
+                newCatalogo.addProdotto(p);
+            }
+        }
+        return newCatalogo;
+    }
+    public Catalogo filterByModello(String modello) {
+        System.out.println("OKOOOK");
+        Catalogo newCatalogo = new Catalogo();
+        for(Prodotto p : catalogo){
+            if((p.getModello().toLowerCase()).contains(modello.toLowerCase()))
                 newCatalogo.addProdotto(p);
         }
         return newCatalogo;
     }
 
+    public Catalogo filterByPrezzo(int val) {
+        Catalogo c = new Catalogo();
+        for(Prodotto p : catalogo){
+            if(p.getPrezzo() < val)
+                c.addProdotto(p);
+        }
+        return c;
+    }
+
+    public int getMaxPrice() {
+        int max = -1;
+        for(Prodotto p : catalogo)
+            if(p.getPrezzo() > max)
+                max = (int) p.getPrezzo();
+        return max + 1;
+    }
+    public int getMinPrice(){
+        int min = Integer.MAX_VALUE;
+        for(Prodotto p : catalogo){
+            if(p.getPrezzo() < min)
+                min = (int) p.getPrezzo();
+        }
+        return min;
+    }
+
+    public boolean isEmpty(){
+        return catalogo.size() == 0;
+        //Fa quanto scritto sotto ma scritto semplificato
+        /*if(catalogo.size() == 0)
+            return true;
+        return false;*/
+    }
 }

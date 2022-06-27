@@ -14,7 +14,13 @@
 <head>
     <title>Catalogo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-git.js"></script>
     <script>
+
+        function getPriceSliderValue() {
+           let val = $("#priceSlider").val();
+           $("current").change(val);
+        }
 
         function getChoice(){
             const ch = document.getElementsByName('choice');
@@ -32,26 +38,39 @@
                     $.ajax({
                         url: 'FilterName',
                         type: 'POST',
-                        data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()},
+                        data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()
+                        },
                         success: function (response) {
                             $('#divCatalogo').html(response);
                         }
                     });
                 }
                 else {
+                    $.ajax({
+                            url: 'resetFilterCatalog',
+                            type: 'GET',
+                    });
                     $('#divCatalogo').html(oldCatalog);
                 }
+            });
+            $("#priceSlider").change(function(){
+                $.ajax({
+                    url: 'FilterPrice',
+                    type: 'POST',
+                    data: {input_prezzo: $("#priceSlider").val(),
+                    },
+                    success: function (response) {
+                        $('#divCatalogo').html(response);
+                    }
+                });
+            });
+            $("#priceSlider").change(function(){
+                $("#current").html($("#priceSlider").val());
             });
         });
     </script>
 </head>
 <body>
-<h2>Filtra per nome: </h2>
-<div style="border-style: solid; border-color: grey">
-<input type="text" id="input_cerca" placeholder="Marca da cercare">
-<input type="radio" id="radMarca" name="choice" value="Marca">
-<input type="radio" id="radModello" name="choice" value="Modello">
-</div>
 <br><br>
     <%
         HttpSession ss = request.getSession();
@@ -76,14 +95,32 @@
         List<Hdd> hddList = (List<Hdd>) catalogo.doRetriveByType("HDD");
         List<Ssd> ssdList = (List<Ssd>) catalogo.doRetriveByType("SSD");
     %>
+
+<h2>Filtra per nome: </h2>
+<div style="border-style: solid; border-color: grey">
+    <input type="text" id="input_cerca" placeholder="Marca da cercare">
+    <input type="radio" id="radMarca" name="choice" value="Marca" checked="checked">
+    <input type="radio" id="radModello" name="choice" value="Modello">
+</div>
+<h3>Filtra valore</h3>
+<div class="container">
+    <div class="slider">
+        <output id="startRange"><%=catalogo.getMinPrice()%></output>
+        <input id="priceSlider" type="range" min=<%=catalogo.getMinPrice()%> max=<%=catalogo.getMaxPrice()%> value=<%=catalogo.getMaxPrice()%>>
+        <output id="current"><%=catalogo.getMaxPrice()%></output>
+        <output id="endRange"><%=catalogo.getMaxPrice()%></output>
+    </div>
+</div>
+
     <div id="divCatalogo" class="wrapper">
         <div>
             <%
                 for (Cpu cpu : cpuList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + cpu.getID() + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + cpu.getID() + "\"><div id=\""+ cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
                             "<li>Modello: " + cpu.getModello() + "</li>" +
-                            "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + cpu.getPrezzo() + "</li>" +
                             "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                             "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
                             "<li>Url: " + cpu.getUrl() + "</li>" +
@@ -95,10 +132,11 @@
         <div>
             <%
                 for (Case case_ : caseList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + case_.getID() + "\"><div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             case_.getMarca() + "</li>" +
                             "<li>Modello: " + case_.getModello() + "</li>" +
-                            "<li>Prezzo: " + case_.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + case_.getPrezzo() + "</li>" +
                             "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                             "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
                             "<li>Url: " + case_.getUrl() + "</li>" +
@@ -109,10 +147,11 @@
         <div>
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + dissipatore.getID() + "\"><div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             dissipatore.getMarca() + "</li>" +
                             "<li>Modello: " + dissipatore.getModello() + "</li>" +
-                            "<li>Prezzo: " + dissipatore.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + dissipatore.getPrezzo() + "</li>" +
                             "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                             "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
                             "<li>Url: " + dissipatore.getUrl() + "</li>" +
@@ -123,10 +162,11 @@
         <div>
             <%
                 for (Gpu gpu : gpuList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + gpu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             gpu.getMarca() + "</li>" +
                             "<li>Modello: " + gpu.getModello() + "</li>" +
-                            "<li>Prezzo: " + gpu.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
                             "<li>W_Cpu: " + gpu.getWattaggio() + "</li>" +
                             "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
                             "<li>vRam:" + gpu.getVRam() + "</li>" +
@@ -139,10 +179,11 @@
         <div>
             <%
                 for (Mobo mobo : moboList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + mobo.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             mobo.getMarca() + "</li>" +
                             "<li>Modello: " + mobo.getModello() + "</li>" +
-                            "<li>Prezzo: " + mobo.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + mobo.getPrezzo() + "</li>" +
                             "<li>Forma: " + mobo.getForma() + "</li>" +
                             "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
                             "<li>Numero USB:" + mobo.getN_USB() + "</li>" +
@@ -156,10 +197,11 @@
         <div>
             <%
                 for (Psu psu : psuList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + psu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             psu.getMarca() + "</li>" +
                             "<li>Modello: " + psu.getModello() + "</li>" +
-                            "<li>Prezzo: " + psu.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + psu.getPrezzo() + "</li>" +
                             "<li>Watt: " + psu.getN_Watt() + "</li>" +
                             "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
                             "<li>Url: " + psu.getUrl() + "</li>" +
@@ -170,10 +212,11 @@
         <div>
             <%
                 for (Ram ram : ramList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + ram.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ram.getMarca() + "</li>" +
                             "<li>Modello: " + ram.getModello() + "</li>" +
-                            "<li>Prezzo: " + ram.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + ram.getPrezzo() + "</li>" +
                             "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
                             "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
                             "<li>Url: " + ram.getUrl() + "</li>" +
@@ -184,10 +227,11 @@
         <div class="hdd-list">
             <%
                 for (Hdd hdd : hddList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + hdd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             hdd.getMarca() + "</li>" +
                             "<li>Modello: " + hdd.getModello() + "</li>" +
-                            "<li>Prezzo: " + hdd.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + hdd.getPrezzo() + "</li>" +
                             "<li>MB/s: " + hdd.getMBs() + "</li>" +
                             "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
                             "<li>Url: " + hdd.getUrl() + "</li>" +
@@ -198,10 +242,11 @@
         <div>
             <%
                 for (Ssd ssd : ssdList) {
-                    out.println("<a href=\"info-pezzo.jsp?Id=" + ssd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    out.println("<a href=\"info-pezzo.jsp?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ssd.getMarca() + "</li>" +
                             "<li>Modello: " + ssd.getModello() + "</li>" +
-                            "<li>Prezzo: " + ssd.getPrezzo() + "</li>" +
+                            "<br> Prezzo: "+
+                            "<li class=\"price\">" + ssd.getPrezzo() + "</li>" +
                             "<li>MB/s: " + ssd.getMBs() + "</li>" +
                             "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
                             "<li>Url: " + ssd.getUrl() + "</li>" +
