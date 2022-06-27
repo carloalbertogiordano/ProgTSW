@@ -12,8 +12,10 @@ import java.sql.SQLException;
 
 @WebServlet(name = "Login", value = "/Login")
 public class Login extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, String password) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String mail = request.getParameter("Mail");
+        String password = PasswordEncrypter.encryptThisString(request.getParameter("Password"));
         ClienteDAO CDAO = new ClienteDAO();
 
         //Questo try deve essere fatto prima dell'if successivo perchè la terza condizione può dare errore
@@ -25,7 +27,7 @@ public class Login extends HttpServlet {
         try {
             //Se mail e password sono valide controlla che la coppia sia corretta con isCorrectLogin()
             if (mail == null || password == null || !CDAO.isCorrectLogin(mail, password)) {
-                request.setAttribute("login.error", "Cliente non trovato o password errata");
+                request.setAttribute("loginErr", "Cliente non trovato o password errata");
                 System.out.println("Cliente non trovato o password errata");
                 //Rimanda alla pagina di login
                 request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -52,9 +54,7 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Prendi la password dal form
-        String password = request.getParameter("Password");
         //Prima di passare al doGet fai l'hash della password
-        doGet(request, response, PasswordEncrypter.encryptThisString(password));
+        doGet(request, response);
     }
 }

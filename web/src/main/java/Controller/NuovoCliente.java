@@ -24,8 +24,10 @@ public class NuovoCliente extends HttpServlet {
         //Hash della password
         String password = PasswordEncrypter.encryptThisString(plainTxtPassword);
 
-        //Se uno dei dati non è stato inserito
-        if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || cap.equals("") || provincia.equals("")){
+        //Se uno dei dati non è stato inserito o è andato perso nella request
+        if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || cap.equals("") || provincia.equals("")
+            || nikName == null || password == null || email == null || telefono == null || cap == null || provincia == null
+        ){
             request.setAttribute("register.error", "Compilare tutti i campi");
             request.getRequestDispatcher("/WEB-INF/jsp/CreazioneUtente.jsp").forward(request, response);
         }
