@@ -13,9 +13,10 @@ public class Cliente {
         Administrator = administrator;
     }
 
-    public Cliente(String mail, String nickname){
+    public Cliente(String mail, String nickname, Boolean administrator){
         this.Mail = mail;
         this.Nickname = nickname;
+        this.Administrator = administrator;
     }
 
     public String getMail() {

@@ -36,11 +36,11 @@ public class Login extends HttpServlet {
                 //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
                 System.out.println("Cliente trovato");
                 //Prendi nickname e mail dal DB e crea l' oggetto cliente da tenere in sessione
-                Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail));
+                Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail), CDAO.isAdministrator(mail));
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
-                if(CDAO.isAdministrator(mail)) {
+                if(c.isAdministrator()) {
                     response.sendRedirect("admin.jsp");
                 }
                 else{

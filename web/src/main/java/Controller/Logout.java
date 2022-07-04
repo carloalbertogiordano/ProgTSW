@@ -17,7 +17,6 @@ public class Logout extends HttpServlet {
         // altrimenti dopo il logout non sarà più visionabile perchè viene cancellato dalla sessione
         HomeServlet hs = new HomeServlet();
         hs.doGet(request, response);
-
         response.sendRedirect("index.jsp");
     }
 

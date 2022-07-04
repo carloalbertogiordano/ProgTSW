@@ -109,12 +109,11 @@
         <div>
             <%
 
-                String path = "";
+                String path = "info-pezzo.jsp";
                 Cliente user = (Cliente) ss.getAttribute("cliente");
-                if(user.isAdministrator())
-                    path="modificaProdotto.jsp";
-                else
-                    path="info-pezzo.jsp";
+                if(user != null && user.isAdministrator())
+                    path = "modificaPezzo.jsp";
+
 
                 for (Cpu cpu : cpuList) {
                     out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\""+ cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
