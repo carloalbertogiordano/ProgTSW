@@ -1,15 +1,46 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: carlo
-  Date: 18/05/22
-  Time: 12:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <title>Creazione Utente</title>
   <link rel = "stylesheet" type = "text/css" href = "style.css">
+
+  <script src="https://code.jquery.com/jquery-git.js"></script>
+  <script type = "text/javascript">
+    function testNickname() {
+      let reNick = /[a-zA-Z0-9]{1,70}/ ;
+      return reNick.test($("#nick"));
+    }
+
+    function testMail() {
+      const cerca = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      return cerca.test($("#mail").val());
+    }
+
+    function testPassword() {
+      const cerca = /[a-zA-Z0-9]{1,130}/;
+      return cerca.test($("#password"));
+    }
+
+    function testTel() {
+      const cerca = /[0-9]{13}/;
+      return cerca.test($("#tel"))
+    }
+
+    function testCap() {
+      const cerca = /[0-9]{5}/;
+      return cerca.test($("#cap"));
+    }
+
+    function testProv() {
+      const cerca = /[A-Z]{2}/;
+      return cerca.test($("#provincia"));
+    }
+
+    function validateForm(){
+      return testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv();
+    }
+  </script>
+
 </head>
 <body>
 
@@ -23,7 +54,7 @@
 %>
 
 <h1>Creazione Utente</h1>
-<form action="NuovoCliente" method="post">
+<form action="NuovoCliente" method="post" onsubmit="return validateForm()">
   <table>
     <div class="divide"> <!---non funziona la class--->
       <tr>
