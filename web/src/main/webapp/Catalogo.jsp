@@ -75,15 +75,7 @@
     <%
         HttpSession ss = request.getSession();
         Catalogo catalogo = null;
-        if(ss.getAttribute("catalogo") == null){
-            System.out.println("Catalogo non presente in sessione");
-            catalogo = new Catalogo();
-
-        }
-        else{
-            System.out.println("Catalogo presente in sessione");
-            catalogo = (Catalogo) ss.getAttribute("catalogo");
-        }
+        catalogo = (Catalogo) ss.getAttribute("catalogo");
 
         List<Cpu> cpuList = (List<Cpu>) catalogo.doRetriveByType("CPU");
         List<Case> caseList = (List<Case>) catalogo.doRetriveByType("CASE");
