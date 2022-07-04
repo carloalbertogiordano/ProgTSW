@@ -20,13 +20,6 @@
     <div id="stampa"><p>Premi un pulsante.</p></div>
     <input type="hidden" id="catalogo" value=<%=request.getSession().getAttribute("catalogo")%>/>
 
-    <%
-        if(request.getSession().getAttribute("catalogo") != null)
-            out.println("catalogo esiste");
-        else
-            out.println("Catalogo non esiste");
-    %>
-
 <script>
     //funzione per l'aggionamento della quantità nel DB
     function aggiorna(){
