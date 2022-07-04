@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Title</title>
@@ -15,14 +16,21 @@
     <button onclick="nuovo()">Nuovo Prodotto</button>
     <button onclick="elimina()">Cancella Prodotto</button>
     <button onclick="aggiorna()">Mod. Quantità Prodotto</button>
-
     <br>
-    <p id="p">Premi un pulsante.</p>
+    <div id="stampa"><p>Premi un pulsante.</p></div>
+    <input type="hidden" id="catalogo" value=<%=request.getSession().getAttribute("catalogo")%>/>
+
+    <%
+        if(request.getSession().getAttribute("catalogo") != null)
+            out.println("catalogo esiste");
+        else
+            out.println("Catalogo non esiste");
+    %>
 
 <script>
     //funzione per l'aggionamento della quantità nel DB
     function aggiorna(){
-        document.getElementById("p").innerHTML =
+        document.getElementById("stampa").innerHTML =
             "<form action=\"Aggiorna\" method=\"get\">" +
             "<table>" +
             "<tr>" +
@@ -36,6 +44,9 @@
             "</table>" +
             "<input type=\"submit\" value=\"Invia\"/>" +
             "</form>";
+
+        let catalogo = document.getElementById("catalogo");
+        document.getElementById("stampa").append(catalogo);
     }
 
     function resetForm(){
@@ -191,7 +202,7 @@
     }
         //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
         function nuovo() {
-            document.getElementById("p").innerHTML =
+            document.getElementById("stampa").innerHTML =
                 "<form action=\"Upload\" method=\"post\" enctype=\"multipart/form-data\" >" +
                 "<table>" +
                 //La funzione controllo() è chiamata per disabilitare i campi del form in base al tipo di prodotto scelto
@@ -282,7 +293,7 @@
 
     //Funzione che elimina un prodotto nel db dato l'id
     function elimina () {
-        document.getElementById("p").innerHTML =
+        document.getElementById("stampa").innerHTML =
         "<form action=\"Elimina\" method=\"get\">" +
         "<table>" +
         "<tr>" +
