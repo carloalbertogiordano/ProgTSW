@@ -119,7 +119,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + cpu.getID() + "\"><div id=\""+ cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             cpu.getMarca() + "</li>" +
                             "<li>Modello: " + cpu.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + cpu.getPrezzo() + "</li>" +
                             "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                             "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
@@ -135,7 +135,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             case_.getMarca() + "</li>" +
                             "<li>Modello: " + case_.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + case_.getPrezzo() + "</li>" +
                             "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                             "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
@@ -150,7 +150,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             dissipatore.getMarca() + "</li>" +
                             "<li>Modello: " + dissipatore.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + dissipatore.getPrezzo() + "</li>" +
                             "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                             "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
@@ -165,7 +165,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             gpu.getMarca() + "</li>" +
                             "<li>Modello: " + gpu.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
                             "<li>W_Cpu: " + gpu.getWattaggio() + "</li>" +
                             "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
@@ -182,7 +182,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             mobo.getMarca() + "</li>" +
                             "<li>Modello: " + mobo.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + mobo.getPrezzo() + "</li>" +
                             "<li>Forma: " + mobo.getForma() + "</li>" +
                             "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
@@ -200,7 +200,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             psu.getMarca() + "</li>" +
                             "<li>Modello: " + psu.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + psu.getPrezzo() + "</li>" +
                             "<li>Watt: " + psu.getN_Watt() + "</li>" +
                             "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
@@ -215,7 +215,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ram.getMarca() + "</li>" +
                             "<li>Modello: " + ram.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + ram.getPrezzo() + "</li>" +
                             "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
                             "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
@@ -230,7 +230,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             hdd.getMarca() + "</li>" +
                             "<li>Modello: " + hdd.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + hdd.getPrezzo() + "</li>" +
                             "<li>MB/s: " + hdd.getMBs() + "</li>" +
                             "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
@@ -245,7 +245,7 @@
                     out.println("<a href=\"info-pezzo.jsp?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                             ssd.getMarca() + "</li>" +
                             "<li>Modello: " + ssd.getModello() + "</li>" +
-                            "<br> Prezzo: "+
+                            "Prezzo: "+
                             "<li class=\"price\">" + ssd.getPrezzo() + "</li>" +
                             "<li>MB/s: " + ssd.getMBs() + "</li>" +
                             "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +

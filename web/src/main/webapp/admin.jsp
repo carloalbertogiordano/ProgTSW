@@ -15,10 +15,8 @@
     <button onclick="nuovo()">Nuovo Prodotto</button>
     <button onclick="elimina()">Cancella Prodotto</button>
     <button onclick="aggiorna()">Mod. Quantità Prodotto</button>
-
     <br>
     <p id="p">Premi un pulsante.</p>
-
 <script>
     //funzione per l'aggionamento della quantità nel DB
     function aggiorna(){
