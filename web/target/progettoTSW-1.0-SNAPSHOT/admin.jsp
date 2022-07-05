@@ -14,32 +14,23 @@
 </head>
 <body>
     <button onclick="nuovo()">Nuovo Prodotto</button>
-    <button onclick="elimina()">Cancella Prodotto</button>
     <button onclick="aggiorna()">Mod. Quantità Prodotto</button>
     <br>
     <div id="stampa"><p>Premi un pulsante.</p></div>
-    <input type="hidden" id="catalogo" value=<%=request.getSession().getAttribute("catalogo")%>/>
+
+    <iframe id="frameCatalogo" name="iframeCatalogo"
+            style="display: none;       /*set to block if modify product is pressed */
+            border: none;         /* Reset default border */
+            height: 100vh;        /* Viewport-relative units */
+            width: 100vw;">
+    </iframe>
 
 <script>
     //funzione per l'aggionamento della quantità nel DB
     function aggiorna(){
-        document.getElementById("stampa").innerHTML =
-            "<form action=\"Aggiorna\" method=\"get\">" +
-            "<table>" +
-            "<tr>" +
-            "<td>ID</td>" +
-            "<td><input type=\"text\" name=\"ID\"/></td>" +
-            "</tr>" +
-            "<tr>" +
-            "<td>Quantità</td>" +
-            "<td><input type=\"text\" name=\"quantita\"/></td>" +
-            "</tr>" +
-            "</table>" +
-            "<input type=\"submit\" value=\"Invia\"/>" +
-            "</form>";
-
-        let catalogo = document.getElementById("catalogo");
-        document.getElementById("stampa").append(catalogo);
+        document.getElementById("stampa").style.display="none";
+        document.getElementById("frameCatalogo").style.display="block";
+        document.getElementById("frameCatalogo").src="Catalogo.jsp";
     }
 
     function resetForm(){
@@ -195,6 +186,8 @@
     }
         //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
         function nuovo() {
+            document.getElementById("frameCatalogo").style.display="none";
+            document.getElementById("stampa").style.display="block";
             document.getElementById("stampa").innerHTML =
                 "<form action=\"Upload\" method=\"post\" enctype=\"multipart/form-data\" >" +
                 "<table>" +

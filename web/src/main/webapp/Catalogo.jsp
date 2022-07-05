@@ -167,7 +167,7 @@
                             "<li>Modello: " + gpu.getModello() + "</li>" +
                             "Prezzo: "+
                             "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
-                            "<li>W_Cpu: " + gpu.getWattaggio() + "</li>" +
+                            "<li>W_Gpu: " + gpu.getWattaggio() + "</li>" +
                             "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
                             "<li>vRam:" + gpu.getVRam() + "</li>" +
                             "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
