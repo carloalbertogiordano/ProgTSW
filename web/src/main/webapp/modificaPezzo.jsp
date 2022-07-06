@@ -152,31 +152,31 @@
     <form id="modProd" method="post" action="Aggiorna" onsubmit="return validateProductUpdate()">
         <table>
             <tr>
-                <td><input type="hidden" id="tipo" value="<%=p.getTipo()%>"></td>
+                <td><input type="hidden" id="tipo" value="<%=p.getTipo()%>" required/></td>
             </tr>
             <tr>
                 <td>Marca</td>
-                <td><input type="text" name="marca" id="marca" value="<%=p.getMarca()%>"/></td>
+                <td><input type="text" name="marca" id="marca" value="<%=p.getMarca()%>" required/></td>
                 </tr>
             <tr>
                 <td>Modello</td>
-                <td><input type="text" name="modello" id="modello" value="<%=p.getModello()%>"/></td>
+                <td><input type="text" name="modello" id="modello" value="<%=p.getModello()%>" required/></td>
             </tr>
             <tr>
                 <td>Prezzo</td>
-                <td><input type="text" name="prezzo" id="prezzo" value="<%=p.getPrezzo()%>"/></td>
+                <td><input type="text" name="prezzo" id="prezzo" value="<%=p.getPrezzo()%>" required/></td>
             </tr>
             <tr>
                 <td>Quantità</td>
-                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantità()%>"/></td>
+                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantità()%>" required/></td>
             </tr>
             <tr>
                 <td>Descrizione</td>
-                <td><input type="text" name="descrizione" id="desc" value="<%=p.getDescrizione()%>"/></td>
+                <td><input type="text" name="descrizione" id="desc" value="<%=p.getDescrizione()%>" required/></td>
             </tr>
             <tr>
                 <td>Url</td>
-                <td><input type="text" name="url" id="url" value="<%=p.getUrl()%>"/></td>
+                <td><input type="text" name="url" id="url" value="<%=p.getUrl()%>" required/></td>
             </tr>
     <%
         switch (p.getTipo()) {
@@ -185,7 +185,7 @@
                 out.println("" +
                         "<tr>" +
                         "                <td>Numero di core</td>" +
-                        "                <td><input type=\"text\" name=\"numCore\" id=\"ncore\" value=\"" + cpu.getN_Core() + "\" form=\"modProd\"/></td>" +
+                        "                <td><input type=\"text\" name=\"numCore\" id=\"ncore\" value=\"" + cpu.getN_Core() + "\" form=\"modProd\" required/></td>" +
                         "            </tr>");
             break;
             case "CASE" :
@@ -193,7 +193,7 @@
                 out.println("" +
                         "<tr>" +
                         "                <td>Forma mobo</td>" +
-                        "                <td><input type=\"number\" name=\"formaMobo\" id=\"formaMobo\" value=\""+ case_.getFormaMobo() +"\" max=\"2\" min=\"0\" form=\"modProd\" /></td>" +
+                        "                <td><input type=\"number\" name=\"formaMobo\" id=\"formaMobo\" value=\""+ case_.getFormaMobo() +"\" max=\"2\" min=\"0\" form=\"modProd\" required/></td>" +
                         "            </tr>");
                 break;
             case "DISSIPATORE" :
@@ -201,7 +201,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Watt CPU</td>" +
-                                "                <td><input type=\"text\" name=\"wCpu\" id=\"wCpu\" value=\"" + dissipatore.getW_Cpu() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"wCpu\" id=\"wCpu\" value=\"" + dissipatore.getW_Cpu() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -210,7 +210,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Watts</td>" +
-                                "                <td><input type=\"text\" name=\"watt\" id=\"watt\" value=\"" + psu.getN_Watt() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"watt\" id=\"watt\" value=\"" + psu.getN_Watt() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -219,19 +219,19 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Form factor</td>" +
-                                "                <td><input type=\"number\" name=\"forma\" id=\"forma\" value=\"" + mobo.getForma() + "\" max=\"2\" min=\"0\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"number\" name=\"forma\" id=\"forma\" value=\"" + mobo.getForma() + "\" max=\"2\" min=\"0\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Numero di banchi ram</td>" +
-                                "                <td><input type=\"text\" name=\"nRam\" id=\"nRam\" value=\"" + mobo.getN_RAM() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"nRam\" id=\"nRam\" value=\"" + mobo.getN_RAM() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Numero USB</td>" +
-                                "                <td><input type=\"text\" name=\"nUsb\" id=\"nUsb\" value=\"" + mobo.getN_USB() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"nUsb\" id=\"nUsb\" value=\"" + mobo.getN_USB() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Numero PCI</td>" +
-                                "                <td><input type=\"text\" name=\"nPci\" id=\"nPci\" value=\"" + mobo.getN_PCI() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"nPci\" id=\"nPci\" value=\"" + mobo.getN_PCI() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -240,7 +240,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Frequenza</td>" +
-                                "                <td><input type=\"text\" name=\"frequenza\" id=\"frequenza\" value=\"" + ram.getFrequenza() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"frequenza\" id=\"frequenza\" value=\"" + ram.getFrequenza() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -249,7 +249,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Velocità in Mb/s </td>" +
-                                "                <td><input type=\"text\" name=\"mbs\" id=\"mbs\" class=\"memoriaFisica\" value=\"" + hdd.getMBs() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"mbs\" id=\"mbs\" class=\"memoriaFisica\" value=\"" + hdd.getMBs() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -258,7 +258,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Velocità in Mb/s </td>" +
-                                "                <td><input type=\"text\" name=\"mbs\" id=\"mbs\" class=\"memoriaFisica\" value=\"" + ssd.getMBs() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"mbs\" id=\"mbs\" class=\"memoriaFisica\" value=\"" + ssd.getMBs() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
@@ -267,15 +267,15 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Wattaggio</td>" +
-                                "                <td><input type=\"text\" name=\"wGpu\" id=\"wGpu\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"wGpu\" id=\"wGpu\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Frequenza</td>" +
-                                "                <td><input type=\"text\" name=\"freqGpu\" id=\"freqGpu\" value=\"" + gpu.getFrequenza() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"freqGpu\" id=\"freqGpu\" value=\"" + gpu.getFrequenza() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Vram</td>" +
-                                "                <td><input type=\"text\" name=\"vRam\" id=\"vRam\" value=\"" + gpu.getVRam() + "\" form=\"modProd\" /></td>" +
+                                "                <td><input type=\"text\" name=\"vRam\" id=\"vRam\" value=\"" + gpu.getVRam() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;
