@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Aggiorna extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("ID"));
+        /*int id = Integer.parseInt(request.getParameter("ID"));
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         try {
             //Aggiorna lo stock del prodotto
@@ -20,6 +20,12 @@ public class Aggiorna extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        response.sendRedirect("admin.jsp");
+        response.sendRedirect("admin.jsp");*/
+        response.getWriter().println("TODO");
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+
 }
