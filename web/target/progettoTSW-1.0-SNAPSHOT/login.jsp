@@ -1,21 +1,15 @@
 <%@ page import="Model.PasswordEncrypter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script>
         function validateForm() {
             const cerca = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-            if(cerca.test($("#mail").val()) && $("#password").val()!=='') {
-
-                return true;
-            }
-            return false;
+            return (cerca.test($("#mail").val()) && $("#password").val() !== '');
     }
-
-
     </script>
-
 
     <title>Login</title>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
@@ -37,11 +31,11 @@ if (request.getAttribute("loginErr") != null) {
     <table>
         <tr>
             <td>Mail:</td>
-            <td><input type="text" name="Mail" id="mail"/></td>
+            <td><input type="text" name="Mail" id="mail" required/></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="Password" id="password"/></td>
+            <td><input type="password" name="Password" id="password" required/></td>
         </tr>
         <tr>
             <td></td>

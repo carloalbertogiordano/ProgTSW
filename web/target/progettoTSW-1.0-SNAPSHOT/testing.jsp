@@ -33,14 +33,9 @@
 <%@ page import="java.io.ByteArrayOutputStream" %>
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page import="java.io.IOException" %>
-<%@ page import="java.io.UncheckedIOException" %><%--
-  Created by IntelliJ IDEA.
-  User: carlo
-  Date: 5/20/22
-  Time: 1:59 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.io.UncheckedIOException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Title</title>
