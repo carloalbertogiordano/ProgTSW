@@ -25,7 +25,7 @@ public class Upload extends HttpServlet {
         String prezzo1 = request.getParameter("prezzo");
         prezzo1.replace(",", ".");
         double prezzo = Double.parseDouble(prezzo1);
-        int quantità = Integer.parseInt(request.getParameter("quantita"));
+        int quantita = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");
         //ImageManager necessario per salvare l'immagine
         ImageManager imgManager = new ImageManager();
@@ -84,7 +84,7 @@ public class Upload extends HttpServlet {
         String descrizione = request.getParameter("descrizione");
         try {
             //Carica il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
-            ProdottoDAO.Upload(marca, modello, prezzo, quantità, wattaggio, tipo, frequenza, N_Core, N_Ram, N_Usb, N_Pci, MBs, Vram, N_Watt, W_Cpu, formaMobo, url, descrizione);
+            ProdottoDAO.Upload(marca, modello, prezzo, quantita, wattaggio, tipo, frequenza, N_Core, N_Ram, N_Usb, N_Pci, MBs, Vram, N_Watt, W_Cpu, formaMobo, url, descrizione);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

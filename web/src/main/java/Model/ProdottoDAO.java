@@ -25,16 +25,6 @@ import java.util.List;
 
 public abstract class ProdottoDAO {
 
-    //Aggiorna lo stock di un prodotto (riservato admin)
-    public static void aggiorna(int id, int q) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = con.createStatement();
-        PreparedStatement ps = con.prepareStatement("UPDATE Pezzo SET quantita=? WHERE Id=?");
-        ps.setString(1, String.valueOf(q));
-        ps.setString(2, String.valueOf(id));
-        ps.executeUpdate();
-    }
-
     //Carica un prodotto nel db
     public static void Upload(String marca, String modello,
                               Double prezzo, Integer quantita, Integer wattaggio, String tipo,
@@ -186,5 +176,80 @@ public abstract class ProdottoDAO {
             return true;
         }
         return false;
+    }
+
+    //Aggiorna info prodotto (riservato admin)
+    public static void Update(int id, String marca, String modello,
+                              Double prezzo, Integer quantita, Integer wattaggio,
+                              Float frequenza, Integer N_Core, Integer N_Ram, Integer N_Usb, Integer N_Pci,
+                              Integer MBs, Integer Vram, Integer N_Watt, Integer W_Cpu, Short formaMobo,
+                              String url, String desc) throws SQLException {
+        //Inizializza la stringa di connessione
+        String updProd = "UPDATE Pezzo "+
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "Wattaggio = ?, Frequenza = ?, N_Core = ?, N_Ram = ?, N_USB = ?, N_PCI = ?, MBs = ?, " +
+                "VRAM = ?, N_Watt = ?, W_Cpu = ?, FormaMobo = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+        //Se l'oggetto passato non è null ne viene inserito il valore nela query, altrimenti viene inserito null in quella posizione
+        if (marca != null) pdstmt.setString(1, marca);
+        else pdstmt.setNull(1, Types.VARCHAR);
+
+        if (modello != null) pdstmt.setString(2, modello);
+        else pdstmt.setNull(2, Types.VARCHAR);
+
+        if (prezzo != null) pdstmt.setDouble(3, prezzo);
+        else pdstmt.setNull(3, Types.DOUBLE);
+
+        if (quantita != null) pdstmt.setInt(4, quantita);
+        else pdstmt.setNull(4, Types.INTEGER);
+
+        if (wattaggio != null) pdstmt.setInt(5, wattaggio);
+        else pdstmt.setNull(5, Types.INTEGER);
+
+        if (frequenza != null) pdstmt.setFloat(6, frequenza);
+        else pdstmt.setNull(6, Types.FLOAT);
+
+        if (N_Core != null) pdstmt.setInt(7, N_Core);
+        else pdstmt.setNull(7, Types.INTEGER);
+
+        if (N_Ram != null) pdstmt.setInt(8, N_Ram);
+        else pdstmt.setNull(8, Types.INTEGER);
+
+        if (N_Usb != null) pdstmt.setInt(9, N_Usb);
+        else pdstmt.setNull(9, Types.INTEGER);
+
+        if (N_Pci != null) pdstmt.setInt(10, N_Pci);
+        else pdstmt.setNull(10, Types.INTEGER);
+
+        if (MBs != null) pdstmt.setInt(11, MBs);
+        else pdstmt.setNull(11, Types.INTEGER);
+
+        if (Vram != null) pdstmt.setInt(12, Vram);
+        else pdstmt.setNull(12, Types.INTEGER);
+
+        if (N_Watt != null) pdstmt.setInt(13, N_Watt);
+        else pdstmt.setNull(13, Types.INTEGER);
+
+        if (W_Cpu != null) pdstmt.setInt(14, W_Cpu);
+        else pdstmt.setNull(14, Types.INTEGER);
+
+        if (formaMobo != null) pdstmt.setShort(15, formaMobo);
+        else pdstmt.setNull(15, Types.SMALLINT);
+
+        if (url != null) pdstmt.setString(16, url);
+        else pdstmt.setNull(16, Types.VARCHAR);
+
+        if (desc != null) pdstmt.setString(17, desc);
+        else pdstmt.setNull(17, Types.VARCHAR);
+
+        pdstmt.setInt(18, id);
+
+
+        System.out.println(pdstmt.toString());
+
+        pdstmt.executeUpdate();
     }
 }

@@ -151,9 +151,8 @@
 
     <form id="modProd" method="post" action="Aggiorna" onsubmit="return validateProductUpdate()">
         <table>
-            <tr>
-                <td><input type="hidden" id="tipo" value="<%=p.getTipo()%>" required/></td>
-            </tr>
+            <input type="hidden" name="tipo" id="tipo" value="<%=p.getTipo()%>"/>
+            <input type="hidden" name="ID" id="ID" value="<%=p.getID()%>"/>
             <tr>
                 <td>Marca</td>
                 <td><input type="text" name="marca" id="marca" value="<%=p.getMarca()%>" required/></td>
