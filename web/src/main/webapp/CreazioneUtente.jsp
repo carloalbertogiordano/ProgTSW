@@ -60,27 +60,27 @@
     <div class="divide"> <!---non funziona la class--->
       <tr>
         <td>NikName:</td>
-        <td><input type="text" name="NikName"/></td>
+        <td><input type="text" name="NikName" required/></td>
       </tr>
       <tr>
         <td>Password:</td>
-        <td><input type="password" name="Password"/></td>
+        <td><input type="password" name="Password" required/></td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><input type="text" name="Email"/></td>
+        <td><input type="text" name="Email" required/></td>
       </tr>
       <tr>
         <td>Telefono:</td>
-        <td><input type="text" name="Telefono"/></td>
+        <td><input type="text" name="Telefono" required/></td>
       </tr>
       <tr>
         <td>CAP:</td>
-        <td><input type="text" name="CAP"/></td>
+        <td><input type="text" name="CAP" required/></td>
       </tr>
       <tr>
         <td>Provincia</td>
-        <td><input type="text" name="Provincia"/></td>
+        <td><input type="text" name="Provincia" required/></td>
       </tr>
     </div>
     <div class="divide">
