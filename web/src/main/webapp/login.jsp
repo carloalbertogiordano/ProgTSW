@@ -1,5 +1,6 @@
 <%@ page import="Model.PasswordEncrypter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-git.js"></script>

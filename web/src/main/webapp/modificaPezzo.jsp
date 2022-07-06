@@ -11,6 +11,7 @@
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Model.GPU_.Gpu" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Modifica Pezzo</title>

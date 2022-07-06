@@ -11,6 +11,7 @@
 <%@ page import="Model.CATALOGO_.Catalogo" %>
 <%@ page import="Model.Cliente_.Cliente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Catalogo</title>
