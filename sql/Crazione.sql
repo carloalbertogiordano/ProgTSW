@@ -9,6 +9,8 @@ Nickname varchar(50) not null unique,
 Tel varchar(13) not null unique,
 Via varchar(100) not null,
 Provincia varchar(2) not null,
+Citta varchar(100) not null, 
+Cap int not null,
 Administrator boolean not null default false
 );
 
@@ -21,6 +23,10 @@ create table Ordine(
 ClienteMail varchar(50) not null,
 CarrelloCod int not null AUTO_INCREMENT,
 Evaso boolean not null, 
+Via varchar(100) not null,
+Provincia varchar(2) not null,
+Citta varchar(100) not null, 
+Cap int not null,
 foreign key (ClienteMail) references Cliente(Mail),
 foreign key (CarrelloCod) references Carrello(Cod),
 primary key (ClienteMail, CarrelloCod)

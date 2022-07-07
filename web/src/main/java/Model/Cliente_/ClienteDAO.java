@@ -22,7 +22,7 @@ public class ClienteDAO {
         PreparedStatement pdstmt = con.prepareStatement(select);
         ResultSet rs = pdstmt.executeQuery();
         while (rs.next()) {
-            cliente = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7));
+            cliente = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getBoolean(9));
         }
         return cliente;
     }
@@ -35,7 +35,7 @@ public class ClienteDAO {
         PreparedStatement pdstmt = con.prepareStatement(select);
         ResultSet rs = pdstmt.executeQuery();
         while (rs.next()) {
-            Cliente c = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7));
+            Cliente c = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getBoolean(9));
             listaClienti.add(c);
         }
         return listaClienti;

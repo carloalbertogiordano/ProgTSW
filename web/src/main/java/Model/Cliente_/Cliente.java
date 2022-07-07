@@ -1,18 +1,21 @@
 package Model.Cliente_;
 
 public class Cliente {
-    private String Mail, Pass, Nickname, Via, Provincia, Tel;
-    Boolean Administrator;
-    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, Boolean administrator) {
+    private String Mail, Pass, Nickname, Via, Provincia, Citta, Tel;
+    private int Cap;
+    private Boolean Administrator;
+
+    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap, Boolean administrator) {
         Mail = mail;
         Pass = pass;
         Nickname = nickname;
         Via = via;
         Provincia = provincia;
+        Citta = citta;
+        Cap = cap;
         Tel = tel;
         Administrator = administrator;
     }
-
     public Cliente(String mail, String nickname, Boolean administrator){
         this.Mail = mail;
         this.Nickname = nickname;
@@ -69,6 +72,30 @@ public class Cliente {
 
     public Boolean isAdministrator() {
         return Administrator;
+    }
+
+    public String getCitta() {
+        return Citta;
+    }
+
+    public void setCitta(String citta) {
+        Citta = citta;
+    }
+
+    public int getCap() {
+        return Cap;
+    }
+
+    public void setCap(int cap) {
+        Cap = cap;
+    }
+
+    public Boolean getAdministrator() {
+        return Administrator;
+    }
+
+    public void setAdministrator(Boolean administrator) {
+        Administrator = administrator;
     }
 
 }

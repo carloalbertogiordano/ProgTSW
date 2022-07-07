@@ -18,22 +18,24 @@ public class NuovoCliente extends HttpServlet {
         String plainTxtPassword = request.getParameter("Password");
         String email = request.getParameter("Email");
         String telefono = request.getParameter("Telefono");
-        String cap = request.getParameter("CAP");
+        String via = request.getParameter("Via");
         String provincia = request.getParameter("Provincia");
+        String citta = request.getParameter("Citta");
+        int cap = Integer.parseInt(request.getParameter("CAP"));
 
         //Hash della password
         String password = PasswordEncrypter.encryptThisString(plainTxtPassword);
 
         //Se uno dei dati non è stato inserito o è andato perso nella request
-        if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || cap.equals("") || provincia.equals("")
-            || nikName == null || password == null || email == null || telefono == null || cap == null || provincia == null
+        if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || via.equals("") || provincia.equals("") || citta.equals("") || cap<0
+            || nikName == null || password == null || email == null || telefono == null || via == null || provincia == null || citta == null
         ){
             request.setAttribute("register.error", "Compilare tutti i campi");
             request.getRequestDispatcher("/WEB-INF/jsp/CreazioneUtente.jsp").forward(request, response);
         }
         else{
             ClienteDAO CDAO = new ClienteDAO();
-            Cliente c = new Cliente(email, password, nikName, telefono, cap, provincia, false);
+            Cliente c = new Cliente(email, password, nikName, telefono, via, provincia, citta, cap, false);
             try {
                 //Aggiungi cliente ad DB
                 CDAO.addCliente(c);
