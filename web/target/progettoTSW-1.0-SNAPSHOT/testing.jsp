@@ -43,7 +43,9 @@
 </head>
 <body>
 <%
-    Catalogo catalogo = (Catalogo) request.getAttribute("catalogo");
+    HttpSession ss = request.getSession();
+    Catalogo catalogo = null;
+    catalogo = (Catalogo) ss.getAttribute("catalogo");
 
     for(Prodotto p : catalogo.getCatalogo()) {
         String imgUrl = p.getUrl()+"/2.jpg";
