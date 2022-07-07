@@ -118,10 +118,6 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    public void evadiOrdine(int carrelloCod, String mail) throws SQLException {
-
-    }
-
     //Setta a vero l'attributo Evaso nella tabella Ordine
     public void setOrdineEvaso(String mail, int codCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
@@ -129,6 +125,18 @@ public class CarrelloDAO {
         pdstmt.setInt(1, 1);
         pdstmt.setString(2, mail);
         pdstmt.setInt(3, codCarrello);
+        pdstmt.executeUpdate();
+    }
+
+    public void setIndirizzoOrdine(String via, String provincia, String citta, int cap, String mail, int codCarrello) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Ordine SET Via = ?, Provincia = ?, Citta = ?, Cap = ? WHERE ClienteMail = ? AND CarrelloCod = ?");
+        pdstmt.setString(1,via);
+        pdstmt.setString(2,provincia);
+        pdstmt.setString(3,citta);
+        pdstmt.setInt(4, cap);
+        pdstmt.setString(5, mail);
+        pdstmt.setInt(6,codCarrello);
         pdstmt.executeUpdate();
     }
 
