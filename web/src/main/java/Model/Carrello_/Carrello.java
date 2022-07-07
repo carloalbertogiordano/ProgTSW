@@ -106,7 +106,7 @@ public class Carrello {
             }
         }
         CarrelloDAO service = new CarrelloDAO();
-        if(flag==false){
+        if(!flag){
             //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
             carrello.add(prodotto);
             //service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
@@ -130,7 +130,7 @@ public class Carrello {
                 }
             }
             CarrelloDAO service = new CarrelloDAO();
-            if(flag==false){
+            if(!flag){
                 //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
                 carrello.add(prodotto);
             }
