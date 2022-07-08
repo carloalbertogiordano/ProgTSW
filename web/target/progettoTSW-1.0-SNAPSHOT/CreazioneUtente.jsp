@@ -32,7 +32,7 @@
     }
 
     function testCap() {
-      const cerca = /[0-9]{5}/;
+      const cerca = /[1-9][0-9]{4}/;
       console.log("cap"+cerca.test($("#cap").val()));
       return cerca.test($("#cap").val());
     }
@@ -43,8 +43,21 @@
       return cerca.test($("#provincia").val());
     }
 
+    function testVia() {
+      const cerca = /[a-zA-Z ]{1,100}[0-9]{1,3}/;
+      console.log("via"+cerca.test($("#via").val()));
+      return cerca.test($("#via").val());
+    }
+
+    function testCitta() {
+      const cerca = /[a-zA-Z]{1,100}/;
+      console.log("citta"+cerca.test($("#citta").val()));
+      return cerca.test($("#citta").val());
+    }
+
     function validateForm(){
-      return testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv();
+      return testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv()
+              && testVia() && testCitta();
     }
   </script>
 
