@@ -109,149 +109,166 @@
     <div id="divCatalogo" class="wrapper">
         <div>
             <%
-
                 String path = "info-pezzo.jsp";
                 Cliente user = (Cliente) ss.getAttribute("cliente");
                 if(user != null && user.isAdministrator())
                     path = "modificaPezzo.jsp";
 
-
                 for (Cpu cpu : cpuList) {
-                    out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\""+ cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            cpu.getMarca() + "</li>" +
-                            "<li>Modello: " + cpu.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + cpu.getPrezzo() + "</li>" +
-                            "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
-                            "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
-                            "<li>Url: " + cpu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
+                    System.out.println("qt "+cpu.getModello()+" "+cpu.getQuantità());
+                    if (cpu.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                cpu.getMarca() + "</li>" +
+                                "<li>Modello: " + cpu.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + cpu.getPrezzo() + "</li>" +
+                                "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
+                                "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
+                                "<li>Url: " + cpu.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
 
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Case case_ : caseList) {
-                    out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            case_.getMarca() + "</li>" +
-                            "<li>Modello: " + case_.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + case_.getPrezzo() + "</li>" +
-                            "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
-                            "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
-                            "<li>Url: " + case_.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div></a>");
+                    if (case_.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                case_.getMarca() + "</li>" +
+                                "<li>Modello: " + case_.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + case_.getPrezzo() + "</li>" +
+                                "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
+                                "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
+                                "<li>Url: " + case_.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
-                    out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            dissipatore.getMarca() + "</li>" +
-                            "<li>Modello: " + dissipatore.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + dissipatore.getPrezzo() + "</li>" +
-                            "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
-                            "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
-                            "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div></a>");
+                    if (dissipatore.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                dissipatore.getMarca() + "</li>" +
+                                "<li>Modello: " + dissipatore.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + dissipatore.getPrezzo() + "</li>" +
+                                "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
+                                "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
+                                "<li>Url: " + dissipatore.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Gpu gpu : gpuList) {
-                    out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            gpu.getMarca() + "</li>" +
-                            "<li>Modello: " + gpu.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
-                            "<li>W_Gpu: " + gpu.getWattaggio() + "</li>" +
-                            "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
-                            "<li>vRam:" + gpu.getVRam() + "</li>" +
-                            "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
-                            "<li>Url: " + gpu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");
+                    if (gpu.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                gpu.getMarca() + "</li>" +
+                                "<li>Modello: " + gpu.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
+                                "<li>W_Gpu: " + gpu.getWattaggio() + "</li>" +
+                                "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
+                                "<li>vRam:" + gpu.getVRam() + "</li>" +
+                                "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
+                                "<li>Url: " + gpu.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Mobo mobo : moboList) {
-                    out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            mobo.getMarca() + "</li>" +
-                            "<li>Modello: " + mobo.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + mobo.getPrezzo() + "</li>" +
-                            "<li>Forma: " + mobo.getForma() + "</li>" +
-                            "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
-                            "<li>Numero USB:" + mobo.getN_USB() + "</li>" +
-                            "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
-                            "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
-                            "<li>Url: " + mobo.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + mobo.getQuantità() + "</li></ul></div></a>");
+                    if (mobo.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                mobo.getMarca() + "</li>" +
+                                "<li>Modello: " + mobo.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + mobo.getPrezzo() + "</li>" +
+                                "<li>Forma: " + mobo.getForma() + "</li>" +
+                                "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
+                                "<li>Numero USB:" + mobo.getN_USB() + "</li>" +
+                                "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
+                                "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
+                                "<li>Url: " + mobo.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + mobo.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Psu psu : psuList) {
-                    out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            psu.getMarca() + "</li>" +
-                            "<li>Modello: " + psu.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + psu.getPrezzo() + "</li>" +
-                            "<li>Watt: " + psu.getN_Watt() + "</li>" +
-                            "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
-                            "<li>Url: " + psu.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + psu.getQuantità() + "</li></ul></div></a>");
+                    if (psu.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                psu.getMarca() + "</li>" +
+                                "<li>Modello: " + psu.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + psu.getPrezzo() + "</li>" +
+                                "<li>Watt: " + psu.getN_Watt() + "</li>" +
+                                "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
+                                "<li>Url: " + psu.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + psu.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Ram ram : ramList) {
-                    out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            ram.getMarca() + "</li>" +
-                            "<li>Modello: " + ram.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + ram.getPrezzo() + "</li>" +
-                            "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
-                            "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
-                            "<li>Url: " + ram.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + ram.getQuantità() + "</li></ul></div></a>");
+                    if (ram.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                ram.getMarca() + "</li>" +
+                                "<li>Modello: " + ram.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + ram.getPrezzo() + "</li>" +
+                                "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
+                                "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
+                                "<li>Url: " + ram.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + ram.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div class="hdd-list">
             <%
                 for (Hdd hdd : hddList) {
-                    out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            hdd.getMarca() + "</li>" +
-                            "<li>Modello: " + hdd.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + hdd.getPrezzo() + "</li>" +
-                            "<li>MB/s: " + hdd.getMBs() + "</li>" +
-                            "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
-                            "<li>Url: " + hdd.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>");
+                    if (hdd.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                hdd.getMarca() + "</li>" +
+                                "<li>Modello: " + hdd.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + hdd.getPrezzo() + "</li>" +
+                                "<li>MB/s: " + hdd.getMBs() + "</li>" +
+                                "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
+                                "<li>Url: " + hdd.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>
         <div>
             <%
                 for (Ssd ssd : ssdList) {
-                    out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                            ssd.getMarca() + "</li>" +
-                            "<li>Modello: " + ssd.getModello() + "</li>" +
-                            "Prezzo: "+
-                            "<li class=\"price\">" + ssd.getPrezzo() + "</li>" +
-                            "<li>MB/s: " + ssd.getMBs() + "</li>" +
-                            "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
-                            "<li>Url: " + ssd.getUrl() + "</li>" +
-                            "<li>Disponibilità: " + ssd.getQuantità() + "</li></ul></div></a>");
+                    if (ssd.getQuantità() > 0) {
+                        out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                                ssd.getMarca() + "</li>" +
+                                "<li>Modello: " + ssd.getModello() + "</li>" +
+                                "Prezzo: " +
+                                "<li class=\"price\">" + ssd.getPrezzo() + "</li>" +
+                                "<li>MB/s: " + ssd.getMBs() + "</li>" +
+                                "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
+                                "<li>Url: " + ssd.getUrl() + "</li>" +
+                                "<li>Disponibilità: " + ssd.getQuantità() + "</li></ul></div></a>");
+                    }
                 }
             %>
         </div>

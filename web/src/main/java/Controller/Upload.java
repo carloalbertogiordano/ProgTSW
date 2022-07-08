@@ -99,7 +99,7 @@ public class Upload extends HttpServlet {
         HttpSession ss = request.getSession();
         ss.setAttribute("catalogo", newCatalogo);
 
-        response.sendRedirect("admin.jsp");
+        request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
