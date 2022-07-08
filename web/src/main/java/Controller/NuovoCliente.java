@@ -17,8 +17,8 @@ public class NuovoCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nikName = request.getParameter("nikname");
         String plainTxtPassword = request.getParameter("password");
-        String email = request.getParameter("email");
-        String telefono = request.getParameter("telefono");
+        String email = request.getParameter("mail");
+        String telefono = "+"+request.getParameter("telefono");
         String via = request.getParameter("via");
         String provincia = request.getParameter("provincia");
         String citta = request.getParameter("citta");
