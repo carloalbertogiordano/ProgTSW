@@ -44,10 +44,22 @@ public class addCart extends HttpServlet {
         switch (p.getTipo()) {
             case "CPU" :
                 //We cast the product to CPU
-                Cpu cpu = (Cpu) p;
+                Cpu cpu = (Cpu) catalogo.doRetriveById(id);
                 //take the product from carrello by its id (we need it to update quantity in catalogo)
                 Cpu cpu_carrello = new Cpu(cpu.getID(), cpu.getMarca(), cpu.getModello(), cpu.getPrezzo(), quantity, cpu.getWattaggio(), cpu.getFrequenza(), cpu.getN_Core(), cpu.getUrl(), cpu.getDescrizione());
-                addToCart(cliente, carrello, catalogo, cpu_carrello);
+                if (cliente != null) {
+                    try {
+                        System.out.println(carrello.getCarrelloCod());
+                        carrello.addProduct(cpu_carrello);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    catalogo.aggiornaQuantita(cpu_carrello);
+                } else {
+                    //Even if user is not logged you hacve to update Carrello and Catalogo
+                    carrello.addSessionProduct(cpu_carrello);
+                    catalogo.aggiornaQuantita(cpu_carrello);
+                }
             break;
             //We can repeat the process for all type of product
             case "MOBO" :

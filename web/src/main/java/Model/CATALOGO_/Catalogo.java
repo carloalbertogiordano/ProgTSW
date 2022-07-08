@@ -66,55 +66,65 @@ public class Catalogo {
     public void aggiornaQuantita(Prodotto p){
         //Le quantità relative ai pezzi nel carrello sono le quantità richieste
         //Le quantità relative ai pezzi del catalo sono le quantità disponibili
-        for(int i = 0; i < catalogo.size(); i++){
-            if(catalogo.get(i).getID()==p.getID()){
-                System.out.println("Quantità disponibile: " + catalogo.get(i).getQuantità());
+        for (Prodotto prodotto : catalogo) {
+            if (prodotto.getID() == p.getID()) {
+                System.out.println("Quantità disponibile: " + prodotto.getQuantità());
                 //System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
-                catalogo.get(i).setQuantità((catalogo.get(i).getQuantità() - p.getQuantità()));
+                prodotto.setQuantità((prodotto.getQuantità() - p.getQuantità()));
                 //p.setQuantità(quantita);
-                System.out.println("Quantità rimanente: " +  catalogo.get(i).getQuantità());
+                System.out.println("Quantità rimanente: " + prodotto.getQuantità());
             }
         }
     }
 
-    public static List<?> doRetriveByType(String type) throws SQLException {
-        List<?> list = new ArrayList<>();
+    public List<?> doRetriveByType(String type){
+        List<Prodotto> list = new ArrayList<>();
         switch (type) {
             case "CPU":
-                CpuDAO cDAO = new CpuDAO();
-                list = cDAO.doRetriveByType();
+                for(Prodotto p : catalogo) {
+                    if (p.getTipo().equals("CPU"))
+                        list.add(p);
+                }
                 break;
             case "MOBO":
-                MoboDAO mDAO = new MoboDAO();
-                list= mDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("MOBO"))
+                        list.add(p);
                 break;
             case "CASE":
-                CaseDAO caDAO = new CaseDAO();
-                list = caDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("CASE"))
+                        list.add(p);
                 break;
             case "DISSIPATORE":
-                DissipatoreDAO dDAO = new DissipatoreDAO();
-                list = dDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("DISSIPATORE"))
+                        list.add(p);
                 break;
             case "GPU":
-                GpuDAO gDAO = new GpuDAO();
-                list = gDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("GPU"))
+                        list.add(p);
                 break;
             case "PSU":
-                PsuDAO pDAO = new PsuDAO();
-                list = pDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("PSU"))
+                        list.add(p);
                 break;
             case "RAM":
-                RamDAO rDAO = new RamDAO();
-                list = rDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("RAM"))
+                        list.add(p);
                 break;
             case "HDD":
-                HddDAO hDAO = new HddDAO();
-                list = hDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("HDD"))
+                        list.add(p);
                 break;
             case "SSD":
-                SsdDAO sDAO = new SsdDAO();
-                list = sDAO.doRetriveByType();
+                for(Prodotto p : catalogo)
+                    if(p.getTipo().equals("SSD"))
+                        list.add(p);
                 break;
             default:
                 Prodotto prodotto = null;
