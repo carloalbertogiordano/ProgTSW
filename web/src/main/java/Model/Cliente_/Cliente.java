@@ -5,7 +5,18 @@ public class Cliente {
     private int Cap;
     private Boolean Administrator;
 
-    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap, Boolean administrator) {
+    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap) {
+        Mail = mail;
+        Pass = pass;
+        Nickname = nickname;
+        Via = via;
+        Provincia = provincia;
+        Citta = citta;
+        Cap = cap;
+        Tel = tel;
+        Administrator = false;
+    }
+    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap, boolean administrator) {
         Mail = mail;
         Pass = pass;
         Nickname = nickname;
@@ -20,6 +31,16 @@ public class Cliente {
         this.Mail = mail;
         this.Nickname = nickname;
         this.Administrator = administrator;
+    }
+
+    public Cliente(String mail, String nickname, String tel, String via, String provincia, int cap, boolean administrator) {
+        Mail= mail;
+        Nickname = nickname;
+        Tel = tel;
+        Via = via;
+        Provincia = provincia;
+        Cap = cap;
+        Administrator = administrator;
     }
 
     public String getMail() {

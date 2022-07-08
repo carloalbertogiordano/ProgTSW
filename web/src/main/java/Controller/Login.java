@@ -2,13 +2,14 @@ package Controller;
 
 import Model.Cliente_.Cliente;
 import Model.Cliente_.ClienteDAO;
+import Model.ConPool;
 import Model.PasswordEncrypter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.*;
 
 @WebServlet(name = "Login", value = "/Login")
 public class Login extends HttpServlet {
@@ -35,8 +36,9 @@ public class Login extends HttpServlet {
             else{
                 //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
                 System.out.println("Cliente trovato");
-                //Prendi nickname e mail dal DB e crea l' oggetto cliente da tenere in sessione
-                Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail), CDAO.isAdministrator(mail));
+                //Prendi Le info dal DB e crea l' oggetto cliente da tenere in sessione
+                //Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail), CDAO.doRetriveTelByEmail(mail), CDAO.doRetriveViaByEmail(mail), CDAO.doRetriveProvinciaByEmail(mail), CDAO.doRetriveCapByEmail(mail), CDAO.isAdministrator(mail));
+                Cliente c = CDAO.doRetrieveByMail(mail);
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);

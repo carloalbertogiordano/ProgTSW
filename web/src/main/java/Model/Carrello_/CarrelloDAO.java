@@ -1,5 +1,6 @@
 package Model.Carrello_;
 
+import Model.Cliente_.Cliente;
 import Model.ConPool;
 import Model.Prodotto;
 
@@ -83,9 +84,9 @@ public class CarrelloDAO {
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
         List<Prodotto> listProdotti = new ArrayList<Prodotto>();
         listProdotti = Prodotto.doRetriveByIdLis(prodotti);
-        for(int i = 0; i < listProdotti.size(); i++){
-            int quantitaRichiesta = getComporreQuantita(listProdotti.get(i).getID(), carrelloCod);
-            listProdotti.get(i).setQuantità(quantitaRichiesta);
+        for (Prodotto prodotto : listProdotti) {
+            int quantitaRichiesta = getComporreQuantita(prodotto.getID(), carrelloCod);
+            prodotto.setQuantità(quantitaRichiesta);
         }
         Carrello carrello = new Carrello(listProdotti, carrelloCod, totaleCarrello);
         return carrello;
@@ -119,7 +120,7 @@ public class CarrelloDAO {
     }
 
     //Setta a vero l'attributo Evaso nella tabella Ordine
-    public void setOrdineEvaso(String mail, int codCarrello) throws SQLException {
+    public void setOrdineEvaso(int codCarrello, String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Ordine SET Evaso = ? WHERE ClienteMail = ? AND CarrelloCod = ?");
         pdstmt.setInt(1, 1);
@@ -149,12 +150,16 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    public void createNewOrdine(String mail, int idCarrello) throws SQLException {
+    public void createNewOrdine(Cliente c, int idCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Ordine VALUES (?, ?, ?)");
-        pdstmt.setString(1, mail);
+        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Ordine VALUES (?, ?, ?, ?, ?, ?, ?)");
+        pdstmt.setString(1, c.getMail());
         pdstmt.setInt(2, idCarrello);
         pdstmt.setInt(3, 0);
+        pdstmt.setString(4, c.getVia());
+        pdstmt.setString(5,c.getProvincia());
+        pdstmt.setString(6, c.getCitta());
+        pdstmt.setInt(7, c.getCap());
         pdstmt.executeUpdate();
     }
 }

@@ -22,22 +22,33 @@ public class expireCart extends HttpServlet {
         HttpSession session = request.getSession();
         Carrello carrelloSession = (Carrello) session.getAttribute("carrello");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
-        Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
+        //Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
         CarrelloDAO service = new CarrelloDAO();
         CatalogoDAO serviceCatalogo = new CatalogoDAO();
+
+        //Info spedizione
+        String via = request.getParameter("via");
+        String provincia = request.getParameter("provincia");
+        String citta = request.getParameter("citta");
+        Integer cap = Integer.parseInt(request.getParameter("cap"));
+
         try {
             Carrello.scalaProdotti(carrelloSession);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            service.setOrdineEvaso(cliente.getMail(), idCarrello);
+            //Choose if updating address is needed and forward order to the DAO
+            if(cliente.getVia().equals(via) && cliente.getProvincia().equals(provincia) && cliente.getCitta().equals(citta) && cliente.getCap() == cap)
+                carrelloSession.forwardOrder(idCarrello, cliente.getMail());
+            else
+                carrelloSession.forwardOrder(idCarrello, cliente.getMail(), via, provincia, citta, cap);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         Carrello newCarrello;
         try {
-            newCarrello = Carrello.createNewCarrello(cliente.getMail());
+            newCarrello = Carrello.createNewCarrello(cliente);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -9,9 +9,18 @@ public class ClienteDAO {
 
     public void addCliente(Cliente c) throws SQLException {
         Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        String insert = "INSERT INTO Cliente (Nickname, Mail, Pass, Tel, Via, Provincia) VALUES ('" + c.getNickname() + "', '" + c.getMail() + "', '" + c.getPass() + "', '" + c.getTel() + "', '" + c.getVia() + "', '" + c.getProvincia() + "')";
-        stmt.executeUpdate(insert);
+        String ins = "INSERT INTO Cliente (Nickname, Mail, Pass, Tel, Via, Provincia, Citta, Cap) "+
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pdstmt = con.prepareStatement(ins);
+        pdstmt.setString(1, c.getNickname());
+        pdstmt.setString(2, c.getMail());
+        pdstmt.setString(3, c.getPass());
+        pdstmt.setString(4, c.getTel());
+        pdstmt.setString(5, c.getVia());
+        pdstmt.setString(6, c.getProvincia());
+        pdstmt.setString(7, c.getCitta());
+        pdstmt.setInt(8, c.getCap());
+        pdstmt.executeUpdate();
     }
 
     public Cliente doRetrieveByMail(String m) throws SQLException {
@@ -92,5 +101,57 @@ public class ClienteDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public String doRetriveTelByEmail(String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Tel FROM Cliente WHERE Mail = ? ");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+        String tel = "";
+        while(rs.next()){
+            tel = rs.getString(1);
+        }
+        return tel;
+    }
+
+    public String doRetriveViaByEmail(String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Via FROM Cliente WHERE Mail = ? ");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+        String via = "";
+        while(rs.next()){
+            via = rs.getString(1);
+        }
+        return via;
+    }
+
+    public String doRetriveProvinciaByEmail(String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Provincia FROM Cliente WHERE Mail = ? ");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+        String prov = "";
+        while(rs.next()){
+            prov = rs.getString(1);
+        }
+        return prov;
+    }
+
+    public int doRetriveCapByEmail(String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Cap FROM Cliente WHERE Mail = ? ");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+        String cap = "";
+        while(rs.next()){
+            cap = rs.getString(1);
+        }
+        return Integer.parseInt(cap);
     }
 }

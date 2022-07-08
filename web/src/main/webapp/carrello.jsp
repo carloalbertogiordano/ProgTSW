@@ -11,6 +11,8 @@
 <body>
 <%
     Carrello carrello = (Carrello) session.getAttribute("carrello");
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
+
     if(!carrello.isEmpty()){
         List<Prodotto> carrelloList = carrello.getCarrello();
         out.println("<li>");
@@ -22,11 +24,30 @@
                     "</ul>");
         }
         out.println("</li>");
-        out.println("<div>" +
+        out.println("<br>");
+        out.println("<div id=\"modIndirizzo\">" +
+                "<table>"+
                 "<form action=\"expireCart\" method=\"\">" +
                 "<input type=\"hidden\" name=\"idCarrello\" id=\"idCarrello\" value=\"" + carrello.getCarrelloCod() + "\">" +
+                "<tr>"+
+                "<td> Via: </td>"+
+                "<td><input type=\"text\" name=\"via\" id=\"via\" value=\""+ cliente.getVia() +"\" > </td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td> Provincia: </td>"+
+                "<td><input type=\"text\" name=\"provincia\" id=\"provincia\" value=\""+ cliente.getProvincia() +"\" > </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td> Città: </td>"+
+                "<td><input type=\"text\" name=\"citta\" id=\"citta\" value=\""+ cliente.getCitta() +"\" > </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td> CAP: </td>"+
+                "<td><input type=\"text\" name=\"cap\" id=\"cap\" value=\""+ cliente.getCap() +"\" > </td>"+
+                "</tr>"+
                 "<input type=\"submit\" value=\"Concludi ordine\" id=\"submit\">" +
                 "</form>" +
+                "</table>"+
                 "</div>");
     }
     else{

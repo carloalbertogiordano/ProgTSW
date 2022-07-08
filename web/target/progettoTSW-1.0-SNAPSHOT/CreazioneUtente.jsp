@@ -9,7 +9,7 @@
   <script type = "text/javascript">
     function testNickname() {
       let reNick = /[a-zA-Z0-9]{1,70}/ ;
-      return reNick.test($("#nick"));
+      return reNick.test($("#nick").val());
     }
 
     function testMail() {
@@ -19,26 +19,26 @@
 
     function testPassword() {
       const cerca = /[a-zA-Z0-9]{1,130}/;
-      return cerca.test($("#password"));
+      return cerca.test($("#password").val());
     }
 
     function testTel() {
-      const cerca = /[0-9]{13}/;
-      return cerca.test($("#tel"))
+      const cerca = /[0-9]{10}/;
+      return cerca.test($("#tel").val())
     }
 
     function testCap() {
       const cerca = /[0-9]{5}/;
-      return cerca.test($("#cap"));
+      return cerca.test($("#cap").val());
     }
 
     function testProv() {
       const cerca = /[A-Z]{2}/;
-      return cerca.test($("#provincia"));
+      return cerca.test($("#provincia").val());
     }
 
     function validateForm(){
-      return testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv();
+      return true;//testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv();
     }
   </script>
 
@@ -60,52 +60,44 @@
     <div class="divide"> <!---non funziona la class--->
       <tr>
         <td>NikName:</td>
-        <td><input type="text" name="NikName" required/></td>
+        <td><input type="text" name="nikname" required/></td>
       </tr>
       <tr>
         <td>Password:</td>
-        <td><input type="password" name="Password" required/></td>
+        <td><input type="password" name="password" required/></td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><input type="text" name="Email" required/></td>
+        <td><input type="text" name="email" required/></td>
       </tr>
       <tr>
         <td>Telefono:</td>
-        <td><input type="text" name="Telefono" required/></td>
+        <td><input type="text" name="telefono" required/></td>
       </tr>
       <tr>
         <td>CAP:</td>
-        <td><input type="text" name="CAP" required/></td>
+        <td><input type="text" name="cap" required/></td>
       </tr>
       <tr>
         <td>Provincia</td>
-        <td><input type="text" name="Provincia" required/></td>
+        <td><input type="text" name="provincia" required/></td>
       </tr>
     </div>
     <div class="divide">
       <tr>
-        <td>Numero Carta</td>
-        <td><input type="text" name="Carta"/></td>
+        <td>Città</td>
+        <td><input type="text" name="citta" required/></td>
       </tr>
       <tr>
-        <td>Scadenza Carta</td>
-        <td><input type="text" name="Scadenza"/></td>
+        <td>Via</td>
+        <td><input type="text" name="via" required/></td>
       </tr>
       <tr>
-        <td>CVV</td>
-        <td><input type="text" name="CVV"/></td>
-      </tr>
-      <tr>
-        <td>Intestatario</td>
-        <td><input type="text" name="Intestatario"/></td>
-      </tr>
-      <tr>
-        <td><input type="submit" value="Registra"></td>
+        <td><input type="submit"></td>
       </tr>
     </div>
   </table>
 </form>
-<p>Oppure  fai il <a href="login.jsp">login</a></p>
+<p>Oppure fai il <a href="login.jsp">login</a></p>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package Model.Carrello_;
 
+import Model.Cliente_.Cliente;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 
@@ -168,12 +169,23 @@ public class Carrello {
         }
     }
 
-    public static Carrello createNewCarrello(String mail) throws SQLException {
+    public static Carrello createNewCarrello(Cliente c) throws SQLException {
         CarrelloDAO service = new CarrelloDAO();
         int idCarrello = service.createCarrello();
-        service.createNewOrdine(mail, idCarrello);
+        service.createNewOrdine(c, idCarrello);
         Carrello newCarrello = new Carrello();
         newCarrello.setCarrelloCod(idCarrello);
         return newCarrello;
+    }
+
+    public void forwardOrder(int idCarrello, String mail, String via, String provincia, String citta, Integer cap) throws SQLException {
+        CarrelloDAO service = new CarrelloDAO();
+        service.setOrdineEvaso(idCarrello, mail);
+        service.setIndirizzoOrdine(via, provincia, citta, cap, mail, idCarrello);
+    }
+
+    public void forwardOrder(int idCarrello, String mail) throws SQLException {
+        CarrelloDAO service = new CarrelloDAO();
+        service.setOrdineEvaso(idCarrello, mail);
     }
 }
