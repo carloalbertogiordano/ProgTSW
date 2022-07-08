@@ -33,7 +33,7 @@ public class NuovoCliente extends HttpServlet {
             || nikName == null || password == null || email == null || telefono == null || via == null || provincia == null || citta == null
         ){
             request.setAttribute("register.error", "Compilare tutti i campi");
-            request.getRequestDispatcher("/WEB-INF/jsp/CreazioneUtente.jsp").forward(request, response);
+            request.getRequestDispatcher("CreazioneUtente.jsp").forward(request, response);
         }
         else{
             ClienteDAO clienteDAO = new ClienteDAO();

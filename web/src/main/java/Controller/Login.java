@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Cliente_.Cliente;
 import Model.Cliente_.ClienteDAO;
-import Model.ConPool;
 import Model.PasswordEncrypter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -43,7 +42,7 @@ public class Login extends HttpServlet {
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
                 if(c.isAdministrator()) {
-                    response.sendRedirect("admin.jsp");
+                    request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
                 }
                 else{
                     response.sendRedirect(".");
