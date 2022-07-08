@@ -72,19 +72,6 @@ public class ClienteDAO {
         return false;
     }
 
-    public String doRetriveNickByEmail(String mail) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Nickname FROM Cliente WHERE Mail = ? ");
-        pdstmt.setString(1, mail);
-        ResultSet rs = pdstmt.executeQuery();
-        String nick = "";
-        while(rs.next()){
-            nick = rs.getString(1);
-        }
-        return nick;
-    }
-
     public boolean isAdministrator(String mail) {
         try {
             Connection con = ConPool.getConnection();
@@ -103,55 +90,7 @@ public class ClienteDAO {
         return false;
     }
 
-    public String doRetriveTelByEmail(String mail) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Tel FROM Cliente WHERE Mail = ? ");
-        pdstmt.setString(1, mail);
-        ResultSet rs = pdstmt.executeQuery();
-        String tel = "";
-        while(rs.next()){
-            tel = rs.getString(1);
-        }
-        return tel;
-    }
 
-    public String doRetriveViaByEmail(String mail) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Via FROM Cliente WHERE Mail = ? ");
-        pdstmt.setString(1, mail);
-        ResultSet rs = pdstmt.executeQuery();
-        String via = "";
-        while(rs.next()){
-            via = rs.getString(1);
-        }
-        return via;
-    }
 
-    public String doRetriveProvinciaByEmail(String mail) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Provincia FROM Cliente WHERE Mail = ? ");
-        pdstmt.setString(1, mail);
-        ResultSet rs = pdstmt.executeQuery();
-        String prov = "";
-        while(rs.next()){
-            prov = rs.getString(1);
-        }
-        return prov;
-    }
 
-    public int doRetriveCapByEmail(String mail) throws SQLException {
-        Connection con = ConPool.getConnection();
-        Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("SELECT Cap FROM Cliente WHERE Mail = ? ");
-        pdstmt.setString(1, mail);
-        ResultSet rs = pdstmt.executeQuery();
-        String cap = "";
-        while(rs.next()){
-            cap = rs.getString(1);
-        }
-        return Integer.parseInt(cap);
-    }
 }
