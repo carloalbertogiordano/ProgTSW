@@ -24,7 +24,7 @@
         }
         out.println("</li>" +
                 "<br>" +
-                "<a href=\"indirizzoSpedizione.jsp\">Procedi all'ordine</a>");
+                "<a href=\"redirectToIndirizzoSpedizione\">Procedi all'ordine</a>");
     }
     else{
         out.println("<h1>Il carrello è vuoto</h1>");

@@ -37,7 +37,6 @@
 
 <a href = "CarrelloServlet">Carrello</a>
 <a href = "Catalogo.jsp">Catalogo</a>
-<a href = "WEB-INF/GestioneProfilo.jsp">Catalogo</a>
 <p>Testing test: <a href="testing.jsp"> TEST </a></p>
 
 </body>
