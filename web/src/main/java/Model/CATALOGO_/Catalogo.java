@@ -198,4 +198,12 @@ public class Catalogo {
             return true;
         return false;*/
     }
+
+    public void updateQuantity(int quantity, int id) {
+        for(Prodotto p : catalogo){
+            if(p.getID() == id){
+                p.setQuantità(p.getQuantità()+quantity);
+            }
+        }
+    }
 }

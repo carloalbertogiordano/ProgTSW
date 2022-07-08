@@ -153,12 +153,17 @@ public class Carrello {
         return sum;
     }
 
-    public void removeProductByIdFromSession(int id){
+    //Rimuove un prodotto del carrello dalla sessione e ritorna la quantità del prododotto rimossa
+    //è necessario ritornare la quantità per riaggiungerlo al catalogo di sessione
+    public int removeProductByIdFromSession(int id){
+        int quantity = 0;
         for(int i = 0; i < carrello.size(); i++){
             if(carrello.get(i).getID() == id){
+                quantity = carrello.get(i).getQuantità();
                 carrello.remove(i);
             }
         }
+        return quantity;
     }
 
     //Scala una lista di prodotti dal db dato un carrello

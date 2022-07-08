@@ -18,12 +18,18 @@ public class removeCart extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
+        String idList = request.getParameter("idList");
         HttpSession session = request.getSession();
         Carrello carrelloSession = (Carrello) session.getAttribute("carrello");
         Catalogo catalogoSessione = (Catalogo) session.getAttribute("catalogo");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
 
-        carrelloSession.removeProductByIdFromSession(idProdotto);
+        //Rimuoviamo il prodotto dal carello di sessione e riaggiungiamo la quantità al catalogo di sessione
+        int quantity = carrelloSession.removeProductByIdFromSession(idProdotto);
+        catalogoSessione.updateQuantity(quantity, idProdotto);
+        //Aggiorniamo dunque il catalogo della sessione
+        session.setAttribute("catalogo", catalogoSessione);
+
         if(cliente != null){
             CarrelloDAO service = new CarrelloDAO();
             try {
