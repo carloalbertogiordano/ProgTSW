@@ -1,11 +1,5 @@
 <%@ page import="Model.Cliente_.Cliente" %>
-<%@ page import="Model.Carrello_.Carrello" %><%--
-  Created by IntelliJ IDEA.
-  User: carlo
-  Date: 7/8/22
-  Time: 10:51 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="Model.Carrello_.Carrello" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
