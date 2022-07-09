@@ -72,7 +72,7 @@ public class ClienteDAO {
         return false;
     }
 
-    public boolean isAdministrator(String mail) {
+    public static boolean isAdministrator(String mail) {
         try {
             Connection con = ConPool.getConnection();
             Statement stmt = (Statement) con.createStatement();

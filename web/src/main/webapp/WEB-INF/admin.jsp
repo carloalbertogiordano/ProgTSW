@@ -8,6 +8,7 @@
 <body>
     <button onclick="nuovo()">Nuovo Prodotto</button>
     <button onclick="aggiorna()">Mod. Quantità Prodotto</button>
+    <a href="Logout"> <button>Logout</button> </a>
     <br>
     <div id="stampa"><p>Premi un pulsante.</p></div>
 

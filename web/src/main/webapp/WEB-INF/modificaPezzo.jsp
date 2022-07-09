@@ -10,6 +10,8 @@
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Model.GPU_.Gpu" %>
+<%@ page import="Model.Cliente_.ClienteDAO" %>
+<%@ page import="Model.Cliente_.Cliente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +40,7 @@
         }
 
         function validateQuantita() {
-            let quant = /[1-9][0-9]{0,2}/;
+            let quant = /[0-9]{0,3}/;
             if(!(quant.test($("#quantita").val()))){
                 console.error("Err: Quantita non valida");
             }
@@ -148,6 +150,12 @@
         String id = request.getParameter("Id");
         Catalogo catalogo = (Catalogo) request.getSession().getAttribute("catalogo");
         Prodotto p = catalogo.doRetriveById(Integer.parseInt(id));
+        Cliente c = (Cliente) request.getSession().getAttribute("cliente");
+
+        //Se il cliente non è un amministratore non potrebbe essere qua
+        if(!c.isAdministrator())
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
     %>
 
     <form id="modProd" method="post" action="Aggiorna" onsubmit="return validateProductUpdate()">

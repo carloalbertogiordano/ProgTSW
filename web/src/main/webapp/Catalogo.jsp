@@ -10,6 +10,7 @@
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Model.CATALOGO_.Catalogo" %>
 <%@ page import="Model.Cliente_.Cliente" %>
+<%@ page import="Model.Cliente_.ClienteDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -110,13 +111,22 @@
         <div>
             <%
                 String path = "info-pezzo.jsp";
+                boolean isAdministrator = false;
                 Cliente user = (Cliente) ss.getAttribute("cliente");
-                if(user != null && user.isAdministrator())
-                    path = "modificaPezzo.jsp";
+                if (user != null)
+                    if( user.isAdministrator())
+                        isAdministrator=true;
+
+                //Se l'utente è amministratore dovrà reindirizzare a una pagina diversa al click sul prodotto
+                if(isAdministrator)
+                    path = "redirectToAdminPage";
 
                 for (Cpu cpu : cpuList) {
-                    System.out.println("qt "+cpu.getModello()+" "+cpu.getQuantità());
-                    if (cpu.getQuantità() > 0) {
+                    //Visto che la visione del catalogo è generalizzata dobbiamo poter
+                    //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
+                    //se invece è un utente normale.
+                    boolean toShow = cpu.getQuantità() > 0 || isAdministrator;
+                    if(toShow){
                         out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 cpu.getMarca() + "</li>" +
                                 "<li>Modello: " + cpu.getModello() + "</li>" +
@@ -134,7 +144,8 @@
         <div>
             <%
                 for (Case case_ : caseList) {
-                    if (case_.getQuantità() > 0) {
+                    boolean toShow = case_.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 case_.getMarca() + "</li>" +
                                 "<li>Modello: " + case_.getModello() + "</li>" +
@@ -151,7 +162,8 @@
         <div>
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
-                    if (dissipatore.getQuantità() > 0) {
+                    boolean toShow = dissipatore.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 dissipatore.getMarca() + "</li>" +
                                 "<li>Modello: " + dissipatore.getModello() + "</li>" +
@@ -168,7 +180,8 @@
         <div>
             <%
                 for (Gpu gpu : gpuList) {
-                    if (gpu.getQuantità() > 0) {
+                    boolean toShow = gpu.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 gpu.getMarca() + "</li>" +
                                 "<li>Modello: " + gpu.getModello() + "</li>" +
@@ -187,7 +200,8 @@
         <div>
             <%
                 for (Mobo mobo : moboList) {
-                    if (mobo.getQuantità() > 0) {
+                    boolean toShow = mobo.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 mobo.getMarca() + "</li>" +
                                 "<li>Modello: " + mobo.getModello() + "</li>" +
@@ -207,7 +221,8 @@
         <div>
             <%
                 for (Psu psu : psuList) {
-                    if (psu.getQuantità() > 0) {
+                    boolean toShow = psu.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 psu.getMarca() + "</li>" +
                                 "<li>Modello: " + psu.getModello() + "</li>" +
@@ -224,7 +239,8 @@
         <div>
             <%
                 for (Ram ram : ramList) {
-                    if (ram.getQuantità() > 0) {
+                    boolean toShow = ram.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ram.getMarca() + "</li>" +
                                 "<li>Modello: " + ram.getModello() + "</li>" +
@@ -241,7 +257,8 @@
         <div class="hdd-list">
             <%
                 for (Hdd hdd : hddList) {
-                    if (hdd.getQuantità() > 0) {
+                    boolean toShow = hdd.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 hdd.getMarca() + "</li>" +
                                 "<li>Modello: " + hdd.getModello() + "</li>" +
@@ -258,7 +275,8 @@
         <div>
             <%
                 for (Ssd ssd : ssdList) {
-                    if (ssd.getQuantità() > 0) {
+                    boolean toShow = ssd.getQuantità() > 0 || isAdministrator;
+                    if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ssd.getMarca() + "</li>" +
                                 "<li>Modello: " + ssd.getModello() + "</li>" +
