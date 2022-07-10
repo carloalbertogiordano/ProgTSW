@@ -7,28 +7,45 @@
 <html>
 <head>
     <title>Carrello</title>
+    <script>
+        $document.ready(function(){
+           $("#quantity").change(function(){
+               $.ajax({
+                   url: 'changeQuantity',
+                   type: 'POST',
+                   data: {newQuantity: $("#quantity").val(), idProdotto: $("#idProdotto").val()},
+                   success: function(response){
+                       $("#divCarrello").html(response);
+                   }
+               })
+           });
+        });
+    </script>
 </head>
 <body>
-<%
-    Carrello carrello = (Carrello) session.getAttribute("carrello");
+<div id="divCarrello">
+    <%
+        Carrello carrello = (Carrello) session.getAttribute("carrello");
 
-    if(!carrello.isEmpty()) {
-        List<Prodotto> carrelloList = carrello.getCarrello();
-        out.println("<li>");
-        for (Prodotto prodotto : carrelloList) {
-            out.println("<ul>" + prodotto.toString() +
-                    "<form action=\"removeCart\" method=\"GET\">" +
-                    "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" value=\"" + prodotto.getID() + "\">" +
-                    "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
-                    "</ul>");
+        if(!carrello.isEmpty()) {
+            List<Prodotto> carrelloList = carrello.getCarrello();
+            out.println("<li>");
+            for (Prodotto prodotto : carrelloList) {
+                out.println("<ul>" + prodotto.toString() +
+                        "<form action=\"removeCart\" method=\"GET\">" +
+                        "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" value=\"" + prodotto.getID() + "\">" +
+                        "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + prodotto.getQuantità() + "\">" +
+                        "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
+                        "</ul>");
+            }
+            out.println("</li>" +
+                    "<br>" +
+                    "<a href=\"redirectToIndirizzoSpedizione\">Procedi all'ordine</a>");
         }
-        out.println("</li>" +
-                "<br>" +
-                "<a href=\"redirectToIndirizzoSpedizione\">Procedi all'ordine</a>");
-    }
-    else{
-        out.println("<h1>Il carrello è vuoto</h1>");
-    }
-%>
+        else{
+            out.println("<h1>Il carrello è vuoto</h1>");
+        }
+    %>
+</div>
 </body>
 </html>

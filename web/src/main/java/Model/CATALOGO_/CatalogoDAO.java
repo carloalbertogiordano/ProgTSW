@@ -92,6 +92,13 @@ public class CatalogoDAO {
         return cat;
     }
 
-
+    //Scala un prodotto dal db dato un id
+    public void scalaProdotto(int id, int quantity) throws SQLException {
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - ? WHERE Id = ?");
+        pdstmt.setInt(1, quantity);
+        pdstmt.setInt(2, id);
+        pdstmt.executeUpdate();
+    }
 }
 

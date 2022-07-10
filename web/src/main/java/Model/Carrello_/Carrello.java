@@ -1,5 +1,6 @@
 package Model.Carrello_;
 
+import Model.CATALOGO_.CatalogoDAO;
 import Model.Cliente_.Cliente;
 import Model.Prodotto;
 import Model.ProdottoDAO;
@@ -168,7 +169,7 @@ public class Carrello {
 
     //Scala una lista di prodotti dal db dato un carrello
     public static void scalaProdotti(Carrello c) throws SQLException {
-        CarrelloDAO service = new CarrelloDAO();
+        CatalogoDAO service = new CatalogoDAO();
         for(Prodotto p : c.getCarrello()){
             service.scalaProdotto(p.getID(), p.getQuantità());
         }

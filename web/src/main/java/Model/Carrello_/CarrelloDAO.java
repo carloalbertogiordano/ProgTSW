@@ -141,15 +141,6 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    //Scala un prodotto dal db dato un id
-    protected void scalaProdotto(int id, int quantity) throws SQLException {
-        Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - ? WHERE Id = ?");
-        pdstmt.setInt(1, quantity);
-        pdstmt.setInt(2, id);
-        pdstmt.executeUpdate();
-    }
-
     public void createNewOrdine(Cliente c, int idCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Ordine VALUES (?, ?, ?, ?, ?, ?, ?)");
