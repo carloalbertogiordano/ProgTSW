@@ -8,6 +8,7 @@ import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
 import Model.CPU_.Cpu;
 import Model.CPU_.CpuDAO;
+import Model.Carrello_.Carrello;
 import Model.ConPool;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.DISSIPATORE_.DissipatoreDAO;
@@ -99,6 +100,14 @@ public class CatalogoDAO {
         pdstmt.setInt(1, quantity);
         pdstmt.setInt(2, id);
         pdstmt.executeUpdate();
+    }
+
+    //Scala una lista di prodotti dal db dato un carrello
+    public static void scalaProdotti(Carrello c) throws SQLException {
+        CatalogoDAO service = new CatalogoDAO();
+        for(Prodotto p : c.getCarrello()){
+            service.scalaProdotto(p.getID(), p.getQuantità());
+        }
     }
 }
 

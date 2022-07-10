@@ -167,14 +167,6 @@ public class Carrello {
         return quantity;
     }
 
-    //Scala una lista di prodotti dal db dato un carrello
-    public static void scalaProdotti(Carrello c) throws SQLException {
-        CatalogoDAO service = new CatalogoDAO();
-        for(Prodotto p : c.getCarrello()){
-            service.scalaProdotto(p.getID(), p.getQuantità());
-        }
-    }
-
     public static Carrello createNewCarrello(Cliente c) throws SQLException {
         CarrelloDAO service = new CarrelloDAO();
         int idCarrello = service.createCarrello();

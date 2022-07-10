@@ -39,7 +39,7 @@ public class changeQuantity extends HttpServlet {
                 throw new RuntimeException(e);
             }
             CatalogoDAO serviceCatalogo = new CatalogoDAO();
-            serviceCatalogo.
+
         }
     }
 

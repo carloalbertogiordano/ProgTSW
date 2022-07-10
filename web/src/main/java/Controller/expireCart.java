@@ -33,7 +33,7 @@ public class expireCart extends HttpServlet {
         Integer cap = Integer.parseInt(request.getParameter("cap"));
 
         try {
-            Carrello.scalaProdotti(carrelloSession);
+            serviceCatalogo.scalaProdotti(carrelloSession);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
