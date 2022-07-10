@@ -71,6 +71,15 @@
                 $("#current").html($("#priceSlider").val());
             });
         });
+
+        function changePlaceholder(){
+            let choice = document.getElementsByName('choice');
+            for(let i = 0; i < choice.length; i++){
+                if(choice[i].checked){
+                    document.getElementById('input_cerca').placeholder = choice[i].value + " da cercare";
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -94,8 +103,10 @@
 <h2>Filtra per nome: </h2>
 <div style="border-style: solid; border-color: grey">
     <input type="text" id="input_cerca" placeholder="Marca da cercare">
-    <input type="radio" id="radMarca" name="choice" value="Marca" checked="checked">
-    <input type="radio" id="radModello" name="choice" value="Modello">
+    <input type="radio" id="radMarca" name="choice" value="Marca" onclick="changePlaceholder()" checked="checked">
+    <lable for="radMarca">Marca</lable>
+    <input type="radio" id="radModello" name="choice" value="Modello" onclick="changePlaceholder()">
+    <lable for="radModello">Modello</lable>
 </div>
 <h3>Filtra valore</h3>
 <div class="container">
