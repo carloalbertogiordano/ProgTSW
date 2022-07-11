@@ -65,7 +65,7 @@ public class Catalogo {
 
     public void aggiornaQuantita(Prodotto p){
         //Le quantità relative ai pezzi nel carrello sono le quantità richieste
-        //Le quantità relative ai pezzi del catalo sono le quantità disponibili
+        //Le quantità relative ai pezzi del catalogo sono le quantità disponibili
         for (Prodotto prodotto : catalogo) {
             if (prodotto.getID() == p.getID()) {
                 System.out.println("Quantità disponibile: " + prodotto.getQuantità());
@@ -199,11 +199,20 @@ public class Catalogo {
         return false;*/
     }
 
+    //Rimuoviamo il prodotto dal carello di sessione e riaggiungiamo la quantità al catalogo di sessione
     public void updateQuantity(int quantity, int id) {
         for(Prodotto p : catalogo){
             if(p.getID() == id){
                 p.setQuantità(p.getQuantità()+quantity);
             }
         }
+    }
+
+    public int getQuantità(int id) {
+        for(Prodotto p : catalogo){
+            if(p.getID() == id)
+                return p.getQuantità();
+        }
+        return 0;
     }
 }

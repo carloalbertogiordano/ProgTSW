@@ -1,9 +1,8 @@
 package Model.Carrello_;
 
-import Model.CATALOGO_.CatalogoDAO;
+import Model.CATALOGO_.Catalogo;
 import Model.Cliente_.Cliente;
 import Model.Prodotto;
-import Model.ProdottoDAO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,20 +52,22 @@ public class Carrello {
         return null;
     }
 
-    public Carrello doCheckList(Carrello carrello) throws SQLException {
-        for(int i = 0; i < carrello.getCarrello().size(); i++){
-            if(!ProdottoDAO.doCheckDisponibilita(carrello.getCarrello().get(i))){
-                if(carrello.getCarrello().get(i).getQuantità() == 0){
-                    carrello.getCarrello().remove(i);
-                }
-                else{
-                    int quantitaDisponible = carrello.getCarrello().get(i).getQuantità();
-                    CarrelloDAO service = new CarrelloDAO();
-                    service.doUpdateQuantitaRichiestaById(carrello.getCarrello().get(i).getID(), carrello.getCarrelloCod(), quantitaDisponible);
-                }
+    public void doCheckList(Catalogo catalogo) throws SQLException {
+        int i = 0;
+        for(Prodotto p : carrello){
+            int quantitaDisponible = catalogo.getQuantità(p.getID());
+            int quantitaRichiesta = p.getQuantità();
+
+            System.out.println("Quant Richiesta: "+quantitaRichiesta+" Quant Disp: "+quantitaDisponible);
+
+            if(quantitaDisponible == 0){
+                carrello.remove(i);
             }
+            else if(quantitaRichiesta > quantitaDisponible){
+                p.setQuantità(quantitaDisponible);
+            }
+            i++;
         }
-        return carrello;
     }
 
     //Quanrtità pezzo è quantità richiesta

@@ -103,8 +103,8 @@ public abstract class Prodotto {
 
     public static List<Prodotto> doRetriveByIdLis(ArrayList<Integer> idList) throws SQLException {
         List<Prodotto> carrello = new ArrayList<Prodotto>();
-        for(int i = 0; i < idList.size(); i++){
-            carrello.add(ProdottoDAO.doRetriveById(idList.get(i)));
+        for (Integer integer : idList) {
+            carrello.add(ProdottoDAO.doRetriveById(integer));
         }
         return carrello;
     }

@@ -44,21 +44,14 @@ public class HomeServlet extends HttpServlet {
         }
         //The session isn't new
         else {
-            //We need to take catalogo from session because in this attribute we have the updated quantity
-            catalogo = (Catalogo) ss.getAttribute("catalogo");
-            //check catalogo is null or not
-            if (catalogo == null) {
-                try {
-                    //if is null we take all elements from database and set session attribute catalogo
-                    catalogo = service.doRetriveAll();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                ss.setAttribute("catalogo", catalogo);
+            //We need to take catalogo from database because in this attribute we have the updated quantity
+            CatalogoDAO catalogoDAO = new CatalogoDAO();
+            try {
+                catalogo = catalogoDAO.doRetriveAll();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-            /*else{
-                ss.setAttribute("catalogo", catalogo);
-            }*/
+
             //If the session isn't new we need to control if the Cliente is null or not to check if he's logged in
             if (c != null) {
                 //Cliente is logged
@@ -67,23 +60,33 @@ public class HomeServlet extends HttpServlet {
                 //create a new Carrello where we put carrello from DataBase
                 Carrello carrelloDB = new Carrello();
                 CarrelloDAO serviceCarrello = new CarrelloDAO();
+                try {
+                    carrelloDB = serviceCarrello.doRetriveByMailCliente(c.getMail());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                };
                 //If session Carrello isn't null we need to do join between session Carrello and DataBase Carrello
                 if (carrello != null) {
                     //Take Carrello from DataBase using the mail of Cliente
+
+                    //Do join
+                    carrello = carrello.joinCarrelli(carrelloDB);
+
+                    //Checks if the quantity required by the cart is less than the quantity avilable
                     try {
-                        carrelloDB = serviceCarrello.doRetriveByMailCliente(c.getMail());
+                        carrello.doCheckList(catalogo);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    //Do join
-                    carrello = carrello.joinCarrelli(carrelloDB);
+
                     try {
+                        //Update carrello in the DB
                         serviceCarrello.updateCarrello(carrello);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                     //Use Catalogo to store the session Catalogo and update the quantit
-                    catalogo = (Catalogo) ss.getAttribute("catalogo");
+                    //Sets the quantity in catalogo as the quantity in catalogo minus the quantity in carrello
                     catalogo.aggiornaQuantita(carrello);
                     //set session attribute catalogo and carrello
                     ss.setAttribute("catalogo", catalogo);
@@ -91,13 +94,8 @@ public class HomeServlet extends HttpServlet {
                 } else {
                     //If session Carrello is null we need to take Carrello from the DataBase and set it as session Carrello
                     Carrello carrelloDb = new Carrello();
-                    try {
-                        carrelloDb = serviceCarrello.doRetriveByMailCliente(c.getMail());
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+
                     //Create new Catalogo and use it to store the session Catalogo and update the quantity
-                    catalogo = (Catalogo) ss.getAttribute("catalogo");
                     catalogo.aggiornaQuantita(carrelloDb);
                     //set session attribute catalogo and carrello
                     ss.setAttribute("catalogo", catalogo);
