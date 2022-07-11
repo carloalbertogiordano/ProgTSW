@@ -52,13 +52,12 @@ public class Carrello {
         return null;
     }
 
+    //Controlla se la quantità richiesta è compatibile con la quantità totale disponibile nel DB
     public void doCheckList(Catalogo catalogo) throws SQLException {
         int i = 0;
         for(Prodotto p : carrello){
             int quantitaDisponible = catalogo.getQuantità(p.getID());
             int quantitaRichiesta = p.getQuantità();
-
-            System.out.println("Quant Richiesta: "+quantitaRichiesta+" Quant Disp: "+quantitaDisponible);
 
             if(quantitaDisponible == 0){
                 carrello.remove(i);
@@ -92,11 +91,11 @@ public class Carrello {
     }
 
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (Prodotto prodotto : carrello) {
-            s = s + "\n" + prodotto.toString();
+            s.append("\n").append(prodotto.toString());
         }
-        return s;
+        return s.toString();
     }
 
     public void addProduct(Prodotto prodotto) throws SQLException {

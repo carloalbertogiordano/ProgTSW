@@ -41,10 +41,7 @@ public class Catalogo {
         for(int i = 0; i < catalogo.size(); i++){
             for(int j = 0; j < carrello.getCarrello().size(); j++){
                if(getCatalogo().get(i).getID() == carrello.getCarrello().get(j).getID()){
-                    System.out.println("Quantità disponibile: " + catalogo.get(i).getQuantità());
-                   System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
                     catalogo.get(i).setQuantità(catalogo.get(i).getQuantità() - carrello.getCarrello().get(j).getQuantità());
-                   System.out.println("Quantità rimanente: " +  catalogo.get(i).getQuantità());
                 }
             }
         }
@@ -68,11 +65,7 @@ public class Catalogo {
         //Le quantità relative ai pezzi del catalogo sono le quantità disponibili
         for (Prodotto prodotto : catalogo) {
             if (prodotto.getID() == p.getID()) {
-                System.out.println("Quantità disponibile: " + prodotto.getQuantità());
-                //System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
                 prodotto.setQuantità((prodotto.getQuantità() - p.getQuantità()));
-                //p.setQuantità(quantita);
-                System.out.println("Quantità rimanente: " + prodotto.getQuantità());
             }
         }
     }
