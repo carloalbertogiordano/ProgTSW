@@ -127,9 +127,9 @@ public class Catalogo {
     }
 
     public Prodotto doRetriveById(int id){
-        for(int i = 0; i < catalogo.size(); i++){
-            if(id == catalogo.get(i).getID()){
-                return catalogo.get(i);
+        for (Prodotto prodotto : catalogo) {
+            if (id == prodotto.getID()) {
+                return prodotto;
             }
         }
         return null;

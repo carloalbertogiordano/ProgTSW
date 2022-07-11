@@ -23,7 +23,7 @@ public class CpuDAO {
         pdstmt.setString(1, "CPU");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-                                          //int ID,                 String marca,             String modello,           double prezzo,           int quantità,            int wattaggio,         double frequenza,             int N_Core,                  String url,       String descrizione
+            //                       int ID,                      String marca,           String modello,           double prezzo,           int quantità,             int wattaggio,          float frequenza,       int N_Core,                 String url,               String descrizione
             Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
             list.add(cpu);
         }
