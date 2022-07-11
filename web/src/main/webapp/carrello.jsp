@@ -26,6 +26,7 @@
 <div id="divCarrello">
     <%
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+        Cliente cliente = (Cliente) session.getAttribute("cliente");
 
         if(!carrello.isEmpty()) {
             List<Prodotto> carrelloList = carrello.getCarrello();
@@ -38,9 +39,17 @@
                         "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
                         "</ul>");
             }
-            out.println("</li>" +
-                    "<br>" +
-                    "<a href=\"redirectToIndirizzoSpedizione\">Procedi all'ordine</a>");
+
+            if (cliente != null) {
+                out.println("</li>" +
+                        "<br>" +
+                        "<a href=\"redirectToIndirizzoSpedizione\">Procedi all'ordine</a>");
+            }
+            else {
+                out.println("</li>" +
+                        "<br>" +
+                        "Devi essere loggato per acquistare. Procedi al <a href=\"login.jsp\"> login </a>");
+            }
         }
         else{
             out.println("<h1>Il carrello è vuoto</h1>");
