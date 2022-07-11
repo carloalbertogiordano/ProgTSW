@@ -1,6 +1,6 @@
 .body{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     max-width: 100%;
 }
 
@@ -32,34 +32,9 @@
     color: black;
 }
 
-.navbar{
-    width: 100%;
-    height: 30px;
-    padding: 0px;
-    margin: 0px 0px 10px 0px;
-    background-color: #003049;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.login{
-    position: absolute;
-    right: 30px;
-    display: flex;
-    align-items: center;
-    border-style: none;
-    border-radius: 5px;
-    background-color: #669bbc;
-    color: black;
-}
-
-.login:visited {
-    text-decoration: none;
-}
-
-div {
+/*div {
     text-align: justify;
-}
+}*/
 
 div img {
     display: inline-block;
@@ -70,3 +45,55 @@ div:after {
     display: inline-block;
     width: 33%;
 }
+
+/*HEADER*/
+.header{
+    background-color: #fdf0d5;
+}
+
+#header-logo{
+    width: 80px;
+    margin: 5px 0px 0px 5px;
+    padding: 5px;
+}
+
+.nav{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    bottom: 0;
+    max-height: 100%;
+}
+
+.nav > ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #003049;
+}
+
+.nav > ul > li{
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+li a:hover {
+    background-color: #669bbc;
+}
+
+.login-button{
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    border-style: none;
+}
+

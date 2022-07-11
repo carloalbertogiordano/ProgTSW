@@ -14,15 +14,24 @@
 <%
     Cliente c = (Cliente) session.getAttribute("cliente");
 %>
-    <div class="navbar">
-        <%
-            if(c==null){
-                out.println("<a href=\"login.jsp\"><button class = \"login\">Login</button></a>");
-            }
-            else{
-                out.println("<a href=\"Logout\"><button class =\"login\">Logout</button></a>");
-            }
-        %>
+    <div class="header">
+        <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+        <div class="nav">
+            <ul>
+                <li><a href="HomeServlet" class="active">Home</a></li>
+                <li><a href="Catalogo.jsp">Catalogo</a></li>
+                <li><a href="carrello.jsp">Carrello</a></li>
+                <li><a href="#">Chi siamo</a></li>
+                <%
+                    if(c==null){
+                        out.println("<li class=\"login-button\"><a href=\"login.jsp\">Login</a></li>");
+                    }
+                    else{
+                        out.println("<li class=\"login-button\"><a href=\"Logout\">Logout</a></li>");
+                    }
+                %>
+            </ul>
+        </div>
     </div>
     <div class="headers">
         <%
@@ -35,8 +44,6 @@
         %>
     </div>
 
-<a href = "CarrelloServlet">Carrello</a>
-<a href = "Catalogo.jsp">Catalogo</a>
 <p>Testing test: <a href="testing.jsp"> TEST </a></p>
 
 </body>
