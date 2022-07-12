@@ -3,12 +3,14 @@ package Model.Carrello_;
 import Model.Cliente_.Cliente;
 import Model.ConPool;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarrelloDAO {
+
     public int createCarrello() throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Carrello (totale) VALUES (0)", Statement.RETURN_GENERATED_KEYS);
@@ -18,7 +20,7 @@ public class CarrelloDAO {
         int idCarrello = rs.getInt(1);
         return idCarrello;
     }
-    public int doRetriveCarrelloCodByMailCLiente(String mail) throws SQLException {
+    public int doRetriveCarrelloEvasoCodByMailCLiente(String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
         PreparedStatement pdstmt = con.prepareStatement("SELECT CarrelloCod FROM Ordine WHERE ClienteMail = ? AND Evaso != true;");
@@ -80,7 +82,7 @@ public class CarrelloDAO {
             prodotti.add(i);
             //richiesti.add(quantita);
         }
-        int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
+        int carrelloCod = doRetriveCarrelloEvasoCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
         List<Prodotto> listProdotti = new ArrayList<Prodotto>();
         listProdotti = Prodotto.doRetriveByIdLis(prodotti);
@@ -153,4 +155,89 @@ public class CarrelloDAO {
         pdstmt.setInt(7, c.getCap());
         pdstmt.executeUpdate();
     }
+
+    //Ritorna tutto lo storico dei carrelli sottoforma di carrello
+    public static ArrayList<Carrello> doRetriveStorico(String mail) throws SQLException {
+        ArrayList<Integer> storicoCarrelli = doRetriveStoricoCarrelliIdEvasiByMail(mail);
+        ArrayList<Carrello> listaCarrelli = new ArrayList<>();
+        CarrelloDAO cDAO = new CarrelloDAO();
+
+        //Recupera tutti i carrelli
+        for(Integer i : storicoCarrelli){
+            listaCarrelli.add(cDAO.doRetriveCarrelloById(i));
+            System.out.println("Cod: "+i+ " Size"+listaCarrelli.size());
+        }
+        //Setta la lista di prodotti nel carrello
+        for(Carrello c : listaCarrelli){
+            c.setCarrello(cDAO.doRetriveProdottiByIdCarrello(c.getCarrelloCod()));
+        }
+        //Recupera la quantità di ogni prodotto nel carrello
+        for(Carrello c : listaCarrelli){
+            for(Prodotto p : c.getCarrello()){
+                p.setQuantità(cDAO.getComporreQuantita(p.getID(), c.getCarrelloCod()));
+            }
+        }
+
+        System.out.println("Size Ordini: "+listaCarrelli.size());
+
+        if(listaCarrelli.size() == 0)
+            return null;
+        return listaCarrelli;
+        //return listaCarrelli.size() == 0 ? null:listaCarrelli ;
+    }
+
+    private List<Prodotto> doRetriveProdottiByIdCarrello(int carrelloCod) throws SQLException {
+        ArrayList<Prodotto> listaProdotti = new ArrayList<Prodotto>();
+        ArrayList<Integer> listaCodiciProdotti = new ArrayList<Integer>();
+        CarrelloDAO cDAO = new CarrelloDAO();
+
+        listaCodiciProdotti = cDAO.doRetriveListaCodiciProdotti(carrelloCod);
+        listaProdotti = ProdottoDAO.doRetriveListaIdProdotti(listaCodiciProdotti);
+
+        return listaProdotti;
+    }
+
+    private ArrayList<Integer> doRetriveListaCodiciProdotti(int carrelloCod) throws SQLException {
+        ArrayList<Integer> codProdotti = new ArrayList<Integer>();
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT * FROM Comporre WHERE CarrelloCod = ?");
+        pdstmt.setInt(1, carrelloCod);
+        ResultSet rs = pdstmt.executeQuery();
+
+        while(rs.next()){
+            codProdotti.add(rs.getInt(1));
+        }
+        return codProdotti;
+    }
+
+    public Carrello doRetriveCarrelloById(Integer id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Cod,Totale FROM Carrello WHERE Cod = ?");
+        pdstmt.setInt(1, id);
+        ResultSet rs = pdstmt.executeQuery();
+
+        if(rs.next()){
+            return new Carrello(rs.getInt(1), rs.getDouble(2));
+        }
+        return null;
+    }
+
+    //Recupera tutti gli id dei carrelli che sono stati evasi dalla mail
+    private static ArrayList<Integer> doRetriveStoricoCarrelliIdEvasiByMail(String mail) throws SQLException {
+        ArrayList<Integer> codCarrelli = new ArrayList<Integer>();
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT CarrelloCod FROM Ordine WHERE ClienteMail = ? and Evaso = true");
+        pdstmt.setString(1, mail);
+        ResultSet rs = pdstmt.executeQuery();
+
+        while(rs.next()){
+            Integer i = rs.getInt(1);
+            codCarrelli.add(i);
+        }
+        return codCarrelli;
+    }
+
 }

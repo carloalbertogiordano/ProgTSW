@@ -246,4 +246,12 @@ public abstract class ProdottoDAO {
 
         pdstmt.executeUpdate();
     }
+
+    public static ArrayList<Prodotto> doRetriveListaIdProdotti(ArrayList<Integer> listaCodiciProdotti) throws SQLException {
+        ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
+        for(Integer i : listaCodiciProdotti){
+            prodotti.add(doRetriveById(i));
+        }
+        return prodotti;
+    }
 }

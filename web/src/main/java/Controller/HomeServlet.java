@@ -70,7 +70,7 @@ public class HomeServlet extends HttpServlet {
                     //Take Carrello from DataBase using the mail of Cliente
 
                     //Do join
-                    carrello = carrello.joinCarrelli(carrelloDB);
+                    carrello.joinCarrelli(carrelloDB);
 
                     //Checks if the quantity required by the cart is less than the quantity avilable
                     try {

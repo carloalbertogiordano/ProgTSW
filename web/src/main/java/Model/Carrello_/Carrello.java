@@ -10,8 +10,14 @@ import java.util.List;
 
 public class Carrello {
     private List<Prodotto> carrello;
-    private int CarrelloCod;
+    private int carrelloCod;
     private double prezzo;
+
+    public Carrello(int carrelloCod, double prezzo) {
+        this.carrelloCod = carrelloCod;
+        this.prezzo = prezzo;
+    }
+
     public double getPrezzo() {
         return prezzo;
     }
@@ -25,7 +31,7 @@ public class Carrello {
     }
     public Carrello(List<Prodotto> lista, int codice, double prezzo){
         this.carrello = lista;
-        this.CarrelloCod = codice;
+        this.carrelloCod = codice;
         this.prezzo = prezzo;
     }
 
@@ -38,11 +44,11 @@ public class Carrello {
     }
 
     public int getCarrelloCod() {
-        return CarrelloCod;
+        return carrelloCod;
     }
 
     public void setCarrelloCod(int carrelloCod) {
-        CarrelloCod = carrelloCod;
+        this.carrelloCod = carrelloCod;
     }
 
     public Prodotto getById(int id) {
@@ -70,7 +76,7 @@ public class Carrello {
     }
 
     //Quanrtità pezzo è quantità richiesta
-    public  Carrello joinCarrelli(Carrello carrelloDB){
+    public void joinCarrelli(Carrello carrelloDB){
         Carrello carrelloSession = this;
         if(carrelloSession.getCarrello()!=null)
             for(int i = 0; i < carrelloSession.getCarrello().size(); i++){
@@ -87,7 +93,6 @@ public class Carrello {
             carrelloSession.getCarrello().add(p);
         }
         carrelloSession.setCarrelloCod(carrelloDB.getCarrelloCod());
-        return carrelloSession;
     }
 
     public String toString() {
