@@ -22,6 +22,16 @@
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
                 <li><a href="carrello.jsp">Carrello</a></li>
                 <li><a href="#">Chi siamo</a></li>
+
+                <%//Da mostrare solo se il cliente è loggato
+                    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+                    if(cliente != null){
+                        out.println("<li><a href=\"infoCliente.jsp\">Info. cliente</a></li>" +
+                                "<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
+                    }
+                %>
+
+
                 <%
                     if(c==null){
                         out.println("<li class=\"login-button\"><a href=\"login.jsp\">Login</a></li>");
