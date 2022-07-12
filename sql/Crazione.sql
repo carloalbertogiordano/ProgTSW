@@ -84,6 +84,7 @@ create table Comporre(
 	PezzoID int,
     CarrelloCod int,
     Quantita int not null,
+    Prezzo int not null,
 	foreign key (PezzoID) references Pezzo(ID),
    	foreign key (CarrelloCod) references Carrello(Cod),
 	primary key (PezzoID, CarrelloCod)

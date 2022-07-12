@@ -72,20 +72,20 @@ insert into Applicare values('2023-12-24', '2024-12-26', 9);
 insert into Applicare values('2023-12-24', '2024-12-26', 10);
 
 #Comporre
-insert into Comporre values (3, 1, 2);
-insert into Comporre values (10, 1, 1);
-insert into Comporre values (1, 1, 1);
-insert into Comporre values (15, 1, 4);
+insert into Comporre values (3, 1, 2, 270);
+insert into Comporre values (10, 1, 1, 90);
+insert into Comporre values (1, 1, 1, 195);
+insert into Comporre values (15, 1, 4, 350);
 
-insert into Comporre values (3, 2, 2);
-insert into Comporre values (10, 2, 1);
-insert into Comporre values (1, 2, 1);
+insert into Comporre values (3, 2, 2, 250);
+insert into Comporre values (10, 2, 1, 90);
+insert into Comporre values (1, 2, 1, 209);
 
-insert into Comporre values (10, 3, 1);
-insert into Comporre values (1, 3, 1);
+insert into Comporre values (10, 3, 1, 110);
+insert into Comporre values (1, 3, 1, 210);
 
-insert into Comporre values (10, 4, 1);
-insert into Comporre values (7, 4, 1);
+insert into Comporre values (10, 4, 1, 105);
+insert into Comporre values (7, 4, 1, 145);
 
 
 
