@@ -20,7 +20,7 @@ public class CarrelloDAO {
         int idCarrello = rs.getInt(1);
         return idCarrello;
     }
-    public int doRetriveCarrelloEvasoCodByMailCLiente(String mail) throws SQLException {
+    public int doRetriveCarrelloCodByMailCLiente(String mail) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
         PreparedStatement pdstmt = con.prepareStatement("SELECT CarrelloCod FROM Ordine WHERE ClienteMail = ? AND Evaso != true;");
@@ -82,7 +82,7 @@ public class CarrelloDAO {
             prodotti.add(i);
             //richiesti.add(quantita);
         }
-        int carrelloCod = doRetriveCarrelloEvasoCodByMailCLiente(mail);
+        int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
         List<Prodotto> listProdotti = new ArrayList<Prodotto>();
         listProdotti = Prodotto.doRetriveByIdLis(prodotti);
@@ -99,8 +99,8 @@ public class CarrelloDAO {
         PreparedStatement pdstmt = con.prepareStatement("DELETE FROM Comporre WHERE CarrelloCod = ?");
         pdstmt.setInt(1, carrello.getCarrelloCod());
         pdstmt.executeUpdate();
-        for(int i = 0; i < carrello.getCarrello().size(); i++){
-            addCartDB(carrello.getCarrello().get(i).getID(), carrello.getCarrelloCod(), carrello.getCarrello().get(i).getQuantità());
+        for(Prodotto p : carrello.getCarrello()){
+            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantità());
         }
     }
     public void addCartDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
@@ -109,7 +109,6 @@ public class CarrelloDAO {
         pdstmt.setInt(1, idPezzo);
         pdstmt.setInt(2, idCarrello);
         pdstmt.setInt(3, quantity);
-        System.out.println("Id Pezzo: " + idPezzo +", Id carrello: " + idCarrello + ", quantità: " + quantity);
         pdstmt.executeUpdate();
     }
 
@@ -165,7 +164,6 @@ public class CarrelloDAO {
         //Recupera tutti i carrelli
         for(Integer i : storicoCarrelli){
             listaCarrelli.add(cDAO.doRetriveCarrelloById(i));
-            System.out.println("Cod: "+i+ " Size"+listaCarrelli.size());
         }
         //Setta la lista di prodotti nel carrello
         for(Carrello c : listaCarrelli){
@@ -177,8 +175,6 @@ public class CarrelloDAO {
                 p.setQuantità(cDAO.getComporreQuantita(p.getID(), c.getCarrelloCod()));
             }
         }
-
-        System.out.println("Size Ordini: "+listaCarrelli.size());
 
         if(listaCarrelli.size() == 0)
             return null;

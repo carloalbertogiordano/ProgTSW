@@ -13,10 +13,10 @@ insert into Carrello (Totale) values (10000);
 insert into Carrello (Totale) values (200);
 
 #Ordini
-insert into Ordine values ("cliente1@placeholdermail.com", 1, 1, "Via del cliente 1","CE", "Comune 1", 12345);
+insert into Ordine values ("cliente1@placeholdermail.com", 1, 0, "Via del cliente 1","CE", "Comune 1", 12345);
 insert into Ordine values ("cliente1@placeholdermail.com", 4, 1, "Via del cliente 1","CE", "Comune 1", 12345);
-insert into Ordine values ("cliente2@placeholdermail.com", 2, 1, "Via del cliente 2","NA", "Comune 2", 56789);
-insert into Ordine values ("cliente3@placeholdermail.com", 3, 1, "Via del cliente 3","SA", "Comune 3", 78910);
+insert into Ordine values ("cliente2@placeholdermail.com", 2, 0, "Via del cliente 2","NA", "Comune 2", 56789);
+insert into Ordine values ("cliente3@placeholdermail.com", 3, 0, "Via del cliente 3","SA", "Comune 3", 78910);
 
 #CPU
 insert into Pezzo (Id, tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values (1, "CPU", "Intel", "i7", 200, 50, 300, 4.2, 8, "Images/placeHolder");
@@ -83,6 +83,10 @@ insert into Comporre values (1, 2, 1);
 
 insert into Comporre values (10, 3, 1);
 insert into Comporre values (1, 3, 1);
+
+insert into Comporre values (10, 4, 1);
+insert into Comporre values (7, 4, 1);
+
 
 
 
