@@ -176,11 +176,31 @@ public class CarrelloDAO {
                 p.setQuantità(cDAO.getComporreQuantita(p.getID(), c.getCarrelloCod()));
             }
         }
+        //Setta il prezzo corretto dei prodotti basandosi sulla ridondanza presente in comporre
+        for(Carrello c : listaCarrelli){
+            for(Prodotto p : c.getCarrello()){
+                p.setPrezzo( cDAO.getPrezzoRidondanteDaComporre(c.getCarrelloCod(), p.getID()));
+            }
+        }
 
         if(listaCarrelli.size() == 0)
             return null;
         return listaCarrelli;
         //return listaCarrelli.size() == 0 ? null:listaCarrelli ;
+    }
+
+    private double getPrezzoRidondanteDaComporre(int carrelloCod, int id) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("SELECT Prezzo FROM Comporre WHERE CarrelloCod = ? and PezzoID = ?");
+        pdstmt.setInt(1, carrelloCod);
+        pdstmt.setInt(2, id);
+        ResultSet rs = pdstmt.executeQuery();
+
+        if(rs.next()){
+            return (rs.getDouble(1));
+        }
+        return 0;
     }
 
     private List<Prodotto> doRetriveProdottiByIdCarrello(int carrelloCod) throws SQLException {
