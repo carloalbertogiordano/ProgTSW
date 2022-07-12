@@ -100,15 +100,16 @@ public class CarrelloDAO {
         pdstmt.setInt(1, carrello.getCarrelloCod());
         pdstmt.executeUpdate();
         for(Prodotto p : carrello.getCarrello()){
-            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantità());
+            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantità(), p.getPrezzo());
         }
     }
-    public void addCartDB(int idPezzo, int idCarrello, int quantity) throws SQLException {
+    public void addCartDB(int idPezzo, int idCarrello, int quantity, double prezzo) throws SQLException {
         Connection con = ConPool.getConnection();
-        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Comporre VALUES (?, ?, ?)");
+        PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Comporre VALUES (?, ?, ?, ?)");
         pdstmt.setInt(1, idPezzo);
         pdstmt.setInt(2, idCarrello);
         pdstmt.setInt(3, quantity);
+        pdstmt.setDouble(4, prezzo);
         pdstmt.executeUpdate();
     }
 

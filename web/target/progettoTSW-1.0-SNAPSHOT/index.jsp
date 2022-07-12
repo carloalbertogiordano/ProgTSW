@@ -26,8 +26,7 @@
                 <%//Da mostrare solo se il cliente è loggato
                     Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
                     if(cliente != null){
-                        out.println("<li><a href=\"infoCliente\">Info. cliente</a></li>" +
-                                "<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
+                        out.println("<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
                     }
                 %>
 
