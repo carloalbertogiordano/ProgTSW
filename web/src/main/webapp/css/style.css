@@ -24,10 +24,6 @@
     align-self: end;
 }
 
-flax-item{
-
-}
-
 /*HEADER*/
 .header{
     background-color: #003049;
@@ -83,10 +79,17 @@ li a:hover {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: #fdf0d5;
 }
 
 .welcome-header{
-    display: flex;
-    align-items: center;
-    align-content: center;
+    margin-top: 3%;
+    width: 100%;
+    text-align: center;
 }
+
+.welcome-header > h1{
+    color: #003049;
+}
+
+

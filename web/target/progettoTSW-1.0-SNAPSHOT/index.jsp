@@ -15,40 +15,48 @@
     Cliente c = (Cliente) session.getAttribute("cliente");
 %>
     <div class="header">
-        <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
-        <div class="nav">
-            <ul>
-                <li><a href="HomeServlet" class="active">Home</a></li>
-                <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="carrello.jsp">Carrello</a></li>
-                <li><a href="#">Chi siamo</a></li>
+        <div class="flex-container">
+            <div class="flex-left-item logo">
+                <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+            </div>
+            <div class="nav flex-right-item">
+                <ul>
+                    <li><a href="HomeServlet" class="active">Home</a></li>
+                    <li><a href="Catalogo.jsp">Catalogo</a></li>
+                    <li><a href="carrello.jsp">Carrello</a></li>
+                    <li><a href="#">Chi siamo</a></li>
 
-                <%//Da mostrare solo se il cliente è loggato
-                    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-                    if(cliente != null){
-                        out.println("<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
-                    }
-                %>
+                    <%//Da mostrare solo se il cliente è loggato
+                        Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+                        if(cliente != null){
+                            out.println("<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
+                        }
+                    %>
 
 
-                <%
-                    if(c==null){
-                        out.println("<li class=\"login-button\"><a href=\"login.jsp\">Login</a></li>");
-                    }
-                    else{
-                        out.println("<li class=\"login-button\"><a href=\"Logout\">Logout</a></li>");
-                    }
-                %>
-            </ul>
+                    <%
+                        if(c==null){
+                            out.println("<li class=\"login-button\"><a href=\"login.jsp\">Login</a></li>");
+                        }
+                        else{
+                            out.println("<li class=\"login-button\"><a href=\"Logout\">Logout</a></li>");
+                        }
+                    %>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="headers">
+    <div class="main flex-container">
         <%
             if(c != null){
-                out.println("<h1>Bentornato " + c.getNickname() + "</h1>");
+                out.println("<div class=\"welcome-header\">" +
+                        "<h1>Bentornato " + c.getNickname() + "</h1>" +
+                        "</div>");
             }
             else{
-                out.println("<h1>Benvenuto su PCBuilder</h1><br>");
+                out.println("<div class=\"welcome-header\">" +
+                        "<h1>Benvenuto su PCBuilder</h1><br>" +
+                        "</div>");
             }
         %>
     </div>
