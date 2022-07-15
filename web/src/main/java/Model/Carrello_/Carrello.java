@@ -117,13 +117,13 @@ public class Carrello {
             //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
             carrello.add(prodotto);
             //service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
-            service.updateCarrello(this);
+            service.delCarrelloFromComporre(this);
         }
         else{
             //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
             carrello.get(index).setQuantità(carrello.get(index).getQuantità()+prodotto.getQuantità());
             //service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
-            service.updateCarrello(this);
+            service.delCarrelloFromComporre(this);
         }
     }
 

@@ -34,7 +34,7 @@ public class changeQuantity extends HttpServlet {
         if(cliente != null){
             CarrelloDAO serviceCarrello = new CarrelloDAO();
             try {
-                serviceCarrello.updateCarrello(carrello);
+                serviceCarrello.delCarrelloFromComporre(carrello);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

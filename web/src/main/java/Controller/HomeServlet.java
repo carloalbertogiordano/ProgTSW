@@ -81,7 +81,7 @@ public class HomeServlet extends HttpServlet {
 
                     try {
                         //Update carrello in the DB
-                        serviceCarrello.updateCarrello(carrello);
+                        serviceCarrello.delCarrelloFromComporre(carrello);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

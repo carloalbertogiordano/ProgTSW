@@ -33,7 +33,7 @@ public class removeCart extends HttpServlet {
         if(cliente != null){
             CarrelloDAO service = new CarrelloDAO();
             try {
-                service.updateCarrello(carrelloSession);
+                service.delCarrelloFromComporre(carrelloSession);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

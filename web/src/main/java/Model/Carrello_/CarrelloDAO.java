@@ -94,7 +94,7 @@ public class CarrelloDAO {
         return carrello;
     }
 
-    public void updateCarrello(Carrello carrello) throws SQLException {
+    public void delCarrelloFromComporre(Carrello carrello) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("DELETE FROM Comporre WHERE CarrelloCod = ?");
         pdstmt.setInt(1, carrello.getCarrelloCod());
@@ -255,6 +255,16 @@ public class CarrelloDAO {
             codCarrelli.add(i);
         }
         return codCarrelli;
+    }
+
+    public void modCart(int cartCod, int id, int quant) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ? WHERE CarrelloCod = ? AND PezzoID = ?");
+        pdstmt.setInt(1, quant);
+        pdstmt.setInt(2, cartCod);
+        pdstmt.setInt(3, id);
+        pdstmt.executeUpdate();
     }
 
 }
