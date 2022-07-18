@@ -31,7 +31,7 @@
             return cerca.test($("#citta").val());
         }
 
-        function validateForm(){
+        function validateInfoSped(){
             return testCap() && testProv() && testVia() && testCitta();
         }
     </script>
@@ -40,7 +40,7 @@
   <%
       Cliente cliente = (Cliente) session.getAttribute("cliente");
       Carrello carrello = (Carrello) session.getAttribute("carrello");
-      out.println("<form action=\"expireCart\" method=\"GET\" onsubmit=\"return validateForm()\">" +
+      out.println("<form action=\"expireCart\" method=\"GET\" onsubmit=\"return validateInfoSped()\">" +
               "<div id=\"modIndirizzo\">" +
               "<table>"+
               "<form action=\"expireCart\" method=\"\">" +

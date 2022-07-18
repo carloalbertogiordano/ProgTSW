@@ -6,7 +6,7 @@ create table Cliente(
 Mail varchar(70) PRIMARY KEY,
 Pass char(130) not null, #varchar(50) not null unique,
 Nickname varchar(50) not null unique,
-Tel varchar(13) not null unique,
+Tel varchar(13) not null,
 Via varchar(100) not null,
 Provincia varchar(2) not null,
 Citta varchar(100) not null, 

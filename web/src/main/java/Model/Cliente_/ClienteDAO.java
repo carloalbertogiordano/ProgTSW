@@ -4,6 +4,7 @@ import Model.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ClienteDAO {
 
@@ -21,6 +22,62 @@ public class ClienteDAO {
         pdstmt.setString(7, c.getCitta());
         pdstmt.setInt(8, c.getCap());
         pdstmt.executeUpdate();
+    }
+
+    public boolean updateInfoSpedizioneCliente(Cliente c) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String upd = "UPDATE Cliente SET Via=?, Provincia=?, Citta=?, Cap=? WHERE Mail=?";
+        PreparedStatement pdstmt = con.prepareStatement(upd);
+        pdstmt.setString(1, c.getVia());
+        pdstmt.setString(2, c.getProvincia());
+        pdstmt.setString(3, c.getCitta());
+        pdstmt.setInt(4, c.getCap());
+        pdstmt.setString(5, c.getMail());
+
+        int success = pdstmt.executeUpdate();
+        //Return success if != 0
+        return success != 0;
+    }
+
+    public boolean updateInfoPersonaliCliente(Cliente c, String nick, String tel) throws SQLException {
+        Connection con = ConPool.getConnection();
+        //Controllo se il nick richiesto è disponibile
+        if(isUniqueNick(nick)) {
+            String upd = "UPDATE Cliente SET Nickname=?, Tel=? WHERE Mail=?";
+            PreparedStatement pdstmt = con.prepareStatement(upd);
+            pdstmt.setString(1, nick);
+            pdstmt.setString(2, tel);
+            pdstmt.setString(3, c.getMail());
+            int success = pdstmt.executeUpdate();
+            //Return true if != 0
+            return success != 0;
+        }
+        //Significa che voglio cambuiare solo il telefono
+        else if(Objects.equals(c.getNickname(), nick)){
+            String upd = "UPDATE Cliente SET Tel=? WHERE Mail=?";
+            PreparedStatement pdstmt = con.prepareStatement(upd);
+            pdstmt.setString(1, tel);
+            pdstmt.setString(2, c.getMail());
+            int success = pdstmt.executeUpdate();
+            //Return true if != 0
+            return success != 0;
+        }
+        return false;
+    }
+
+    private boolean isUniqueNick(String nickname) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String ceck = "SELECT Nickname FROM Cliente WHERE Nickname=?";
+        PreparedStatement pdstmt = con.prepareStatement(ceck);
+        pdstmt.setString(1, nickname);
+        ResultSet rs = pdstmt.executeQuery();
+
+        int cont = 0;
+        while (rs.next()) {
+            cont++;
+        }
+        //True se <= 0
+        return cont <= 0;
     }
 
     public Cliente doRetrieveByMail(String m) throws SQLException {
@@ -91,6 +148,15 @@ public class ClienteDAO {
     }
 
 
+    public boolean updatePassword(String newPassword, String mail) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Cliente SET Pass=? WHERE Mail = ? ");
+        pdstmt.setString(1, newPassword);
+        pdstmt.setString(2, mail);
+        int success = pdstmt.executeUpdate();
 
-
+        //True se <= 0
+        return success >= 0;
+    }
 }
