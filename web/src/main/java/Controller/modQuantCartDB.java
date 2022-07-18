@@ -21,32 +21,33 @@ public class modQuantCartDB extends HttpServlet {
         int quant = Integer.parseInt(request.getParameter("attr_newQuant"));
         int id = Integer.parseInt(request.getParameter("attr_id"));
         CarrelloDAO carrelloDAO = new CarrelloDAO();
-        int cartCod = ((Carrello) ss.getAttribute("carrello")).getCarrelloCod();
+        Carrello carrelloSessione = ((Carrello) ss.getAttribute("carrello"));
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         Catalogo catalogoSessione = (Catalogo) ss.getAttribute("catalogo");
         int oldQuant = Integer.parseInt(request.getParameter("attr_OldQuant")); //catalogoDB.getCatalogo().size() - catalogoSessione.getCatalogo().size();
 
-        if(oldQuant<quant)
-            for (Prodotto p : catalogoSessione.getCatalogo()) {
-                if (p.getID() == id)
-                    p.setQuantità( (p.getQuantità()+oldQuant) - quant);
+        //Aggiorna il catalogo nella sessione
+        for (Prodotto pcart : catalogoSessione.getCatalogo()) {
+            if (pcart.getID() == id)
+                pcart.setQuantità((pcart.getQuantità() + oldQuant) - quant);
+
+            ss.setAttribute("catalogo", catalogoSessione);
+            //Aggiorna il carrello della sessione
+            for (Prodotto pcarr : carrelloSessione.getCarrello()) {
+                if (pcarr.getID() == id)
+                    pcarr.setQuantità(quant);
             }
+            ss.setAttribute("carrello", carrelloSessione);
 
-        ss.setAttribute("catalogo", catalogoSessione);
-
-        try {
-            carrelloDAO.modCart(cartCod, id, quant);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            //Se il cliente è loggato aggiorna il carrello nel DB
+            if (cliente != null) {
+                try {
+                    carrelloDAO.modCart(carrelloSessione.getCarrelloCod(), id, quant);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
-        Carrello cart = null;
-        try {
-            cart = (Carrello) carrelloDAO.doRetriveByMailCliente(cliente.getMail());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        ss.setAttribute("carrello", cart);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
