@@ -158,6 +158,11 @@ i.fa-circle-user{
     color: #003049;
 }
 
+/*RESPONSIVE*/
+/*ul.flex-container > li{
+    width: 100%;
+}*/
+
 @media screen and (max-width: 768px) {
     .nav{
         display: none;
@@ -171,5 +176,38 @@ i.fa-circle-user{
         font-size: 40px;
         margin-right: 20px;
         align-self: center;
+    }
+
+    .responsive{
+        display: block;
+    }
+
+    ul.flex-container{
+        list-style-position: none;
+        flex-direction: column;
+    }
+
+    .nav > ul > li{
+        float: left;
+        width: 100%;
+        flex: 1;
+    }
+
+    li.right-buttons{
+        margin: 0px;
+    }
+
+    .dropdown{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .topnav.responsive .dropdown {float: none;}
+    .topnav.responsive .dropdown-content {position: relative;}
+    .topnav.responsive .dropdown .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
     }
 }

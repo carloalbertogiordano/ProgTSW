@@ -12,10 +12,10 @@ window.onclick = function(e) {
 }
 
 function dropDownBurger(){
-    var x = document.getElementById("topnav");
-    if (x.className === "topnav") {
+    var x = document.getElementById("nav-list");
+    if (x.className === "flex-container") {
         x.className += " responsive";
     } else {
-        x.className = "topnav";
+        x.className = "flex-container";
     }
 }

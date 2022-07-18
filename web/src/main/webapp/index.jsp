@@ -18,20 +18,16 @@
     Cliente c = (Cliente) session.getAttribute("cliente");
 %>
     <div class="header">
-        <div class="flex-container topnav">
+        <div class="flex-container topnav" id ="topnav">
             <div class="flex-left-item logo">
                 <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
             </div>
-            <div class="nav flex-right-item">
+            <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
+            <div class="nav flex-right-item" id="nav-list">
                 <ul class="flex-container">
                     <li><a href="index.jsp" class="active">Home</a></li>
                     <li><a href="Catalogo.jsp">Catalogo</a></li>
                     <li><a href="#">Chi siamo</a></li>
-                    <%
-                        if(c != null){
-                            out.println("<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
-                        }
-                    %>
                     <li class="empty-flex-field"></li>
                     <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                     <%
@@ -43,7 +39,7 @@
                                             "</button>" +
                                             "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
                                                 "<a href=\"#\">Il mio profilo</a>\n" +
-                                                "<a href=\"storicoOrdini.jsp\">I miei ordini</a>\n" +
+                                                "<a href=\"storicoOrdini\">I miei ordini</a>\n" +
                                                 "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
                                             "</div>" +
                                         "</div>" +
@@ -60,7 +56,6 @@
                     %>
                 </ul>
             </div>
-            <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
         </div>
     </div>
     <div class="main flex-container">
