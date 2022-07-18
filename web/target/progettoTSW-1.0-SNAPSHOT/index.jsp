@@ -9,6 +9,9 @@
 <head>
     <title>JSP - Hello World</title>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
+    <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
+    <script src="js/navbar.js"></script>
 </head>
 <body>
 <%
@@ -20,27 +23,40 @@
                 <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
             </div>
             <div class="nav flex-right-item">
-                <ul>
+                <ul class="flex-container">
                     <li><a href="HomeServlet" class="active">Home</a></li>
                     <li><a href="Catalogo.jsp">Catalogo</a></li>
-                    <li><a href="carrello.jsp">Carrello</a></li>
                     <li><a href="#">Chi siamo</a></li>
-
-                    <%//Da mostrare solo se il cliente è loggato
-                        Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-                        if(cliente != null){
+                    <%
+                        if(c != null){
                             out.println("<li><a href=\"storicoOrdini\">Strorico ordini</a></li>");
                         }
                     %>
-
-
+                    <li class="empty-flex-field"></li>
+                    <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <%
+                        if(c!=null){
+                            out.println("<li class=\"right-buttons\">" +
+                                        "<div class=\"dropdown\">" +
+                                            "<button class=\"dropbtn\" onclick=\"myFunction()\">" +
+                                                "<i class=\"fa-solid fa-circle-user\"></i>Profilo\n" +
+                                            "</button>" +
+                                            "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
+                                                "<a href=\"#\">Il mio profilo</a>\n" +
+                                                "<a href=\"storicoOrdini.jsp\">I miei ordini</a>\n" +
+                                                "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</li>");
+                        }
+                    %>
                     <%
                         if(c==null){
-                            out.println("<li class=\"login-button\"><a href=\"login.jsp\">Login</a></li>");
-                        }
+                            out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
+                        }/*
                         else{
-                            out.println("<li class=\"login-button\"><a href=\"Logout\">Logout</a></li>");
-                        }
+                            out.println("<li class=\"right-buttons\"><a href=\"Logout\">Logout</a></li>");
+                        }*/
                     %>
                 </ul>
             </div>

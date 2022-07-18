@@ -15,7 +15,6 @@
             $('.input_num').click(function() {
                 let id = $(this).parent().closest('div').attr('id');
                 let newQuant = $('#quantityOf'+id).val();
-                console.log("NEWQUANT: "+newQuant+" ID: "+id);
                 $.ajax({
                     url: 'modQuantCartDB',
                     type: 'GET',
