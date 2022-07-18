@@ -2,9 +2,22 @@ function dropdownMenu() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-window.onclick = function(e) {
+/*window.onclick = function(e) {
     if (!e.target.matches('.dropbtn')) {
-        var myDropdown = document.getElementById("myDropdown");
+
+        }
+    }
+}*/
+
+window.onclick = function(e){
+    if(!e.target.matches('.dropbtn') && !e.target.matches('.burger')){
+        var x = document.getElementById('nav-list');
+        if(x.classList.contains('responsive')){
+            x.classList.remove('responsive');
+        }
+    }
+    if(!e.target.matches('.dropbtn')){
+        var myDropdown = document.getElementById('myDropdown');
         if (myDropdown.classList.contains('show')) {
             myDropdown.classList.remove('show');
         }
@@ -13,9 +26,11 @@ window.onclick = function(e) {
 
 function dropDownBurger(){
     var x = document.getElementById("nav-list");
-    if (x.className === "flex-container") {
-        x.className += " responsive";
+    if (x.classList.contains("responsive")) {
+        x.classList.remove("responsive");
     } else {
-        x.className = "flex-container";
+        x.classList.add("responsive");
     }
+    var y = document.getElementsByClassName("empty-flex-field");
+    y[0].className = "hide";
 }
