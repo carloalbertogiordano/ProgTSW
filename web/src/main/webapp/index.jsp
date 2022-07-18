@@ -18,7 +18,7 @@
     Cliente c = (Cliente) session.getAttribute("cliente");
 %>
     <div class="header">
-        <div class="flex-container">
+        <div class="flex-container topnav">
             <div class="flex-left-item logo">
                 <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
             </div>
@@ -38,7 +38,7 @@
                         if(c!=null){
                             out.println("<li class=\"right-buttons\">" +
                                         "<div class=\"dropdown\">" +
-                                            "<button class=\"dropbtn\" onclick=\"myFunction()\">" +
+                                            "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
                                                 "<i class=\"fa-solid fa-circle-user\"></i>Profilo\n" +
                                             "</button>" +
                                             "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
@@ -60,7 +60,7 @@
                     %>
                 </ul>
             </div>
-            <a href="javascript:void(0);" class="right-buttons burger"  onclick="responsiveNavBar()">&#9776;</a>
+            <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
         </div>
     </div>
     <div class="main flex-container">

@@ -1,4 +1,4 @@
-function myFunction() {
+function dropdownMenu() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
@@ -11,3 +11,11 @@ window.onclick = function(e) {
     }
 }
 
+function dropDownBurger(){
+    var x = document.getElementById("topnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}

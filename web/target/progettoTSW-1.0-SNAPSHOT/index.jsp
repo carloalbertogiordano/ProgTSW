@@ -20,7 +20,7 @@
     <div class="header">
         <div class="flex-container">
             <div class="flex-left-item logo">
-                <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+                <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
             </div>
             <div class="nav flex-right-item">
                 <ul class="flex-container">
