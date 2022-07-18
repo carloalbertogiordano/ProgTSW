@@ -11,17 +11,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.input_num').click(function() {
-                let id = $(this).parent().closest('div').attr('id');
-                let newQuant = $('#quantityOf'+id).val();
+
+        $(document).ready(function(){
+            function saveOldQuant() {
+                let id = $('#submit').parent().attr("id");
+                return $('#quantOf' + id).val();
+            }
+            let oldQuant = saveOldQuant();
+            $('#submit').click(function(){
+                let id = $(this).parent().attr("id");
+                let quant = $('#quantOf'+id).val();
+                console.log(quant+' Id'+id+' oldQuant'+oldQuant);
                 $.ajax({
                     url: 'modQuantCartDB',
                     type: 'GET',
-                    data: {attr_id: id, attr_newQuant: newQuant
+                    data: {attr_id: id, attr_newQuant: quant, attr_OldQuant: oldQuant
                     },
                 });
-
+                oldQuant = quant;
             });
         });
     </script>
@@ -37,10 +44,13 @@
             List<Prodotto> carrelloList = carrello.getCarrello();
             out.println("<li>");
             for (Prodotto prodotto : carrelloList) {
-                out.println(" <div id=\""+prodotto.getID()+"\"> <ul>" + prodotto.toString() +
-                        "<form action=\"removeCart\" method=\"GET\">" +
+                out.println("<div id=\""+prodotto.getID()+"\">" +
+                        "<input type=\"number\" id=\"quantOf"+prodotto.getID()+"\" name=\"quantity\" min=\"1\" value=\""+prodotto.getQuantità()+"\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantità()+carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
+                        "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\">" +
+                        "</ul> </div>");
+
+                out.println("<form action=\"removeCart\" method=\"GET\">" +
                         "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" class=\""+prodotto.getID()+"\" value=\"" + prodotto.getID() + "\">" +
-                        "<input type=\"number\" id=\"quantityOf"+prodotto.getID()+"\" class=\"input_num\" name=\"quantity\" min=\"1\" value=\""+prodotto.getQuantità()+"\" max=\"" + catalogo.doRetriveById(prodotto.getID()).getQuantità() + "\">" +
                         "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
                         "</ul> </div>");
             }

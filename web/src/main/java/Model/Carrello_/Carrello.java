@@ -147,8 +147,10 @@ public class Carrello {
             }
     }
 
-    public boolean isEmpty(){
-        return carrello.isEmpty();
+    public Boolean isEmpty(){
+        if(carrello!=null)
+            return carrello.isEmpty();
+        return null;
     }
 
     public double calculateTotal(){
@@ -191,4 +193,14 @@ public class Carrello {
         CarrelloDAO service = new CarrelloDAO();
         service.setOrdineEvaso(idCarrello, mail);
     }
+
+    public int doRetriveQuantitaProdottoById(int id){
+        for(Prodotto p : carrello){
+            if(p.getID() == id){
+                return p.getQuantità();
+            }
+        }
+        return 0;
+    }
+
 }

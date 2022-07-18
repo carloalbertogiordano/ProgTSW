@@ -75,12 +75,9 @@ public class CarrelloDAO {
         pdstmt.setString(1, mail);
         ResultSet rs = pdstmt.executeQuery();
         ArrayList<Integer> prodotti = new ArrayList<Integer>();
-        //ArrayList<Integer> richiesti = new ArrayList<Integer>();
         while(rs.next()){
             Integer i = rs.getInt(1);
-            //Integer quantita = rs.getInt(2);
             prodotti.add(i);
-            //richiesti.add(quantita);
         }
         int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
@@ -90,8 +87,7 @@ public class CarrelloDAO {
             int quantitaRichiesta = getComporreQuantita(prodotto.getID(), carrelloCod);
             prodotto.setQuantità(quantitaRichiesta);
         }
-        Carrello carrello = new Carrello(listProdotti, carrelloCod, totaleCarrello);
-        return carrello;
+        return new Carrello(listProdotti, carrelloCod, totaleCarrello);
     }
 
     public void delCarrelloFromComporre(Carrello carrello) throws SQLException {
