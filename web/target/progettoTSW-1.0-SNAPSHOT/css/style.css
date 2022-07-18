@@ -24,6 +24,10 @@
     align-self: end;
 }
 
+.hide{
+    display:none;
+}
+
 /*HEADER*/
 .header{
     background-color: #003049;
@@ -128,9 +132,14 @@ i.fa-circle-user{
     display: block;
 }
 
-.logout-link:hover{
+.dropdown-content a.logout-link:hover{
     background-color: #c1121f;
+    color: #fdf0d5;
 }
+
+/*.logout-link:hover{
+    background-color: #c1121f;
+}*/
 
 .carrello-link:hover{
     background-color: transparent;
@@ -195,19 +204,15 @@ i.fa-circle-user{
 
     li.right-buttons{
         margin: 0px;
+        text-align: center;
     }
 
-    .dropdown{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .dropdown-content{
+        position: relative;
+        right: 0;
     }
 
-    .topnav.responsive .dropdown {float: none;}
-    .topnav.responsive .dropdown-content {position: relative;}
-    .topnav.responsive .dropdown .dropbtn {
-        display: block;
-        width: 100%;
-        text-align: left;
+    .dropdown-content > a{
+        text-align: center;
     }
 }
