@@ -9,7 +9,7 @@
 <head>
     <title>JSP - Hello World</title>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
-    <link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
 </head>
@@ -20,7 +20,7 @@
     <div class="header">
         <div class="flex-container">
             <div class="flex-left-item logo">
-                <a href="HomeServlet"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+                <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
             </div>
             <div class="nav flex-right-item">
                 <ul class="flex-container">
@@ -60,6 +60,7 @@
                     %>
                 </ul>
             </div>
+            <a href="javascript:void(0);" class="right-buttons burger"  onclick="responsiveNavBar()">&#9776;</a>
         </div>
     </div>
     <div class="main flex-container">

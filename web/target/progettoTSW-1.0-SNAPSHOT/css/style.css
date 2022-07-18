@@ -128,16 +128,16 @@ i.fa-circle-user{
     display: block;
 }
 
-/*.dropdown:hover .dropdown-content {
-    display: block;
-}*/
-
 .logout-link:hover{
     background-color: #c1121f;
 }
 
 .carrello-link:hover{
     background-color: transparent;
+}
+
+.burger{
+    display: none;
 }
 /*MAIN*/
 
@@ -158,3 +158,18 @@ i.fa-circle-user{
     color: #003049;
 }
 
+@media screen and (max-width: 768px) {
+    .nav{
+        display: none;
+    }
+
+    .burger{
+        display: block;
+        text-decoration: none;
+        color: white;
+        margin-left: auto;
+        font-size: 40px;
+        margin-right: 20px;
+        align-self: center;
+    }
+}
