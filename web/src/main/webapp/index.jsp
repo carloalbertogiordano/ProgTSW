@@ -38,7 +38,7 @@
                                                 "<i class=\"fa-solid fa-circle-user\"></i>Profilo\n" +
                                             "</button>" +
                                             "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
-                                                "<a href=\"#\">Il mio profilo</a>\n" +
+                                                "<a href=\"modInfoCliente\">Il mio profilo</a>\n" +
                                                 "<a href=\"storicoOrdini\">I miei ordini</a>\n" +
                                                 "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
                                             "</div>" +
