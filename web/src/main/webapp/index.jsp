@@ -24,7 +24,7 @@
             </div>
             <div class="nav flex-right-item">
                 <ul class="flex-container">
-                    <li><a href="HomeServlet" class="active">Home</a></li>
+                    <li><a href="index.jsp" class="active">Home</a></li>
                     <li><a href="Catalogo.jsp">Catalogo</a></li>
                     <li><a href="#">Chi siamo</a></li>
                     <%
