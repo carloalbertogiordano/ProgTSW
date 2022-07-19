@@ -18,8 +18,8 @@ function testPassword() {
 
 function testTel() {
     const cerca = /[0-9]{2}[0-9]{10}/;
-    console.log("tel"+cerca.test($("#tel").val())+$("#tel").val());
-    return cerca.test($("#tel").val());
+    console.log("tel "+cerca.test($("#tel").val())+' length'+($("#tel").val().length===12));
+    return ( (cerca.test($("#tel").val())) && ($("#tel").val().length===12) );
 }
 
 function testCap() {
