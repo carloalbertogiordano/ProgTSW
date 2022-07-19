@@ -53,6 +53,10 @@
     float: left;
 }
 
+.nav-separetor{
+    display: none;
+}
+
 li a {
     display: block;
     color: white;
@@ -174,7 +178,7 @@ i.fa-circle-user{
     }
 
     ul.flex-container{
-        list-style-position: none;
+        list-style-position: unset;
         flex-direction: column;
     }
 
