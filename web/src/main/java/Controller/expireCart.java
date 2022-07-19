@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Scade il carrello settandolo a evaso nel DB e eliminandolo dalla sessione
 @WebServlet(name = "expireCart", value = "/expireCart")
 public class expireCart extends HttpServlet {
     @Override
@@ -22,7 +23,6 @@ public class expireCart extends HttpServlet {
         HttpSession session = request.getSession();
         Carrello carrelloSession = (Carrello) session.getAttribute("carrello");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
-        //Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
         CarrelloDAO service = new CarrelloDAO();
         CatalogoDAO serviceCatalogo = new CatalogoDAO();
 
@@ -30,15 +30,16 @@ public class expireCart extends HttpServlet {
         String via = request.getParameter("via");
         String provincia = request.getParameter("provincia");
         String citta = request.getParameter("citta");
-        Integer cap = Integer.parseInt(request.getParameter("cap"));
+        int cap = Integer.parseInt(request.getParameter("cap"));
 
+        //Scala i prodotti dal catalogo
         try {
             serviceCatalogo.scalaProdotti(carrelloSession);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         try {
-            //Choose if updating address is needed and forward order to the DAO
+            //Sceglie se aggiornare l'indirizzo oppure no e quindi invia l'ordine al DAO
             if(cliente.getVia().equals(via) && cliente.getProvincia().equals(provincia) && cliente.getCitta().equals(citta) && cliente.getCap() == cap)
                 carrelloSession.forwardOrder(idCarrello, cliente.getMail());
             else
@@ -46,18 +47,21 @@ public class expireCart extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //Crea un nuovo carrello
         Carrello newCarrello;
         try {
             newCarrello = Carrello.createNewCarrello(cliente);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //Crea un nuovo catalogo
         Catalogo newCatalogo;
         try {
             newCatalogo = serviceCatalogo.doRetriveAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //Setta i nuovi carrello e catalogo come attributi nella sessione
         session.setAttribute("catalogo", newCatalogo);
         session.setAttribute("carrello", newCarrello);
         response.sendRedirect("index.jsp");

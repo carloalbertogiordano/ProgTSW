@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+////Aggiorna il prodotto nal DB e nella sessione
 @WebServlet(name = "Aggiorna", value = "/Aggiorna")
 public class Aggiorna extends HttpServlet {
     @Override

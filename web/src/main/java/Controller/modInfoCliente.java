@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+//Reindirizza all'omonima jsp (protetta)
 @WebServlet(name = "modInfoCliente", value = "/modInfoCliente")
 public class modInfoCliente extends HttpServlet {
     @Override

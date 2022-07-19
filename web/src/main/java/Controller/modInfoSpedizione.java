@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Modifica le info della spedizione dell'utente
 @WebServlet(name = "modInfoSpedizione", value = "/modInfoSpedizione")
 public class modInfoSpedizione extends HttpServlet {
     @Override
@@ -20,19 +21,22 @@ public class modInfoSpedizione extends HttpServlet {
         HttpSession ss = request.getSession();
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         ClienteDAO cDAO = new ClienteDAO();
-        boolean success =false;
+        boolean success;
 
+        //Aggiorna le info
         cliente.setVia(via);
         cliente.setProvincia(provincia);
         cliente.setCitta(citta);
         cliente.setCap(cap);
 
+        //aggiono le info nel DB controllando che abbiano avuto successo
         try {
             success = cDAO.updateInfoSpedizioneCliente(cliente);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        //Se l'aggiornamento ha avuto successo aggiorno le info nella sessione
         if(success){
             request.setAttribute("queryUpdateInfoCliente", true);
             ss.setAttribute("cliente", cliente);

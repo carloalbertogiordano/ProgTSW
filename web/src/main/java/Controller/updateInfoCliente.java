@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Aggiorna le info personali del cliente (Tranne la mail)
 @WebServlet(name = "updateInfoCliente", value = "/updateInfoCliente")
 public class updateInfoCliente extends HttpServlet {
     @Override
@@ -18,17 +19,20 @@ public class updateInfoCliente extends HttpServlet {
         HttpSession ss = request.getSession();
         ClienteDAO cDAO = new ClienteDAO();
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
-        boolean success = false;
+        boolean success;
 
+        //Aggiorno le info nel DB
         try {
             success = cDAO.updateInfoPersonaliCliente(cliente, nick, tel);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        //Setto le info aggiornate nella sessione
         cliente.setNickname(nick);
         cliente.setTel(tel);
 
+        //Se l'aggiornamento è andato a buon fine setto l'utente anche nella sessione
         if(success){
             ss.setAttribute("queryUpdateInfoCliente", true);
             ss.setAttribute("cliente", cliente);

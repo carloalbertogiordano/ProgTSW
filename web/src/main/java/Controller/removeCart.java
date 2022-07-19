@@ -13,12 +13,12 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Elimina dal carrello un prodotto
 @WebServlet(name = "removeCart", value = "/removeCart")
 public class removeCart extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
-        String idList = request.getParameter("idList");
         HttpSession session = request.getSession();
         Carrello carrelloSession = (Carrello) session.getAttribute("carrello");
         Catalogo catalogoSessione = (Catalogo) session.getAttribute("catalogo");
@@ -30,6 +30,7 @@ public class removeCart extends HttpServlet {
         //Aggiorniamo dunque il catalogo della sessione
         session.setAttribute("catalogo", catalogoSessione);
 
+        //Quindi rimuove il pezzo dal carrello
         if(cliente != null){
             CarrelloDAO service = new CarrelloDAO();
             try {

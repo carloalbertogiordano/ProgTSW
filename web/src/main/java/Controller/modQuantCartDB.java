@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.CATALOGO_.Catalogo;
-import Model.CATALOGO_.CatalogoDAO;
 import Model.Carrello_.Carrello;
 import Model.Carrello_.CarrelloDAO;
 import Model.Cliente_.Cliente;

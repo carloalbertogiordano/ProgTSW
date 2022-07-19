@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+//servlet chiamata per il logout
 @WebServlet(name = "Logout", value = "/Logout")
 public class Logout extends HttpServlet {
     @Override
@@ -15,9 +16,7 @@ public class Logout extends HttpServlet {
         ss.invalidate();
         //Richiamo la HomeServlet perchè c'è bisogno che il nuovo catalogo sia riempito,
         // altrimenti dopo il logout non sarà più visionabile perchè viene cancellato dalla sessione
-        HomeServlet hs = new HomeServlet();
-        hs.doGet(request, response);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect(".");
     }
 
     @Override

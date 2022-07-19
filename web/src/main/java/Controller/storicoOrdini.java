@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+//Reindirizza alla jsp dello storico ordini (protetta)
 @WebServlet(name = "storicoOrdini", value = "/storicoOrdini")
 public class storicoOrdini extends HttpServlet {
     @Override

@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Aggiorna la password dell'utente
 @WebServlet(name = "updatePassword", value = "/updatePassword")
 public class updatePassword extends HttpServlet {
     @Override
@@ -19,8 +20,9 @@ public class updatePassword extends HttpServlet {
         String mail = ((Cliente)request.getSession().getAttribute("cliente")).getMail();
         ClienteDAO cDAO = new ClienteDAO();
         HttpSession ss = request.getSession();
-        boolean success = false;
+        boolean success;
 
+        //Aggiorno la password nel db controllando che abbia avuto successo
         try {
             success = cDAO.updatePassword(newPassword, mail);
         } catch (SQLException e) {

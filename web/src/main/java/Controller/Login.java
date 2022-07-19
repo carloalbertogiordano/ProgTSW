@@ -32,9 +32,8 @@ public class Login extends HttpServlet {
                 //Rimanda alla pagina di login
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
+            //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
             else{
-                //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
-                System.out.println("Cliente trovato");
                 //Prendi Le info dal DB e crea l' oggetto cliente da tenere in sessione
                 //Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail), CDAO.doRetriveTelByEmail(mail), CDAO.doRetriveViaByEmail(mail), CDAO.doRetriveProvinciaByEmail(mail), CDAO.doRetriveCapByEmail(mail), CDAO.isAdministrator(mail));
                 Cliente c = CDAO.doRetrieveByMail(mail);

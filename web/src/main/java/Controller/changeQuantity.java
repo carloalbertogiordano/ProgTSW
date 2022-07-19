@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Cambia la quantità di un prodotto
 @WebServlet(name = "changeQuantity", value = "/changeQuantity")
 public class changeQuantity extends HttpServlet {
     @Override
@@ -25,12 +26,14 @@ public class changeQuantity extends HttpServlet {
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
         Catalogo catalogo = (Catalogo) request.getSession().getAttribute("catalogo");
 
+        //Cambia la quantità nel carrello e la aggiorna nel catalogo
         for(Prodotto p : carrello.getCarrello()){
             if(idProdotto == p.getID()){
                 p.setQuantità(newQuantity);
                 catalogo.aggiornaQuantita(p);
             }
         }
+        //In caso l'utente sia loggato dobbiamo anche modificare il suo carrello nel DB
         if(cliente != null){
             CarrelloDAO serviceCarrello = new CarrelloDAO();
             try {

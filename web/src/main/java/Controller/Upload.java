@@ -11,6 +11,9 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Upload di un prodotto (info. e foto) nel DB/server
+
+//Configurazione di multipart per permettere di prendere le immagini
 @MultipartConfig(location = "/tmp/"
         , fileSizeThreshold = 1024 * 1024
         , maxFileSize = 1024 * 1024 * 5
@@ -23,7 +26,8 @@ public class Upload extends HttpServlet {
         String marca = request.getParameter("marca");
         String modello = request.getParameter("modello");
         String prezzo1 = request.getParameter("prezzo");
-        prezzo1.replace(",", ".");
+        //Il prezzo deve essere inserito alla maniera americana. In caso di errore lo correggo
+        prezzo1=prezzo1.replace(",", ".");
         double prezzo = Double.parseDouble(prezzo1);
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         String tipo = request.getParameter("tipo");

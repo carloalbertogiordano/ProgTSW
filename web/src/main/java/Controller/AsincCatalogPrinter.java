@@ -16,14 +16,14 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-
+//Stampa il catalogo. Viene usata per stampare i risultati delle query ajax al catalogo (marca, modello, prezzo)
 @WebServlet(name = "AsincCatalogPrinter", value = "/AsincCatalogPrinter")
 public class AsincCatalogPrinter extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Catalogo c = (Catalogo) request.getSession().getAttribute("printCatalog");
         for(Prodotto p : c.getCatalogo()){
-            doSwCase(p.getTipo(), p, response);
+            doSwCase(p, response);
         }
     }
 
@@ -32,8 +32,8 @@ public class AsincCatalogPrinter extends HttpServlet {
 
     }
 
-    private void doSwCase(String tipo, Prodotto p, HttpServletResponse response) throws IOException {
-        switch (tipo) {
+    private void doSwCase(Prodotto p, HttpServletResponse response) throws IOException {
+        switch (p.getTipo()) {
             case "CPU":
                 writeCpuForCatalog(response, p);
                 break;

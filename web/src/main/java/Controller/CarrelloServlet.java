@@ -6,7 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-
+//Redireziona al carrello
 @WebServlet(name = "CarrelloServlet", value = "/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet {
     @Override
@@ -14,9 +14,7 @@ public class CarrelloServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         if(carrello!=null){
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
             response.sendRedirect("carrello.jsp");
-            //dispatcher.forward(request, response);
         }
     }
 

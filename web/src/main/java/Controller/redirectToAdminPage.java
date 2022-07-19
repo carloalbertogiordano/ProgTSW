@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+//Reindirizza alla jsp modificaPezzo (protetta)
 @WebServlet(name = "redirectToAdminPage", value = "/redirectToAdminPage")
 public class redirectToAdminPage extends HttpServlet {
     @Override

@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+//Creo un nuovo cliente e lo aggiungo al DB
 @WebServlet(name = "NuovoCliente", value = "/NuovoCliente")
 public class NuovoCliente extends HttpServlet {
     @Override
@@ -32,6 +33,7 @@ public class NuovoCliente extends HttpServlet {
         if(nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || via.equals("") || provincia.equals("") || citta.equals("") || cap<0
             || nikName == null || password == null || email == null || telefono == null || via == null || provincia == null || citta == null
         ){
+            //Reindirizzo alla pagina di registrazione mostrando l'errore
             request.setAttribute("register.error", "Compilare tutti i campi");
             request.getRequestDispatcher("CreazioneUtente.jsp").forward(request, response);
         }
@@ -42,11 +44,9 @@ public class NuovoCliente extends HttpServlet {
             try {
                 //Aggiungi cliente ad DB
                 clienteDAO.addCliente(c);
-                System.out.println("Cliente aggiunto");
                 //Creo un nuovo carrello nel DB
                 int codCarrello = carrelloDAO.createCarrello();
                 //Associo il nuovo cliente al carrello
-                System.out.println("DEBUG: Codice nuovo carrello creato: "+codCarrello);
                 carrelloDAO.createNewOrdine(c, codCarrello);
                 //Reindirizzo al login
                 request.getRequestDispatcher("login.jsp").forward(request, response);
