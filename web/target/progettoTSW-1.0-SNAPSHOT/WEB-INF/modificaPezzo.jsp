@@ -1,4 +1,3 @@
-<%@ page import="Model.ProdottoDAO" %>
 <%@ page import="Model.Prodotto" %>
 <%@ page import="Model.CATALOGO_.Catalogo" %>
 <%@ page import="Model.CPU_.Cpu" %>
@@ -10,7 +9,6 @@
 <%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
 <%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page import="Model.GPU_.Gpu" %>
-<%@ page import="Model.Cliente_.ClienteDAO" %>
 <%@ page import="Model.Cliente_.Cliente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -145,12 +143,13 @@
     </script>
 </head>
 <body>
-
     <%
         String id = request.getParameter("Id");
         Catalogo catalogo = (Catalogo) request.getSession().getAttribute("catalogo");
         Prodotto p = catalogo.doRetriveById(Integer.parseInt(id));
         Cliente c = (Cliente) request.getSession().getAttribute("cliente");
+
+        System.out.println(p.toString());
 
         //Se il cliente non è un amministratore non potrebbe essere qua
         if(!c.isAdministrator())
@@ -176,7 +175,7 @@
             </tr>
             <tr>
                 <td>Quantità</td>
-                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantità()%>" required/></td>
+                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantita()%>" required/></td>
             </tr>
             <tr>
                 <td>Descrizione</td>
@@ -275,7 +274,7 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Wattaggio</td>" +
-                                "                <td><input type=\"text\" name=\"wGpu\" id=\"wGpu\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
+                                "                <td><input type=\"text\" name=\"wattaggio\" id=\"wGpu\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Frequenza</td>" +

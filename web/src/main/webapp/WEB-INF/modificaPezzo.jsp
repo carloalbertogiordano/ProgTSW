@@ -179,7 +179,7 @@
             </tr>
             <tr>
                 <td>Descrizione</td>
-                <td><input type="text" name="descrizione" id="desc" value="<%=p.getDescrizione()%>" required/></td>
+                <td><input type="text" name="desc" id="desc" value="<%=p.getDescrizione()%>" required/></td>
             </tr>
             <tr>
                 <td>Url</td>
