@@ -46,8 +46,7 @@
                     "</div>" +
                     "</li>");
           }
-        %>
-        <%
+
           if(c==null){
             out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
           }/*
@@ -64,6 +63,12 @@
     out.println("<div class=\"alert\">");
     out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
     out.println("<strong>Attenzione: </strong> Compila tutti i campi.");
+    out.println("</div>");
+  }
+  if (request.getAttribute("creation.error") != null) {
+    out.println("<div class=\"alert\">");
+    out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+    out.println("<strong>Attenzione: </strong> Mail già registrata");
     out.println("</div>");
   }
 %>
