@@ -176,7 +176,7 @@
             </tr>
             <tr>
                 <td>Quantità</td>
-                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantità()%>" required/></td>
+                <td><input type="text" name="quantita" id="quantita" value="<%=p.getQuantita()%>" required/></td>
             </tr>
             <tr>
                 <td>Descrizione</td>
