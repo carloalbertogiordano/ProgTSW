@@ -2,13 +2,6 @@ function dropdownMenu() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-/*window.onclick = function(e) {
-    if (!e.target.matches('.dropbtn')) {
-
-        }
-    }
-}*/
-
 window.onclick = function(e){
     if(!e.target.matches('.dropbtn') && !e.target.matches('.burger')){
         var x = document.getElementById('nav-list');
