@@ -32,40 +32,40 @@ public class Aggiorna extends HttpServlet {
             frequenza = Float.parseFloat(request.getParameter("frequenza"));
         }
         Integer N_Core = null;
-        if (request.getParameter("N_Core") != null) {
-            N_Core = Integer.parseInt(request.getParameter("N_Core"));
+        if (request.getParameter("numCore") != null) {
+            N_Core = Integer.parseInt(request.getParameter("numCore"));
         }
         Integer N_Ram = null;
-        if (request.getParameter("N_Ram") != null) {
-            N_Ram = Integer.parseInt(request.getParameter("N_Ram"));
+        if (request.getParameter("nRam") != null) {
+            N_Ram = Integer.parseInt(request.getParameter("nRam"));
         }
         Integer N_Usb = null;
-        if (request.getParameter("N_Usb") != null) {
-            N_Usb = Integer.parseInt(request.getParameter("N_Usb"));
+        if (request.getParameter("nUsb") != null) {
+            N_Usb = Integer.parseInt(request.getParameter("nUsb"));
         }
         Integer N_Pci = null;
-        if (request.getParameter("N_Pci") != null) {
-            N_Pci = Integer.parseInt(request.getParameter("N_Pci"));
+        if (request.getParameter("nPci") != null) {
+            N_Pci = Integer.parseInt(request.getParameter("nPci"));
         }
         Integer MBs = null;
-        if (request.getParameter("MBs") != null) {
-            MBs = Integer.parseInt(request.getParameter("MBs"));
+        if (request.getParameter("mbs") != null) {
+            MBs = Integer.parseInt(request.getParameter("mbs"));
         }
         Integer Vram = null;
         if (request.getParameter("Vram") != null) {
             Vram = Integer.parseInt(request.getParameter("Vram"));
         }
         Integer N_Watt = null;
-        if (request.getParameter("N_Watt") != null) {
-            N_Watt = Integer.parseInt(request.getParameter("N_Watt"));
+        if (request.getParameter("watt") != null) {
+            N_Watt = Integer.parseInt(request.getParameter("watt"));
         }
         Integer W_Cpu = null;
-        if (request.getParameter("W_Cpu") != null) {
-            W_Cpu = Integer.parseInt(request.getParameter("W_Cpu"));
+        if (request.getParameter("wCpu") != null) {
+            W_Cpu = Integer.parseInt(request.getParameter("wCpu"));
         }
         Short formaMobo = null;
-        if (request.getParameter("formaMobo") != null) {
-            formaMobo = Short.parseShort(request.getParameter("formaMobo"));
+        if (request.getParameter("forma") != null) {
+            formaMobo = Short.parseShort(request.getParameter("forma"));
         }
 
         try {
