@@ -117,7 +117,7 @@
                     //Visto che la visione del catalogo è generalizzata dobbiamo poter
                     //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
                     //se invece è un utente normale.
-                    boolean toShow = cpu.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = cpu.getQuantita() > 0 || isAdministrator;
                     if(toShow){
                         out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 cpu.getMarca() + "</li>" +
@@ -127,7 +127,7 @@
                                 "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                                 "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
                                 "<li>Url: " + cpu.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + cpu.getQuantita() + "</li></ul></div></a>");
 
                     }
                 }
@@ -136,7 +136,7 @@
         <div>
             <%
                 for (Case case_ : caseList) {
-                    boolean toShow = case_.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = case_.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 case_.getMarca() + "</li>" +
@@ -146,7 +146,7 @@
                                 "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                                 "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
                                 "<li>Url: " + case_.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + case_.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -154,7 +154,7 @@
         <div>
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
-                    boolean toShow = dissipatore.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = dissipatore.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 dissipatore.getMarca() + "</li>" +
@@ -164,7 +164,7 @@
                                 "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                                 "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
                                 "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + dissipatore.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -172,7 +172,7 @@
         <div>
             <%
                 for (Gpu gpu : gpuList) {
-                    boolean toShow = gpu.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = gpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 gpu.getMarca() + "</li>" +
@@ -184,7 +184,7 @@
                                 "<li>vRam:" + gpu.getVRam() + "</li>" +
                                 "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
                                 "<li>Url: " + gpu.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + gpu.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -192,7 +192,7 @@
         <div>
             <%
                 for (Mobo mobo : moboList) {
-                    boolean toShow = mobo.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = mobo.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 mobo.getMarca() + "</li>" +
@@ -205,7 +205,7 @@
                                 "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
                                 "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
                                 "<li>Url: " + mobo.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + mobo.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + mobo.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -213,7 +213,7 @@
         <div>
             <%
                 for (Psu psu : psuList) {
-                    boolean toShow = psu.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = psu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 psu.getMarca() + "</li>" +
@@ -223,7 +223,7 @@
                                 "<li>Watt: " + psu.getN_Watt() + "</li>" +
                                 "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
                                 "<li>Url: " + psu.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + psu.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + psu.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -231,7 +231,7 @@
         <div>
             <%
                 for (Ram ram : ramList) {
-                    boolean toShow = ram.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = ram.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ram.getMarca() + "</li>" +
@@ -241,7 +241,7 @@
                                 "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
                                 "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
                                 "<li>Url: " + ram.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + ram.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + ram.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -249,7 +249,7 @@
         <div class="hdd-list">
             <%
                 for (Hdd hdd : hddList) {
-                    boolean toShow = hdd.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = hdd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 hdd.getMarca() + "</li>" +
@@ -259,7 +259,7 @@
                                 "<li>MB/s: " + hdd.getMBs() + "</li>" +
                                 "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
                                 "<li>Url: " + hdd.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + hdd.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
@@ -267,7 +267,7 @@
         <div>
             <%
                 for (Ssd ssd : ssdList) {
-                    boolean toShow = ssd.getQuantità() > 0 || isAdministrator;
+                    boolean toShow = ssd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ssd.getMarca() + "</li>" +
@@ -277,7 +277,7 @@
                                 "<li>MB/s: " + ssd.getMBs() + "</li>" +
                                 "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
                                 "<li>Url: " + ssd.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + ssd.getQuantità() + "</li></ul></div></a>");
+                                "<li>Disponibilità: " + ssd.getQuantita() + "</li></ul></div></a>");
                     }
                 }
             %>
