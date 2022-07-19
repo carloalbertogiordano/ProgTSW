@@ -71,7 +71,7 @@
             out.println("<li>");
             for (Prodotto prodotto : carrelloList) {
                 out.println("<div id=\""+prodotto.getID()+"\">" +
-                        "<input type=\"number\" id=\"quantOf"+prodotto.getID()+"\" name=\"quantity\" min=\"1\" value=\""+prodotto.getQuantita()+"\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantità()+carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
+                        "<input type=\"number\" id=\"quantOf"+prodotto.getID()+"\" name=\"quantity\" min=\"1\" value=\""+prodotto.getQuantita()+"\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantita()+carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
                         "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\">" +
                         "</ul> </div>");
 
