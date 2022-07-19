@@ -24,6 +24,10 @@
     align-self: end;
 }
 
+.hide{
+    display: none;
+}
+
 /*HEADER*/
 .header{
     background-color: #003049;
@@ -137,10 +141,6 @@ i.fa-circle-user{
     color: #fdf0d5;
 }
 
-/*.carrello-link:hover{
-    background-color: transparent;
-}*/
-
 .burger{
     display: none;
 }
@@ -148,12 +148,13 @@ i.fa-circle-user{
 ul.flex-container{
     align-items: end;
 }
-/*MAIN*/
+/*FINE HEADER*/
 
+/*MAIN*/
 .main{
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     background-color: #fdf0d5;
 }
 
@@ -166,6 +167,7 @@ ul.flex-container{
 .welcome-header > h1{
     color: #003049;
 }
+/*FINE MAIN*/
 
 @media screen and (max-width: 768px) {
     .nav{

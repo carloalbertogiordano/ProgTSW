@@ -9,7 +9,7 @@ window.onclick = function(e){
             x.classList.remove('responsive');
         }
     }
-    if(!e.target.matches('.dropbtn')){
+    if(!e.target.matches('.dropbtn') && document.getElementById('myDropdown') != null){
         var myDropdown = document.getElementById('myDropdown');
         if (myDropdown.classList.contains('show')) {
             myDropdown.classList.remove('show');

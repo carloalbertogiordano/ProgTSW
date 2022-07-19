@@ -77,7 +77,7 @@
 
             //Riscrivendo a mano l'url potremmo richiede l'id di un prodotto inesistente
             Prodotto p = catalogo.doRetriveById(id);
-            if (p != null || id > Integer.MAX_VALUE) {
+            if (p != null) {
                 out.println("<div><ul>" +
                         "<li>Marca: " + p.getMarca() + "</li>" +
                         "<li>Modello: " + p.getModello() + "</li>" +
