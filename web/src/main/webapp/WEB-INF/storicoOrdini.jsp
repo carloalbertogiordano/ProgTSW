@@ -66,15 +66,18 @@
     <%
         ArrayList<Carrello> ordini;
         try {
+            assert cliente != null;//Evita null pointer
             ordini = CarrelloDAO.doRetriveStorico(cliente.getMail());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        if(ordini == null) out.println("Non hai ancora fatto acquisti");
-
-        for (Carrello c : ordini) {
-            out.println(c.toString()+"<br>");
+        if(ordini == null)
+            out.println("Non hai ancora fatto acquisti");
+        else {
+            for (Carrello c : ordini) {
+                out.println(c.toString() + "<br>");
+            }
         }
     %>
 </div>
