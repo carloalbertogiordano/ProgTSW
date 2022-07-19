@@ -63,18 +63,37 @@
         </div>
     </div>
     <%
-        int id = Integer.parseInt(request.getParameter("Id"));
-        Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
-        Prodotto p = catalogo.doRetriveById(id);
-        out.println("<div><ul>" +
-                "<li>Marca: " + p.getMarca() + "</li>" +
-                "<li>Modello: " + p.getModello() + "</li>" +
-                "</ul>" +
-                "<form action=\"addCart\" id=\"buy\">" +
-                "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">" +
-                "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
-                "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
-                "</div>");
+        //Non dovrebbe mai essere maggiore di 2^32 per design. Ma giusto in caso
+        long idTmp = Long.parseLong(request.getParameter("Id"));
+        int id;
+
+        if(idTmp>Integer.MAX_VALUE) {
+            out.println("OPS, Non riusciamo a trovare questo prodotto <br>" +
+                    "torna alla <a href=\"index.jsp\">home page</a>");
+        }
+        else {
+            id = (int) idTmp;
+            Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
+
+            //Riscrivendo a mano l'url potremmo richiede l'id di un prodotto inesistente
+            Prodotto p = catalogo.doRetriveById(id);
+            if (p != null || id > Integer.MAX_VALUE) {
+                out.println("<div><ul>" +
+                        "<li>Marca: " + p.getMarca() + "</li>" +
+                        "<li>Modello: " + p.getModello() + "</li>" +
+                        "</ul>" +
+                        "<form action=\"addCart\" id=\"buy\">" +
+                        "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">" +
+                        "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
+                        "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
+                        "</div>");
+            }
+            //In caso non esista
+            else {
+                out.println("OPS, Non riusciamo a trovare questo prodotto <br>" +
+                        "torna alla <a href=\"index.jsp\">home page</a>");
+            }
+        }
     %>
 </div>
 </body>
