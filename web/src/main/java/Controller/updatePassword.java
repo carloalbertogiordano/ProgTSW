@@ -18,6 +18,7 @@ public class updatePassword extends HttpServlet {
         String newPassword = PasswordEncrypter.encryptThisString(password);
         String mail = ((Cliente)request.getSession().getAttribute("cliente")).getMail();
         ClienteDAO cDAO = new ClienteDAO();
+        HttpSession ss = request.getSession();
         boolean success = false;
 
         try {
@@ -27,9 +28,9 @@ public class updatePassword extends HttpServlet {
         }
 
         if(success){
-            request.setAttribute("queryUpdatePassword", true);
+            ss.setAttribute("queryUpdatePassword", true);
         }
-        else request.setAttribute("queryUpdatePassword",false);
+        else ss.setAttribute("queryUpdatePassword",false);
 
     }
 

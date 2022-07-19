@@ -30,10 +30,10 @@ public class updateInfoCliente extends HttpServlet {
         cliente.setTel(tel);
 
         if(success){
-            request.setAttribute("queryUpdateInfoCliente", true);
+            ss.setAttribute("queryUpdateInfoCliente", true);
             ss.setAttribute("cliente", cliente);
         }
-        else request.setAttribute("queryUpdateInfoCliente",false);
+        else ss.setAttribute("queryUpdateInfoCliente",false);
 
     }
 

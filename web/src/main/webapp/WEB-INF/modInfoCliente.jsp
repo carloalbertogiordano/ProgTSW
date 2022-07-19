@@ -32,17 +32,49 @@
         }
 
         function validateInfoSped(){
-            return testCap() && testProv() && testVia() && testCitta();
+            if(testCap() && testProv() && testVia() && testCitta()){
+                return true;
+            }
+            alert("Info spedizione non inserite correttamente. Assicurati che tutti i campi siano stati rispettati");
+            return false;
+        }
+
+        function testNickname() {
+            let reNick = /[a-zA-Z0-9]{1,70}/ ;
+            console.log("nick"+reNick.test($("#nick").val()));
+            return reNick.test($("#nick").val());
+        }
+
+        function testTel() {
+            const cerca = /[0-9]{2}[0-9]{10}/;
+            console.log("tel"+cerca.test($("#tel").val())+$("#tel").val());
+            return cerca.test($("#tel").val());
+        }
+
+        function validateInfoPers(){
+            if(testNickname() && testTel()){
+                return true;
+            }
+            alert("Info presonali non inserite correttamente. assicurati di rispettare tutti i campi");
+            return false;
         }
 
         function validatePassword() {
             const cerca = /[a-zA-Z0-9]{1,130}/;
-            console.log("password"+cerca.test($("#password").val()));
-            return cerca.test($("#password").val());
+            console.log("password"+cerca.test($("#pass").val()));
+            if(cerca.test($("#pass").val())){
+                return true;
+            }
+            alert("Nuova password non inserita correttamente, assicurati che a-zA-Z0-9]{1,130}")
+            return false;
         }
 
         $(document).ready(function() {
-            $('#submitModInfoCliente').click(function () {
+            let btnInfoCliente = $('#submitModInfoCliente');
+            let btnInfoSpedCliente = $('#submitModInfoSped');
+            let btnPass = $('#submitModPass');
+
+            btnInfoCliente.click(function () {
                 let nick = $('#nick').val();
                 let tel = $('#tel').val();
                 $.ajax({
@@ -51,9 +83,13 @@
                     data: {
                         input_nick: nick, input_tel: tel
                     },
+                    success: function (response){
+                        alert("Informazioni inserite correttamente");
+                        btnInfoCliente.attr('disabled', true);
+                    }
                 });
             });
-            $('#submitModInfoSped').click(function(){
+            btnInfoSpedCliente.click(function(){
                 if(validateInfoSped()){
                     let via = $('#via').val();
                     let provincia = $('#provincia').val();
@@ -65,10 +101,14 @@
                         data: {
                             input_via: via, input_provincia: provincia, input_citta: citta, input_cap: cap
                         },
+                        success: function (response){
+                            alert("Informazioni inserite correttamente");
+                            btnInfoSpedCliente.attr('disabled', true);
+                        }
                     });
                 }
             });
-            $('#submitModPass').click(function() {
+            btnPass.click(function() {
                 if(validatePassword()){
                     let pass = $('#pass').val();
                     $.ajax({
@@ -77,57 +117,44 @@
                         data: {
                             input_pass: pass
                         },
+                        success: function (response){
+                            alert("Informazioni inserite correttamente");
+                            btnPass.attr('disabled', true);
+                        }
                     });
                 }
+            });
+            //Blur deli input non modificati
+            btnInfoCliente.attr('disabled', true);
+            btnInfoSpedCliente.attr('disabled', true);
+            btnPass.attr('disabled', true);
+            //Se tento di modificare uno dei campi rendo il bottone visibile
+            $('.infoPers').keyup(function(){
+                btnInfoCliente.attr('disabled', false);
+            });
+            $('.infoSped').keyup(function(){
+                btnInfoSpedCliente.attr('disabled', false);
+            });
+            $('.pass').click(function(){
+                $('#pass').val('');
+                btnPass.attr('disabled', false);
             });
         });
     </script>
 </head>
 <body>
     <%
-        if(request.getAttribute("queryUpdateInfoCliente") != null){
-            if (!(boolean)request.getAttribute("queryUpdateInfoCliente")) {
-                out.println("<div class=\"alert\">");
-                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-                out.println("<strong>Attenzione: </strong> Hai insaerito delle informazioni sbagliate o duplicate." +
-                        " Controlla che il nick non sia duplicato" +
-                        "corrette.");
-                out.println("</div>");
-            }
-            else{
-                out.println("<div class=\"alert\">");
-                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-                out.println("<strong>Aggiornamento avvenuto correttamente</strong>");
-                out.println("</div>");
-            }
-            request.setAttribute("queryUpdateInfoCliente", true);
-        }
-        if(request.getAttribute("queryUpdatePassword") != null){
-            if (!(boolean)request.getAttribute("queryUpdatePassword")) {
-                out.println("<div class=\"alert\">");
-                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-                out.println("<strong>Attenzione: </strong> L'aggiornamento della password non è andato a buon fine");
-                out.println("</div>");
-            }
-            else{
-                out.println("<div class=\"alert\">");
-                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-                out.println("<strong>L'aggiornamento della password è andato a buon fine</strong>");
-                out.println("</div>");
-            }
-            request.setAttribute("queryUpdatePassword", true);
-        }
 
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
         out.println("<h2>Info personali</h2>");
         out.println("<table>"+
             "<tr>"+
             "<td> NickName: </td>"+
-            "<td><input type=\"text\" name=\"nick\" id=\"nick\" value=\""+ cliente.getNickname() +"\" > </td>"+
+            "<td><input type=\"text\" name=\"nick\" id=\"nick\" class=\"infoPers\" value=\""+ cliente.getNickname() +"\" > </td>"+
             "</tr>"+
             "<tr>"+
             "<td> Telefono: </td>"+
-            "<td><input type=\"text\" name=\"tel\" id=\"tel\" value=\""+ cliente.getTel() +"\" > </td>"+
+            "<td><input type=\"text\" name=\"tel\" id=\"tel\" class=\"infoPers\" value=\""+ cliente.getTel() +"\" > </td>"+
             "</tr>"+
             "<input type=\"submit\" value=\"Modifica info. personali\" id=\"submitModInfoCliente\">" +
             "</table>");
@@ -136,7 +163,7 @@
         out.println("<h2>Password</h2>");
         out.println("<table>"+
                 "<tr>" +
-                "<td><input type=\"password\" value=\"**********\" id=\"pass\"/></td>" +
+                "<td><input type=\"password\" value=\"**********\" id=\"pass\" class=\"pass\" /></td>" +
                 "</tr>" +
                 "<tr>" +
                 "<td><input type=\"submit\" value=\"Modifica password\" id=\"submitModPass\"/></td>" +
@@ -149,19 +176,19 @@
                 "<div id=\"modIndirizzo\">" +
                 "<tr>"+
                 "<td> Via: </td>"+
-                "<td><input type=\"text\" name=\"via\" id=\"via\" value=\""+ cliente.getVia() +"\" > </td>" +
+                "<td><input type=\"text\" name=\"via\" id=\"via\" class=\"infoSped\" value=\""+ cliente.getVia() +"\" > </td>" +
                 "</tr>"+
                 "<tr>"+
                 "<td> Provincia: </td>"+
-                "<td><input type=\"text\" name=\"provincia\" id=\"provincia\" value=\""+ cliente.getProvincia() +"\" > </td>"+
+                "<td><input type=\"text\" name=\"provincia\" id=\"provincia\" class=\"infoSped\" value=\""+ cliente.getProvincia() +"\" > </td>"+
                 "</tr>"+
                 "<tr>"+
                 "<td> Città: </td>"+
-                "<td><input type=\"text\" name=\"citta\" id=\"citta\" value=\""+ cliente.getCitta() +"\" > </td>"+
+                "<td><input type=\"text\" name=\"citta\" id=\"citta\" class=\"infoSped\" value=\""+ cliente.getCitta() +"\" > </td>"+
                 "</tr>"+
                 "<tr>"+
                 "<td> CAP: </td>"+
-                "<td><input type=\"text\" name=\"cap\" id=\"cap\" value=\""+ cliente.getCap() +"\" > </td>"+
+                "<td><input type=\"text\" name=\"cap\" id=\"cap\" class=\"infoSped\" value=\""+ cliente.getCap() +"\" > </td>"+
                 "</tr>"+
                 "<input type=\"submit\" value=\"Modifica info. spedizione\" id=\"submitModInfoSped\">" +
                 "</table>"+
