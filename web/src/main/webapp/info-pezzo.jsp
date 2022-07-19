@@ -72,7 +72,7 @@
                 "</ul>" +
                 "<form action=\"addCart\" id=\"buy\">" +
                 "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">" +
-                "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantità() + "\">" +
+                "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
                 "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                 "</div>");
     %>
