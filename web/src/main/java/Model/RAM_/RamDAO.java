@@ -37,7 +37,7 @@ public class RamDAO {
     }
 
     public void Upload(Ram r) throws SQLException {
-        ProdottoDAO.Upload(r.getMarca(), r.getModello(), r.getPrezzo(), r.getQuantità(), null, r.getTipo(), r.getFrequenza(), null, null, null, null, null, null, null, null, null, r.getUrl(), r.getDescrizione());
+        ProdottoDAO.Upload(r.getMarca(), r.getModello(), r.getPrezzo(), r.getQuantita(), null, r.getTipo(), r.getFrequenza(), null, null, null, null, null, null, null, null, null, r.getUrl(), r.getDescrizione());
     }
 
 }

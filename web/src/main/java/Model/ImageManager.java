@@ -1,20 +1,13 @@
 package Model;
-
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Part;
 
 import javax.imageio.ImageIO;
-import javax.naming.Context;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.nio.file.Paths;
 
+//Gestore delle immagini con relativi metodi
 public class ImageManager {
 
     private final int targetDim = 225; //Dimensione target del rescaling delle foto
@@ -39,6 +32,7 @@ public class ImageManager {
         return scale;
     }
 
+    //Redimensiona l'immagine
     private BufferedImage resize(BufferedImage img) {
         //Vecchie width e height
         int w = img.getWidth();
@@ -83,14 +77,4 @@ public class ImageManager {
         writeImage(filePart, imagePath, saveName);
         return "Images/"+saveName;
     }
-
-    private String normalizeImgPath(String rootPath, String image){
-        if(image.substring(0, 7).equals("/Images")){
-            return (rootPath+image);
-        }
-        else{
-            return (rootPath+"Images/"+image);
-        }
-    }
-
 }

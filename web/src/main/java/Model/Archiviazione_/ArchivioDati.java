@@ -32,7 +32,7 @@ public class ArchivioDati extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                 ", Forma MOBO: " + MBs + "}\n";

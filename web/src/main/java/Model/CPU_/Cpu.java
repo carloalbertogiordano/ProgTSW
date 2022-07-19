@@ -59,7 +59,7 @@ public class Cpu extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                        ", url= "  + super.getUrl() +
                        ", Descrizione= " + super.getDescrizione() +
                 ", N_Core= " + N_Core +

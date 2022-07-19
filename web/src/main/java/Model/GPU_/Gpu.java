@@ -6,17 +6,17 @@ public class Gpu extends Prodotto {
     private int wattaggio, frequenza;
     private int vRam;
 
-    public Gpu(int ID, String marca, String modello, double prezzo, int quantità,
+    public Gpu(int ID, String marca, String modello, double prezzo, int quantita,
                int wattaggio, int frequenza, int vRam, String url, String descrizione) {
-        super(ID, marca, modello, prezzo, quantità, "GPU", url, descrizione);
+        super(ID, marca, modello, prezzo, quantita, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
         this.vRam = vRam;
     }
 
-    public Gpu(String marca, String modello, double prezzo, int quantità,
+    public Gpu(String marca, String modello, double prezzo, int quantita,
                int wattaggio, int frequenza, int vRam, String url, String descrizione) {
-        super(marca, modello, prezzo, quantità, "GPU", url, descrizione);
+        super(marca, modello, prezzo, quantita, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
         this.vRam = vRam;
@@ -56,7 +56,7 @@ public class Gpu extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                 ", wattaggio=" + wattaggio +

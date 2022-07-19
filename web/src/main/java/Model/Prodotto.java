@@ -12,11 +12,11 @@ public abstract class Prodotto {
     private String tipo;
     private String url;
     private String descrizione;
-    private int quantità;
+    private int quantita;
 
     public Prodotto() {}
 
-    public Prodotto(int ID, String marca, String modello, double prezzo, int quantità, String tipo, String url, String descrizione) {
+    public Prodotto(int ID, String marca, String modello, double prezzo, int quantita, String tipo, String url, String descrizione) {
         this.ID = ID;
         this.marca = marca;
         this.modello = modello;
@@ -24,17 +24,17 @@ public abstract class Prodotto {
         this.tipo = tipo;
         this.url = url;
         this.descrizione = descrizione;
-        this.quantità = quantità;
+        this.quantita = quantita;
     }
 
-    public Prodotto(String marca, String modello, double prezzo, int quantità, String tipo, String url, String descrizione) {
+    public Prodotto(String marca, String modello, double prezzo, int quantita, String tipo, String url, String descrizione) {
         this.marca = marca;
         this.modello = modello;
         this.prezzo = prezzo;
         this.tipo = tipo;
         this.url = url;
         this.descrizione = descrizione;
-        this.quantità = quantità;
+        this.quantita = quantita;
     }
 
     public int getID() {
@@ -69,12 +69,12 @@ public abstract class Prodotto {
         this.prezzo = prezzo;
     }
 
-    public int getQuantità() {
-        return quantità;
+    public int getQuantita() {
+        return quantita;
     }
 
-    public void setQuantità(int quantità) {
-        this.quantità = quantità;
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
     }
 
     public String getTipo() {

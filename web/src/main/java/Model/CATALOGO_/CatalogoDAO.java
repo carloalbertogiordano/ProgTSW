@@ -106,7 +106,7 @@ public class CatalogoDAO {
     public void scalaProdotti(Carrello c) throws SQLException {
         CatalogoDAO service = new CatalogoDAO();
         for(Prodotto p : c.getCarrello()){
-            service.scalaProdotto(p.getID(), p.getQuantità());
+            service.scalaProdotto(p.getID(), p.getQuantita());
         }
     }
 }

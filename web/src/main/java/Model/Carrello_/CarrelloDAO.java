@@ -85,7 +85,7 @@ public class CarrelloDAO {
         listProdotti = Prodotto.doRetriveByIdLis(prodotti);
         for (Prodotto prodotto : listProdotti) {
             int quantitaRichiesta = getComporreQuantita(prodotto.getID(), carrelloCod);
-            prodotto.setQuantità(quantitaRichiesta);
+            prodotto.setQuantita(quantitaRichiesta);
         }
         return new Carrello(listProdotti, carrelloCod, totaleCarrello);
     }
@@ -96,7 +96,7 @@ public class CarrelloDAO {
         pdstmt.setInt(1, carrello.getCarrelloCod());
         pdstmt.executeUpdate();
         for(Prodotto p : carrello.getCarrello()){
-            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantità(), p.getPrezzo());
+            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantita(), p.getPrezzo());
         }
     }
     public void addCartDB(int idPezzo, int idCarrello, int quantity, double prezzo) throws SQLException {
@@ -169,7 +169,7 @@ public class CarrelloDAO {
         //Recupera la quantità di ogni prodotto nel carrello
         for(Carrello c : listaCarrelli){
             for(Prodotto p : c.getCarrello()){
-                p.setQuantità(cDAO.getComporreQuantita(p.getID(), c.getCarrelloCod()));
+                p.setQuantita(cDAO.getComporreQuantita(p.getID(), c.getCarrelloCod()));
             }
         }
         //Setta il prezzo corretto dei prodotti basandosi sulla ridondanza presente in comporre

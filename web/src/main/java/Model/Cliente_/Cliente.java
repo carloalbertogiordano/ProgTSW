@@ -27,21 +27,7 @@ public class Cliente {
         Tel = tel;
         Administrator = administrator;
     }
-    public Cliente(String mail, String nickname, Boolean administrator){
-        this.Mail = mail;
-        this.Nickname = nickname;
-        this.Administrator = administrator;
-    }
 
-    public Cliente(String mail, String nickname, String tel, String via, String provincia, int cap, boolean administrator) {
-        Mail= mail;
-        Nickname = nickname;
-        Tel = tel;
-        Via = via;
-        Provincia = provincia;
-        Cap = cap;
-        Administrator = administrator;
-    }
 
     public String getMail() {
         return Mail;
@@ -53,10 +39,6 @@ public class Cliente {
 
     public String getPass() {
         return Pass;
-    }
-
-    public void setPass(String pass) {
-        Pass = pass;
     }
 
     public String getNickname() {
@@ -109,14 +91,6 @@ public class Cliente {
 
     public void setCap(int cap) {
         Cap = cap;
-    }
-
-    public Boolean getAdministrator() {
-        return Administrator;
-    }
-
-    public void setAdministrator(Boolean administrator) {
-        Administrator = administrator;
     }
 
 }

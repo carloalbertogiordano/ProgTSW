@@ -9,13 +9,13 @@ public class Case extends Prodotto {
 
     }
 
-    public Case(int ID, String marca, String modello, double prezzo, int quantità, short formaMobo, String url, String descrizione){
-        super(ID, marca, modello, prezzo, quantità, "CASE", url, descrizione);
+    public Case(int ID, String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
+        super(ID, marca, modello, prezzo, quantita, "CASE", url, descrizione);
         this.formaMobo = formaMobo;
     }
 
-    public Case(String marca, String modello, double prezzo, int quantità, short formaMobo, String url, String descrizione){
-        super(marca, modello, prezzo, quantità, "CASE", url, descrizione);
+    public Case(String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
+        super(marca, modello, prezzo, quantita, "CASE", url, descrizione);
         this.formaMobo = formaMobo;
     }
 
@@ -28,7 +28,7 @@ public class Case extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                         ", Forma MOBO: " + formaMobo + "}\n";

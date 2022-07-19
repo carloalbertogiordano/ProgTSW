@@ -51,31 +51,26 @@ public class Carrello {
         this.carrelloCod = carrelloCod;
     }
 
-    public Prodotto getById(int id) {
-        for(Prodotto p: carrello)
-            if(p.getID()==id)
-                return p;
-        return null;
-    }
-
     //Controlla se la quantità richiesta è compatibile con la quantità totale disponibile nel DB
     public void doCheckList(Catalogo catalogo) throws SQLException {
         int i = 0;
         for(Prodotto p : carrello){
             int quantitaDisponible = catalogo.getQuantità(p.getID());
-            int quantitaRichiesta = p.getQuantità();
+            int quantitaRichiesta = p.getQuantita();
 
             if(quantitaDisponible == 0){
                 carrello.remove(i);
             }
             else if(quantitaRichiesta > quantitaDisponible){
-                p.setQuantità(quantitaDisponible);
+                p.setQuantita(quantitaDisponible);
             }
             i++;
         }
     }
 
-    //Quanrtità pezzo è quantità richiesta
+    //Esegue la join tra questo carrello e un altro carrello (Del db in questo caso)
+    //elimina prima i duplicati dal carrello nel DB mettendoli in questo (sommando le quantità dei prodotti)
+    //Poi aggiunge i prodotti rimanenti nel carrello del DB in questo
     public void joinCarrelli(Carrello carrelloDB){
         Carrello carrelloSession = this;
         if(carrelloSession.getCarrello()!=null)
@@ -83,8 +78,8 @@ public class Carrello {
                 if(carrelloDB.getCarrello()!=null)
                     for(int j = 0; j < carrelloDB.getCarrello().size(); j++){
                         if(carrelloSession.getCarrello().get(i).getID() == carrelloDB.getCarrello().get(j).getID()){
-                            int quantita = carrelloSession.getCarrello().get(i).getQuantità() +  carrelloDB.getCarrello().get(j).getQuantità();
-                            carrelloSession.getCarrello().get(i).setQuantità(quantita);
+                            int quantita = carrelloSession.getCarrello().get(i).getQuantita() +  carrelloDB.getCarrello().get(j).getQuantita();
+                            carrelloSession.getCarrello().get(i).setQuantita(quantita);
                             carrelloDB.getCarrello().remove(j);
                         }
                     }
@@ -121,7 +116,7 @@ public class Carrello {
         }
         else{
             //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
-            carrello.get(index).setQuantità(carrello.get(index).getQuantità()+prodotto.getQuantità());
+            carrello.get(index).setQuantita(carrello.get(index).getQuantita()+prodotto.getQuantita());
             //service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
             service.delCarrelloFromComporre(this);
         }
@@ -143,7 +138,7 @@ public class Carrello {
             }
             else {
                 //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
-                carrello.get(index).setQuantità(carrello.get(index).getQuantità() + prodotto.getQuantità());
+                carrello.get(index).setQuantita(carrello.get(index).getQuantita() + prodotto.getQuantita());
             }
     }
 
@@ -167,7 +162,7 @@ public class Carrello {
         int quantity = 0;
         for(int i = 0; i < carrello.size(); i++){
             if(carrello.get(i).getID() == id){
-                quantity = carrello.get(i).getQuantità();
+                quantity = carrello.get(i).getQuantita();
                 carrello.remove(i);
             }
         }
@@ -197,7 +192,7 @@ public class Carrello {
     public int doRetriveQuantitaProdottoById(int id){
         for(Prodotto p : carrello){
             if(p.getID() == id){
-                return p.getQuantità();
+                return p.getQuantita();
             }
         }
         return 0;

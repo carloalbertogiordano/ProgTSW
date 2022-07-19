@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+//Cripta una stringa con SHA-512 per maggiore sicurezza
 public class PasswordEncrypter {
     public static String encryptThisString(String input) {
         String hashtext = null;

@@ -8,13 +8,13 @@ public class Ram extends Prodotto {
 
     public Ram(){}
 
-    public Ram(int ID, String marca, String modello, double prezzo, int quantità, float frequenza, String url, String descrizione) {
-        super(ID, marca, modello, prezzo, quantità, "RAM", url, descrizione);
+    public Ram(int ID, String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
+        super(ID, marca, modello, prezzo, quantita, "RAM", url, descrizione);
         this.frequenza = frequenza;
     }
 
-    public Ram(String marca, String modello, double prezzo, int quantità, float frequenza, String url, String descrizione) {
-        super(marca, modello, prezzo, quantità, "RAM", url, descrizione);
+    public Ram(String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
+        super(marca, modello, prezzo, quantita, "RAM", url, descrizione);
         this.frequenza = frequenza;
     }
 
@@ -31,7 +31,7 @@ public class Ram extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                 "Frequenza: " + frequenza + "}\n";

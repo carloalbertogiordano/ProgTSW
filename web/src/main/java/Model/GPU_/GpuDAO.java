@@ -39,7 +39,7 @@ public class GpuDAO {
     }
 
     public void Upload(Gpu g) throws SQLException {
-        ProdottoDAO.Upload(g.getMarca(), g.getModello(), g.getPrezzo(), g.getQuantità(), g.getWattaggio(), g.getTipo(), null, null, null, null, null, null, g.getVRam(), null, null, null, g.getUrl(), g.getDescrizione());
+        ProdottoDAO.Upload(g.getMarca(), g.getModello(), g.getPrezzo(), g.getQuantita(), g.getWattaggio(), g.getTipo(), null, null, null, null, null, null, g.getVRam(), null, null, null, g.getUrl(), g.getDescrizione());
     }
 
 }

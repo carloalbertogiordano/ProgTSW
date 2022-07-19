@@ -41,7 +41,7 @@ public class CpuDAO {
         return listC;
     }
     public void Upload(Cpu c) throws SQLException {
-        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantità(), c.getWattaggio(), c.getTipo(), c.getFrequenza(), c.getN_Core(), null, null, null, null, null, null, null, null, c.getUrl(), c.getDescrizione());
+        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantita(), c.getWattaggio(), c.getTipo(), c.getFrequenza(), c.getN_Core(), null, null, null, null, null, null, null, null, c.getUrl(), c.getDescrizione());
     }
 
 }

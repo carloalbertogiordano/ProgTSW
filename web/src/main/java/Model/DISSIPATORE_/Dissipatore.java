@@ -6,13 +6,13 @@ public class Dissipatore extends Prodotto {
 
     private int W_Cpu;
 
-    public Dissipatore (int ID, String marca, String modello, double prezzo, int quantità, int W_Cpu, String url, String descrizione) {
-        super(ID, marca, modello, prezzo, quantità, "DISSIPATORE", url, descrizione);
+    public Dissipatore (int ID, String marca, String modello, double prezzo, int quantita, int W_Cpu, String url, String descrizione) {
+        super(ID, marca, modello, prezzo, quantita, "DISSIPATORE", url, descrizione);
         this.W_Cpu = W_Cpu;
     }
 
-    public Dissipatore (String marca, String modello, double prezzo, int quantità, int W_Cpu, String url, String descrizione) {
-        super(marca, modello, prezzo, quantità, "DISSIPATORE", url, descrizione);
+    public Dissipatore (String marca, String modello, double prezzo, int quantita, int W_Cpu, String url, String descrizione) {
+        super(marca, modello, prezzo, quantita, "DISSIPATORE", url, descrizione);
         this.W_Cpu = W_Cpu;
     }
 
@@ -34,7 +34,7 @@ public class Dissipatore extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                 ", W_Cpu=" + W_Cpu + "}\n";

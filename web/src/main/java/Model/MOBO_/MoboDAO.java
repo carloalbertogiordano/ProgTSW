@@ -37,7 +37,7 @@ public class MoboDAO {
     }
 
     public void Upload(Mobo m) throws SQLException {
-        ProdottoDAO.Upload(m.getMarca(), m.getModello(), m.getPrezzo(), m.getQuantità(), null, m.getTipo(), null, null, m.getN_RAM(), m.getN_USB(), m.getN_PCI(), null, null, null, null, m.getForma(), m.getUrl(), m.getDescrizione());
+        ProdottoDAO.Upload(m.getMarca(), m.getModello(), m.getPrezzo(), m.getQuantita(), null, m.getTipo(), null, null, m.getN_RAM(), m.getN_USB(), m.getN_PCI(), null, null, null, null, m.getForma(), m.getUrl(), m.getDescrizione());
     }
 
 }

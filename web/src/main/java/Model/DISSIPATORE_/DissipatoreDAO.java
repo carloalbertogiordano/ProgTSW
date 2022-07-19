@@ -38,7 +38,7 @@ public class DissipatoreDAO {
     }
 
     public void Upload(Dissipatore d) throws SQLException {
-        ProdottoDAO.Upload(d.getMarca(), d.getModello(), d.getPrezzo(), d.getQuantità(), null, d.getTipo(), null, null, null, null, null, null, null, null, d.getW_Cpu(), null, d.getUrl(), d.getDescrizione());
+        ProdottoDAO.Upload(d.getMarca(), d.getModello(), d.getPrezzo(), d.getQuantita(), null, d.getTipo(), null, null, null, null, null, null, null, null, d.getW_Cpu(), null, d.getUrl(), d.getDescrizione());
     }
 
 }

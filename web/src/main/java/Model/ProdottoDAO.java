@@ -1,27 +1,17 @@
 package Model;
 
 import Model.Archiviazione_.HDD_.Hdd;
-import Model.Archiviazione_.HDD_.HddDAO;
 import Model.Archiviazione_.SDD_.Ssd;
-import Model.Archiviazione_.SDD_.SsdDAO;
 import Model.CASE_.Case;
-import Model.CASE_.CaseDAO;
 import Model.CPU_.Cpu;
-import Model.CPU_.CpuDAO;
 import Model.DISSIPATORE_.Dissipatore;
-import Model.DISSIPATORE_.DissipatoreDAO;
 import Model.GPU_.Gpu;
-import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
-import Model.MOBO_.MoboDAO;
 import Model.PSU_.Psu;
-import Model.PSU_.PsuDAO;
 import Model.RAM_.Ram;
-import Model.RAM_.RamDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ProdottoDAO {
 
@@ -166,10 +156,8 @@ public abstract class ProdottoDAO {
         while (rs.next()) {
             quantita = rs.getInt(1);
         }
-        if (quantita < p.getQuantità()){
-            return true;
-        }
-        return false;
+        assert quantita != null;//Evita null pointer exception
+        return quantita < p.getQuantita();
     }
 
     //Aggiorna info prodotto (riservato admin)

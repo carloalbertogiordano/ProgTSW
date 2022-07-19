@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/../sql/CreazioneUtente.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/../sql/Popolazione.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Archiviazione_/HDD_/HddDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/Archiviazione_/SDD_/SsdDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/CASE_/CaseDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Carrello_/CarrelloDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Cliente_/ClienteDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/ProdottoDAO.java" dialect="MySQL" />

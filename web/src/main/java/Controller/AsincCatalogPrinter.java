@@ -77,7 +77,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>Watt: " + psu.getN_Watt() + "</li>" +
                         "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
                         "<li>Url: " + psu.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + psu.getQuantità() + "</li></ul></div></a>"
+                        "<li>Disponibilità: " + psu.getQuantita() + "</li></ul></div></a>"
         );
     }
     private void writeDissipatoreForCatalog(HttpServletResponse response, Prodotto p) throws IOException {
@@ -90,7 +90,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
                         "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
                         "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + dissipatore.getQuantità() + "</li></ul></div></a>"
+                        "<li>Disponibilità: " + dissipatore.getQuantita() + "</li></ul></div></a>"
         );
     }
     private void writeCpuForCatalog(HttpServletResponse response, Prodotto p) throws IOException {
@@ -104,7 +104,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
                         "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
                         "<li>Url: " + cpu.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + cpu.getQuantità() + "</li></ul></div></a>");
+                        "<li>Disponibilità: " + cpu.getQuantita() + "</li></ul></div></a>");
     }
     private void writeGpuForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
         Gpu gpu = (Gpu) p;
@@ -117,7 +117,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                 "<li>vRam:" + gpu.getVRam() + "</li>" +
                 "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
                 "<li>Url: " + gpu.getUrl() + "</li>" +
-                "<li>Disponibilità: " + gpu.getQuantità() + "</li></ul></div></a>");
+                "<li>Disponibilità: " + gpu.getQuantita() + "</li></ul></div></a>");
 
     }
     private void writeMoboForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
@@ -133,7 +133,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
                         "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
                         "<li>Url: " + mobo.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + mobo.getQuantità() + "</li></ul></div></a>");
+                        "<li>Disponibilità: " + mobo.getQuantita() + "</li></ul></div></a>");
     }
     private void writeHddForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
         Hdd hdd = (Hdd) p;
@@ -145,7 +145,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>MB/s: " + hdd.getMBs() + "</li>" +
                         "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
                         "<li>Url: " + hdd.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + hdd.getQuantità() + "</li></ul></div></a>"
+                        "<li>Disponibilità: " + hdd.getQuantita() + "</li></ul></div></a>"
         );
     }
     private void writeSsdForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
@@ -157,7 +157,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                 "<li>MB/s: " + ssd.getMBs() + "</li>" +
                 "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
                 "<li>Url: " + ssd.getUrl() + "</li>" +
-                "<li>Disponibilità: " + ssd.getQuantità() + "</li></ul></div></a>");
+                "<li>Disponibilità: " + ssd.getQuantita() + "</li></ul></div></a>");
     }
     private void writeRamForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
         Ram ram = (Ram) p;
@@ -169,7 +169,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
                         "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
                         "<li>Url: " + ram.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + ram.getQuantità() + "</li></ul></div></a>"
+                        "<li>Disponibilità: " + ram.getQuantita() + "</li></ul></div></a>"
         );
     }
     private void writeCaseForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
@@ -182,7 +182,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
                         "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
                         "<li>Url: " + case_.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + case_.getQuantità() + "</li></ul></div></a>"
+                        "<li>Disponibilità: " + case_.getQuantita() + "</li></ul></div></a>"
         );
     }
 }

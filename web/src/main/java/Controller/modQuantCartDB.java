@@ -28,13 +28,13 @@ public class modQuantCartDB extends HttpServlet {
         //Aggiorna il catalogo nella sessione
         for (Prodotto pcart : catalogoSessione.getCatalogo()) {
             if (pcart.getID() == id)
-                pcart.setQuantità((pcart.getQuantità() + oldQuant) - quant);
+                pcart.setQuantita((pcart.getQuantita() + oldQuant) - quant);
 
             ss.setAttribute("catalogo", catalogoSessione);
             //Aggiorna il carrello della sessione
             for (Prodotto pcarr : carrelloSessione.getCarrello()) {
                 if (pcarr.getID() == id)
-                    pcarr.setQuantità(quant);
+                    pcarr.setQuantita(quant);
             }
             ss.setAttribute("carrello", carrelloSessione);
 

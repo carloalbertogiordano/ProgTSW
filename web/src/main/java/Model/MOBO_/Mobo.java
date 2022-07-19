@@ -7,18 +7,18 @@ public class Mobo extends Prodotto {
     private int N_RAM;
     private int N_USB;
     private int N_PCI;
-    public Mobo(int ID, String marca, String modello, double prezzo, int quantità,
+    public Mobo(int ID, String marca, String modello, double prezzo, int quantita,
                 short forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
-        super( ID, marca, modello, prezzo, quantità, "MOBO", url, descrizione);
+        super( ID, marca, modello, prezzo, quantita, "MOBO", url, descrizione);
         this.forma = forma;
         this.N_RAM = N_RAM;
         this.N_USB = N_USB;
         this.N_PCI = N_PCI;
     }
 
-    public Mobo(String marca, String modello, double prezzo, int quantità,
+    public Mobo(String marca, String modello, double prezzo, int quantita,
                 short forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
-        super(marca, modello, prezzo, quantità, "MOBO", url, descrizione);
+        super(marca, modello, prezzo, quantita, "MOBO", url, descrizione);
         this.forma = forma;
         this.N_RAM = N_RAM;
         this.N_USB = N_USB;
@@ -53,26 +53,10 @@ public class Mobo extends Prodotto {
     }
     public String toString(){
         return "ID: " + getID() + "\nMarca: " + getMarca() + "\nModello: " + getModello() +
-                "\nPrezzo: " + getPrezzo() + "\nQuantità: " + getQuantità() + "\nURL: " +
+                "\nPrezzo: " + getPrezzo() + "\nQuantità: " + getQuantita() + "\nURL: " +
                 getUrl() + "\nDescrizione: " + getDescrizione() + "\nForma: " + getForma() +
                 "\nN_RAM: " + getN_RAM() + "\nN_USB: " + getN_USB() + "\nN_PCI: " + getN_PCI();
     }
-    
-   /* public String toString(){
-        return  "Mobo{" +
-                "Marca= " + super.getMarca() +
-                ", Modello= "  + super.getModello() +
-                ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
-                ", url= " + super.getUrl() +
-                ", Descrizione= " + super.getDescrizione() +
-                ", Forma= " + forma +
-                ", Numero slot RAM= " + N_RAM +
-                ", Numero porte USB= " + N_USB +
-                ", Numero slot PCI= " + N_PCI + "}\n";
-    }*/
-
-
 }
 
 

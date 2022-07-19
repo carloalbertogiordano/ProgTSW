@@ -39,7 +39,7 @@ public class CaseDAO {
     }
 
     public void Upload(Case c) throws SQLException {
-        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantità(), null, c.getTipo(), null, null, null, null, null, null, null, null, null, c.getFormaMobo(), c.getUrl(), c.getDescrizione());
+        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantita(), null, c.getTipo(), null, null, null, null, null, null, null, null, null, c.getFormaMobo(), c.getUrl(), c.getDescrizione());
     }
 
 }

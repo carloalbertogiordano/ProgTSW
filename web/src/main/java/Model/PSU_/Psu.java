@@ -8,13 +8,13 @@ public class Psu extends Prodotto {
 
     public Psu(){}
 
-    public Psu(int ID, String marca, String modello, double prezzo, int quantità, int N_Watt ,String url, String descrizione){
-        super(ID, marca, modello, prezzo, quantità, "PSU",url, descrizione);
+    public Psu(int ID, String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
+        super(ID, marca, modello, prezzo, quantita, "PSU",url, descrizione);
         this.N_Watt = N_Watt;
     }
 
-    public Psu(String marca, String modello, double prezzo, int quantità, int N_Watt ,String url, String descrizione){
-        super(marca, modello, prezzo, quantità, "PSU",url, descrizione);
+    public Psu(String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
+        super(marca, modello, prezzo, quantita, "PSU",url, descrizione);
         this.N_Watt = N_Watt;
     }
 
@@ -32,7 +32,7 @@ public class Psu extends Prodotto {
                 "Marca= " + super.getMarca() +
                 ", Modello= "  + super.getModello() +
                 ", Prezzo= " + super.getPrezzo() +
-                ", Quantità disponibile= " + super.getQuantità() +
+                ", Quantità disponibile= " + super.getQuantita() +
                 ", url= " + super.getUrl() +
                 ", Descrizione= " + super.getDescrizione() +
                 "N. Watt: " + N_Watt + "}\n";

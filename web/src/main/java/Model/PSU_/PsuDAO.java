@@ -39,7 +39,7 @@ public class PsuDAO {
     }
 
     public void Upload(Psu p) throws SQLException {
-        ProdottoDAO.Upload(p.getMarca(), p.getModello(), p.getPrezzo(), p.getQuantità(), null, p.getTipo(), null, null, null, null, null, null, null, p.getN_Watt(), null, null, p.getUrl(), p.getDescrizione());
+        ProdottoDAO.Upload(p.getMarca(), p.getModello(), p.getPrezzo(), p.getQuantita(), null, p.getTipo(), null, null, null, null, null, null, null, p.getN_Watt(), null, null, p.getUrl(), p.getDescrizione());
     }
 
 }

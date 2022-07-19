@@ -1,22 +1,8 @@
 package Model.CATALOGO_;
 
-import Model.Archiviazione_.HDD_.HddDAO;
-import Model.Archiviazione_.SDD_.SsdDAO;
-import Model.CASE_.Case;
-import Model.CASE_.CaseDAO;
-import Model.CPU_.Cpu;
-import Model.CPU_.CpuDAO;
 import Model.Carrello_.Carrello;
-import Model.DISSIPATORE_.Dissipatore;
-import Model.DISSIPATORE_.DissipatoreDAO;
-import Model.GPU_.Gpu;
-import Model.GPU_.GpuDAO;
-import Model.MOBO_.MoboDAO;
-import Model.PSU_.PsuDAO;
 import Model.Prodotto;
-import Model.RAM_.RamDAO;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,37 +21,26 @@ public class Catalogo {
         this.catalogo = catalgo;
     }
 
+    //Rimuove la quantità richiesta di ogni prodotto nel carrello
     public void aggiornaQuantita(Carrello carrello){
         //Le quantità relative ai pezzi nel carrello sono le quantità richieste
         //Le quantità relative ai pezzi del catalo sono le quantità disponibili
         for(int i = 0; i < catalogo.size(); i++){
             for(int j = 0; j < carrello.getCarrello().size(); j++){
                if(getCatalogo().get(i).getID() == carrello.getCarrello().get(j).getID()){
-                    catalogo.get(i).setQuantità(catalogo.get(i).getQuantità() - carrello.getCarrello().get(j).getQuantità());
+                    catalogo.get(i).setQuantita(catalogo.get(i).getQuantita() - carrello.getCarrello().get(j).getQuantita());
                 }
             }
         }
     }
-    public void aggiornaQuantita(Prodotto p,int quantita){
-        //Le quantità relative ai pezzi nel carrello sono le quantità richieste
-        //Le quantità relative ai pezzi del catalo sono le quantità disponibili
-        for(int i = 0; i < catalogo.size(); i++){
-                if(catalogo.get(i).getID()==p.getID()){
-                    System.out.println("Quantità disponibile: " + catalogo.get(i).getQuantità());
-                    //System.out.println("Quantità Richiesta: " + carrello.getCarrello().get(j).getQuantità());
-                    catalogo.get(i).setQuantità((catalogo.get(i).getQuantità() + p.getQuantità())-quantita);
-                    //p.setQuantità(quantita);
-                    System.out.println("Quantità rimanente: " +  catalogo.get(i).getQuantità());
-                }
-        }
-    }
 
+    //Rimuove la quantità di prodotto richiesta
     public void aggiornaQuantita(Prodotto p){
         //Le quantità relative ai pezzi nel carrello sono le quantità richieste
         //Le quantità relative ai pezzi del catalogo sono le quantità disponibili
         for (Prodotto prodotto : catalogo) {
             if (prodotto.getID() == p.getID()) {
-                prodotto.setQuantità((prodotto.getQuantità() - p.getQuantità()));
+                prodotto.setQuantita((prodotto.getQuantita() - p.getQuantita()));
             }
         }
     }
@@ -143,14 +118,12 @@ public class Catalogo {
         Catalogo newCatalogo = new Catalogo();
         for(Prodotto p : catalogo){
             if((p.getMarca().toLowerCase()).contains(marca.toLowerCase())) {
-                System.out.println("Vero per str: " + marca);
                 newCatalogo.addProdotto(p);
             }
         }
         return newCatalogo;
     }
     public Catalogo filterByModello(String modello) {
-        System.out.println("OKOOOK");
         Catalogo newCatalogo = new Catalogo();
         for(Prodotto p : catalogo){
             if((p.getModello().toLowerCase()).contains(modello.toLowerCase()))
@@ -196,7 +169,7 @@ public class Catalogo {
     public void updateQuantity(int quantity, int id) {
         for(Prodotto p : catalogo){
             if(p.getID() == id){
-                p.setQuantità(p.getQuantità()+quantity);
+                p.setQuantita(p.getQuantita()+quantity);
             }
         }
     }
@@ -204,7 +177,7 @@ public class Catalogo {
     public int getQuantità(int id) {
         for(Prodotto p : catalogo){
             if(p.getID() == id)
-                return p.getQuantità();
+                return p.getQuantita();
         }
         return 0;
     }

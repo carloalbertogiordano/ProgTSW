@@ -29,7 +29,7 @@ public class changeQuantity extends HttpServlet {
         //Cambia la quantità nel carrello e la aggiorna nel catalogo
         for(Prodotto p : carrello.getCarrello()){
             if(idProdotto == p.getID()){
-                p.setQuantità(newQuantity);
+                p.setQuantita(newQuantity);
                 catalogo.aggiornaQuantita(p);
             }
         }
