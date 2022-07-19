@@ -24,10 +24,6 @@
     align-self: end;
 }
 
-.hide{
-    display:none;
-}
-
 /*HEADER*/
 .header{
     background-color: #003049;
@@ -70,11 +66,6 @@ li a:hover {
 }
 
 .right-buttons{
-    /*position: absolute;
-    right: 15px;
-    display: flex;
-    align-items: center;
-    border-style: none;*/
     align-items: flex-end;
     margin: 0px 5px;
 }
@@ -137,10 +128,6 @@ i.fa-circle-user{
     color: #fdf0d5;
 }
 
-/*.logout-link:hover{
-    background-color: #c1121f;
-}*/
-
 .carrello-link:hover{
     background-color: transparent;
 }
@@ -166,11 +153,6 @@ i.fa-circle-user{
 .welcome-header > h1{
     color: #003049;
 }
-
-/*RESPONSIVE*/
-/*ul.flex-container > li{
-    width: 100%;
-}*/
 
 @media screen and (max-width: 768px) {
     .nav{
@@ -214,5 +196,9 @@ i.fa-circle-user{
 
     .dropdown-content > a{
         text-align: center;
+    }
+
+    .empty-flex-field{
+        display: none;
     }
 }

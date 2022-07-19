@@ -31,6 +31,4 @@ function dropDownBurger(){
     } else {
         x.classList.add("responsive");
     }
-    var y = document.getElementsByClassName("empty-flex-field");
-    y[0].className = "hide";
 }

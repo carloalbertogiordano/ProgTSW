@@ -28,7 +28,7 @@
                     <li><a href="index.jsp" class="active">Home</a></li>
                     <li><a href="Catalogo.jsp">Catalogo</a></li>
                     <li><a href="#">Chi siamo</a></li>
-                    <li class="empty-flex-field"></li>
+                    <li class="empty-flex-field" id="emptyFlexField"></li>
                     <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                     <%
                         if(c!=null){
