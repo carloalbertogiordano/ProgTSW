@@ -16,7 +16,7 @@
 <head>
     <title>Modifica Pezzo</title>
     <script src="https://code.jquery.com/jquery-git.js"></script>
-    <script src="js/modificaPezzo.js"/>
+    <script src="js/modificaPezzo.js"></script>
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
@@ -26,7 +26,7 @@
         Prodotto p = catalogo.doRetriveById(Integer.parseInt(id));
         Cliente c = (Cliente) request.getSession().getAttribute("cliente");
 
-        System.out.println(p.toString());
+        System.out.println("duce"+p.toString());
 
         //Se il cliente non è un amministratore non potrebbe essere qua
         if(!c.isAdministrator())
@@ -71,7 +71,7 @@
                         "                <td>Numero di core</td>" +
                         "                <td><input type=\"text\" name=\"numCore\" id=\"ncore\" value=\"" + cpu.getN_Core() + "\" form=\"modProd\" required/></td>" +
                         "            </tr>");
-            break;
+                break;
             case "CASE" :
                 Case case_ = (Case) p;
                 out.println("" +

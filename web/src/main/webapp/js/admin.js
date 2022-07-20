@@ -156,6 +156,7 @@ function controllo() {
 
     }
 }
+
 //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
 function nuovo() {
     document.getElementById("frameCatalogo").style.display="none";

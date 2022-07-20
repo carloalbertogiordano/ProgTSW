@@ -71,6 +71,10 @@ public class Carrello {
             carrello.remove(p);
     }
 
+    public void doCheckList2(Catalogo catalogo) throws SQLException{
+
+    }
+
     //Esegue la join tra questo carrello e un altro carrello (Del db in questo caso)
     //elimina prima i duplicati dal carrello nel DB mettendoli in questo (sommando le quantità dei prodotti)
     //Poi aggiunge i prodotti rimanenti nel carrello del DB in questo
