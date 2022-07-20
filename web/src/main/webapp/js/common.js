@@ -50,3 +50,8 @@ function validateForm(){
     return testNickname() && testMail() && testPassword() && testTel() && testCap() && testProv()
         && testVia() && testCitta();
 }
+
+function validateMail() {
+    const cerca = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    return (cerca.test($("#mail").val()) && $("#password").val() !== '');
+}

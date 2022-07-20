@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/indirizzoSpedizione.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/indirizzoSpedizione.js"></script>
+    <script src="../js/common.js"></script>
 </head>
 <body>
 <%

@@ -17,8 +17,8 @@
         <welcome-file>HomeServlet</welcome-file>
     </welcome-file-list>
 
-    <error-page>
+    <!--error-page>
         <location>/WEB-INF/error-page.jsp</location>
-    </error-page>
+    </error-page-->
 
 </web-app>

@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
-    <script src="js/login.js"></script>
+    <script src="js/common.js"></script>
 
     <title>Login</title>
 </head>
@@ -71,7 +71,7 @@ if (request.getAttribute("loginErr") != null) {
 %>
 
 <h1>Login</h1>
-<form action="Login" method="post" onsubmit="return validateForm()">
+<form action="Login" method="post" onsubmit="return validateMail()">
     <table>
         <tr>
             <td>Mail:</td>

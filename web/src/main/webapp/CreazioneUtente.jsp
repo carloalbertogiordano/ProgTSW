@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
   <script src="js/navbar.js"></script>
-  <script src="js/crazioneUtente.js"></script>
+  <script src="js/common.js"></script>
 
 </head>
 <body>
@@ -74,7 +74,7 @@
 %>
 
 <h1>Creazione Utente</h1>
-<form action="NuovoCliente" method="post" onsubmit="return validateForm()">
+<form action="NuovoCliente" method="POST" onsubmit="return validateForm()">
   <table>
     <div class="divide"> <!---non funziona la class--->
       <tr>
