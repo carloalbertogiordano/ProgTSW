@@ -1,5 +1,5 @@
 function validateMarcaAndModello() {
-    let marcaAndModello = /[a-zA-Z0-9]{1,30}/;
+    let marcaAndModello = /^[a-zA-Z0-9]{1,30}$/;
     if(!(marcaAndModello.test($("#marca").val()))){
         console.error("Err: Marca non valida");
     }
@@ -19,7 +19,7 @@ function validatePrezzo() {
 }
 
 function validateQuantita() {
-    let quant = /[0-9]{0,3}/;
+    let quant = /^[0-9]{0,3}$/;
     if(!(quant.test($("#quantita").val()))){
         console.error("Err: Quantita non valida");
     }
@@ -27,7 +27,7 @@ function validateQuantita() {
 }
 
 function validateUrl() {
-    let url = /[a-zA-Z0-9].{6,250}/;
+    let url = /^[a-zA-Z0-9].{6,250}$/;
     if(!(url.test($("#url").val()))){
         console.error("Err: Url non valida");
     }
@@ -35,7 +35,7 @@ function validateUrl() {
 }
 
 function validateDesc() {
-    let desc = /[a-zA-Z0-9].{1,10000}/;
+    let desc = /^[a-zA-Z0-9].{1,10000}$/;
     if(!(desc.test($("#desc").val()))){
         console.error("Err: Descrizione non valida");
     }
