@@ -48,6 +48,11 @@ $(document).ready(function() {
     $("#priceSlider").change(function(){
         $("#current").html($("#priceSlider").val());
     });
+
+    $('#reset-button').click(function(){
+        $('#divCatalogo').html(oldCatalog);
+
+    });
 });
 
 function changePlaceholder(){
@@ -57,9 +62,4 @@ function changePlaceholder(){
             document.getElementById('input_cerca').placeholder = choice[i].value + " da cercare";
         }
     }
-}
-
-function clsFilterPanel(){
-    var panel = document.getElementById('filter-panel');
-    panel.className = "hide";
 }

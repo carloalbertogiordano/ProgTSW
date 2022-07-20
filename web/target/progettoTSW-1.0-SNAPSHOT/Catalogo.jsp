@@ -25,73 +25,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
-    <script>
-        function getPriceSliderValue() {
-            let val = $("#priceSlider").val();
-            $("current").change(val);
-        }
-
-        function getChoice(){
-            const ch = document.getElementsByName('choice');
-            let choice = 'noChoice';
-            for (let i = 0; i < ch.length; i++) {
-                if (ch[i].checked)
-                    choice = ch[i].value;
-            }
-            return choice;
-        }
-        $(document).ready(function() {
-            let oldCatalog = $('#divCatalogo').html();
-            $('#input_cerca').keyup(function () {
-                if($('#input_cerca').val() !== '') {
-                    $.ajax({
-                        url: 'FilterName',
-                        type: 'POST',
-                        data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()
-                        },
-                        success: function (response) {
-                            $('#divCatalogo').html(response);
-                        }
-                    });
-                }
-                else {
-                    $.ajax({
-                        url: 'resetFilterCatalog',
-                        type: 'GET',
-                    });
-                    $('#divCatalogo').html(oldCatalog);
-                }
-            });
-            $("#priceSlider").change(function(){
-                $.ajax({
-                    url: 'FilterPrice',
-                    type: 'POST',
-                    data: {input_prezzo: $("#priceSlider").val(),
-                    },
-                    success: function (response) {
-                        $('#divCatalogo').html(response);
-                    }
-                });
-            });
-            $("#priceSlider").change(function(){
-                $("#current").html($("#priceSlider").val());
-            });
-        });
-
-        function changePlaceholder(){
-            let choice = document.getElementsByName('choice');
-            for(let i = 0; i < choice.length; i++){
-                if(choice[i].checked){
-                    document.getElementById('input_cerca').placeholder = choice[i].value + " da cercare";
-                }
-            }
-        }
-
-        function clsFilterPanel(){
-            var panel = document.getElementById('filter-panel');
-            panel.className = "hide";
-        }
-    </script>
+    <script src="js/catalogo.js"></script>
+    <script src="js/sliderFilter.js"></script>
 </head>
 <body>
 <%
@@ -118,8 +53,7 @@
     if (user != null){
         if (!user.isAdministrator()) {
         %>
-            <div class="header" >
-
+<div class="header" >
     <div class="flex-container topnav" id="topnav">
         <div class="flex-left-item logo">
             <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
@@ -164,8 +98,7 @@
             isAdministrator = true;
         }
     }else{%>
-        <div class="header" >
-
+<div class="header" >
     <div class="flex-container topnav" id="topnav">
         <div class="flex-left-item logo">
             <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
@@ -207,34 +140,44 @@
         <%}
     %>
 <div class="main flex-container">
-    <div class="filter-div inline flex-container" id="filter-panel">
-        <div class="close-filter-tab flex-container">
-            <button type="button" id="close-button" onclick="clsFilterPanel()">
-                <i class="fa fa-close"></i>
+    <div class="filter-div inline flex-container slide-panel" id="filter-panel">
+        <div class="open-filter-tab flex-container" id="open-filter-div">
+            <button type="button" id="open-button">
+                Filtri <i class="fa-solid fa-filter"></i>
             </button>
         </div>
-        <h3 class="filter-header">Filtri</h3>
-        <div class="filter-by-name">
-            <lable for="radMarca" class="form-control">
-                <input type="radio" id="radMarca" name="choice" value="Marca" onclick="changePlaceholder()" checked="checked">Marca
-            </lable>
-            <br>
-            <lable for="radModello" class="form-control">
-                <input type="radio" id="radModello" name="choice" value="Modello" onclick="changePlaceholder()">Modello
-            </lable>
-            <br>
-            <input type="text" id="input_cerca" placeholder="Marca da cercare">
-        </div>
-        <div class="filter-by-value">
-            <div class="container">
-                <div class="slider">
-                    <lable for="priceSlider">Prezzo</lable><br>
-                    <output id="startRange"><%=catalogo.getMinPrice()%></output>
-                    <input id="priceSlider" type="range" min=<%=catalogo.getMinPrice()%> max=<%=catalogo.getMaxPrice()%> value=<%=catalogo.getMaxPrice()%>>
-                    <output id="current"><%=catalogo.getMaxPrice()%></output>
-                    <output id="endRange"><%=catalogo.getMaxPrice()%></output>
-                </div>
+        <div id="filter-container" class="hide">
+            <div class="close-filter-tab flex-container">
+                <button type="button" id="close-button">
+                    <i class="fa fa-close"></i>
+                </button>
             </div>
+            <h3 class="filter-header">Filtri</h3>
+            <form>
+                <div class="filter-by-name">
+                    <lable for="radMarca" class="form-control filter-lable">
+                        <input type="radio" id="radMarca" name="choice" value="Marca" onclick="changePlaceholder()" checked="checked">Marca
+                    </lable>
+                    <br>
+                    <lable for="radModello" class="form-control filter-lable">
+                        <input type="radio" id="radModello" name="choice" value="Modello" onclick="changePlaceholder()">Modello
+                    </lable>
+                    <br>
+                    <input type="text" id="input_cerca" placeholder="Marca da cercare">
+                </div>
+                <div class="filter-by-value">
+                    <div class="container">
+                        <div class="slider">
+                            <lable for="priceSlider" class="filter-lable">Prezzo</lable><br>
+                            <output id="startRange"><%=catalogo.getMinPrice()%></output>
+                            <input id="priceSlider" type="range" min=<%=catalogo.getMinPrice()%> max=<%=catalogo.getMaxPrice()%> value=<%=catalogo.getMaxPrice()%>>
+                            <output id="current"><%=catalogo.getMaxPrice()%></output>
+                            <output id="endRange"><%=catalogo.getMaxPrice()%></output>
+                        </div>
+                    </div>
+                </div>
+                <input type="reset" value="reset" id="reset-button">
+            </form>
         </div>
     </div>
     <div class="catalogo-div inline flex-container" id="divCatalogo">
