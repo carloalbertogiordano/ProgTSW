@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.awt.SystemColor.info;
+
 public class Carrello {
     private List<Prodotto> carrello;
     private int carrelloCod;
@@ -53,19 +55,20 @@ public class Carrello {
 
     //Controlla se la quantità richiesta è compatibile con la quantità totale disponibile nel DB
     public void doCheckList(Catalogo catalogo) throws SQLException {
-        int i = 0;
+        ArrayList<Prodotto> list=new ArrayList<Prodotto>();
         for(Prodotto p : carrello){
             int quantitaDisponible = catalogo.getQuantità(p.getID());
             int quantitaRichiesta = p.getQuantita();
 
             if(quantitaDisponible == 0){
-                carrello.remove(i);
+                list.add(p);
             }
             else if(quantitaRichiesta > quantitaDisponible){
                 p.setQuantita(quantitaDisponible);
             }
-            i++;
         }
+        for(Prodotto p:list)
+            carrello.remove(p);
     }
 
     //Esegue la join tra questo carrello e un altro carrello (Del db in questo caso)
