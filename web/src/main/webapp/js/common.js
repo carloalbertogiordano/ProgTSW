@@ -41,7 +41,7 @@ function testVia() {
 }
 
 function testCitta() {
-    const cerca = /^[a-zA-Z]{1,100}$/;
+    const cerca = /^[a-zA-Z]{1,100}\s[0-9]$/;
     console.log("citta"+cerca.test($("#citta").val()));
     return cerca.test($("#citta").val());
 }
