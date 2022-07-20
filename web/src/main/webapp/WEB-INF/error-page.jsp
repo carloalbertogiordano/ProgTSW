@@ -6,7 +6,7 @@
 <body>
 <%
     out.println("OPS, Non riusciamo a trovare questa risorsa :(<br>" +
-            "torna alla <a href=\"index.jsp\">home page</a>");
+            "torna alla <a href=\".\">home page</a>");
 %>
 </body>
 </html>
