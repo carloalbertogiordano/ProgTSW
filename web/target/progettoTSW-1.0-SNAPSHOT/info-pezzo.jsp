@@ -75,10 +75,16 @@
                     "<li>Modello: " + p.getModello() + "</li>" +
                     "</ul>" +
                     "<form action=\"addCart\" id=\"buy\">" +
-                    "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">" +
-                    "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
-                    "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
-                    "</div>");
+                    "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">");
+                    if(p.getQuantita() > 0) {
+                        out.println(
+                                "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
+                                        "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
+                                        "</div>");
+                    }
+                    else{
+                        out.println("Ci dispiace, questo prodotto non è più disponibile.");
+                    }
         }
         else{
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request,response);
