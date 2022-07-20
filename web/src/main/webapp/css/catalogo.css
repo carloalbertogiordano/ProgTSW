@@ -83,7 +83,6 @@ input[type="radio"]::before {
 input[type="radio"]:checked::before {
     transform: scale(1);
 }
-/*FINE TEST*/
 
 input[type="text"]{
     border: none;
@@ -142,3 +141,34 @@ input[type='range']::-moz-range-thumb {
     justify-content: end;
 }
 
+#open-button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 25px;
+    color: #003049;
+    cursor: pointer;
+}
+
+.open-filter-tab.flex-container {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.filter-lable{
+    color: #003049;
+}
+
+#reset-button {
+    border: none;
+    outline: none;
+    background-color: #003049;
+    color: #fdf0d5;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 3px;
+    width: 50px;
+    height: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
