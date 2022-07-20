@@ -316,6 +316,6 @@ div.product-details > h4{
         max-width: 100%;
         overflow-x: hidden !important;
         padding: 0px;
-
+        justify-content: center;
     }
 }

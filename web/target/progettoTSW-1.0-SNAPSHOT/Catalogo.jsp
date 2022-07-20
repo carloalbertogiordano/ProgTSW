@@ -243,8 +243,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+        <!--</div>
+        <div class="flex-container product-slider">-->
             <%
                 for (Case case_ : caseList) {
                     boolean toShow = case_.getQuantita() > 0 || isAdministrator;
@@ -278,8 +278,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
                     boolean toShow = dissipatore.getQuantita() > 0 || isAdministrator;
@@ -313,8 +313,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Gpu gpu : gpuList) {
                     boolean toShow = gpu.getQuantita() > 0 || isAdministrator;
@@ -350,8 +350,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Mobo mobo : moboList) {
                     boolean toShow = mobo.getQuantita() > 0 || isAdministrator;
@@ -388,8 +388,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Psu psu : psuList) {
                     boolean toShow = psu.getQuantita() > 0 || isAdministrator;
@@ -423,8 +423,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Ram ram : ramList) {
                     boolean toShow = ram.getQuantita() > 0 || isAdministrator;
@@ -458,8 +458,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="hdd-list flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Hdd hdd : hddList) {
                     boolean toShow = hdd.getQuantita() > 0 || isAdministrator;
@@ -493,8 +493,8 @@
                     }
                 }
             %>
-        </div>
-        <div class="flex-container product-slider">
+            <!--</div>
+                    <div class="flex-container product-slider">-->
             <%
                 for (Ssd ssd : ssdList) {
                     boolean toShow = ssd.getQuantita() > 0 || isAdministrator;
@@ -518,7 +518,7 @@
                                             "<h4><a href=\"" + path + "?Id=" + ssd.getID()+ "\">" + ssd.getMarca() + " " + ssd.getModello() + "</a></h4>\n" +
                                             "<p>" + ssd.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
-                                                "<div class=\"product-price\">" + ssd.getPrezzo() + "</div>\n" +
+                                                "<div class=\"product-price\">" + ssd.getPrezzo() + "&euro;</div>\n" +
                                                 "<div class=\"product-links\">\n" +
                                                     "<a href=\"addCart?Id=" + ssd.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
                                                 "</div>\n" +
