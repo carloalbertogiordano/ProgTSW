@@ -5,7 +5,7 @@ function dropdownMenu() {
 window.onclick = function(e){
     if(!e.target.matches('.dropbtn') && !e.target.matches('.burger')){
         var x = document.getElementById('nav-list');
-        if(x.classList.contains('responsive')){
+        if(x != null && x.classList.contains('responsive')){
             x.classList.remove('responsive');
         }
     }
