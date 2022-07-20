@@ -8,6 +8,12 @@
         <servlet-class>Controller.HomeServlet</servlet-class>
     </servlet>
 
+    <!-- Mimetype needed for tomcat to serve favicon images -->
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
+
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/HomeServlet</url-pattern>

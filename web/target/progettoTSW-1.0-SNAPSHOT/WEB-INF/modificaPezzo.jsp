@@ -141,6 +141,7 @@
             return false;
         }
     </script>
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
     <%

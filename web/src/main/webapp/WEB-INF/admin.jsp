@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
     <link rel = "stylesheet" type = "text/css" href = "../css/style.css">
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
     <button onclick="nuovo()">Nuovo Prodotto</button>

@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
     <script src="js/common.js"></script>
-
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <title>Login</title>
 </head>
 <body>

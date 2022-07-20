@@ -6,6 +6,7 @@
     <title>Info personali</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-git.js"></script>
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <script type = "text/javascript">
         function testCap() {
             const cerca = /[1-9][0-9]{4}/;
