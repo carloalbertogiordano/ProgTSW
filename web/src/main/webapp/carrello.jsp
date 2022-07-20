@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
     <script src="js/carrello.js"></script>
+    <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
 <%
