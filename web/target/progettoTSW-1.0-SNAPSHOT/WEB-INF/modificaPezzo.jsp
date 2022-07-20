@@ -20,6 +20,7 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
+porco dio
     <%
         String id = request.getParameter("Id");
         Catalogo catalogo = (Catalogo) request.getSession().getAttribute("catalogo");

@@ -6,7 +6,6 @@ import Model.Prodotto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static java.awt.SystemColor.info;
@@ -55,22 +54,25 @@ public class Carrello {
     }
 
     //Controlla se la quantità richiesta è compatibile con la quantità totale disponibile nel DB
-    public void doCheckList(Catalogo catalogo) throws SQLException{
-        List<Prodotto> newCart = new ArrayList<>();
-        Prodotto ptmp = null;
-        double prezzo = 0;
+    public void doCheckList(Catalogo catalogo) throws SQLException {
+        ArrayList<Prodotto> list=new ArrayList<Prodotto>();
+        for(Prodotto p : carrello){
+            int quantitaDisponible = catalogo.getQuantità(p.getID());
+            int quantitaRichiesta = p.getQuantita();
 
-        for(Prodotto p : carrello){//Per ogni prodotto nel carrello
-            ptmp = catalogo.doRetriveById(p.getID());//se il prodotto corrispondente nel catalogo
-            if(ptmp.getQuantita() > 0) {//ha quantità maggiore di 0
-                if(p.getQuantita() > ptmp.getQuantita())
-                    p.setQuantita(ptmp.getQuantita());
-                newCart.add(p);//lo aggiungo al carrello controllando di non averne richiesto troppo (ed in caso lo aggiusto)
-                prezzo += p.getPrezzo();//e aggiurno il prezzo del carrello
+            if(quantitaDisponible == 0){
+                list.add(p);
+            }
+            else if(quantitaRichiesta > quantitaDisponible){
+                p.setQuantita(quantitaDisponible);
             }
         }
-        setCarrello(newCart);//Aggiorno il carrello
-        setPrezzo(prezzo);//ed il prezzo
+        for(Prodotto p:list)
+            carrello.remove(p);
+    }
+
+    public void doCheckList2(Catalogo catalogo) throws SQLException{
+
     }
 
     //Esegue la join tra questo carrello e un altro carrello (Del db in questo caso)
