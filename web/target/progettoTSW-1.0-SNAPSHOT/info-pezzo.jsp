@@ -83,7 +83,7 @@
                                         "</div>");
                     }
                     else{
-                        out.println("Ci dispiace, questo prodotto non è più disponibile.");
+                        out.println("Ci dispiace, questo prodotto non è più disponibile.</form></div>");
                     }
         }
         else{

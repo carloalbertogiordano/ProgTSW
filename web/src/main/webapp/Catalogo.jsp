@@ -108,9 +108,18 @@
     List<Ram> ramList = (List<Ram>) catalogo.doRetriveByType("RAM");
     List<Hdd> hddList = (List<Hdd>) catalogo.doRetriveByType("HDD");
     List<Ssd> ssdList = (List<Ssd>) catalogo.doRetriveByType("SSD");
-    Cliente c = (Cliente) session.getAttribute("cliente");
-%>
-<div class="header">
+    Cliente user = (Cliente) session.getAttribute("cliente");
+
+    String path = "info-pezzo.jsp";
+    boolean isAdministrator = false;
+
+    //Se l'utente è amministratore dovrà reindirizzare a una pagina diversa al click sul prodotto
+    //E non far vedere la navbar
+    if (user != null){
+        if (!user.isAdministrator()) {
+        %>
+            <div class="header" >
+
     <div class="flex-container topnav" id="topnav">
         <div class="flex-left-item logo">
             <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
@@ -125,7 +134,7 @@
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
-                    if (c != null) {
+                    if (user != null) {
                         out.println("<li class=\"right-buttons\">" +
                                 "<div class=\"dropdown\">" +
                                 "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
@@ -141,7 +150,7 @@
                     }
                 %>
                 <%
-                    if (c == null) {
+                    if (user == null) {
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
                     }
                 %>
@@ -149,6 +158,54 @@
         </div>
     </div>
 </div>
+        <% }
+        else{
+            path = "redirectToAdminPage";
+            isAdministrator = true;
+        }
+    }else{%>
+        <div class="header" >
+
+    <div class="flex-container topnav" id="topnav">
+        <div class="flex-left-item logo">
+            <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+        </div>
+        <a href="javascript:void(0);" class="right-buttons burger" onclick="dropDownBurger()">&#9776;</a>
+        <div class="nav flex-right-item" id="nav-list">
+            <ul class="flex-container">
+                <li><a href="index.jsp" class="active">Home</a></li>
+                <li><a href="Catalogo.jsp">Catalogo</a></li>
+                <li><a href="#">Chi siamo</a></li>
+                <li class="empty-flex-field" id="emptyFlexField"></li>
+                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
+                        class="fa-solid fa-cart-shopping"></i></a></li>
+                <%
+                    if (user != null) {
+                        out.println("<li class=\"right-buttons\">" +
+                                "<div class=\"dropdown\">" +
+                                "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
+                                "<i class=\"fa-solid fa-circle-user\"></i>Profilo\n" +
+                                "</button>" +
+                                "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
+                                "<a href=\"modInfoCliente\">Il mio profilo</a>\n" +
+                                "<a href=\"storicoOrdini\">I miei ordini</a>\n" +
+                                "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
+                                "</div>" +
+                                "</div>" +
+                                "</li>");
+                    }
+                %>
+                <%
+                    if (user == null) {
+                        out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
+                    }
+                %>
+            </ul>
+        </div>
+    </div>
+</div>
+        <%}
+    %>
 <div class="main flex-container">
     <div class="filter-div inline flex-container" id="filter-panel">
         <div class="close-filter-tab flex-container">
@@ -183,17 +240,6 @@
     <div class="catalogo-div inline flex-container" id="divCatalogo">
         <div>
             <%
-                String path = "info-pezzo.jsp";
-                boolean isAdministrator = false;
-                Cliente user = (Cliente) ss.getAttribute("cliente");
-                if (user != null)
-                    if (user.isAdministrator())
-                        isAdministrator = true;
-
-                //Se l'utente è amministratore dovrà reindirizzare a una pagina diversa al click sul prodotto
-                if (isAdministrator)
-                    path = "redirectToAdminPage";
-
                 for (Cpu cpu : cpuList) {
                     //Visto che la visione del catalogo è generalizzata dobbiamo poter
                     //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
