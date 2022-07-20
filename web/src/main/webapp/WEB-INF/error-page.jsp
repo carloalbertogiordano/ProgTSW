@@ -5,8 +5,8 @@
 </head>
 <body>
 <%
-    out.println("OPS, Non riusciamo a trovare questo prodotto <br>" +
-    "torna alla <a href=\"index.jsp\">home page</a>");
+    out.println("OPS, Non riusciamo a trovare questa risorsa :(<br>" +
+            "torna alla <a href=\"index.jsp\">home page</a>");
 %>
 </body>
 </html>

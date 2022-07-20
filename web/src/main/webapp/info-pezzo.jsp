@@ -65,13 +65,7 @@
         </div>
     </div>
     <%
-        int id = 0;
-        //Riscrivendo a mano l'url potremmo richiede l'id di un prodotto inesistente
-        try{
-        id = Integer.parseInt(request.getParameter("Id"));
-        } catch (NumberFormatException e){
-            request.getRequestDispatcher("prodottoNonTrovato.jsp").forward(request, response);
-        }
+        int id = Integer.parseInt(request.getParameter("Id"));
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
 
         Prodotto p = catalogo.doRetriveById(id);
@@ -85,6 +79,9 @@
                     "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
                     "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                     "</div>");
+        }
+        else{
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request,response);
         }
     %>
 </div>

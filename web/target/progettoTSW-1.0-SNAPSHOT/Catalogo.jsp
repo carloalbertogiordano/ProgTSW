@@ -194,14 +194,13 @@
                 if (isAdministrator)
                     path = "redirectToAdminPage";
 
-                int i=0;
                 for (Cpu cpu : cpuList) {
                     //Visto che la visione del catalogo è generalizzata dobbiamo poter
                     //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
                     //se invece è un utente normale.
                     boolean toShow = cpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 cpu.getMarca() + "</li>" +
                                 "<li>Modello: " + cpu.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -212,7 +211,6 @@
                                 "<li>Disponibilità: " + cpu.getQuantita() + "</li></ul></div></a>");
 
                     }
-                    i++;
                 }
             %>
         </div>
@@ -221,7 +219,7 @@
                 for (Case case_ : caseList) {
                     boolean toShow = case_.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 case_.getMarca() + "</li>" +
                                 "<li>Modello: " + case_.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -231,7 +229,6 @@
                                 "<li>Url: " + case_.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + case_.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -240,7 +237,7 @@
                 for (Dissipatore dissipatore : dissipatoreList) {
                     boolean toShow = dissipatore.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 dissipatore.getMarca() + "</li>" +
                                 "<li>Modello: " + dissipatore.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -250,7 +247,6 @@
                                 "<li>Url: " + dissipatore.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + dissipatore.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -259,7 +255,7 @@
                 for (Gpu gpu : gpuList) {
                     boolean toShow = gpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 gpu.getMarca() + "</li>" +
                                 "<li>Modello: " + gpu.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -271,7 +267,6 @@
                                 "<li>Url: " + gpu.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + gpu.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -280,7 +275,7 @@
                 for (Mobo mobo : moboList) {
                     boolean toShow = mobo.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 mobo.getMarca() + "</li>" +
                                 "<li>Modello: " + mobo.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -293,7 +288,6 @@
                                 "<li>Url: " + mobo.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + mobo.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -302,7 +296,7 @@
                 for (Psu psu : psuList) {
                     boolean toShow = psu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 psu.getMarca() + "</li>" +
                                 "<li>Modello: " + psu.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -312,7 +306,6 @@
                                 "<li>Url: " + psu.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + psu.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -321,7 +314,7 @@
                 for (Ram ram : ramList) {
                     boolean toShow = ram.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ram.getMarca() + "</li>" +
                                 "<li>Modello: " + ram.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -331,7 +324,6 @@
                                 "<li>Url: " + ram.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + ram.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -340,7 +332,7 @@
                 for (Hdd hdd : hddList) {
                     boolean toShow = hdd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 hdd.getMarca() + "</li>" +
                                 "<li>Modello: " + hdd.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -350,7 +342,6 @@
                                 "<li>Url: " + hdd.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + hdd.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>
@@ -359,7 +350,7 @@
                 for (Ssd ssd : ssdList) {
                     boolean toShow = ssd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 ssd.getMarca() + "</li>" +
                                 "<li>Modello: " + ssd.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -369,7 +360,6 @@
                                 "<li>Url: " + ssd.getUrl() + "</li>" +
                                 "<li>Disponibilità: " + ssd.getQuantita() + "</li></ul></div></a>");
                     }
-                    i++;
                 }
             %>
         </div>

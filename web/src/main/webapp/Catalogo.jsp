@@ -200,7 +200,7 @@
                     //se invece è un utente normale.
                     boolean toShow = cpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println(i + "<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                        out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 cpu.getMarca() + "</li>" +
                                 "<li>Modello: " + cpu.getModello() + "</li>" +
                                 "Prezzo: " +
