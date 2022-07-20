@@ -8,6 +8,10 @@
     max-width: 20%;
     flex-direction: column;
     margin-top: 40px;
+    background-color: transparent;
+    border-radius: 5px;
+    max-height: 100px;
+    box-shadow: none;
 }
 
 .filter-by-name{
@@ -133,8 +137,9 @@ input[type='range']::-moz-range-thumb {
     background: transparent;
     font-size: 25px;
     color: #003049;
-    margin-right: 41px;
+    margin: 20px;
     cursor: pointer;
+    align-self: inherit;
 }
 
 .close-filter-tab{
@@ -171,4 +176,34 @@ input[type='range']::-moz-range-thumb {
     height: 25px;
     margin-left: 20px;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 768px){
+
+    #filter-panel{
+        display: flex;
+        justify-content: center;
+    }
+
+    .filter-div{
+        max-width: 100%;
+        flex-direction: row;
+        margin-top: 0;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+
+    body{
+        overflow-x: hidden !important;
+        max-width: 100%;
+    }
+
+    .main.flex-container{
+        max-width: 100%;
+        overflow-x: hidden !important;
+        padding: 0px;
+
+    }
+
+
 }
