@@ -58,3 +58,8 @@ function changePlaceholder(){
         }
     }
 }
+
+function clsFilterPanel(){
+    var panel = document.getElementById('filter-panel');
+    panel.className = "hide";
+}

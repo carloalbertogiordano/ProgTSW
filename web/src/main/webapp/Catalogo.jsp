@@ -20,44 +20,112 @@
     <title>Catalogo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-git.js"></script>
-    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/catalogo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
-    <script src="js/catalogo.js"></script>
+    <script>
+        function getPriceSliderValue() {
+            let val = $("#priceSlider").val();
+            $("current").change(val);
+        }
+
+        function getChoice(){
+            const ch = document.getElementsByName('choice');
+            let choice = 'noChoice';
+            for (let i = 0; i < ch.length; i++) {
+                if (ch[i].checked)
+                    choice = ch[i].value;
+            }
+            return choice;
+        }
+        $(document).ready(function() {
+            let oldCatalog = $('#divCatalogo').html();
+            $('#input_cerca').keyup(function () {
+                if($('#input_cerca').val() !== '') {
+                    $.ajax({
+                        url: 'FilterName',
+                        type: 'POST',
+                        data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()
+                        },
+                        success: function (response) {
+                            $('#divCatalogo').html(response);
+                        }
+                    });
+                }
+                else {
+                    $.ajax({
+                        url: 'resetFilterCatalog',
+                        type: 'GET',
+                    });
+                    $('#divCatalogo').html(oldCatalog);
+                }
+            });
+            $("#priceSlider").change(function(){
+                $.ajax({
+                    url: 'FilterPrice',
+                    type: 'POST',
+                    data: {input_prezzo: $("#priceSlider").val(),
+                    },
+                    success: function (response) {
+                        $('#divCatalogo').html(response);
+                    }
+                });
+            });
+            $("#priceSlider").change(function(){
+                $("#current").html($("#priceSlider").val());
+            });
+        });
+
+        function changePlaceholder(){
+            let choice = document.getElementsByName('choice');
+            for(let i = 0; i < choice.length; i++){
+                if(choice[i].checked){
+                    document.getElementById('input_cerca').placeholder = choice[i].value + " da cercare";
+                }
+            }
+        }
+
+        function clsFilterPanel(){
+            var panel = document.getElementById('filter-panel');
+            panel.className = "hide";
+        }
+    </script>
 </head>
 <body>
-    <%
-        HttpSession ss = request.getSession();
-        Catalogo catalogo = null;
-        catalogo = (Catalogo) ss.getAttribute("catalogo");
+<%
+    HttpSession ss = request.getSession();
+    Catalogo catalogo = null;
+    catalogo = (Catalogo) ss.getAttribute("catalogo");
 
-        List<Cpu> cpuList = (List<Cpu>) catalogo.doRetriveByType("CPU");
-        List<Case> caseList = (List<Case>) catalogo.doRetriveByType("CASE");
-        List<Dissipatore> dissipatoreList = (List<Dissipatore>) catalogo.doRetriveByType("DISSIPATORE");
-        List<Gpu> gpuList = (List<Gpu>) catalogo.doRetriveByType("GPU");
-        List<Mobo> moboList = (List<Mobo>) catalogo.doRetriveByType("MOBO");
-        List<Psu> psuList = (List<Psu>) catalogo.doRetriveByType("PSU");
-        List<Ram> ramList = (List<Ram>) catalogo.doRetriveByType("RAM");
-        List<Hdd> hddList = (List<Hdd>) catalogo.doRetriveByType("HDD");
-        List<Ssd> ssdList = (List<Ssd>) catalogo.doRetriveByType("SSD");
-        Cliente c = (Cliente) session.getAttribute("cliente");
+    List<Cpu> cpuList = (List<Cpu>) catalogo.doRetriveByType("CPU");
+    List<Case> caseList = (List<Case>) catalogo.doRetriveByType("CASE");
+    List<Dissipatore> dissipatoreList = (List<Dissipatore>) catalogo.doRetriveByType("DISSIPATORE");
+    List<Gpu> gpuList = (List<Gpu>) catalogo.doRetriveByType("GPU");
+    List<Mobo> moboList = (List<Mobo>) catalogo.doRetriveByType("MOBO");
+    List<Psu> psuList = (List<Psu>) catalogo.doRetriveByType("PSU");
+    List<Ram> ramList = (List<Ram>) catalogo.doRetriveByType("RAM");
+    List<Hdd> hddList = (List<Hdd>) catalogo.doRetriveByType("HDD");
+    List<Ssd> ssdList = (List<Ssd>) catalogo.doRetriveByType("SSD");
+    Cliente c = (Cliente) session.getAttribute("cliente");
 %>
 <div class="header">
-    <div class="flex-container topnav" id ="topnav">
+    <div class="flex-container topnav" id="topnav">
         <div class="flex-left-item logo">
             <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
         </div>
-        <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
+        <a href="javascript:void(0);" class="right-buttons burger" onclick="dropDownBurger()">&#9776;</a>
         <div class="nav flex-right-item" id="nav-list">
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
                 <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
-                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
+                        class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
-                    if(c!=null){
+                    if (c != null) {
                         out.println("<li class=\"right-buttons\">" +
                                 "<div class=\"dropdown\">" +
                                 "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
@@ -73,7 +141,7 @@
                     }
                 %>
                 <%
-                    if(c==null){
+                    if (c == null) {
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
                     }
                 %>
@@ -81,36 +149,49 @@
         </div>
     </div>
 </div>
-<h2>Filtra per nome: </h2>
-<div style="border-style: solid; border-color: grey">
-    <input type="text" id="input_cerca" placeholder="Marca da cercare">
-    <input type="radio" id="radMarca" name="choice" value="Marca" onclick="changePlaceholder()" checked="checked">
-    <lable for="radMarca">Marca</lable>
-    <input type="radio" id="radModello" name="choice" value="Modello" onclick="changePlaceholder()">
-    <lable for="radModello">Modello</lable>
-</div>
-<h3>Filtra valore</h3>
-<div class="container">
-    <div class="slider">
-        <output id="startRange"><%=catalogo.getMinPrice()%></output>
-        <input id="priceSlider" type="range" min=<%=catalogo.getMinPrice()%> max=<%=catalogo.getMaxPrice()%> value=<%=catalogo.getMaxPrice()%>>
-        <output id="current"><%=catalogo.getMaxPrice()%></output>
-        <output id="endRange"><%=catalogo.getMaxPrice()%></output>
+<div class="main flex-container">
+    <div class="filter-div inline flex-container" id="filter-panel">
+        <div class="close-filter-tab flex-container">
+            <button type="button" id="close-button" onclick="clsFilterPanel()">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+        <h3 class="filter-header">Filtri</h3>
+        <div class="filter-by-name">
+            <lable for="radMarca" class="form-control">
+                <input type="radio" id="radMarca" name="choice" value="Marca" onclick="changePlaceholder()" checked="checked">Marca
+            </lable>
+            <br>
+            <lable for="radModello" class="form-control">
+                <input type="radio" id="radModello" name="choice" value="Modello" onclick="changePlaceholder()">Modello
+            </lable>
+            <br>
+            <input type="text" id="input_cerca" placeholder="Marca da cercare">
+        </div>
+        <div class="filter-by-value">
+            <div class="container">
+                <div class="slider">
+                    <lable for="priceSlider">Prezzo</lable><br>
+                    <output id="startRange"><%=catalogo.getMinPrice()%></output>
+                    <input id="priceSlider" type="range" min=<%=catalogo.getMinPrice()%> max=<%=catalogo.getMaxPrice()%> value=<%=catalogo.getMaxPrice()%>>
+                    <output id="current"><%=catalogo.getMaxPrice()%></output>
+                    <output id="endRange"><%=catalogo.getMaxPrice()%></output>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-    <div id="divCatalogo" class="wrapper">
+    <div class="catalogo-div inline flex-container" id="divCatalogo">
         <div>
             <%
                 String path = "info-pezzo.jsp";
                 boolean isAdministrator = false;
                 Cliente user = (Cliente) ss.getAttribute("cliente");
                 if (user != null)
-                    if( user.isAdministrator())
-                        isAdministrator=true;
+                    if (user.isAdministrator())
+                        isAdministrator = true;
 
                 //Se l'utente è amministratore dovrà reindirizzare a una pagina diversa al click sul prodotto
-                if(isAdministrator)
+                if (isAdministrator)
                     path = "redirectToAdminPage";
 
                 for (Cpu cpu : cpuList) {
@@ -118,8 +199,8 @@
                     //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
                     //se invece è un utente normale.
                     boolean toShow = cpu.getQuantita() > 0 || isAdministrator;
-                    if(toShow){
-                        out.println("<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
+                    if (toShow) {
+                        out.println(i + "<a href=\"" + path + "?Id=" + cpu.getID() + "\"><div id=\"" + cpu.getID() + "\"class = \"product cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
                                 cpu.getMarca() + "</li>" +
                                 "<li>Modello: " + cpu.getModello() + "</li>" +
                                 "Prezzo: " +
@@ -283,5 +364,6 @@
             %>
         </div>
     </div>
+</div>
 </body>
 </html>

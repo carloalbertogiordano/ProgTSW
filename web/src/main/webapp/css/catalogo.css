@@ -1,0 +1,144 @@
+.filter-header{
+    color: #003049;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.filter-div{
+    max-width: 20%;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.filter-by-name{
+    padding: 0px 20px;
+    margin-bottom: 20px;
+}
+
+.filter-by-value{
+    padding: 0px 20px;
+}
+
+.catalogo-div{
+    max-width: 80%;
+}
+
+.inline{
+    display: inline-flex;
+}
+
+/*TEST funzionante, da commentare con cosa fanno le varie regole*/
+:root {
+    --form-control-color: #780000;
+}
+.form-control {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #ffffff;
+    /* Not removed via appearance */
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(0.2em);
+}
+
+.form-control + .form-control {
+    margin-top: 1em;
+}
+
+.form-control{
+    color: #003049;
+}
+
+input[type="radio"] {
+    /* ...existing styles */
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+/*FINE TEST*/
+
+input[type="text"]{
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    font-family: inherit;
+    border-bottom: 1px solid #669bbc;
+}
+
+
+input[type="range"] {
+    -webkit-appearance: none;
+    border-radius: 4px;
+    background-color:#669bbc;
+    height: 1px;
+    vertical-align: middle;
+}
+
+input[type='range']::-moz-range-track {
+    -moz-appearance: none;
+    border-radius: 4px;
+    /*box-shadow: inset 0 0 5px #333;*/
+    background-color: #669bbc;
+    height: 5px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    border-radius: 20px;
+    background-color:#669bbc;
+    border: 1px solid #003049;
+    height: 14px;
+    width: 14px;
+}
+
+input[type='range']::-moz-range-thumb {
+    -moz-appearance: none;
+    border-radius: 20px;
+    background-color: #780000;
+    border: 1px solid #003049;
+    height: 14px;
+    width: 14px;
+}
+
+#close-button{
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 25px;
+    color: #003049;
+    margin-right: 41px;
+    cursor: pointer;
+}
+
+.close-filter-tab{
+    justify-content: end;
+}
+
