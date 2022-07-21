@@ -56,6 +56,10 @@ div.spec li{
     margin: 10px 0;
 }
 
+#last-li{
+    list-style-type: none;
+}
+
 .add-cart-button{
     background-color: #003049;
     margin: 30px 0;
@@ -87,4 +91,10 @@ div.spec li{
     font-size: 18px;
     font-family: inherit;
     color: #003049;
+}
+
+@media screen and (max-width: 768px){
+    .flex-right-item.info-box{
+        margin-top: 50px;
+    }
 }

@@ -8,6 +8,7 @@
     max-width: 20%;
     flex-direction: column;
     margin-top: 40px;
+    margin-left: 20px;
     background-color: transparent;
     max-height: 100px;
     box-shadow: none;
@@ -189,9 +190,9 @@ a {
     width: 380px;
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
-    margin: 30px auto;
+    margin: 40px auto;
     background: white;
-    max-height: 700px;
+    max-height: 750px;
 }
 
 .product-tumb {
