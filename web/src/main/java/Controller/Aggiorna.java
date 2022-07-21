@@ -59,7 +59,7 @@ public class Aggiorna extends HttpServlet {
                 String rootPath = String.valueOf(request.getServletContext().getResource("/"));
                 System.out.println(p.getUrl());
                 ImageManager imgManager = new ImageManager();
-                ImageManager.renameFolder(rootPath, p.getUrl(), p.getMarca(), p.getUrl(), marca, modello);
+                imgManager.renameFolder(rootPath, p.getUrl(), p.getMarca(), p.getUrl(), marca, modello);
                 url = "Images/"+marca+modello;
             }
         }
