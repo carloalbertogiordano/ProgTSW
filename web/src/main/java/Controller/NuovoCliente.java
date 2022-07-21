@@ -51,7 +51,7 @@ public class NuovoCliente extends HttpServlet {
                     Cliente c = new Cliente(email, password, nikName, telefono, via, provincia, citta, cap);
                     try {
                         //Aggiungi cliente ad DB
-                        clienteDAO.addCliente(c);
+                        clienteDAO.uploadCliente(c);
                         //Creo un nuovo carrello nel DB
                         int codCarrello = carrelloDAO.createCarrello();
                         //Associo il nuovo cliente al carrello

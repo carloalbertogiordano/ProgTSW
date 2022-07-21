@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class ClienteDAO {
 
-    public void addCliente(Cliente c) throws SQLException {
+    public void uploadCliente(Cliente c) throws SQLException {
         Connection con = ConPool.getConnection();
         String ins = "INSERT INTO Cliente (Nickname, Mail, Pass, Tel, Via, Provincia, Citta, Cap) "+
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

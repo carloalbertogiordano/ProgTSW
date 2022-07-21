@@ -4,6 +4,7 @@ import Model.CASE_.Case;
 import Model.ConPool;
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,8 +41,28 @@ public class CpuDAO {
         }
         return listC;
     }
-    public void Upload(Cpu c) throws SQLException {
-        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantita(), c.getWattaggio(), c.getTipo(), c.getFrequenza(), c.getN_Core(), null, null, null, null, null, null, null, null, c.getUrl(), c.getDescrizione());
+    public static void Upload(Cpu c) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, c.getTipo());
+        pdstmt.setString(2, c.getMarca());
+        pdstmt.setString(3, c.getModello());
+        pdstmt.setDouble(4, c.getPrezzo());
+        pdstmt.setInt(5, c.getQuantita());
+        pdstmt.setInt(6, c.getWattaggio());
+        pdstmt.setFloat(7, c.getFrequenza());
+        pdstmt.setInt(8, c.getN_Core());
+        pdstmt.setString(9, c.getUrl());
+        pdstmt.setString(10, c.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        c.setID(rs.getInt(1));
+
     }
 
 }

@@ -1,8 +1,10 @@
 package Model.Archiviazione_.HDD_;
 
+import Model.Archiviazione_.ArchivioDati;
 import Model.Archiviazione_.ArchivioDatiDAO;
 import Model.ConPool;
 import Model.Prodotto;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,6 +36,5 @@ public class HddDAO extends ArchivioDatiDAO {
         }
         return listH;
     }
-
 
 }

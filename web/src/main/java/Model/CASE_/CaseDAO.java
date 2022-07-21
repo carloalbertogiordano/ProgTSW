@@ -6,6 +6,7 @@ import Model.CASE_.Case;
 
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,8 +39,26 @@ public class CaseDAO {
         return listC;
     }
 
-    public void Upload(Case c) throws SQLException {
-        ProdottoDAO.Upload(c.getMarca(), c.getModello(), c.getPrezzo(), c.getQuantita(), null, c.getTipo(), null, null, null, null, null, null, null, null, null, c.getFormaMobo(), c.getUrl(), c.getDescrizione());
+    public static void Upload(Case c) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, FormaMobo, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, c.getTipo());
+        pdstmt.setString(2, c.getMarca());
+        pdstmt.setString(3, c.getModello());
+        pdstmt.setDouble(4, c.getPrezzo());
+        pdstmt.setInt(5, c.getQuantita());
+        pdstmt.setFloat(6, c.getFormaMobo());
+        pdstmt.setString(7, c.getUrl());
+        pdstmt.setString(8, c.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        c.setID(rs.getInt(1));
+
     }
 
 }

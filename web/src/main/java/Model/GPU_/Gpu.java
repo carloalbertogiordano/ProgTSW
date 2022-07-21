@@ -3,11 +3,12 @@ package Model.GPU_;
 import Model.Prodotto;
 
 public class Gpu extends Prodotto {
-    private int wattaggio, frequenza;
+    private int wattaggio;
+    private float frequenza;
     private int vRam;
 
     public Gpu(int ID, String marca, String modello, double prezzo, int quantita,
-               int wattaggio, int frequenza, int vRam, String url, String descrizione) {
+               int wattaggio, float frequenza, int vRam, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantita, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
@@ -15,7 +16,7 @@ public class Gpu extends Prodotto {
     }
 
     public Gpu(String marca, String modello, double prezzo, int quantita,
-               int wattaggio, int frequenza, int vRam, String url, String descrizione) {
+               int wattaggio, float frequenza, int vRam, String url, String descrizione) {
         super(marca, modello, prezzo, quantita, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
@@ -30,7 +31,7 @@ public class Gpu extends Prodotto {
         return wattaggio;
     }
 
-    public int getFrequenza() {
+    public float getFrequenza() {
         return frequenza;
     }
 

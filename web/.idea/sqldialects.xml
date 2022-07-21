@@ -4,11 +4,17 @@
     <file url="file://$PROJECT_DIR$/../sql/Crazione.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/../sql/CreazioneUtente.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/../sql/Popolazione.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/Archiviazione_/ArchivioDatiDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Archiviazione_/HDD_/HddDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Archiviazione_/SDD_/SsdDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/CASE_/CaseDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/CPU_/CpuDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Carrello_/CarrelloDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/Cliente_/ClienteDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/GPU_/GpuDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/MOBO_/MoboDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/PSU_/PsuDAO.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/Model/ProdottoDAO.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Model/RAM_/RamDAO.java" dialect="GenericSQL" />
   </component>
 </project>

@@ -6,6 +6,7 @@ import Model.PSU_.Psu;
 import Model.PSU_.PsuDAO;
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,8 +38,26 @@ public class DissipatoreDAO {
         return listD;
     }
 
-    public void Upload(Dissipatore d) throws SQLException {
-        ProdottoDAO.Upload(d.getMarca(), d.getModello(), d.getPrezzo(), d.getQuantita(), null, d.getTipo(), null, null, null, null, null, null, null, null, d.getW_Cpu(), null, d.getUrl(), d.getDescrizione());
+    public static void Upload(Dissipatore d) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, W_CPU, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, d.getTipo());
+        pdstmt.setString(2, d.getMarca());
+        pdstmt.setString(3, d.getModello());
+        pdstmt.setDouble(4, d.getPrezzo());
+        pdstmt.setInt(5, d.getQuantita());
+        pdstmt.setInt(6, d.getW_Cpu());
+        pdstmt.setString(7, d.getUrl());
+        pdstmt.setString(8, d.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        d.setID(rs.getInt(1));
+
     }
 
 }

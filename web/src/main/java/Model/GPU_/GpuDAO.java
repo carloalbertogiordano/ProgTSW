@@ -6,6 +6,7 @@ import Model.CASE_.Case;
 import Model.ConPool;
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,8 +39,28 @@ public class GpuDAO {
         return listG;
     }
 
-    public void Upload(Gpu g) throws SQLException {
-        ProdottoDAO.Upload(g.getMarca(), g.getModello(), g.getPrezzo(), g.getQuantita(), g.getWattaggio(), g.getTipo(), null, null, null, null, null, null, g.getVRam(), null, null, null, g.getUrl(), g.getDescrizione());
+    public static void Upload(Gpu g) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "INSERT INTO Pezzo (Tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, VRAM, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, g.getTipo());
+        pdstmt.setString(2, g.getMarca());
+        pdstmt.setString(3, g.getModello());
+        pdstmt.setDouble(4, g.getPrezzo());
+        pdstmt.setInt(5, g.getQuantita());
+        pdstmt.setInt(6, g.getWattaggio());
+        pdstmt.setFloat(7, g.getFrequenza());
+        pdstmt.setInt(8, g.getVRam());
+        pdstmt.setString(9, g.getUrl());
+        pdstmt.setString(10, g.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        g.setID(rs.getInt(1));
+
     }
 
 }

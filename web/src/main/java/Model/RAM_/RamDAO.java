@@ -8,7 +8,7 @@ import Model.ProdottoDAO;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class RamDAO {
+public class RamDAO{
 
     private ArrayList<Prodotto> doRetrive() throws SQLException {
         ArrayList<Prodotto> list = new ArrayList<>();
@@ -26,18 +26,35 @@ public class RamDAO {
     }
 
     //Prende la lista di prodotti e fa il cast a lista di RAM
-    public ArrayList<Ram> doRetriveByType() throws SQLException{
+    public ArrayList<Ram> doRetriveByType() throws SQLException {
         RamDAO rDAO = new RamDAO();
         ArrayList<Prodotto> listP = rDAO.doRetrive();
         ArrayList<Ram> listR = new ArrayList<Ram>();
-        for(Prodotto p : listP){
+        for (Prodotto p : listP) {
             listR.add((Ram) p);
         }
         return listR;
     }
 
-    public void Upload(Ram r) throws SQLException {
-        ProdottoDAO.Upload(r.getMarca(), r.getModello(), r.getPrezzo(), r.getQuantita(), null, r.getTipo(), r.getFrequenza(), null, null, null, null, null, null, null, null, null, r.getUrl(), r.getDescrizione());
-    }
+    public static void Upload(Ram r) throws SQLException {
+        Connection con = ConPool.getConnection();
 
+        String insertion = "INSERT INTO Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Frequenza, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, r.getTipo());
+        pdstmt.setString(2, r.getMarca());
+        pdstmt.setString(3, r.getModello());
+        pdstmt.setDouble(4, r.getPrezzo());
+        pdstmt.setInt(5, r.getQuantita());
+        pdstmt.setFloat(6, r.getFrequenza());
+        pdstmt.setString(7, r.getUrl());
+        pdstmt.setString(8, r.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        r.setID(rs.getInt(1));
+
+    }
 }

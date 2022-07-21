@@ -1,9 +1,27 @@
 package Controller;
 
+import Model.Archiviazione_.ArchivioDati;
+import Model.Archiviazione_.ArchivioDatiDAO;
+import Model.Archiviazione_.HDD_.Hdd;
+import Model.Archiviazione_.SDD_.Ssd;
+import Model.CASE_.Case;
+import Model.CASE_.CaseDAO;
 import Model.CATALOGO_.Catalogo;
 import Model.CATALOGO_.CatalogoDAO;
+import Model.CPU_.Cpu;
+import Model.CPU_.CpuDAO;
+import Model.DISSIPATORE_.Dissipatore;
+import Model.DISSIPATORE_.DissipatoreDAO;
+import Model.GPU_.Gpu;
+import Model.GPU_.GpuDAO;
 import Model.ImageManager;
+import Model.MOBO_.Mobo;
+import Model.MOBO_.MoboDAO;
+import Model.PSU_.Psu;
+import Model.PSU_.PsuDAO;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
+import Model.RAM_.RamDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -23,25 +41,25 @@ import java.sql.SQLException;
 public class Upload extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String marca = request.getParameter("marca");
-        String modello = request.getParameter("modello");
+        String Marca = request.getParameter("marca");
+        String Modello = request.getParameter("modello");
         String prezzo1 = request.getParameter("prezzo");
         //Il prezzo deve essere inserito alla maniera americana. In caso di errore lo correggo
         prezzo1=prezzo1.replace(",", ".");
-        double prezzo = Double.parseDouble(prezzo1);
-        int quantita = Integer.parseInt(request.getParameter("quantita"));
-        String tipo = request.getParameter("tipo");
+        double Prezzo = Double.parseDouble(prezzo1);
+        int Quantita = Integer.parseInt(request.getParameter("quantita"));
+        String Tipo = request.getParameter("tipo");
         //ImageManager necessario per salvare l'immagine
         ImageManager imgManager = new ImageManager();
 
         //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
-        Integer wattaggio = null;
+        Integer Wattaggio = null;
         if (request.getParameter("wattaggio") != null) {
-            wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
+            Wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
         }
-        Float frequenza = null;
+        Float Frequenza = null;
         if (request.getParameter("frequenza") != null) {
-            frequenza = Float.parseFloat(request.getParameter("frequenza"));
+            Frequenza = Float.parseFloat(request.getParameter("frequenza"));
         }
         Integer N_Core = null;
         if (request.getParameter("N_Core") != null) {
@@ -75,21 +93,49 @@ public class Upload extends HttpServlet {
         if (request.getParameter("W_Cpu") != null) {
             W_Cpu = Integer.parseInt(request.getParameter("W_Cpu"));
         }
-        Short formaMobo = null;
+        Short FormaMobo = null;
         if (request.getParameter("formaMobo") != null) {
-            formaMobo = Short.parseShort(request.getParameter("formaMobo"));
+            FormaMobo = Short.parseShort(request.getParameter("formaMobo"));
         }
 
         //Restituisce la posizione relativa dell'immagine salvata partendo dalla radice del server
         //Prende in input 1:la path da "/" fino alla radice del server
         //                2:Il file da uploadare sottoforma di file Part
         //                3:Il nome con cui salvare il file
-        String url = imgManager.saveImage(String.valueOf(request.getServletContext().getResource("/")), request.getPart("image"), marca + modello);
-        String descrizione = request.getParameter("descrizione");
+        String url = imgManager.saveImage(String.valueOf(request.getServletContext().getResource("/")), request.getPart("image"), Marca + Modello);
+        String Descrizione = request.getParameter("descrizione");
         try {
-            //Carica il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
-            ProdottoDAO.Upload(marca, modello, prezzo, quantita, wattaggio, tipo, frequenza, N_Core, N_Ram, N_Usb, N_Pci, MBs, Vram, N_Watt, W_Cpu, formaMobo, url, descrizione);
-        } catch (SQLException e) {
+            //Carica il prodotto nal DB.
+            switch (Tipo) {
+                case "CPU":
+                    CpuDAO.Upload(new Cpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione));
+                    break;
+                case "CASE":
+                    CaseDAO.Upload(new Case(Marca, Modello, Prezzo, Quantita, FormaMobo, url, Descrizione));
+                    break;
+                case "DISSIPATORE":
+                    DissipatoreDAO.Upload(new Dissipatore(Marca, Modello, Prezzo, Quantita, W_Cpu, url, Descrizione));
+                    break;
+                case "PSU":
+                    PsuDAO.Upload(new Psu(Marca, Modello, Prezzo, Quantita, N_Watt, url, Descrizione));
+                    break;
+                case "MOBO":
+                    MoboDAO.Upload(new Mobo(Marca, Modello, Prezzo, Quantita, FormaMobo, N_Ram, N_Usb, N_Pci, url, Descrizione));
+                    break;
+                case "RAM":
+                    RamDAO.Upload(new Ram(Marca, Modello, Prezzo, Quantita, Frequenza, url, Descrizione));
+                    break;
+                case "HDD":
+                    ArchivioDatiDAO.Upload(new Hdd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
+                    break;
+                case "SSD":
+                    ArchivioDatiDAO.Upload(new Ssd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
+                    break;
+                case "GPU":
+                    GpuDAO.Upload(new Gpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, Vram, url, Descrizione));
+                    break;
+            }
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         //Rigenera il catalogo con i nuovi prodotti

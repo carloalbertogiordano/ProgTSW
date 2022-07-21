@@ -6,6 +6,7 @@ import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,8 +39,25 @@ public class PsuDAO {
         return listPs;
     }
 
-    public void Upload(Psu p) throws SQLException {
-        ProdottoDAO.Upload(p.getMarca(), p.getModello(), p.getPrezzo(), p.getQuantita(), null, p.getTipo(), null, null, null, null, null, null, null, p.getN_Watt(), null, null, p.getUrl(), p.getDescrizione());
+    public static void Upload(Psu p) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_WATT, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, p.getTipo());
+        pdstmt.setString(2, p.getMarca());
+        pdstmt.setString(3, p.getModello());
+        pdstmt.setDouble(4, p.getPrezzo());
+        pdstmt.setInt(5, p.getQuantita());
+        pdstmt.setInt(6, p.getN_Watt());
+        pdstmt.setString(7, p.getUrl());
+        pdstmt.setString(8, p.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        p.setID(rs.getInt(1));
     }
 
 }

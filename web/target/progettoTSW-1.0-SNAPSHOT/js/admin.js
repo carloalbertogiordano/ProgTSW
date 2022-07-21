@@ -89,7 +89,6 @@ function controllo() {
             break;
 
         case "GPU":
-
             document.getElementById("n_core").disabled = true;
             document.getElementById("n_ram").disabled = true;
             document.getElementById("n_usb").disabled = true;
@@ -97,6 +96,7 @@ function controllo() {
             document.getElementById("n_watt").disabled = true;
             document.getElementById("formaMobo").disabled = true;
             document.getElementById("mbs").disabled = true;
+            document.getElementById("w_cpu").disabled = true;
             break;
 
         case "MOBO":

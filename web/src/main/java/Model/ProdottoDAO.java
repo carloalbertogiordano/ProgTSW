@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public abstract class ProdottoDAO {
 
     //Carica un prodotto nel db
-    public static void Upload(String marca, String modello,
+    /*public static void Upload(String marca, String modello,
                               Double prezzo, Integer quantita, Integer wattaggio, String tipo,
                               Float frequenza, Integer N_Core, Integer N_Ram, Integer N_Usb, Integer N_Pci,
                               Integer MBs, Integer Vram, Integer N_Watt, Integer W_Cpu, Short formaMobo,
@@ -86,7 +86,7 @@ public abstract class ProdottoDAO {
 
         pdstmt.executeUpdate();
 
-    }
+    }*/
 
     //Metodo per prendere un prodotto dal database dato l'ID
     public static Prodotto doRetriveById(Integer ID) throws SQLException {

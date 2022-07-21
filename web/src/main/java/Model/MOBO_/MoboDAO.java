@@ -1,6 +1,7 @@
 package Model.MOBO_;
 
 import Model.ConPool;
+import Model.PSU_.Psu;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 
@@ -36,8 +37,29 @@ public class MoboDAO {
         return listM;
     }
 
-    public void Upload(Mobo m) throws SQLException {
-        ProdottoDAO.Upload(m.getMarca(), m.getModello(), m.getPrezzo(), m.getQuantita(), null, m.getTipo(), null, null, m.getN_RAM(), m.getN_USB(), m.getN_PCI(), null, null, null, null, m.getForma(), m.getUrl(), m.getDescrizione());
+    public static void Upload(Mobo m) throws SQLException {
+        Connection con = ConPool.getConnection();
+
+        String insertion = "insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url, Descrizione) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pdstmt = con.prepareStatement(insertion, Statement.RETURN_GENERATED_KEYS);
+        pdstmt.setString(1, m.getTipo());
+        pdstmt.setString(2, m.getMarca());
+        pdstmt.setString(3, m.getModello());
+        pdstmt.setDouble(4, m.getPrezzo());
+        pdstmt.setInt(5, m.getQuantita());
+        pdstmt.setInt(6, m.getN_RAM());
+        pdstmt.setInt(7, m.getN_USB());
+        pdstmt.setInt(8, m.getN_PCI());
+        pdstmt.setInt(9, m.getForma());
+        pdstmt.setString(10, m.getUrl());
+        pdstmt.setString(11, m.getDescrizione());
+
+        pdstmt.executeUpdate();
+        ResultSet rs = pdstmt.getGeneratedKeys();
+        rs.next();
+        m.setID(rs.getInt(1));
     }
+
 
 }

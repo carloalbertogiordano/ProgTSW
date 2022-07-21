@@ -13,8 +13,13 @@ public class ArchivioDati extends Prodotto {
 
     public ArchivioDati() {}
 
-    public ArchivioDati (int ID, String marca, String modello, double prezzo, int quantità, String tipo, int MBs,String url, String descrizione) {
-        super(ID, marca, modello, prezzo, quantità, tipo, url, descrizione);
+    public ArchivioDati (int ID, String marca, String modello, double prezzo, int quantita, String tipo, int MBs,String url, String descrizione) {
+        super(ID, marca, modello, prezzo, quantita, tipo, url, descrizione);
+        this.MBs = MBs;
+    }
+
+    public ArchivioDati(String marca, String modello, double prezzo, int quantita, String tipo, int MBs, String url, String descrizione) {
+        super(marca, modello, prezzo, quantita, tipo, url, descrizione);
         this.MBs = MBs;
     }
 
