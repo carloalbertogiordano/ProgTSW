@@ -7,6 +7,11 @@
 <%@ page import="Model.Cliente_.Cliente" %>
 <%@ page import="static com.sun.tools.javac.jvm.ByteCodes.illegal" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="Model.MOBO_.Mobo" %>
+<%@ page import="Model.PSU_.Psu" %>
+<%@ page import="Model.RAM_.Ram" %>
+<%@ page import="Model.Archiviazione_.HDD_.Hdd" %>
+<%@ page import="Model.Archiviazione_.SDD_.Ssd" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -66,9 +71,10 @@
     </div>
     <!--<%
         int id = Integer.parseInt(request.getParameter("Id"));
+        String type = request.getParameter("type");
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
-
         Prodotto p = catalogo.doRetriveById(id);
+
         if(p != null) {
             out.println("<div><ul>" +
                     "<li>Marca: " + p.getMarca() + "</li>" +
@@ -105,7 +111,89 @@
             <div class="flex-right-item info-box">
                 <div class="info-container flex-container">
                     <h4>Specifiche</h4>
-                    <
+                    <div class="spec">
+                        <ul>
+                            <li>
+                                <%out.println("Marca: " + p.getMarca());%>
+                            </li>
+                            <li>
+                                <%out.println("Modello: " + p.getModello());%>
+                            </li>
+                            <%
+                                switch (type) {
+                                    case "CPU":
+                                        Cpu cpu = (Cpu) p;
+                                        out.println("<li>Core: " + cpu.getN_Core() + "</li>" +
+                                                "<li>Frequenza: " + cpu.getFrequenza() + "</li>" +
+                                                "<li>Wattaggio: " + cpu.getWattaggio() + "</li>");
+                                        break;
+                                    case "Case":
+                                        Case case_ = (Case) p;
+                                        String formaMobo = "";
+                                        if(case_.getFormaMobo()==0){
+                                            formaMobo = "Mini ATX";
+                                        } else if (case_.getFormaMobo() == 1){
+                                            formaMobo = "ATX";
+                                        } else {
+                                            formaMobo = "ETX";
+                                        }
+                                        out.println("<li>Core: " + formaMobo + "</li>");
+                                        break;
+                                    case "Dissipatore":
+                                        Dissipatore dissipatore = (Dissipatore) p;
+                                        out.println("<li>Massimo wattaggio della cpu: " + dissipatore.getW_Cpu() + "</li>");
+                                        break;
+                                    case "GPU":
+                                        Gpu gpu = (Gpu) p;
+                                        out.println("<li>Wattaggio: " + gpu.getWattaggio() + "</li>" +
+                                                "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
+                                                "<li>VRAM: " + gpu.getVRam() + "</li>");
+                                        break;
+                                    case "Mobo":
+                                        Mobo mobo = (Mobo) p;
+                                        String forma = "";
+                                        if(mobo.getForma()==0){
+                                            forma = "Mini ATX";
+                                        } else if (mobo.getForma() == 1){
+                                            forma = "ATX";
+                                        } else {
+                                            forma = "ETX";
+                                        }
+                                        out.println("<li>Formato: " + forma + "</li>" +
+                                                "<li>Numero di slot per RAM: " + mobo.getN_RAM() + "</li>" +
+                                                "<li>Numero di porte USB: " + mobo.getN_USB() + "</li>" +
+                                                "<li>Numero di porte PCI: " + mobo.getN_PCI() + "</li>");
+                                        break;
+                                    case "Psu":
+                                        Psu psu = (Psu) p;
+                                        out.println("<li>Wattaggio: " + psu.getN_Watt() + "</li>");
+                                        break;
+                                    case "Ram":
+                                        Ram ram = (Ram) p;
+                                        out.println("<li>Frequenza: " + ram.getFrequenza() + "</li>");
+                                        break;
+                                    case "Hdd":
+                                        Hdd hdd = (Hdd) p;
+                                        out.println("<li>MB per secondo: " + hdd.getMBs() + "</li>");
+                                        break;
+                                    case "Sss":
+                                        Ssd ssd = (Ssd) p;
+                                        out.println("<li>MB per secondo: " + ssd.getMBs() + "</li>");
+                                        break;
+                                }
+                            %>
+                            <li>
+                                <div class="price">
+                                    <%out.println(p.getPrezzo());%>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="add-cart-button">
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

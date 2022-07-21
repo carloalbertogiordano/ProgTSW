@@ -220,7 +220,7 @@
                                 "</div>\n" +
                                 "<div class=\"product-details\">\n" +
                                 "<span class=\"product-catagory\">CPU</span>\n" +
-                                "<h4><a href=\"" + path + "?Id=" + cpu.getID() + "\">" + cpu.getMarca() + " " + cpu.getModello() + "</a></h4>\n" +
+                                "<h4><a href=\"" + path + "?Id=" + cpu.getID() + "&type=CPU\">" + cpu.getMarca() + " " + cpu.getModello() + "</a></h4>\n" +
                                 "<p>" + cpu.getDescrizione() + "</p>\n" +
                                 "<div class=\"product-bottom-details\">\n" +
                                 "<div class=\"product-price\">" + cpu.getPrezzo() + "</div>\n" +
@@ -256,7 +256,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Case</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + case_.getID()+ "\">" + case_.getMarca() + " " + case_.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + case_.getID()+ "&type=Case\">" + case_.getMarca() + " " + case_.getModello() + "</a></h4>\n" +
                                             "<p>" + case_.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + case_.getPrezzo() + "</div>\n" +
@@ -291,7 +291,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Dissipatori</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + dissipatore.getID()+ "\">" + dissipatore.getMarca() + " " + dissipatore.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + dissipatore.getID()+ "&type=Dissipatore\">" + dissipatore.getMarca() + " " + dissipatore.getModello() + "</a></h4>\n" +
                                             "<p>" + dissipatore.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + dissipatore.getPrezzo() + "</div>\n" +
@@ -328,7 +328,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">GPU</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + gpu.getID()+ "\">" + gpu.getMarca() + " " + gpu.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + gpu.getID()+ "&type=GPU\">" + gpu.getMarca() + " " + gpu.getModello() + "</a></h4>\n" +
                                             "<p>" + gpu.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + gpu.getPrezzo() + "</div>\n" +
@@ -366,7 +366,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Scheda madre</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + mobo.getID()+ "\">" + mobo.getMarca() + " " + mobo.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + mobo.getID()+ "&type=Mobo\">" + mobo.getMarca() + " " + mobo.getModello() + "</a></h4>\n" +
                                             "<p>" + mobo.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + mobo.getPrezzo() + "</div>\n" +
@@ -401,7 +401,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Power supply unit</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + psu.getID()+ "\">" + psu.getMarca() + " " + psu.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + psu.getID()+ "&type=Psu\">" + psu.getMarca() + " " + psu.getModello() + "</a></h4>\n" +
                                             "<p>" + psu.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + psu.getPrezzo() + "</div>\n" +
@@ -436,7 +436,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">RAM</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + ram.getID()+ "\">" + ram.getMarca() + " " + ram.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + ram.getID()+ "&type=Ram\">" + ram.getMarca() + " " + ram.getModello() + "</a></h4>\n" +
                                             "<p>" + ram.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + ram.getPrezzo() + "</div>\n" +
@@ -471,7 +471,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Hard disk</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + hdd.getID()+ "\">" + hdd.getMarca() + " " + hdd.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + hdd.getID()+ "&type=Hdd\">" + hdd.getMarca() + " " + hdd.getModello() + "</a></h4>\n" +
                                             "<p>" + hdd.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + hdd.getPrezzo() + "</div>\n" +
@@ -506,7 +506,7 @@
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
                                             "<span class=\"product-catagory\">Solid state disk</span>\n" +
-                                            "<h4><a href=\"" + path + "?Id=" + ssd.getID()+ "\">" + ssd.getMarca() + " " + ssd.getModello() + "</a></h4>\n" +
+                                            "<h4><a href=\"" + path + "?Id=" + ssd.getID()+ "&type=Ssd\">" + ssd.getMarca() + " " + ssd.getModello() + "</a></h4>\n" +
                                             "<p>" + ssd.getDescrizione() + "</p>\n" +
                                             "<div class=\"product-bottom-details\">\n" +
                                                 "<div class=\"product-price\">" + ssd.getPrezzo() + "&euro;</div>\n" +
