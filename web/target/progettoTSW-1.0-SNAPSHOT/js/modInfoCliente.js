@@ -1,0 +1,89 @@
+function validateInfoSped(){
+    if(testCap() && testProv() && testVia() && testCitta()){
+        return true;
+    }
+    alert("Info spedizione non inserite correttamente. Assicurati che tutti i campi siano stati rispettati");
+    return false;
+}
+
+function validateInfoPers(){
+    if(testNickname() && testTel()){
+        return true;
+    }
+    alert("Info presonali non inserite correttamente. assicurati di rispettare tutti i campi");
+    return false;
+}
+
+$(document).ready(function() {
+    let btnInfoCliente = $('#submitModInfoCliente');
+    let btnInfoSpedCliente = $('#submitModInfoSped');
+    let btnPass = $('#submitModPass');
+
+    btnInfoCliente.click(function () {
+        if(validateInfoPers()) {
+            let nick = $('#nick').val();
+            let tel = $('#tel').val();
+            $.ajax({
+                url: 'updateInfoCliente',
+                type: 'POST',
+                data: {
+                    input_nick: nick, input_tel: tel
+                },
+                success: function (response) {
+                    alert("Informazioni inserite correttamente");
+                    btnInfoCliente.attr('disabled', true);
+                }
+            });
+        }
+    });
+    btnInfoSpedCliente.click(function(){
+        if(validateInfoSped()){
+            let via = $('#via').val();
+            let provincia = $('#provincia').val();
+            let citta = $('#citta').val();
+            let cap = $('#cap').val();
+            $.ajax({
+                url: 'modInfoSpedizione',
+                type: 'POST',
+                data: {
+                    input_via: via, input_provincia: provincia, input_citta: citta, input_cap: cap
+                },
+                success: function (response){
+                    alert("Informazioni inserite correttamente");
+                    btnInfoSpedCliente.attr('disabled', true);
+                }
+            });
+        }
+    });
+    btnPass.click(function() {
+        if(testPassword()){
+            let pass = $('#pass').val();
+            $.ajax({
+                url: 'updatePassword',
+                type: 'POST',
+                data: {
+                    input_pass: pass
+                },
+                success: function (response){
+                    alert("Informazioni inserite correttamente");
+                    btnPass.attr('disabled', true);
+                }
+            });
+        }
+    });
+    //Blur deli input non modificati
+    btnInfoCliente.attr('disabled', true);
+    btnInfoSpedCliente.attr('disabled', true);
+    btnPass.attr('disabled', true);
+    //Se tento di modificare uno dei campi rendo il bottone visibile
+    $('.infoPers').keyup(function(){
+        btnInfoCliente.attr('disabled', false);
+    });
+    $('.infoSped').keyup(function(){
+        btnInfoSpedCliente.attr('disabled', false);
+    });
+    $('.pass').click(function(){
+        $('#pass').val('');
+        btnPass.attr('disabled', false);
+    });
+});
