@@ -158,10 +158,11 @@ ul.flex-container{
 
 /*MAIN*/
 .main{
-    width: 100%;
+    max-width: 100%;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: #fdf0d5;
+    height: 100%;
 }
 
 .welcome-header{

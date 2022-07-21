@@ -187,7 +187,7 @@
                                     <%out.println(p.getPrezzo());%>
                                 </div>
                             </li>
-                            <li>
+                            <li id="last-li">
                                 <div class="add-cart-button">
                                     <a href="<%out.print("addCart?Id=" + p.getID() + "&quantity=" + 1);%>"><i class="fa fa-shopping-cart"></i>Aggiungi al carrello</a>
                                 </div>
