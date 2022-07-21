@@ -110,7 +110,7 @@
             </div>
             <div class="flex-right-item info-box">
                 <div class="info-container flex-container">
-                    <h4>Specifiche</h4>
+                    <h3>Specifiche</h3>
                     <div class="spec">
                         <ul>
                             <li>
@@ -189,12 +189,19 @@
                             </li>
                             <li>
                                 <div class="add-cart-button">
-
+                                    <a href="<%out.print("addCart?Id=" + p.getID() + "&quantity=" + 1);%>"><i class="fa fa-shopping-cart"></i>Aggiungi al carrello</a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="second-row flex-container">
+            <div class="product-description-div flex-container">
+                <p class="product-description"><%
+                    out.print(p.getDescrizione());
+                    %>/p>
             </div>
         </div>
     </div>
