@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <title>Login</title>
 </head>
@@ -71,7 +72,7 @@ if (request.getAttribute("loginErr") != null) {
 %>
 
 <h1>Login</h1>
-<form action="Login" method="post" onsubmit="return validateMail()">
+<form action="Login" method="post" onsubmit="return validateLogin()">
     <table>
         <tr>
             <td>Mail:</td>
