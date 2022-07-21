@@ -2,6 +2,8 @@ package Controller;
 
 import Model.CATALOGO_.Catalogo;
 import Model.CATALOGO_.CatalogoDAO;
+import Model.ImageManager;
+import Model.Prodotto;
 import Model.ProdottoDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,6 +11,12 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+@MultipartConfig(location = "/tmp/"
+        , fileSizeThreshold = 1024 * 1024
+        , maxFileSize = 1024 * 1024 * 5
+        , maxRequestSize = 1024 * 1024 * 5 * 5)
+
 ////Aggiorna il prodotto nal DB e nella sessione
 @WebServlet(name = "Aggiorna", value = "/Aggiorna")
 public class Aggiorna extends HttpServlet {
@@ -21,6 +29,40 @@ public class Aggiorna extends HttpServlet {
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         String desc = request.getParameter("desc");
         String url = request.getParameter("url");
+        Part image = null;
+
+        try {
+            image = request.getPart("image");
+        } catch (IOException | ServletException ignored) {
+            //Non è necessario lancare eccezioni poichè in caso rimanga null
+            //significa che non abbiamo modificato l'immagine'
+        }
+
+        //Nel caso ho caricato una nuova immagine eliino la cartella e la ricreo
+        if(ImageManager.isImage(image)){
+            String rootPath = String.valueOf(request.getServletContext().getResource("/"));
+            //ImageManager necessario per salvare l'immagine
+            ImageManager imgManager = new ImageManager();
+            imgManager.deleteImageDir(url, rootPath);
+            url = imgManager.saveImage(rootPath, image, marca+modello);
+        }
+        //Nel caso NON ho caricato una nuova immagine ma ho cambiato marca e/o modello
+        //devo rinominare la cartella
+        else{
+            Prodotto p;
+            try {
+                p = ProdottoDAO.doRetriveById(id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if(!p.getMarca().equals(marca) || !p.getModello().equals(modello)){
+                String rootPath = String.valueOf(request.getServletContext().getResource("/"));
+                System.out.println(p.getUrl());
+                ImageManager imgManager = new ImageManager();
+                ImageManager.renameFolder(rootPath, p.getUrl(), p.getMarca(), p.getUrl(), marca, modello);
+                url = "Images/"+marca+modello;
+            }
+        }
 
         //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
         Integer wattaggio = null;

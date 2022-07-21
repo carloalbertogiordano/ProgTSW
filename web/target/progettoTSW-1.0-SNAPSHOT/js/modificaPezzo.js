@@ -26,14 +26,6 @@ function validateQuantita() {
     return quant.test($("#quantita").val());
 }
 
-function validateUrl() {
-    let url = /^[a-zA-Z0-9].{6,250}$/;
-    if(!(url.test($("#url").val()))){
-        console.error("Err: Url non valida");
-    }
-    return url.test($("#url").val());
-}
-
 function validateDesc() {
     let desc = /^[a-zA-Z0-9].{1,10000}$/;
     if(!(desc.test($("#desc").val()))){
@@ -43,7 +35,7 @@ function validateDesc() {
 }
 
 function validateCompulsoryProduct() {
-    return (validateMarcaAndModello() && validatePrezzo() && validateQuantita() && validateUrl() && validateDesc());
+    return (validateMarcaAndModello() && validatePrezzo() && validateQuantita() && validateDesc());
 }
 
 function validateByTipo(tipo) {

@@ -1,11 +1,17 @@
 package Model;
 import jakarta.servlet.http.Part;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.FileSystemException;
+import java.util.Objects;
+
+import static org.apache.tomcat.util.http.fileupload.FileUtils.deleteDirectory;
 
 //Gestore delle immagini con relativi metodi
 public class ImageManager {
@@ -13,6 +19,18 @@ public class ImageManager {
     private final int targetDim = 225; //Dimensione target del rescaling delle foto
 
     public ImageManager() {}
+
+    public static void renameFolder(String path, String url, String oldMarca, String oldModello, String marca, String modello) throws IOException {
+        path = path.replace("file:", "");
+        File oldDir = new File(path+url);
+        File newDir = new File(path+"Images/"+marca+modello);
+
+        System.out.println(oldDir.getAbsolutePath());
+        System.out.println(newDir.getAbsolutePath());
+
+        if(!oldDir.renameTo(newDir))
+            throw new IOException("Cannot rename "+oldDir.getPath()+" to this name"+newDir.getPath()+". Please select a different one");
+    }
 
     //Concatena alla path da / fino alla root di tomcat "Images/" che è la cartella dove vogliamo salvare l'immagine
     //e rimuove la scritta "file:" che si trova all'inizio per risolvere il problema che
@@ -76,5 +94,40 @@ public class ImageManager {
         String imagePath = getSavePath(rootPath);
         writeImage(filePart, imagePath, saveName);
         return "Images/"+saveName;
+    }
+
+    public static boolean isImage(Part p) throws IOException {
+        p.write("/tmp/imgTmp.jpg");
+        BufferedImage bi = ImageIO.read(new File("/tmp/imgTmp.jpg"));
+        try{
+            int width = bi.getWidth();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private void deleteDirectory(File file) throws IOException {
+        System.out.println("DELETING: "+file.getPath());
+        if(file.listFiles() != null){
+            File[] list=file.listFiles();
+            if(list.length>=1) {
+                for (File subfile : file.listFiles()) {
+                    deleteDirectory(subfile);
+            }
+        }
+    }else{
+            if(!file.delete()){
+                throw new IOException("Cannot delete this file "+file.getPath());
+            }
+        }
+    }
+
+    public void deleteImageDir(String url, String root) throws IOException {
+        System.out.println("DELETING: "+root+url);
+        root = root.replace("file:", "");
+        File file = new File(root+url);
+        deleteDirectory(file);
+        file.delete();
     }
 }

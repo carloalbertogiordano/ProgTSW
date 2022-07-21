@@ -34,7 +34,7 @@
 
     %>
 
-    <form id="modProd" method="post" action="Aggiorna" onsubmit="return validateProductUpdate()">
+    <form id="modProd" method="post" action="Aggiorna" onsubmit="return validateProductUpdate()" enctype="multipart/form-data">
         <table>
             <input type="hidden" name="tipo" id="tipo" value="<%=p.getTipo()%>"/>
             <input type="hidden" name="ID" id="ID" value="<%=p.getID()%>"/>
@@ -58,10 +58,7 @@
                 <td>Descrizione</td>
                 <td><input type="text" name="desc" id="desc" value="<%=p.getDescrizione()%>" required/></td>
             </tr>
-            <tr>
-                <td>Url</td>
-                <td><input type="text" name="url" id="url" value="<%=p.getUrl()%>" required/></td>
-            </tr>
+                <td><input type="hidden" name="url" id="url" value="<%=p.getUrl()%>" required/></td>
     <%
         switch (p.getTipo()) {
             case "CPU" :
@@ -165,6 +162,9 @@
                 break;
             default : out.println("Errore");
         }
+        out.println("<tr><td>Immagine</td>" +
+                "<td><input type=\"file\" name=\"image\" id=\"url\"/></td>" +
+                "</tr>");
 
     %>
             <tr>
