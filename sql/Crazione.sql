@@ -51,7 +51,7 @@ create table Pezzo(
     W_CPU int,
     FormaMobo int2,
     url varchar (250),
-    Descrizione varchar(10000)
+    Descrizione varchar(200)
     );
 
 create table Sconto(
