@@ -20,7 +20,7 @@ public class ImageManager {
 
     public ImageManager() {}
 
-    public static void renameFolder(String path, String url, String oldMarca, String oldModello, String marca, String modello) throws IOException {
+    public void renameFolder(String path, String url, String oldMarca, String oldModello, String marca, String modello) throws IOException {
         path = path.replace("file:", "");
         File oldDir = new File(path+url);
         File newDir = new File(path+"Images/"+marca+modello);
