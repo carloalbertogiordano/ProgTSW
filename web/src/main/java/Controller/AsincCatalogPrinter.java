@@ -5,6 +5,7 @@ import Model.Archiviazione_.SDD_.Ssd;
 import Model.CASE_.Case;
 import Model.CATALOGO_.Catalogo;
 import Model.CPU_.Cpu;
+import Model.Cliente_.Cliente;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.GPU_.Gpu;
 import Model.MOBO_.Mobo;
@@ -22,8 +23,16 @@ public class AsincCatalogPrinter extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Catalogo c = (Catalogo) request.getSession().getAttribute("printCatalog");
+        Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+        String path = "info-pezzo.jsp";
+        if(cliente != null){
+            if(cliente.isAdministrator()){
+                path = "redirectToAdminPage";
+            }
+        }
+
         for(Prodotto p : c.getCatalogo()){
-            doSwCase(p, response);
+            doSwCase(p, response, path);
         }
     }
 
@@ -32,34 +41,34 @@ public class AsincCatalogPrinter extends HttpServlet {
 
     }
 
-    private void doSwCase(Prodotto p, HttpServletResponse response) throws IOException {
+    private void doSwCase(Prodotto p, HttpServletResponse response, String path) throws IOException {
         switch (p.getTipo()) {
             case "CPU":
-                writeCpuForCatalog(response, p);
+                writeCpuForCatalog(response, p, path);
                 break;
             case "CASE":
-                writeCaseForCatalog(response, p);
+                writeCaseForCatalog(response, p, path);
                 break;
             case "DISSIPATORE":
-                writeDissipatoreForCatalog(response, p);
+                writeDissipatoreForCatalog(response, p, path);
                 break;
             case "PSU":
-                writePsuForCatalog(response, p);
+                writePsuForCatalog(response, p, path);
                 break;
             case "MOBO":
-                writeMoboForCatalog(response, p);
+                writeMoboForCatalog(response, p, path);
                 break;
             case "RAM":
-                writeRamForCatalog(response, p);
+                writeRamForCatalog(response, p, path);
                 break;
             case "HDD":
-                writeHddForCatalog(response, p);
+                writeHddForCatalog(response, p, path);
                 break;
             case "SSD":
-                writeSsdForCatalog(response, p);
+                writeSsdForCatalog(response, p, path);
                 break;
             case "GPU":
-                writeGpuForCatalog(response, p);
+                writeGpuForCatalog(response, p, path);
                 break;
             default:
                 response.getWriter().println("Errore");
@@ -67,122 +76,197 @@ public class AsincCatalogPrinter extends HttpServlet {
         }
     }
 
-    private void writePsuForCatalog(HttpServletResponse response, Prodotto p) throws IOException {
+    private void writePsuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Psu psu = (Psu) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + psu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        psu.getMarca() + "</li>" +
-                        "<li>Modello: " + psu.getModello() + "</li>" +
-                        "<li>Prezzo: " + psu.getPrezzo() + "</li>" +
-                        "<li>Watt: " + psu.getN_Watt() + "</li>" +
-                        "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
-                        "<li>Url: " + psu.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + psu.getQuantita() + "</li></ul></div></a>"
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">PSU</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + psu.getID() + "\">" + psu.getMarca() + " " + psu.getModello() + "</a></h4>\n" +
+                        "<p>" + psu.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + psu.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + psu.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>"
         );
     }
-    private void writeDissipatoreForCatalog(HttpServletResponse response, Prodotto p) throws IOException {
+    private void writeDissipatoreForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Dissipatore dissipatore = (Dissipatore) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + dissipatore.getID() + "\"><div class = \"dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        dissipatore.getMarca() + "</li>" +
-                        "<li>Modello: " + dissipatore.getModello() + "</li>" +
-                        "<li>Prezzo: " + dissipatore.getPrezzo() + "</li>" +
-                        "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
-                        "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
-                        "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + dissipatore.getQuantita() + "</li></ul></div></a>"
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">Dissipatori</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + dissipatore.getID()+ "\">" + dissipatore.getMarca() + " " + dissipatore.getModello() + "</a></h4>\n" +
+                        "<p>" + dissipatore.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + dissipatore.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + p.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>"
         );
     }
-    private void writeCpuForCatalog(HttpServletResponse response, Prodotto p) throws IOException {
+    private void writeCpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Cpu cpu = (Cpu) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + cpu.getID()
-                        + "\"><div class = \"cpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        cpu.getMarca() + "</li>" +
-                        "<li>Modello: " + cpu.getModello() + "</li>" +
-                        "<li>Prezzo: " + cpu.getPrezzo() + "</li>" +
-                        "<li>Numero di core:" + cpu.getN_Core() + "</li>" +
-                        "<li>Descrizione: " + cpu.getDescrizione() + "</li>" +
-                        "<li>Url: " + cpu.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + cpu.getQuantita() + "</li></ul></div></a>");
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">CPU</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + cpu.getID() + "\">" + cpu.getMarca() + " " + cpu.getModello() + "</a></h4>\n" +
+                        "<p>" + cpu.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + cpu.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + cpu.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>");
     }
-    private void writeGpuForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeGpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Gpu gpu = (Gpu) p;
-        response.getWriter().println("<a href=\"info-pezzo.jsp?Id=" + gpu.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                gpu.getMarca() + "</li>" +
-                "<li>Modello: " + gpu.getModello() + "</li>" +
-                "<li>Prezzo: " + gpu.getPrezzo() + "</li>" +
-                "<li>W_Cpu: " + gpu.getWattaggio() + "</li>" +
-                "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
-                "<li>vRam:" + gpu.getVRam() + "</li>" +
-                "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
-                "<li>Url: " + gpu.getUrl() + "</li>" +
-                "<li>Disponibilità: " + gpu.getQuantita() + "</li></ul></div></a>");
+        response.getWriter().println("<div class=\"product-card\">\n" +
+                "<div class=\"product-tumb\">\n" +
+                /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                "</div>\n" +
+                "<div class=\"product-details\">\n" +
+                "<span class=\"product-catagory\">GPU</span>\n" +
+                "<h4><a href=\"" + path + "?Id=" + gpu.getID()+ "\">" + gpu.getMarca() + " " + gpu.getModello() + "</a></h4>\n" +
+                "<p>" + gpu.getDescrizione() + "</p>\n" +
+                "<div class=\"product-bottom-details\">\n" +
+                "<div class=\"product-price\">" + gpu.getPrezzo() + "</div>\n" +
+                "<div class=\"product-links\">\n" +
+                "<a href=\"addCart?Id=" + gpu.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</div>");
 
     }
-    private void writeMoboForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeMoboForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Mobo mobo = (Mobo) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + mobo.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        mobo.getMarca() + "</li>" +
-                        "<li>Modello: " + mobo.getModello() + "</li>" +
-                        "<li>Prezzo: " + mobo.getPrezzo() + "</li>" +
-                        "<li>Forma: " + mobo.getForma() + "</li>" +
-                        "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
-                        "<li>Numero USB:" + mobo.getN_USB() + "</li>" +
-                        "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
-                        "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
-                        "<li>Url: " + mobo.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + mobo.getQuantita() + "</li></ul></div></a>");
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">Scheda madre</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + mobo.getID()+ "\">" + mobo.getMarca() + " " + mobo.getModello() + "</a></h4>\n" +
+                        "<p>" + mobo.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + mobo.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + mobo.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>");
     }
-    private void writeHddForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeHddForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Hdd hdd = (Hdd) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + hdd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        hdd.getMarca() + "</li>" +
-                        "<li>Modello: " + hdd.getModello() + "</li>" +
-                        "<li>Prezzo: " + hdd.getPrezzo() + "</li>" +
-                        "<li>MB/s: " + hdd.getMBs() + "</li>" +
-                        "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
-                        "<li>Url: " + hdd.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + hdd.getQuantita() + "</li></ul></div></a>"
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">Hard disk</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + hdd.getID()+ "\">" + hdd.getMarca() + " " + hdd.getModello() + "</a></h4>\n" +
+                        "<p>" + hdd.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + hdd.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + hdd.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>"
         );
     }
-    private void writeSsdForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeSsdForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Ssd ssd = (Ssd) p;
-        response.getWriter().println("<a href=\"info-pezzo.jsp?Id=" + ssd.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                ssd.getMarca() + "</li>" +
-                "<li>Modello: " + ssd.getModello() + "</li>" +
-                "<li>Prezzo: " + ssd.getPrezzo() + "</li>" +
-                "<li>MB/s: " + ssd.getMBs() + "</li>" +
-                "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
-                "<li>Url: " + ssd.getUrl() + "</li>" +
-                "<li>Disponibilità: " + ssd.getQuantita() + "</li></ul></div></a>");
+        response.getWriter().println("<div class=\"product-card\">\n" +
+                "<div class=\"product-tumb\">\n" +
+                /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                "</div>\n" +
+                "<div class=\"product-details\">\n" +
+                "<span class=\"product-catagory\">Solid state disk</span>\n" +
+                "<h4><a href=\"" + path + "?Id=" + ssd.getID()+ "\">" + ssd.getMarca() + " " + ssd.getModello() + "</a></h4>\n" +
+                "<p>" + ssd.getDescrizione() + "</p>\n" +
+                "<div class=\"product-bottom-details\">\n" +
+                "<div class=\"product-price\">" + ssd.getPrezzo() + "&euro;</div>\n" +
+                "<div class=\"product-links\">\n" +
+                "<a href=\"addCart?Id=" + ssd.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</div>\n" +
+                "</div>");
     }
-    private void writeRamForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeRamForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Ram ram = (Ram) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + ram.getID() + "\"><div class = \"gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        ram.getMarca() + "</li>" +
-                        "<li>Modello: " + ram.getModello() + "</li>" +
-                        "<li>Prezzo: " + ram.getPrezzo() + "</li>" +
-                        "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
-                        "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
-                        "<li>Url: " + ram.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + ram.getQuantita() + "</li></ul></div></a>"
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">RAM</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + ram.getID()+ "\">" + ram.getMarca() + " " + ram.getModello() + "</a></h4>\n" +
+                        "<p>" + ram.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + ram.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + ram.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>"
         );
     }
-    private void writeCaseForCatalog(HttpServletResponse response, Prodotto p) throws IOException{
+    private void writeCaseForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Case case_ = (Case) p;
         response.getWriter().println(
-                "<a href=\"info-pezzo.jsp?Id=" + case_.getID() + "\"><div class = \"case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                        case_.getMarca() + "</li>" +
-                        "<li>Modello: " + case_.getModello() + "</li>" +
-                        "<li>Prezzo: " + case_.getPrezzo() + "</li>" +
-                        "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
-                        "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
-                        "<li>Url: " + case_.getUrl() + "</li>" +
-                        "<li>Disponibilità: " + case_.getQuantita() + "</li></ul></div></a>"
+                "<div class=\"product-card\">\n" +
+                        "<div class=\"product-tumb\">\n" +
+                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
+                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<div class=\"product-details\">\n" +
+                        "<span class=\"product-catagory\">Case</span>\n" +
+                        "<h4><a href=\"" + path + "?Id=" + case_.getID()+ "\">" + case_.getMarca() + " " + case_.getModello() + "</a></h4>\n" +
+                        "<p>" + case_.getDescrizione() + "</p>\n" +
+                        "<div class=\"product-bottom-details\">\n" +
+                        "<div class=\"product-price\">" + case_.getPrezzo() + "</div>\n" +
+                        "<div class=\"product-links\">\n" +
+                        "<a href=\"addCart?Id=" + case_.getID() + "&quantity=" + 1 + "\"><i class=\"fa fa-shopping-cart\"></i></a>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>\n" +
+                        "</div>"
         );
     }
 }
