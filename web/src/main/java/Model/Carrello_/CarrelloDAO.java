@@ -5,6 +5,7 @@ import Model.ConPool;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -253,14 +254,31 @@ public class CarrelloDAO {
         return codCarrelli;
     }
 
-    public void modCart(int cartCod, int id, int quant) throws SQLException {
+    public void modCart(Carrello cart, Prodotto p) throws SQLException {
+        modComporreQuant( cart,  p);
+        modCarrelloPrezzo(cart);
+    }
+
+    private void modCarrelloPrezzo(Carrello cart) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
-        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ? WHERE CarrelloCod = ? AND PezzoID = ?");
-        pdstmt.setInt(1, quant);
-        pdstmt.setInt(2, cartCod);
-        pdstmt.setInt(3, id);
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Carrello SET Totale = ? WHERE Cod = ?");
+        pdstmt.setDouble(1, cart.getPrezzo());
+        pdstmt.setInt(2, cart.getCarrelloCod());
         pdstmt.executeUpdate();
+    }
+
+    private void modComporreQuant(Carrello cart, Prodotto p) throws SQLException {
+        Connection con = ConPool.getConnection();
+        Statement stmt = (Statement) con.createStatement();
+        PreparedStatement pdstmt = con.prepareStatement("UPDATE Comporre SET Quantita = ?, Prezzo = ? WHERE CarrelloCod = ? AND PezzoID = ?");
+        pdstmt.setInt(1, p.getQuantita());
+        pdstmt.setInt(3, cart.getCarrelloCod());
+        pdstmt.setDouble(2, p.getPrezzo()*p.getQuantita());
+        pdstmt.setInt(4, p.getID());
+        if(pdstmt.executeUpdate()==0) {
+            throw new SQLException();
+        }
     }
 
 }
