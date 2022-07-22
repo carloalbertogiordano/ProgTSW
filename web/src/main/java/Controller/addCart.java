@@ -91,7 +91,8 @@ public class addCart extends HttpServlet {
                 addToCart(cliente, carrello, catalogo, dissipatore_carrello);
                 break;
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        request.setAttribute("toCartJSP", true);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("HomeServlet");
         dispatcher.forward(request, response);
     }
 

@@ -290,6 +290,22 @@ div.product-details > h4{
 
 /*FINE PRODUCT CARD*/
 
+@media screen and (max-width: 1510px){
+    .filter-div{
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    #reset-button{
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+
+    .catalogo-div{
+        min-width: 100%;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     #filter-panel {
@@ -303,6 +319,7 @@ div.product-details > h4{
         margin-top: 0;
         padding-bottom: 30px;
         margin-bottom: 30px;
+        margin-left: 0;
     }
 
     body {

@@ -96,8 +96,15 @@ public class HomeServlet extends HttpServlet {
                 }
             }
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
+        Boolean toCartJSP = (Boolean) request.getAttribute("toCartJSP");
+        request.setAttribute("toCartJSP", null);
+        if(toCartJSP != null && toCartJSP==true){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
+            dispatcher.forward(request, response);
+        }else{
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     @Override
