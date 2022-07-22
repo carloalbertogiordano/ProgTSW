@@ -3,15 +3,33 @@
     padding:0;
 }
 
-.html{
+html{
     width: 100%;
     overflow-x: hidden;
 }
 
-.body{
+body{
     margin: 0;
     padding: 0;
     max-width: 100%;
+}
+
+html, body{
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+   text-decoration: none;
+    color: inherit;
+}
+
+a:visited{
+    text-decoration: none;
+    color: default;
 }
 
 .flex-container{
@@ -38,6 +56,7 @@
 .header{
     background-color: #003049;
     position: sticky;
+    z-index: 2;
 }
 
 #header-logo{

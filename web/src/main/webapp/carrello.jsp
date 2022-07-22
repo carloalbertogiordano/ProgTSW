@@ -64,7 +64,6 @@
     </div>
 </div>
 <div class="main flex-container">
-    <ul>
         <%
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             Cliente cliente = (Cliente) session.getAttribute("cliente");
@@ -82,7 +81,7 @@
                             "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" class=\"" + prodotto.getID() + "\" value=\"" + prodotto.getID() + "\">" +
                             "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
                             "</ul> </div>");*/
-                    out.println("<li class=\"cart-list\">" +
+                    out.println("<ul><li class=\"cart-list\">" +
                                 "<div class=\"row flex-container\">\n" +
                                     /*"<img src=\"" + prodotto.getUrl() + "/2.png\" alt=\"\">\n" +*/
                                     "<img src=\"Images/PCBuilder-logo.png\" alt=\"\" class=\"cart-image\">\n" +
@@ -111,16 +110,17 @@
                             "</div>" +
                             "<div class=\"expire-cart-button\">" +
                                 "<a href=\"redirectToIndirizzoSpedizione\"></i>Procedi all'ordine</a>" +
-                            "</div>");
+                            "</div></ul>");
                 } else {
                     out.println("<br>" +
-                            "Devi essere loggato per acquistare. Procedi al <a href=\"login.jsp\"> login </a>");
+                            "<div class=\"login-needed-container\">" +
+                                "<h2 class=\"login-needed\">Devi essere loggato per acquistare. Procedi al <a href=\"login.jsp\"> login </a></h2>" +
+                            "</div>");
                 }
             } else {
                 out.println("<div class=\"empty-cart flex-container\"><h1>Il carrello è vuoto</h1></div>");
             }
         %>
-    </ul>
 </div>
 </body>
 </html>
