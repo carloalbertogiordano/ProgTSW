@@ -23,7 +23,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Take session
         HttpSession ss = request.getSession();
-        ss.setMaxInactiveInterval(10);
+        //ss.setMaxInactiveInterval(10);
         //Take Attribute from session
         Cliente c = (Cliente) ss.getAttribute("cliente");
         //Create new instance
