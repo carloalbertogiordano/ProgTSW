@@ -5,9 +5,7 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
-<%
-    out.println("OPS, Non riusciamo a trovare questa risorsa :(<br>" +
-            "torna alla <a href=\".\">home page</a>");
-%>
+<h1>Errore clicca <a href="./HomeServlet">QUI</a> </h1>
+<%=response.getStatus()%>
 </body>
 </html>

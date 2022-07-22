@@ -1,19 +1,3 @@
-function validateInfoSped(){
-    if(testCap() && testProv() && testVia() && testCitta()){
-        return true;
-    }
-    alert("Info spedizione non inserite correttamente. Assicurati che tutti i campi siano stati rispettati");
-    return false;
-}
-
-function validateInfoPers(){
-    if(testNickname() && testTel()){
-        return true;
-    }
-    alert("Info presonali non inserite correttamente. assicurati di rispettare tutti i campi");
-    return false;
-}
-
 $(document).ready(function() {
     let btnInfoCliente = $('#submitModInfoCliente');
     let btnInfoSpedCliente = $('#submitModInfoSped');
@@ -32,6 +16,9 @@ $(document).ready(function() {
                 success: function (response) {
                     alert("Informazioni inserite correttamente");
                     btnInfoCliente.attr('disabled', true);
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
                 }
             });
         }
@@ -51,6 +38,9 @@ $(document).ready(function() {
                 success: function (response){
                     alert("Informazioni inserite correttamente");
                     btnInfoSpedCliente.attr('disabled', true);
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
                 }
             });
         }
@@ -67,6 +57,9 @@ $(document).ready(function() {
                 success: function (response){
                     alert("Informazioni inserite correttamente");
                     btnPass.attr('disabled', true);
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
                 }
             });
         }
