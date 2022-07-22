@@ -38,6 +38,9 @@ $(document).ready(function() {
                 success: function (response){
                     alert("Informazioni inserite correttamente");
                     btnInfoSpedCliente.attr('disabled', true);
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
                 }
             });
         }
@@ -54,6 +57,9 @@ $(document).ready(function() {
                 success: function (response){
                     alert("Informazioni inserite correttamente");
                     btnPass.attr('disabled', true);
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
                 }
             });
         }

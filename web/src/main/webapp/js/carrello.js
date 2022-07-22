@@ -18,6 +18,12 @@ $(document).ready(function(){
                 data: {
                     attr_id: id, attr_newQuant: quant, attr_OldQuant: oldQuant
                 },
+                success: function (response){
+                    alert("Quantità aggiornata correttamente");
+                },
+                error: function () {
+                    $(location).attr('href','error.page.jsp');
+                }
             });
             oldQuant = quant;
         }
