@@ -11,7 +11,7 @@ function testMail() {
 }
 
 function testPassword() {
-    const cerca = /^[a-zA-Z0-9]{1,130}$/;
+    const cerca = /^.{8,130}$/;
     console.log("password"+cerca.test($("#password").val()));
     return cerca.test($("#password").val());
 }
@@ -23,7 +23,7 @@ function testTel() {
 }
 
 function testCap() {
-    const cerca = /^(?!.*a)[1-9][0-9]{4}$/;
+    const cerca = /^[1-9][0-9]{4}$/;
     console.log("cap"+cerca.test($("#cap").val()));
     return cerca.test($("#cap").val());
 }
