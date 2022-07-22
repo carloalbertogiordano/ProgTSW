@@ -67,6 +67,14 @@
                         "<tr>" +
                         "                <td>Numero di core</td>" +
                         "                <td><input type=\"text\" name=\"numCore\" id=\"ncore\" value=\"" + cpu.getN_Core() + "\" form=\"modProd\" required/></td>" +
+                        "            </tr>"+
+                        "<tr>" +
+                        "                <td>Watts</td>" +
+                        "                <td><input type=\"text\" name=\"watt\" id=\"watt\" value=\"" + cpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
+                        "            </tr>"+
+                        "<tr>" +
+                        "                <td>Frequenza</td>" +
+                        "                <td><input type=\"text\" name=\"frequenza\" id=\"frequenza\" value=\"" + cpu.getFrequenza() + "\" form=\"modProd\" required/></td>" +
                         "            </tr>");
                 break;
             case "CASE" :
@@ -74,7 +82,7 @@
                 out.println("" +
                         "<tr>" +
                         "                <td>Forma mobo</td>" +
-                        "                <td><input type=\"number\" name=\"formaMobo\" id=\"formaMobo\" value=\""+ case_.getFormaMobo() +"\" max=\"2\" min=\"0\" form=\"modProd\" required/></td>" +
+                        "                <td><input type=\"number\" name=\"forma\" id=\"formaMobo\" value=\""+ case_.getFormaMobo() +"\" max=\"2\" min=\"0\" form=\"modProd\" required/></td>" +
                         "            </tr>");
                 break;
             case "DISSIPATORE" :
@@ -148,15 +156,15 @@
                 out.println(
                         "<tr>" +
                                 "                <td>Wattaggio</td>" +
-                                "                <td><input type=\"text\" name=\"wattaggio\" id=\"wGpu\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
+                                "                <td><input type=\"text\" name=\"watt\" id=\"watt\" value=\"" + gpu.getWattaggio() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Frequenza</td>" +
-                                "                <td><input type=\"text\" name=\"freqGpu\" id=\"freqGpu\" value=\"" + gpu.getFrequenza() + "\" form=\"modProd\" required/></td>" +
+                                "                <td><input type=\"text\" name=\"frequenza\" id=\"frequenza\" value=\"" + gpu.getFrequenza() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>" +
                                 "<tr>" +
                                 "                <td>Vram</td>" +
-                                "                <td><input type=\"text\" name=\"vRam\" id=\"vRam\" value=\"" + gpu.getVRam() + "\" form=\"modProd\" required/></td>" +
+                                "                <td><input type=\"text\" name=\"Vram\" id=\"Vram\" value=\"" + gpu.getVRam() + "\" form=\"modProd\" required/></td>" +
                                 "            </tr>"
                 );
                 break;

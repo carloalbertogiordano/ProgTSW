@@ -1,10 +1,26 @@
 package Controller;
 
+import Model.Archiviazione_.ArchivioDati;
+import Model.Archiviazione_.ArchivioDatiDAO;
+import Model.CASE_.Case;
+import Model.CASE_.CaseDAO;
 import Model.CATALOGO_.Catalogo;
 import Model.CATALOGO_.CatalogoDAO;
+import Model.CPU_.Cpu;
+import Model.CPU_.CpuDAO;
+import Model.DISSIPATORE_.Dissipatore;
+import Model.DISSIPATORE_.DissipatoreDAO;
+import Model.GPU_.Gpu;
+import Model.GPU_.GpuDAO;
 import Model.ImageManager;
+import Model.MOBO_.Mobo;
+import Model.MOBO_.MoboDAO;
+import Model.PSU_.Psu;
+import Model.PSU_.PsuDAO;
 import Model.Prodotto;
 import Model.ProdottoDAO;
+import Model.RAM_.Ram;
+import Model.RAM_.RamDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -29,6 +45,7 @@ public class Aggiorna extends HttpServlet {
         int quantita = Integer.parseInt(request.getParameter("quantita"));
         String desc = request.getParameter("desc");
         String url = request.getParameter("url");
+        String tipo = request.getParameter("tipo");
         Part image = null;
 
         try {
@@ -66,8 +83,8 @@ public class Aggiorna extends HttpServlet {
 
         //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
         Integer wattaggio = null;
-        if (request.getParameter("wattaggio") != null) {
-            wattaggio = Integer.parseInt(request.getParameter("wattaggio"));
+        if (request.getParameter("watt") != null) {
+            wattaggio = Integer.parseInt(request.getParameter("watt"));
         }
         Float frequenza = null;
         if (request.getParameter("frequenza") != null) {
@@ -97,10 +114,6 @@ public class Aggiorna extends HttpServlet {
         if (request.getParameter("Vram") != null) {
             Vram = Integer.parseInt(request.getParameter("Vram"));
         }
-        Integer N_Watt = null;
-        if (request.getParameter("watt") != null) {
-            N_Watt = Integer.parseInt(request.getParameter("watt"));
-        }
         Integer W_Cpu = null;
         if (request.getParameter("wCpu") != null) {
             W_Cpu = Integer.parseInt(request.getParameter("wCpu"));
@@ -112,11 +125,33 @@ public class Aggiorna extends HttpServlet {
 
         try {
             //Aggiorna il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
-            ProdottoDAO.Update( id,  marca,  modello,
-                     prezzo,  quantita,  wattaggio,
-                     frequenza,  N_Core,  N_Ram,  N_Usb, N_Pci,
-                     MBs,  Vram,  N_Watt,  W_Cpu,  formaMobo,
-                     url,  desc);
+            switch (tipo) {
+                case "CPU":
+                    CpuDAO.Update(new Cpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, N_Core, url, desc));
+                    break;
+                case "CASE":
+                    CaseDAO.Update(new Case(id, marca, modello, prezzo, quantita, formaMobo, url, desc));
+                    break;
+                case "DISSIPATORE":
+                    DissipatoreDAO.Update(new Dissipatore(id, marca, modello, prezzo, quantita, W_Cpu, url, desc));
+                    break;
+                case "PSU":
+                    PsuDAO.Update(new Psu(id, marca, modello, prezzo, quantita, wattaggio, url, desc));
+                    break;
+                case "MOBO":
+                    MoboDAO.Update(new Mobo(id, marca, modello, prezzo, quantita, formaMobo, N_Ram, N_Usb, N_Pci, url, desc));
+                    break;
+                case "RAM":
+                    RamDAO.Update(new Ram(id, marca, modello, prezzo, quantita, frequenza, url, desc));
+                    break;
+                case "HDD":
+                case "SSD":
+                    ArchivioDatiDAO.Update(new ArchivioDati(id, marca, modello, prezzo, quantita, tipo, MBs, url, desc));
+                    break;
+                case "GPU":
+                    GpuDAO.Update(new Gpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, Vram ,url, desc));
+                    break;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

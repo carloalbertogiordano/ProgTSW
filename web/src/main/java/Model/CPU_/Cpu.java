@@ -11,8 +11,8 @@ public class Cpu extends Prodotto {
     private float frequenza;
     private int wattaggio;
 
-    public Cpu(int ID, String marca, String modello, double prezzo, int quantità, int wattaggio, float frequenza, int N_Core, String url, String descrizione) {
-        super(ID, marca, modello, prezzo, quantità, "CPU", url, descrizione);
+    public Cpu(int ID, String marca, String modello, double prezzo, int quantita, int wattaggio, float frequenza, int N_Core, String url, String descrizione) {
+        super(ID, marca, modello, prezzo, quantita, "CPU", url, descrizione);
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
         this.N_Core = N_Core;

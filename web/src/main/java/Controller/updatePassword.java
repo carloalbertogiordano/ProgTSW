@@ -17,14 +17,14 @@ public class updatePassword extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String password = request.getParameter("input_pass");
         String newPassword = PasswordEncrypter.encryptThisString(password);
-        String mail = ((Cliente)request.getSession().getAttribute("cliente")).getMail();
+        Cliente cliente = ((Cliente)request.getSession().getAttribute("cliente"));
         ClienteDAO cDAO = new ClienteDAO();
         HttpSession ss = request.getSession();
         boolean success;
 
         //Aggiorno la password nel db controllando che abbia avuto successo
         try {
-            success = cDAO.updatePassword(newPassword, mail);
+            success = cDAO.updatePassword(cliente, newPassword);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

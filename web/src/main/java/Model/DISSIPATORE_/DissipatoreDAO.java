@@ -57,7 +57,25 @@ public class DissipatoreDAO {
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         d.setID(rs.getInt(1));
+    }
 
+    public static void Update(Dissipatore d) throws SQLException {
+        String updProd = "UPDATE Pezzo "+
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "W_CPU = ?, url = ?, Descrizione = ? WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, d.getMarca());
+        pdstmt.setString(2, d.getModello());
+        pdstmt.setDouble(3, d.getPrezzo());
+        pdstmt.setInt(4, d.getQuantita());
+        pdstmt.setInt(5, d.getW_Cpu());
+        pdstmt.setString(6, d.getUrl());
+        pdstmt.setString(7, d.getDescrizione());
+        pdstmt.setInt(8, d.getID());
+        pdstmt.executeUpdate();
     }
 
 }

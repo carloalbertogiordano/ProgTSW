@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
     <link rel = "stylesheet" type = "text/css" href = "../css/style.css">
+    <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="js/admin.js"></script>
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>

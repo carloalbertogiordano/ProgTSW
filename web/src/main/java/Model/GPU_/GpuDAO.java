@@ -60,7 +60,28 @@ public class GpuDAO {
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         g.setID(rs.getInt(1));
+    }
 
+    public static void Update(Gpu g) throws SQLException {
+        String updProd = "UPDATE Pezzo " +
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "Wattaggio = ?, Frequenza = ?, VRAM = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, g.getMarca());
+        pdstmt.setString(2, g.getModello());
+        pdstmt.setDouble(3, g.getPrezzo());
+        pdstmt.setInt(4, g.getQuantita());
+        pdstmt.setInt(5, g.getWattaggio());
+        pdstmt.setFloat(6, g.getFrequenza());
+        pdstmt.setInt(7, g.getVRam());
+        pdstmt.setString(8, g.getUrl());
+        pdstmt.setString(9, g.getDescrizione());
+        pdstmt.setInt(10, g.getID());
+        pdstmt.executeUpdate();
     }
 
 }

@@ -21,16 +21,15 @@ public class updateInfoCliente extends HttpServlet {
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         boolean success;
 
+        cliente.setNickname(nick);
+        cliente.setTel(tel);
+
         //Aggiorno le info nel DB
         try {
-            success = cDAO.updateInfoPersonaliCliente(cliente, nick, tel);
+            success = cDAO.updateInfoPersonaliCliente(cliente);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        //Setto le info aggiornate nella sessione
-        cliente.setNickname(nick);
-        cliente.setTel(tel);
 
         //Se l'aggiornamento è andato a buon fine setto l'utente anche nella sessione
         if(success){
@@ -38,7 +37,6 @@ public class updateInfoCliente extends HttpServlet {
             ss.setAttribute("cliente", cliente);
         }
         else ss.setAttribute("queryUpdateInfoCliente",false);
-
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Model.RAM_;
 
+import Model.CASE_.Case;
 import Model.ConPool;
 import Model.MOBO_.Mobo;
 import Model.Prodotto;
@@ -55,6 +56,25 @@ public class RamDAO{
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         r.setID(rs.getInt(1));
+    }
 
+    public static void Update(Ram r) throws SQLException {
+        String updProd = "UPDATE Pezzo " +
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "Frequenza = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, r.getMarca());
+        pdstmt.setString(2, r.getModello());
+        pdstmt.setDouble(3, r.getPrezzo());
+        pdstmt.setInt(4, r.getQuantita());
+        pdstmt.setFloat(5, r.getFrequenza());
+        pdstmt.setString(6, r.getUrl());
+        pdstmt.setString(7, r.getDescrizione());
+        pdstmt.setInt(8, r.getID());
+        pdstmt.executeUpdate();
     }
 }

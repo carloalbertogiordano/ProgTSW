@@ -11,7 +11,7 @@ function testMail() {
 }
 
 function testPassword() {
-    const cerca = /^[a-zA-Z0-9]{1,130}$/;
+    const cerca = /^.{5,130}$/;
     console.log("password"+cerca.test($("#password").val()));
     return cerca.test($("#password").val());
 }
@@ -23,7 +23,7 @@ function testTel() {
 }
 
 function testCap() {
-    const cerca = /^(?!.*a)[1-9][0-9]{4}$/;
+    const cerca = /^[1-9][0-9]{4}$/;
     console.log("cap"+cerca.test($("#cap").val()));
     return cerca.test($("#cap").val());
 }
@@ -35,13 +35,13 @@ function testProv() {
 }
 
 function testVia() {
-    const cerca = /^[a-zA-Z ]{1,100}[0-9]{1,3}$/;
+    const cerca = /(?=.{3,100}$)^([a-zA-Z]{1,}){1}([a-zA-Z]{1,}\s)*[1-9]{1,3}$/;
     console.log("via"+cerca.test($("#via").val()));
     return cerca.test($("#via").val());
 }
 
 function testCitta() {
-    const cerca = /^[a-zA-Z]{1,100}\s[0-9]$/;
+    const cerca = /^[a-zA-Z]{3,100}$/;
     console.log("citta"+cerca.test($("#citta").val()));
     return cerca.test($("#citta").val());
 }

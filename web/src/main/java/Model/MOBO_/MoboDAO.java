@@ -1,5 +1,6 @@
 package Model.MOBO_;
 
+import Model.CASE_.Case;
 import Model.ConPool;
 import Model.PSU_.Psu;
 import Model.Prodotto;
@@ -20,8 +21,8 @@ public class MoboDAO {
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
             //                                int ID,              String marca,             String modello,           double prezzo,            int quantità,                int forma,               int N_RAM,               int N_USB,                int N_PCI,                 String url,                String descrizione,
-            Mobo cpu = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(17), rs.getShort(6), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
-            list.add(cpu);
+            Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(17), rs.getShort(6), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+            list.add(mobo);
         }
         return list;
     }
@@ -59,6 +60,29 @@ public class MoboDAO {
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         m.setID(rs.getInt(1));
+    }
+
+    public static void Update(Mobo m) throws SQLException {
+        String updProd = "UPDATE Pezzo " +
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "N_RAM = ?, N_USB = ?, N_PCI = ?, FormaMobo = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, m.getMarca());
+        pdstmt.setString(2, m.getModello());
+        pdstmt.setDouble(3, m.getPrezzo());
+        pdstmt.setInt(4, m.getQuantita());
+        pdstmt.setInt(5, m.getN_RAM());
+        pdstmt.setInt(6, m.getN_USB());
+        pdstmt.setInt(7, m.getN_PCI());
+        pdstmt.setInt(8, m.getForma());
+        pdstmt.setString(9, m.getUrl());
+        pdstmt.setString(10, m.getDescrizione());
+        pdstmt.setInt(11, m.getID());
+        pdstmt.executeUpdate();
     }
 
 

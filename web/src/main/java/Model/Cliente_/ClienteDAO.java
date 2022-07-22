@@ -39,25 +39,15 @@ public class ClienteDAO {
         return success != 0;
     }
 
-    public boolean updateInfoPersonaliCliente(Cliente c, String nick, String tel) throws SQLException {
+    public boolean updateInfoPersonaliCliente(Cliente c) throws SQLException {
         Connection con = ConPool.getConnection();
         //Controllo se il nick richiesto è disponibile
-        if(isUniqueNick(nick)) {
+        if(isUniqueNick(c.getNickname())) {
             String upd = "UPDATE Cliente SET Nickname=?, Tel=? WHERE Mail=?";
             PreparedStatement pdstmt = con.prepareStatement(upd);
-            pdstmt.setString(1, nick);
-            pdstmt.setString(2, tel);
+            pdstmt.setString(1, c.getNickname());
+            pdstmt.setString(2, c.getTel());
             pdstmt.setString(3, c.getMail());
-            int success = pdstmt.executeUpdate();
-            //Return true if != 0
-            return success != 0;
-        }
-        //Significa che voglio cambuiare solo il telefono
-        else if(Objects.equals(c.getNickname(), nick)){
-            String upd = "UPDATE Cliente SET Tel=? WHERE Mail=?";
-            PreparedStatement pdstmt = con.prepareStatement(upd);
-            pdstmt.setString(1, tel);
-            pdstmt.setString(2, c.getMail());
             int success = pdstmt.executeUpdate();
             //Return true if != 0
             return success != 0;
@@ -148,12 +138,12 @@ public class ClienteDAO {
     }
 
 
-    public boolean updatePassword(String newPassword, String mail) throws SQLException {
+    public boolean updatePassword(Cliente c, String newPass) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Cliente SET Pass=? WHERE Mail = ? ");
-        pdstmt.setString(1, newPassword);
-        pdstmt.setString(2, mail);
+        pdstmt.setString(1, newPass);
+        pdstmt.setString(2, c.getMail());
         int success = pdstmt.executeUpdate();
 
         //True se <= 0

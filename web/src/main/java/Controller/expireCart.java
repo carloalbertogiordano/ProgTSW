@@ -41,9 +41,9 @@ public class expireCart extends HttpServlet {
         try {
             //Sceglie se aggiornare l'indirizzo oppure no e quindi invia l'ordine al DAO
             if(cliente.getVia().equals(via) && cliente.getProvincia().equals(provincia) && cliente.getCitta().equals(citta) && cliente.getCap() == cap)
-                carrelloSession.forwardOrder(idCarrello, cliente.getMail());
+                carrelloSession.forwardOrderWithDifferentAddress(idCarrello, cliente);
             else
-                carrelloSession.forwardOrder(idCarrello, cliente.getMail(), via, provincia, citta, cap);
+                carrelloSession.forwardOrder(idCarrello, cliente);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

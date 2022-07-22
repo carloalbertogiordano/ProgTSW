@@ -62,7 +62,28 @@ public class CpuDAO {
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         c.setID(rs.getInt(1));
+    }
 
+    public static void Update(Cpu c) throws SQLException {
+        String updProd = "UPDATE Pezzo " +
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "Wattaggio = ?, Frequenza = ?, N_Core = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, c.getMarca());
+        pdstmt.setString(2, c.getModello());
+        pdstmt.setDouble(3, c.getPrezzo());
+        pdstmt.setInt(4, c.getQuantita());
+        pdstmt.setDouble(5, c.getWattaggio());
+        pdstmt.setFloat(6, c.getFrequenza());
+        pdstmt.setInt(7, c.getN_Core());
+        pdstmt.setString(8, c.getUrl());
+        pdstmt.setString(9, c.getDescrizione());
+        pdstmt.setInt(10, c.getID());
+        pdstmt.executeUpdate();
     }
 
 }

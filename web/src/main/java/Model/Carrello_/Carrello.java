@@ -183,15 +183,15 @@ public class Carrello {
         return newCarrello;
     }
 
-    public void forwardOrder(int idCarrello, String mail, String via, String provincia, String citta, Integer cap) throws SQLException {
+    public void forwardOrderWithDifferentAddress(int idCarrello, Cliente c) throws SQLException {
         CarrelloDAO service = new CarrelloDAO();
-        service.setOrdineEvaso(idCarrello, mail);
-        service.setIndirizzoOrdine(via, provincia, citta, cap, mail, idCarrello);
+        service.setOrdineEvaso(idCarrello, c.getMail());
+        service.setIndirizzoOrdine(c, idCarrello);
     }
 
-    public void forwardOrder(int idCarrello, String mail) throws SQLException {
+    public void forwardOrder(int idCarrello, Cliente c) throws SQLException {
         CarrelloDAO service = new CarrelloDAO();
-        service.setOrdineEvaso(idCarrello, mail);
+        service.setOrdineEvaso(idCarrello, c.getMail());
     }
 
     public int doRetriveQuantitaProdottoById(int id){

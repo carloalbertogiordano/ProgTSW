@@ -81,7 +81,7 @@ public class CarrelloDAO {
         }
         int carrelloCod = doRetriveCarrelloCodByMailCLiente(mail);
         double totaleCarrello = doRetrivePrezzoByIdCarrello(carrelloCod);
-        List<Prodotto> listProdotti = new ArrayList<Prodotto>();
+        List<Prodotto> listProdotti;
         listProdotti = Prodotto.doRetriveByIdLis(prodotti);
         for (Prodotto prodotto : listProdotti) {
             int quantitaRichiesta = getComporreQuantita(prodotto.getID(), carrelloCod);
@@ -96,16 +96,16 @@ public class CarrelloDAO {
         pdstmt.setInt(1, carrello.getCarrelloCod());
         pdstmt.executeUpdate();
         for(Prodotto p : carrello.getCarrello()){
-            addCartDB(p.getID(), carrello.getCarrelloCod(), p.getQuantita(), p.getPrezzo());
+            addCartDB(p, carrello.getCarrelloCod());
         }
     }
-    public void addCartDB(int idPezzo, int idCarrello, int quantity, double prezzo) throws SQLException {
+    private void addCartDB(Prodotto p, int idCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("INSERT INTO Comporre VALUES (?, ?, ?, ?)");
-        pdstmt.setInt(1, idPezzo);
+        pdstmt.setInt(1, p.getID());
         pdstmt.setInt(2, idCarrello);
-        pdstmt.setInt(3, quantity);
-        pdstmt.setDouble(4, prezzo);
+        pdstmt.setInt(3, p.getQuantita());
+        pdstmt.setDouble(4, p.getPrezzo());
         pdstmt.executeUpdate();
     }
 
@@ -127,14 +127,14 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    public void setIndirizzoOrdine(String via, String provincia, String citta, int cap, String mail, int codCarrello) throws SQLException {
+    public void setIndirizzoOrdine(Cliente c, int codCarrello) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Ordine SET Via = ?, Provincia = ?, Citta = ?, Cap = ? WHERE ClienteMail = ? AND CarrelloCod = ?");
-        pdstmt.setString(1,via);
-        pdstmt.setString(2,provincia);
-        pdstmt.setString(3,citta);
-        pdstmt.setInt(4, cap);
-        pdstmt.setString(5, mail);
+        pdstmt.setString(1,c.getVia());
+        pdstmt.setString(2,c.getProvincia());
+        pdstmt.setString(3,c.getCitta());
+        pdstmt.setInt(4, c.getCap());
+        pdstmt.setString(5, c.getMail());
         pdstmt.setInt(6,codCarrello);
         pdstmt.executeUpdate();
     }
@@ -152,7 +152,7 @@ public class CarrelloDAO {
         pdstmt.executeUpdate();
     }
 
-    //Ritorna tutto lo storico dei carrelli sottoforma di carrello
+    //Ritorna tutto lo storico dei carrelli sotto forma di carrello
     public static ArrayList<Carrello> doRetriveStorico(String mail) throws SQLException {
         ArrayList<Integer> storicoCarrelli = doRetriveStoricoCarrelliIdEvasiByMail(mail);
         ArrayList<Carrello> listaCarrelli = new ArrayList<>();

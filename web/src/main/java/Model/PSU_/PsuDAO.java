@@ -1,5 +1,6 @@
 package Model.PSU_;
 
+import Model.CASE_.Case;
 import Model.ConPool;
 import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
@@ -58,6 +59,26 @@ public class PsuDAO {
         ResultSet rs = pdstmt.getGeneratedKeys();
         rs.next();
         p.setID(rs.getInt(1));
+    }
+
+    public static void Update(Psu p) throws SQLException {
+        String updProd = "UPDATE Pezzo " +
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "N_Watt = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        Connection con = ConPool.getConnection();
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+
+        pdstmt.setString(1, p.getMarca());
+        pdstmt.setString(2, p.getModello());
+        pdstmt.setDouble(3, p.getPrezzo());
+        pdstmt.setInt(4, p.getQuantita());
+        pdstmt.setInt(5, p.getN_Watt());
+        pdstmt.setString(6, p.getUrl());
+        pdstmt.setString(7, p.getDescrizione());
+        pdstmt.setInt(8, p.getID());
+        pdstmt.executeUpdate();
     }
 
 }

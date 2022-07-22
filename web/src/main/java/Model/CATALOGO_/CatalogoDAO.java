@@ -94,11 +94,11 @@ public class CatalogoDAO {
     }
 
     //Scala un prodotto dal db dato un id
-    public void scalaProdotto(int id, int quantity) throws SQLException {
+    public void scalaProdotto(Prodotto p) throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Pezzo SET Quantita = Quantita - ? WHERE Id = ?");
-        pdstmt.setInt(1, quantity);
-        pdstmt.setInt(2, id);
+        pdstmt.setInt(1, p.getQuantita());
+        pdstmt.setInt(2, p.getID());
         pdstmt.executeUpdate();
     }
 
@@ -106,7 +106,7 @@ public class CatalogoDAO {
     public void scalaProdotti(Carrello c) throws SQLException {
         CatalogoDAO service = new CatalogoDAO();
         for(Prodotto p : c.getCarrello()){
-            service.scalaProdotto(p.getID(), p.getQuantita());
+            service.scalaProdotto(p);
         }
     }
 }

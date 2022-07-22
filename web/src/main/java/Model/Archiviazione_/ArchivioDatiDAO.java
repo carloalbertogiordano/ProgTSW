@@ -30,5 +30,24 @@ public abstract class ArchivioDatiDAO {
         a.setID(rs.getInt(1));
     }
 
+    public static void Update(ArchivioDati a) throws SQLException {
+        Connection con = ConPool.getConnection();
+        String updProd = "UPDATE Pezzo "+
+                "SET Marca = ?, Modello = ?, Prezzo = ?, Quantita = ?, " +
+                "MBs = ?, url = ?, Descrizione = ? " +
+                "WHERE Id = ?";
+
+        PreparedStatement pdstmt = con.prepareStatement(updProd);
+        pdstmt.setString(1, a.getMarca());
+        pdstmt.setString(2, a.getModello());
+        pdstmt.setDouble(3, a.getPrezzo());
+        pdstmt.setInt(4, a.getQuantita());
+        pdstmt.setInt(5, a.getMBs());
+        pdstmt.setString(6, a.getUrl());
+        pdstmt.setString(7, a.getDescrizione());
+        pdstmt.setInt(8, a.getID());
+        pdstmt.executeUpdate();
+    }
+
 
 }
