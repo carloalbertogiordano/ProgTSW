@@ -130,7 +130,19 @@ public class Aggiorna extends HttpServlet {
             //Aggiorna il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
             switch (tipo) {
                 case "CPU":
-                    CpuDAO.Update(new Cpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, N_Core, url, desc));
+                    //CpuDAO.Update(new Cpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, N_Core, url, desc));
+                    Cpu cpu = new Cpu();
+                    cpu.setID(id);
+                    cpu.setMarca(marca);
+                    cpu.setModello(modello);
+                    cpu.setPrezzo(prezzo);
+                    cpu.setQuantita(quantita);
+                    cpu.setWattaggio(wattaggio);
+                    cpu.setFrequenza(frequenza);
+                    cpu.setN_Core(N_Core);
+                    cpu.setUrl(url);
+                    cpu.setDescrizione(desc);
+                    CpuDAO.Update(cpu);
                     break;
                 case "CASE":
                     Case case_ = new Case();

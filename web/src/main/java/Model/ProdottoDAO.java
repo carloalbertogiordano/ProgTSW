@@ -7,6 +7,7 @@ import Model.Archiviazione_.SDD_.SsdDAO;
 import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
 import Model.CPU_.Cpu;
+import Model.CPU_.CpuDAO;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.GPU_.Gpu;
 import Model.MOBO_.Mobo;
@@ -33,7 +34,8 @@ public abstract class ProdottoDAO {
             //In base al valore contenuto nel parametro type viene istanziato un oggetto di quella classe
             switch (type) {
                 case "CPU":{
-                    return new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                    //return new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                    return CpuDAO.InitCpuFromRs(rs);
                 }
                 case "MOBO":{
                     Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
@@ -57,12 +59,10 @@ public abstract class ProdottoDAO {
                     return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
                 }
                 case "HDD":{
-                    Hdd hdd = HddDAO.InitHddFromRs(rs);
-                    return hdd;
+                    return HddDAO.InitHddFromRs(rs);
                 }
                 case "SSD":{
-                    Ssd ssd = SsdDAO.InitSsdFromRs(rs);
-                    return ssd;
+                    return SsdDAO.InitSsdFromRs(rs);
                 }
                 default:{
                     return null;

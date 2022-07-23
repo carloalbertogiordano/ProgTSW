@@ -46,7 +46,17 @@ public class addCart extends HttpServlet {
                 //We cast the product to CPU
                 Cpu cpu = (Cpu) catalogo.doRetriveById(id);
                 //take the product from carrello by its id (we need it to update quantity in catalogo)
-                Cpu cpu_carrello = new Cpu(cpu.getID(), cpu.getMarca(), cpu.getModello(), cpu.getPrezzo(), quantity, cpu.getWattaggio(), cpu.getFrequenza(), cpu.getN_Core(), cpu.getUrl(), cpu.getDescrizione());
+                Cpu cpu_carrello = new Cpu();
+                cpu_carrello.setID(cpu.getID());
+                cpu_carrello.setMarca(cpu.getMarca());
+                cpu_carrello.setModello(cpu.getModello());
+                cpu_carrello.setPrezzo(cpu.getPrezzo());
+                cpu_carrello.setQuantita(quantity);
+                cpu_carrello.setWattaggio(cpu.getWattaggio());
+                cpu_carrello.setFrequenza(cpu.getFrequenza());
+                cpu_carrello.setN_Core(cpu.getN_Core());
+                cpu_carrello.setUrl(cpu.getUrl());
+                cpu_carrello.setDescrizione(cpu.getDescrizione());
                 addToCart(cliente, carrello, catalogo, cpu_carrello);
             break;
             //We can repeat the process for all type of product

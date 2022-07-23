@@ -108,7 +108,18 @@ public class Upload extends HttpServlet {
             //Carica il prodotto nal DB.
             switch (Tipo) {
                 case "CPU":
-                    CpuDAO.Upload(new Cpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione));
+                    //CpuDAO.Upload(new Cpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione));
+                    Cpu cpu = new Cpu();
+                    cpu.setMarca(Marca);
+                    cpu.setModello(Modello);
+                    cpu.setPrezzo(Prezzo);
+                    cpu.setQuantita(Quantita);
+                    cpu.setWattaggio(Wattaggio);
+                    cpu.setFrequenza(Frequenza);
+                    cpu.setN_Core(N_Core);
+                    cpu.setUrl(url);
+                    cpu.setDescrizione(Descrizione);
+                    CpuDAO.Upload(cpu);
                     break;
                 case "CASE":
                     Case case_ = new Case();

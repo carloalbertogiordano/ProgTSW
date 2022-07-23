@@ -40,7 +40,7 @@ public class CatalogoDAO {
             String type = rs.getString(7);
             switch (type) {
                 case "CPU": {
-                    Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+                    Cpu cpu = CpuDAO.InitCpuFromRs(rs);
                     catalogo.add(cpu);
                     break;
                 }

@@ -24,8 +24,7 @@ public class CpuDAO {
         pdstmt.setString(1, "CPU");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                       int ID,                      String marca,           String modello,           double prezzo,           int quantità,             int wattaggio,          float frequenza,       int N_Core,                 String url,               String descrizione
-            Cpu cpu = new Cpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getFloat(8), rs.getInt(9), rs.getString(18), rs.getString(19));
+            Cpu cpu = InitCpuFromRs(rs);
             list.add(cpu);
         }
         return list;
@@ -84,6 +83,22 @@ public class CpuDAO {
         pdstmt.setString(9, c.getDescrizione());
         pdstmt.setInt(10, c.getID());
         pdstmt.executeUpdate();
+    }
+
+    public static Cpu InitCpuFromRs(ResultSet rs) throws SQLException {
+        Cpu cpu = new Cpu();
+        cpu.setID(rs.getInt(1));
+        cpu.setMarca(rs.getString(2));
+        cpu.setModello(rs.getString(3));
+        cpu.setPrezzo(rs.getInt(4));
+        cpu.setQuantita(rs.getInt(5));
+        cpu.setWattaggio(rs.getInt(6));
+        cpu.setFrequenza(rs.getFloat(8));
+        cpu.setN_Core(rs.getInt(9));
+        cpu.setUrl(rs.getString(18));
+        cpu.setDescrizione(rs.getString(19));
+        return cpu;
+
     }
 
 }
