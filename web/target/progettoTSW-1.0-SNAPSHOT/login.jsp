@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
@@ -61,35 +62,28 @@
         </div>
     </div>
 </div>
-<!-- Viene visualizzato solo se è stato già fallito un login -->
-<%
-if (request.getAttribute("loginErr") != null) {
-    out.println("<div class=\"alert\">");
-    out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-    out.println("<strong>Attenzione: </strong> Mail o password errata.");
-    out.println("</div>");
-}
-%>
 
-<h1>Login</h1>
-<form action="Login" method="post" onsubmit="return validateLogin()">
-    <table>
-        <tr>
-            <td>Mail:</td>
-            <td><input type="text" name="Mail" id="mail" required/></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="Password" id="password" required/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Login"/></td>
-        </tr>
-    </table>
-</form>
-<p>Oppure <a href="CreazioneUtente.jsp">registrati</a></p>
-
-
+<div class="main flex-container">
+    <div class="login-container">
+        <h1>Effettua l'accesso</h1>
+        <form action="Login" method="post" onsubmit="return validateLogin()" class="flex-container">
+            <!--<lable for="mail" class="form-label">Mail</lable>-->
+            <input type="text" name="Mail" id="mail" placeholder="Mail" required/>
+            <!--<label for="password" class="form-label">Password</label>-->
+            <input type="password" name="Password" id="password" placeholder="Password" required/>
+            <input type="submit" value="Login"/>
+        </form>
+        <p>Non hai ancora un account? <a href="CreazioneUtente.jsp" id="registration-link">Registrati</a></p>
+        <!-- Viene visualizzato solo se è stato già fallito un login -->
+        <%
+            if (request.getAttribute("loginErr") != null) {
+                out.println("<div class=\"alert\">");
+                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+                out.println("<strong>Attenzione: </strong> Mail o password errata.");
+                out.println("</div>");
+            }
+        %>
+    </div>
+</div>
 </body>
 </html>
