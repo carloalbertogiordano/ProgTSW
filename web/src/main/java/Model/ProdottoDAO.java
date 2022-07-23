@@ -34,7 +34,7 @@ public abstract class ProdottoDAO {
         PreparedStatement ps = con.prepareStatement("SELECT * FROM Pezzo WHERE Id = ?");
         ps.setInt(1, x);
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
+        rs.next();
             String type = rs.getString(7);
             //In base al valore contenuto nel parametro type viene istanziato un oggetto di quella classe
             switch (type) {
@@ -64,17 +64,33 @@ public abstract class ProdottoDAO {
                     return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
                 }
                 case "HDD":{
-                    return new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    Hdd hdd = new Hdd();
+                    hdd.setID(rs.getInt(1));
+                    hdd.setMarca(rs.getString(2));
+                    hdd.setModello(rs.getString(3));
+                    hdd.setPrezzo(rs.getInt(4));
+                    hdd.setQuantita(rs.getInt(5));
+                    hdd.setMBs(rs.getInt(13));
+                    hdd.setUrl(rs.getString(18));
+                    hdd.setDescrizione(rs.getString(19));
+                    return hdd;
                 }
                 case "SSD":{
-                    return new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    Ssd ssd = new Ssd();
+                    ssd.setID(rs.getInt(1));
+                    ssd.setMarca(rs.getString(2));
+                    ssd.setModello(rs.getString(3));
+                    ssd.setPrezzo(rs.getInt(4));
+                    ssd.setQuantita(rs.getInt(5));
+                    ssd.setMBs(rs.getInt(13));
+                    ssd.setUrl(rs.getString(18));
+                    ssd.setDescrizione(rs.getString(19));
+                    return ssd;
                 }
                 default:{
                     return null;
                 }
-            }
         }
-        return null;
     }
     //Elimina un prodotto dal DB
     public static void elimina(int id) throws SQLException {

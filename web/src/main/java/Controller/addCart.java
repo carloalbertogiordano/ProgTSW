@@ -62,12 +62,28 @@ public class addCart extends HttpServlet {
                 break;
             case "HDD" :
                 Hdd hdd = (Hdd) p;
-                Hdd hdd_carrello = new Hdd(hdd.getID(), hdd.getMarca(), hdd.getModello(), hdd.getPrezzo(), quantity, hdd.getMBs(), hdd.getUrl(), hdd.getDescrizione());
+                Hdd hdd_carrello = new Hdd();
+                hdd_carrello.setID(hdd.getID());
+                hdd_carrello.setMarca(hdd.getMarca());
+                hdd_carrello.setModello(hdd.getModello());
+                hdd_carrello.setPrezzo(hdd.getPrezzo());
+                hdd_carrello.setQuantita(hdd.getQuantita());
+                hdd_carrello.setMBs(hdd.getMBs());
+                hdd_carrello.setUrl(hdd.getUrl());
+                hdd_carrello.setDescrizione(hdd.getDescrizione());
                 addToCart(cliente, carrello, catalogo, hdd_carrello);
                 break;
             case "SSD" :
                 Ssd ssd = (Ssd) p;
-                Ssd ssd_carrello = new Ssd(ssd.getID(), ssd.getMarca(), ssd.getModello(), ssd.getPrezzo(), quantity, ssd.getMBs(), ssd.getUrl(), ssd.getDescrizione());
+                Ssd ssd_carrello = new Ssd();
+                ssd_carrello.setID(ssd.getID());
+                ssd_carrello.setMarca(ssd.getMarca());
+                ssd_carrello.setModello(ssd.getModello());
+                ssd_carrello.setPrezzo(ssd.getPrezzo());
+                ssd_carrello.setQuantita(ssd.getQuantita());
+                ssd_carrello.setMBs(ssd.getMBs());
+                ssd_carrello.setUrl(ssd.getUrl());
+                ssd_carrello.setDescrizione(ssd.getDescrizione());
                 addToCart(cliente, carrello, catalogo, ssd_carrello);
                 break;
             case "PSU" :

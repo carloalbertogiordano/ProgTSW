@@ -20,7 +20,15 @@ public class SsdDAO extends ArchivioDatiDAO {
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
             //                                int ID,              String marca,             String modello,              double prezzo,            int quantità,               int MBs,                   String url,          String descrizione
-            Ssd ssd = new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+            Ssd ssd = new Ssd();
+            ssd.setID(rs.getInt(1));
+            ssd.setMarca(rs.getString(2));
+            ssd.setModello(rs.getString(3));
+            ssd.setPrezzo(rs.getInt(4));
+            ssd.setQuantita(rs.getInt(5));
+            ssd.setMBs(rs.getInt(13));
+            ssd.setUrl(rs.getString(18));
+            ssd.setDescrizione(rs.getString(19));
             list.add(ssd);
         }
         return list;

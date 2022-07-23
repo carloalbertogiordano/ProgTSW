@@ -74,12 +74,28 @@ public class CatalogoDAO {
                     break;
                 }
                 case "HDD": {
-                    Hdd hdd = new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    Hdd hdd = new Hdd();
+                    hdd.setID(rs.getInt(1));
+                    hdd.setMarca(rs.getString(2));
+                    hdd.setModello(rs.getString(3));
+                    hdd.setPrezzo(rs.getInt(4));
+                    hdd.setQuantita(rs.getInt(5));
+                    hdd.setMBs(rs.getInt(13));
+                    hdd.setUrl(rs.getString(18));
+                    hdd.setDescrizione(rs.getString(19));
                     catalogo.add(hdd);
                     break;
                 }
                 case "SSD": {
-                    Ssd ssd = new Ssd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    Ssd ssd = new Ssd();
+                    ssd.setID(rs.getInt(1));
+                    ssd.setMarca(rs.getString(2));
+                    ssd.setModello(rs.getString(3));
+                    ssd.setPrezzo(rs.getInt(4));
+                    ssd.setQuantita(rs.getInt(5));
+                    ssd.setMBs(rs.getInt(13));
+                    ssd.setUrl(rs.getString(18));
+                    ssd.setDescrizione(rs.getString(19));
                     catalogo.add(ssd);
                     break;
                 }

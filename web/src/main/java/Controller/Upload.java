@@ -126,10 +126,27 @@ public class Upload extends HttpServlet {
                     RamDAO.Upload(new Ram(Marca, Modello, Prezzo, Quantita, Frequenza, url, Descrizione));
                     break;
                 case "HDD":
-                    ArchivioDatiDAO.Upload(new Hdd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
+                    //ArchivioDatiDAO.Upload(new Hdd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
+                    Hdd hdd = new Hdd();
+                    hdd.setMarca(Marca);
+                    hdd.setModello(Modello);
+                    hdd.setPrezzo(Prezzo);
+                    hdd.setQuantita(Quantita);
+                    hdd.setMBs(MBs);
+                    hdd.setUrl(url);
+                    hdd.setDescrizione(Descrizione);
+                    ArchivioDatiDAO.Upload(hdd);
                     break;
                 case "SSD":
-                    ArchivioDatiDAO.Upload(new Ssd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
+                    Ssd ssd = new Ssd();
+                    ssd.setMarca(Marca);
+                    ssd.setModello(Modello);
+                    ssd.setPrezzo(Prezzo);
+                    ssd.setQuantita(Quantita);
+                    ssd.setMBs(MBs);
+                    ssd.setUrl(url);
+                    ssd.setDescrizione(Descrizione);
+                    ArchivioDatiDAO.Upload(ssd);
                     break;
                 case "GPU":
                     GpuDAO.Upload(new Gpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, Vram, url, Descrizione));

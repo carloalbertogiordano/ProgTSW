@@ -19,8 +19,15 @@ public class HddDAO extends ArchivioDatiDAO {
         pdstmt.setString(1, "HDD");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                                int ID,              String marca,             String modello,              double prezzo,            int quantità,               int MBs,                   String url,          String descrizione
-            Hdd hdd = new Hdd(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(13), rs.getString(18), rs.getString(19));
+            Hdd hdd = new Hdd();
+            hdd.setID(rs.getInt(1));
+            hdd.setMarca(rs.getString(2));
+            hdd.setModello(rs.getString(3));
+            hdd.setPrezzo(rs.getInt(4));
+            hdd.setQuantita(rs.getInt(5));
+            hdd.setMBs(rs.getInt(13));
+            hdd.setUrl(rs.getString(18));
+            hdd.setDescrizione(rs.getString(19));
             list.add(hdd);
         }
         return list;

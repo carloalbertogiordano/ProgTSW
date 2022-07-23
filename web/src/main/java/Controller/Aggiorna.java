@@ -2,6 +2,9 @@ package Controller;
 
 import Model.Archiviazione_.ArchivioDati;
 import Model.Archiviazione_.ArchivioDatiDAO;
+import Model.Archiviazione_.HDD_.Hdd;
+import Model.Archiviazione_.HDD_.HddDAO;
+import Model.Archiviazione_.SDD_.Ssd;
 import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
 import Model.CATALOGO_.Catalogo;
@@ -145,8 +148,28 @@ public class Aggiorna extends HttpServlet {
                     RamDAO.Update(new Ram(id, marca, modello, prezzo, quantita, frequenza, url, desc));
                     break;
                 case "HDD":
+                    Hdd hdd = new Hdd();
+                    hdd.setID(id);
+                    hdd.setMarca(marca);
+                    hdd.setModello(modello);
+                    hdd.setPrezzo(prezzo);
+                    hdd.setQuantita(quantita);
+                    hdd.setMBs(MBs);
+                    hdd.setUrl(url);
+                    hdd.setDescrizione(desc);
+                    ArchivioDatiDAO.Update(hdd);
+                    break;
                 case "SSD":
-                    ArchivioDatiDAO.Update(new ArchivioDati(id, marca, modello, prezzo, quantita, tipo, MBs, url, desc));
+                    Ssd ssd = new Ssd();
+                    ssd.setID(id);
+                    ssd.setMarca(marca);
+                    ssd.setModello(modello);
+                    ssd.setPrezzo(prezzo);
+                    ssd.setQuantita(quantita);
+                    ssd.setMBs(MBs);
+                    ssd.setUrl(url);
+                    ssd.setDescrizione(desc);
+                    ArchivioDatiDAO.Update(ssd);
                     break;
                 case "GPU":
                     GpuDAO.Update(new Gpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, Vram ,url, desc));

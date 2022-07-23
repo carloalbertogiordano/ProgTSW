@@ -1,6 +1,7 @@
 package Model.Archiviazione_.HDD_;
 
 import Model.Archiviazione_.ArchivioDati;
+import Model.Archiviazione_.ArchivioDatiDAO;
 import Model.Prodotto;
 
 public class Hdd extends ArchivioDati {
@@ -9,18 +10,16 @@ public class Hdd extends ArchivioDati {
         super();
     }
 
-    public Hdd(int ID, String marca, String modello, double prezzo, int quantita, int MBs, String url, String descrizione) {
+    /*public Hdd(int ID, String marca, String modello, double prezzo, int quantita, int MBs, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantita, "HDD", MBs, url, descrizione);
     }
 
     public Hdd(String marca, String modello, double prezzo, int quantita, Integer MBs, String url, String descrizione) {
         super(marca, modello, prezzo, quantita, "HDD", MBs, url, descrizione);
-    }
+    }*/
 
     @Override
     public String toString() {
         return "HDD" + super.toString();
     }
-
-
 }
