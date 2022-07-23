@@ -5,11 +5,9 @@ import Model.Prodotto;
 public class Case extends Prodotto {
     private short formaMobo;
 
-    public Case() {
+    public Case() {}
 
-    }
-
-    public Case(int ID, String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
+    /*public Case(int ID, String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
         super(ID, marca, modello, prezzo, quantita, "CASE", url, descrizione);
         this.formaMobo = formaMobo;
     }
@@ -17,7 +15,7 @@ public class Case extends Prodotto {
     public Case(String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
         super(marca, modello, prezzo, quantita, "CASE", url, descrizione);
         this.formaMobo = formaMobo;
-    }
+    }*/
 
     public short getFormaMobo() { return formaMobo; }
 

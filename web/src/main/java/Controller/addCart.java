@@ -93,7 +93,15 @@ public class addCart extends HttpServlet {
                 break;
             case "CASE" :
                 Case case_ = (Case) catalogo.doRetriveById(id);
-                Case case_carrello = new Case(case_.getID(), case_.getMarca(), case_.getModello(), case_.getPrezzo(), quantity, case_.getFormaMobo(), case_.getUrl(), case_.getDescrizione());
+                Case case_carrello = new Case();
+                case_carrello.setID(case_.getID());
+                case_carrello.setMarca(case_.getMarca());
+                case_carrello.setModello(case_.getModello());
+                case_carrello.setPrezzo(case_.getPrezzo());
+                case_carrello.setQuantita(case_.getQuantita());
+                case_carrello.setFormaMobo(case_.getFormaMobo());
+                case_carrello.setUrl(case_.getUrl());
+                case_carrello.setDescrizione(case_.getDescrizione());
                 addToCart(cliente, carrello, catalogo, case_carrello);
                 break;
             case "GPU" :

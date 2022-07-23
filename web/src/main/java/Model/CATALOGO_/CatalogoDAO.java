@@ -19,6 +19,7 @@ import Model.MOBO_.MoboDAO;
 import Model.PSU_.Psu;
 import Model.PSU_.PsuDAO;
 import Model.Prodotto;
+import Model.ProdottoDAO;
 import Model.RAM_.Ram;
 import Model.RAM_.RamDAO;
 
@@ -49,7 +50,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "CASE": {
-                    Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
+                    Case case_ = CaseDAO.InitCaseFromRs(rs);
                     catalogo.add(case_);
                     break;
                 }
@@ -74,15 +75,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "HDD": {
-                    Hdd hdd = new Hdd();
-                    hdd.setID(rs.getInt(1));
-                    hdd.setMarca(rs.getString(2));
-                    hdd.setModello(rs.getString(3));
-                    hdd.setPrezzo(rs.getInt(4));
-                    hdd.setQuantita(rs.getInt(5));
-                    hdd.setMBs(rs.getInt(13));
-                    hdd.setUrl(rs.getString(18));
-                    hdd.setDescrizione(rs.getString(19));
+                    Hdd hdd = HddDAO.InitHddFromRs(rs);
                     catalogo.add(hdd);
                     break;
                 }

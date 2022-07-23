@@ -2,11 +2,8 @@ package Model.CASE_;
 
 import Model.ConPool;
 
-import Model.CASE_.Case;
-
 import Model.Prodotto;
 import Model.ProdottoDAO;
-import Model.RAM_.Ram;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,8 +18,7 @@ public class CaseDAO {
         pdstmt.setString(1, "CASE");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                                 int ID,                String marca,            String modello,             double prezzo,           int quantità,          short formaMobo,                 String url,         String descrizione
-            Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
+            Case case_ = InitCaseFromRs(rs);
             list.add(case_);
         }
         return list;
@@ -78,6 +74,19 @@ public class CaseDAO {
         pdstmt.setString(7, c.getDescrizione());
         pdstmt.setInt(8, c.getID());
         pdstmt.executeUpdate();
+    }
+
+    public static Case InitCaseFromRs(ResultSet rs) throws SQLException {
+        Case case_ = new Case();
+        case_.setID(rs.getInt(1));
+        case_.setMarca(rs.getString(2));
+        case_.setModello(rs.getString(3));
+        case_.setPrezzo(rs.getInt(4));
+        case_.setQuantita(rs.getInt(5));
+        case_.setFormaMobo(rs.getShort(17));
+        case_.setUrl(rs.getString(18));
+        case_.setDescrizione(rs.getString(19));
+        return case_;
     }
 
 }

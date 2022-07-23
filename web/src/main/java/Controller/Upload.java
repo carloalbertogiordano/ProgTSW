@@ -111,7 +111,15 @@ public class Upload extends HttpServlet {
                     CpuDAO.Upload(new Cpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione));
                     break;
                 case "CASE":
-                    CaseDAO.Upload(new Case(Marca, Modello, Prezzo, Quantita, FormaMobo, url, Descrizione));
+                    Case case_ = new Case();
+                    case_.setMarca(Marca);
+                    case_.setModello(Modello);
+                    case_.setPrezzo(Prezzo);
+                    case_.setQuantita(Quantita);
+                    case_.setFormaMobo(FormaMobo);
+                    case_.setUrl(url);
+                    case_.setDescrizione(Descrizione);
+                    CaseDAO.Upload(case_);
                     break;
                 case "DISSIPATORE":
                     DissipatoreDAO.Upload(new Dissipatore(Marca, Modello, Prezzo, Quantita, W_Cpu, url, Descrizione));

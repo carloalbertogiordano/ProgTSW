@@ -1,23 +1,17 @@
 package Model;
 
-import Model.Archiviazione_.ArchivioDati;
-import Model.Archiviazione_.ArchivioDatiDAO;
 import Model.Archiviazione_.HDD_.Hdd;
+import Model.Archiviazione_.HDD_.HddDAO;
 import Model.Archiviazione_.SDD_.Ssd;
+import Model.Archiviazione_.SDD_.SsdDAO;
 import Model.CASE_.Case;
 import Model.CASE_.CaseDAO;
 import Model.CPU_.Cpu;
-import Model.CPU_.CpuDAO;
 import Model.DISSIPATORE_.Dissipatore;
-import Model.DISSIPATORE_.DissipatoreDAO;
 import Model.GPU_.Gpu;
-import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
-import Model.MOBO_.MoboDAO;
 import Model.PSU_.Psu;
-import Model.PSU_.PsuDAO;
 import Model.RAM_.Ram;
-import Model.RAM_.RamDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,8 +40,7 @@ public abstract class ProdottoDAO {
                     return mobo;
                 }
                 case "CASE":{
-                    Case case_ = new Case(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getString(18), rs.getString(19));
-                    return case_;
+                    return CaseDAO.InitCaseFromRs(rs);
                 }
                 case "DISSIPATORE":{
                     Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
@@ -64,27 +57,11 @@ public abstract class ProdottoDAO {
                     return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
                 }
                 case "HDD":{
-                    Hdd hdd = new Hdd();
-                    hdd.setID(rs.getInt(1));
-                    hdd.setMarca(rs.getString(2));
-                    hdd.setModello(rs.getString(3));
-                    hdd.setPrezzo(rs.getInt(4));
-                    hdd.setQuantita(rs.getInt(5));
-                    hdd.setMBs(rs.getInt(13));
-                    hdd.setUrl(rs.getString(18));
-                    hdd.setDescrizione(rs.getString(19));
+                    Hdd hdd = HddDAO.InitHddFromRs(rs);
                     return hdd;
                 }
                 case "SSD":{
-                    Ssd ssd = new Ssd();
-                    ssd.setID(rs.getInt(1));
-                    ssd.setMarca(rs.getString(2));
-                    ssd.setModello(rs.getString(3));
-                    ssd.setPrezzo(rs.getInt(4));
-                    ssd.setQuantita(rs.getInt(5));
-                    ssd.setMBs(rs.getInt(13));
-                    ssd.setUrl(rs.getString(18));
-                    ssd.setDescrizione(rs.getString(19));
+                    Ssd ssd = SsdDAO.InitSsdFromRs(rs);
                     return ssd;
                 }
                 default:{
@@ -92,6 +69,7 @@ public abstract class ProdottoDAO {
                 }
         }
     }
+
     //Elimina un prodotto dal DB
     public static void elimina(int id) throws SQLException {
         Connection con = ConPool.getConnection();
