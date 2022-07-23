@@ -78,7 +78,7 @@ public class ClienteDAO {
         PreparedStatement pdstmt = con.prepareStatement(select);
         ResultSet rs = pdstmt.executeQuery();
         while (rs.next()) {
-            cliente = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getBoolean(9));
+            cliente = InitClienteFromRs(rs);
         }
         return cliente;
     }
@@ -91,7 +91,7 @@ public class ClienteDAO {
         PreparedStatement pdstmt = con.prepareStatement(select);
         ResultSet rs = pdstmt.executeQuery();
         while (rs.next()) {
-            Cliente c = new Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getBoolean(9));
+            Cliente c = InitClienteFromRs(rs);
             listaClienti.add(c);
         }
         return listaClienti;
@@ -148,5 +148,19 @@ public class ClienteDAO {
 
         //True se <= 0
         return success >= 0;
+    }
+
+    public static Cliente InitClienteFromRs(ResultSet rs) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setMail(rs.getString(1));
+        cliente.setPass(rs.getString(2));
+        cliente.setNickname(rs.getString(3));
+        cliente.setTel(rs.getString(4));
+        cliente.setVia(rs.getString(5));
+        cliente.setProvincia(rs.getString(6));
+        cliente.setCitta(rs.getString(7));
+        cliente.setCap(rs.getInt(8));
+        cliente.setAdministrator(rs.getBoolean(9));
+        return cliente;
     }
 }

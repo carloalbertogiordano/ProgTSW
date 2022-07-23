@@ -5,7 +5,9 @@ public class Cliente {
     private int Cap;
     private Boolean Administrator;
 
-    public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap) {
+    public  Cliente () {}
+
+    /*public Cliente(String mail, String pass, String nickname, String tel, String via, String provincia, String citta, int cap) {
         Mail = mail;
         Pass = pass;
         Nickname = nickname;
@@ -26,8 +28,19 @@ public class Cliente {
         Cap = cap;
         Tel = tel;
         Administrator = administrator;
+    }*/
+
+    public void setPass(String pass) {
+        Pass = pass;
     }
 
+    public Boolean getAdministrator() {
+        return Administrator;
+    }
+
+    public void setAdministrator(Boolean administrator) {
+        Administrator = administrator;
+    }
 
     public String getMail() {
         return Mail;

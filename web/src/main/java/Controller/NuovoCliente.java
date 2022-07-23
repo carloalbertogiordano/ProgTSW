@@ -48,7 +48,15 @@ public class NuovoCliente extends HttpServlet {
                     request.getRequestDispatcher("CreazioneUtente.jsp").forward(request, response);
                 } else {
                     CarrelloDAO carrelloDAO = new CarrelloDAO();
-                    Cliente c = new Cliente(email, password, nikName, telefono, via, provincia, citta, cap);
+                    Cliente c = new Cliente();
+                    c.setMail(email);
+                    c.setPass(password);
+                    c.setNickname(nikName);
+                    c.setTel(telefono);
+                    c.setVia(via);
+                    c.setProvincia(provincia);
+                    c.setCitta(citta);
+                    c.setCap(cap);
                     try {
                         //Aggiungi cliente ad DB
                         clienteDAO.uploadCliente(c);
