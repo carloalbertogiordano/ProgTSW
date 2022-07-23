@@ -233,7 +233,10 @@ public class CarrelloDAO {
         ResultSet rs = pdstmt.executeQuery();
 
         if(rs.next()){
-            return new Carrello(rs.getInt(1), rs.getDouble(2));
+            Carrello carrello = new Carrello();
+            carrello.setCarrelloCod(rs.getInt(1));
+            carrello.setPrezzo(rs.getDouble(2));
+            return carrello;
         }
         return null;
     }

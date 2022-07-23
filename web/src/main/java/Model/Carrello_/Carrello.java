@@ -16,10 +16,10 @@ public class Carrello {
     private int carrelloCod;
     private double prezzo;
 
-    public Carrello(int carrelloCod, double prezzo) {
+    /*public Carrello(int carrelloCod, double prezzo) {
         this.carrelloCod = carrelloCod;
         this.prezzo = prezzo;
-    }
+    }*/
 
     public double getPrezzo() {
         return prezzo;
