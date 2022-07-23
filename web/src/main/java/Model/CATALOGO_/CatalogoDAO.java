@@ -55,8 +55,9 @@ public class CatalogoDAO {
                     break;
                 }
                 case "DISSIPATORE": {
-                    Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
-                    catalogo.add(dissipatore);
+                    //Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
+                    Dissipatore diss = DissipatoreDAO.InitDissipatoreFromRs(rs);
+                    catalogo.add(diss);
                     break;
                 }
                 case "GPU": {

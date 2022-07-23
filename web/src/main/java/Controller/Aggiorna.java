@@ -157,7 +157,16 @@ public class Aggiorna extends HttpServlet {
                     CaseDAO.Update(case_);
                     break;
                 case "DISSIPATORE":
-                    DissipatoreDAO.Update(new Dissipatore(id, marca, modello, prezzo, quantita, W_Cpu, url, desc));
+                    Dissipatore diss = new Dissipatore();
+                    diss.setID(id);
+                    diss.setMarca(marca);
+                    diss.setModello(modello);
+                    diss.setPrezzo(prezzo);
+                    diss.setQuantita(quantita);
+                    diss.setW_Cpu(W_Cpu);
+                    diss.setUrl(url);
+                    diss.setDescrizione(desc);
+                    DissipatoreDAO.Update(diss);
                     break;
                 case "PSU":
                     PsuDAO.Update(new Psu(id, marca, modello, prezzo, quantita, wattaggio, url, desc));

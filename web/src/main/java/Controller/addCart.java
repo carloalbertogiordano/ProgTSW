@@ -121,7 +121,15 @@ public class addCart extends HttpServlet {
                 break;
             case "DISSIPATORE" :
                 Dissipatore dissipatore = (Dissipatore) catalogo.doRetriveById(id);
-                Dissipatore dissipatore_carrello = new Dissipatore(dissipatore.getID(), dissipatore.getMarca(), dissipatore.getModello(), dissipatore.getPrezzo(), quantity, dissipatore.getW_Cpu(), dissipatore.getUrl(), dissipatore.getDescrizione());
+                Dissipatore dissipatore_carrello = new Dissipatore();//(dissipatore.getID(), dissipatore.getMarca(), dissipatore.getModello(), dissipatore.getPrezzo(), quantity, dissipatore.getW_Cpu(), dissipatore.getUrl(), dissipatore.getDescrizione());
+                dissipatore_carrello.setID(dissipatore.getID());
+                dissipatore_carrello.setMarca(dissipatore.getMarca());
+                dissipatore_carrello.setModello(dissipatore.getModello());
+                dissipatore_carrello.setPrezzo(dissipatore.getPrezzo());
+                dissipatore_carrello.setQuantita(dissipatore.getQuantita());
+                dissipatore_carrello.setW_Cpu(dissipatore.getW_Cpu());
+                dissipatore_carrello.setUrl(dissipatore.getUrl());
+                dissipatore_carrello.setDescrizione(dissipatore.getDescrizione());
                 addToCart(cliente, carrello, catalogo, dissipatore_carrello);
                 break;
         }

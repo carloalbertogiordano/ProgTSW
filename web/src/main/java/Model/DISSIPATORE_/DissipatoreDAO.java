@@ -20,8 +20,7 @@ public class DissipatoreDAO {
         pdstmt.setString(1, "DISSIPATORE");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                                            int ID,              String marca,            String modello,              double prezzo,            int quantità,               int W_Cpu,                 String url,           String descrizione
-            Dissipatore d = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
+            Dissipatore d = InitDissipatoreFromRs(rs);
             list.add(d);
         }
         return list;
@@ -76,6 +75,19 @@ public class DissipatoreDAO {
         pdstmt.setString(7, d.getDescrizione());
         pdstmt.setInt(8, d.getID());
         pdstmt.executeUpdate();
+    }
+
+    public static Dissipatore InitDissipatoreFromRs(ResultSet rs) throws SQLException {
+        Dissipatore Dissipatore = new Dissipatore();
+        Dissipatore.setID(rs.getInt(1));
+        Dissipatore.setMarca(rs.getString(2));
+        Dissipatore.setModello(rs.getString(3));
+        Dissipatore.setPrezzo(rs.getInt(4));
+        Dissipatore.setQuantita(rs.getInt(5));
+        Dissipatore.setW_Cpu(rs.getInt(16));
+        Dissipatore.setUrl(rs.getString(18));
+        Dissipatore.setDescrizione(rs.getString(19));
+        return Dissipatore;
     }
 
 }

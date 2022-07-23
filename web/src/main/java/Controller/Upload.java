@@ -133,7 +133,16 @@ public class Upload extends HttpServlet {
                     CaseDAO.Upload(case_);
                     break;
                 case "DISSIPATORE":
-                    DissipatoreDAO.Upload(new Dissipatore(Marca, Modello, Prezzo, Quantita, W_Cpu, url, Descrizione));
+                    //DissipatoreDAO.Upload(new Dissipatore(Marca, Modello, Prezzo, Quantita, W_Cpu, url, Descrizione));
+                    Dissipatore diss = new Dissipatore();
+                    diss.setMarca(Marca);
+                    diss.setModello(Modello);
+                    diss.setPrezzo(Prezzo);
+                    diss.setQuantita(Quantita);
+                    diss.setW_Cpu(W_Cpu);
+                    diss.setUrl(url);
+                    diss.setDescrizione(Descrizione);
+                    DissipatoreDAO.Upload(diss);
                     break;
                 case "PSU":
                     PsuDAO.Upload(new Psu(Marca, Modello, Prezzo, Quantita, N_Watt, url, Descrizione));
