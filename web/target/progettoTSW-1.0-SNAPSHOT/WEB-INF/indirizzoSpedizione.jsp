@@ -91,5 +91,8 @@
               "</table>"+
               "</div>");
   %>
+<div class=\"total-price\">
+    <h3>Totale: <%=carrello.calculateTotal()%> </h3>
+    </div>
 </body>
 </html>

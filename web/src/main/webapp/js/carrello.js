@@ -5,10 +5,11 @@ $(document).ready(function(){
         return $('#quantOf' + id).val();
     }
     let oldQuant = saveOldQuant();
-    $('#submit').click(function(){
+    $('.submit').click(function(){
         let id = $(this).parent().attr("id");
         let quantOf = $('#quantOf'+id);
         let quant = Number(quantOf.val());
+        console.log('id'+id + ' quant'+quant+' obj'+quantOf);
         if(quant > 0 && quant<=Number(quantOf.attr("max"))) {
             console.log(quant + ' Id' + id + ' oldQuant' + oldQuant+" cont"+cont);
             cont++;
