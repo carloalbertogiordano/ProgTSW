@@ -17,6 +17,7 @@ import Model.MOBO_.MoboDAO;
 import Model.PSU_.Psu;
 import Model.PSU_.PsuDAO;
 import Model.RAM_.Ram;
+import Model.RAM_.RamDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public abstract class ProdottoDAO {
                     return PsuDAO.InitPsuFromRs(rs);
                 }
                 case "RAM":{
-                    return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+                    return RamDAO.InitRamFromRs(rs);
                 }
                 case "HDD":{
                     return HddDAO.InitHddFromRs(rs);

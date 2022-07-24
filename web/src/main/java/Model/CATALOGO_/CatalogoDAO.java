@@ -71,7 +71,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "RAM": {
-                    Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+                    Ram ram = RamDAO.InitRamFromRs(rs);
                     catalogo.add(ram);
                     break;
                 }

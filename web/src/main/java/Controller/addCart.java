@@ -78,7 +78,15 @@ public class addCart extends HttpServlet {
                 break;
             case "RAM" :
                 Ram ram = (Ram) p;
-                Ram ram_carrello = new Ram(ram.getID(), ram.getMarca(), ram.getModello(), ram.getPrezzo(), quantity, ram.getFrequenza(), ram.getUrl(), ram.getDescrizione());
+                Ram ram_carrello = new Ram();
+                ram_carrello.setID(ram.getID());
+                ram_carrello.setMarca(ram.getMarca());
+                ram_carrello.setModello(ram.getModello());
+                ram_carrello.setPrezzo(ram.getPrezzo());
+                ram_carrello.setQuantita(ram.getQuantita());
+                ram_carrello.setFrequenza(ram.getFrequenza());
+                ram_carrello.setUrl(ram.getUrl());
+                ram_carrello.setDescrizione(ram.getDescrizione());
                 addToCart(cliente, carrello, catalogo, ram_carrello);
                 break;
             case "HDD" :

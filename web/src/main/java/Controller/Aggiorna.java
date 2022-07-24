@@ -130,7 +130,6 @@ public class Aggiorna extends HttpServlet {
             //Aggiorna il prodotto nal DB. Il metodo Upload gestisce eventuali paramentri nulli
             switch (tipo) {
                 case "CPU":
-                    //CpuDAO.Update(new Cpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, N_Core, url, desc));
                     Cpu cpu = new Cpu();
                     cpu.setID(id);
                     cpu.setMarca(marca);
@@ -195,7 +194,15 @@ public class Aggiorna extends HttpServlet {
                     MoboDAO.Update(mobo);
                     break;
                 case "RAM":
-                    RamDAO.Update(new Ram(id, marca, modello, prezzo, quantita, frequenza, url, desc));
+                    Ram ram = new Ram();
+                    ram.setID(id);
+                    ram.setMarca(marca);
+                    ram.setModello(modello);
+                    ram.setPrezzo(prezzo);
+                    ram.setQuantita(quantita);
+                    ram.setFrequenza(frequenza);
+                    ram.setUrl(url);
+                    ram.setDescrizione(desc);
                     break;
                 case "HDD":
                     Hdd hdd = new Hdd();

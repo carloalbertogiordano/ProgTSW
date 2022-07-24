@@ -108,7 +108,6 @@ public class Upload extends HttpServlet {
             //Carica il prodotto nal DB.
             switch (Tipo) {
                 case "CPU":
-                    //CpuDAO.Upload(new Cpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url, Descrizione));
                     Cpu cpu = new Cpu();
                     cpu.setMarca(Marca);
                     cpu.setModello(Modello);
@@ -133,7 +132,6 @@ public class Upload extends HttpServlet {
                     CaseDAO.Upload(case_);
                     break;
                 case "DISSIPATORE":
-                    //DissipatoreDAO.Upload(new Dissipatore(Marca, Modello, Prezzo, Quantita, W_Cpu, url, Descrizione));
                     Dissipatore diss = new Dissipatore();
                     diss.setMarca(Marca);
                     diss.setModello(Modello);
@@ -169,10 +167,17 @@ public class Upload extends HttpServlet {
                     MoboDAO.Upload(mobo);
                     break;
                 case "RAM":
-                    RamDAO.Upload(new Ram(Marca, Modello, Prezzo, Quantita, Frequenza, url, Descrizione));
+                    Ram ram = new Ram();
+                    ram.setMarca(Marca);
+                    ram.setModello(Modello);
+                    ram.setPrezzo(Prezzo);
+                    ram.setQuantita(Quantita);
+                    ram.setFrequenza(Frequenza);
+                    ram.setUrl(url);
+                    ram.setDescrizione(Descrizione);
+                    RamDAO.Upload(ram);
                     break;
                 case "HDD":
-                    //ArchivioDatiDAO.Upload(new Hdd(Marca, Modello, Prezzo, Quantita, MBs, url, Descrizione));
                     Hdd hdd = new Hdd();
                     hdd.setMarca(Marca);
                     hdd.setModello(Modello);

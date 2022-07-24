@@ -3,6 +3,7 @@ package Model.RAM_;
 import Model.CASE_.Case;
 import Model.ConPool;
 import Model.MOBO_.Mobo;
+import Model.PSU_.Psu;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 
@@ -19,8 +20,7 @@ public class RamDAO{
         pdstmt.setString(1, "RAM");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                                 int ID,              String marca,               String modello,              double prezzo,          int quantità,        float frequenza,              String url,             String descrizione
-            Ram ram = new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));
+            Ram ram = InitRamFromRs(rs);
             list.add(ram);
         }
         return list;
@@ -77,4 +77,18 @@ public class RamDAO{
         pdstmt.setInt(8, r.getID());
         pdstmt.executeUpdate();
     }
+
+    public static Ram InitRamFromRs(ResultSet rs) throws SQLException {
+        Ram ram = new Ram();
+        ram.setID(rs.getInt(1));
+        ram.setMarca(rs.getString(2));
+        ram.setModello(rs.getString(3));
+        ram.setPrezzo(rs.getInt(4));
+        ram.setQuantita(rs.getInt(5));
+        ram.setFrequenza(rs.getInt(8));
+        ram.setUrl(rs.getString(18));
+        ram.setDescrizione(rs.getString(19));
+        return ram;
+    }
+
 }

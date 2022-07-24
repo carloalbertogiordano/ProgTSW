@@ -8,7 +8,7 @@ public class Ram extends Prodotto {
 
     public Ram(){}
 
-    public Ram(int ID, String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
+    /*public Ram(int ID, String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantita, "RAM", url, descrizione);
         this.frequenza = frequenza;
     }
@@ -16,7 +16,7 @@ public class Ram extends Prodotto {
     public Ram(String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
         super(marca, modello, prezzo, quantita, "RAM", url, descrizione);
         this.frequenza = frequenza;
-    }
+    }*/
 
     public float getFrequenza() {
         return frequenza;
