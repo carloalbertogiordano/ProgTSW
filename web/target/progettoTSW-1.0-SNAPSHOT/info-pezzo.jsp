@@ -82,9 +82,10 @@
                     "</ul>" +
                     "<form action=\"addCart\" id=\"buy\">" +
                     "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">");
+                    System.out.println("info-pezzo "+p.getQuantita());
                     if(p.getQuantita() > 0) {
                         out.println(
-                                "<input type=\"number\" id=\"quantity\" name=\"quantity\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
+                                "<input type=\"number\" id=\"quantity\" name=\"quantity\" value=\"1\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
                                         "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
                                         "</div>");
                     }

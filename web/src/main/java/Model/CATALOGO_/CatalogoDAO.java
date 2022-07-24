@@ -41,7 +41,6 @@ public class CatalogoDAO {
             switch (type) {
                 case "CPU": {
                     Cpu cpu = CpuDAO.InitCpuFromRs(rs);
-                    System.out.println(cpu);
                     catalogo.add(cpu);
                     break;
                 }

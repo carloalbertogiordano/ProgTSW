@@ -165,9 +165,6 @@ public abstract class ProdottoDAO {
 
         pdstmt.setInt(18, id);
 
-
-        System.out.println(pdstmt.toString());
-
         pdstmt.executeUpdate();*/
     public void Update (Prodotto p) throws SQLException {
 
