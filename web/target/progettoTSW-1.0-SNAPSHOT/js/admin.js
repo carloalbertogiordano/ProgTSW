@@ -174,6 +174,8 @@ function enableDefault(){
 
 //prende il tipo di prodotto scelto e disabilita i campi non necessari
 function controllo() {
+    let header = document.getElementsByClassName("instruction-header");
+    header[0].style.display = "none";
     let tipo = document.getElementById("tipo").value;
     let wattaggio, frequenza, core, ram, usb, pci, vram, wcpu, forma, mbs;
     console.log(tipo);
@@ -291,89 +293,40 @@ function controllo() {
 //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
 function nuovo() {
     document.getElementById("frameCatalogo").style.display="none";
-    document.getElementById("stampa").style.display="block";
     document.getElementById("stampa").innerHTML =
-        "<form action=\"Upload\" method=\"post\" onsubmit=\"return validateProductUpdate()\" enctype=\"multipart/form-data\" >" +
-        "<table>" +
+        "<div class=\"instruction-header\"><h2>Per compilare i campi selezionare una tipologia di pezzo</h2></div>" +
+        "<form action=\"Upload\" method=\"post\" onsubmit=\"return validateProductUpdate()\" enctype=\"multipart/form-data\" class=\"flex-container\"'>" +
         //La funzione controllo() è chiamata per disabilitare i campi del form in base al tipo di prodotto scelto
-        "<select name=\"tipo\" id=\"tipo\">" +
-        "<option value=\"none\" selected disabled hidden>Selezione un opzione</option>"+
-        "<option onclick=\"controllo()\" value=\"HDD\">Hdd</option>" +
-        "<option onclick=\"controllo()\" value=\"SSD\">Ssd</option>" +
+        "<select name=\"tipo\" id=\"tipo\"  class=\"form-input\">" +
+        "<option value=\"none\" selected disabled hidden>Selezione un tipo</option>"+
+        "<option onclick=\"controllo()\" value=\"HDD\">Hard Disk</option>" +
+        "<option onclick=\"controllo()\" value=\"SSD\">SSD</option>" +
         "<option onclick=\"controllo()\" value=\"CASE\">Case</option>" +
-        "<option onclick=\"controllo()\" value=\"CPU\">Cpu</option>" +
+        "<option onclick=\"controllo()\" value=\"CPU\">CPU</option>" +
         "<option onclick=\"controllo()\" value=\"DISSIPATORE\">Dissipatore</option>" +
-        "<option onclick=\"controllo()\" value=\"GPU\">Gpu</option>" +
-        "<option onclick=\"controllo()\" value=\"MOBO\">Mobo</option>" +
-        "<option onclick=\"controllo()\" value=\"PSU\">Psu</option>" +
-        "<option onclick=\"controllo()\" value=\"RAM\">Ram</option>" +
+        "<option onclick=\"controllo()\" value=\"GPU\">GPU</option>" +
+        "<option onclick=\"controllo()\" value=\"MOBO\">Scheda madre</option>" +
+        "<option onclick=\"controllo()\" value=\"PSU\">Alimentatore</option>" +
+        "<option onclick=\"controllo()\" value=\"RAM\">RAM</option>" +
         "</select>" +
-        "<tr>" +
-        "<td>Marca</td>" +
-        "<td><input type=\"text\" name=\"marca\" id=\"marca\" required disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Modello</td>" +
-        "<td><input type=\"text\" name=\"modello\" id=\"modello\" required disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Prezzo</td>" +
-        "<td><input type=\"text\" name=\"prezzo\" id=\"prezzo\" required disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Quantità</td>" +
-        "<td><input type=\"text\" name=\"quantita\" id=\"quantita\" required disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Wattaggio</td>" +
-        "<td><input type=\"text\" name=\"wattaggio\" id=\"wattaggio\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Frequenza</td>" +
-        "<td><input type=\"text\" name=\"frequenza\" id=\"frequenza\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Numero di cores</td>" +
-        "<td><input type=\"text\" name=\"N_Core\" id=\"n_core\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Numero di slot RAM</td>" +
-        "<td><input type=\"text\" name=\"N_Ram\" id=\"n_ram\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Numero di USB</td>" +
-        "<td><input type=\"text\" name=\"N_Usb\" id=\"n_usb\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Numero slot PCI</td>" +
-        "<td><input type=\"text\" name=\"N_Pci\" id=\"n_pci\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>MB/s</td>" +
-        "<td><input type=\"text\" name=\"MBs\" id=\"mbs\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Quantià VRAM</td>" +
-        "<td><input type=\"text\" name=\"Vram\" id=\"vram\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Watt possibili dissipare</td>" +
-        "<td><input type=\"text\" name=\"W_Cpu\" id=\"w_cpu\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Forma MOBO</td>" +
-        "<td><input type=\"text\" name=\"formaMobo\" id=\"formaMobo\" disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Immagine</td>" +
-        "<td><input type=\"file\" name=\"image\" id=\"image\" accept='.png, .jpeg, .jpg, .svg' required disabled/></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Descrizione</td>" +
-        "<td><input type=\"text\" name=\"descrizione\" id=\"descrizione\" required disabled/></td>" +
-        "</tr>" +
-        "</table>" +
-        "<input type=\"submit\" value=\"Invia\"/>" +
+        "<input type=\"text\" name=\"marca\" id=\"marca\"  class=\"form-input\" placeholder=\"Marca\" required disabled/>" +
+        "<input type=\"text\" name=\"modello\" id=\"modello\"  class=\"form-input\" placeholder=\"Modello\" required disabled/>" +
+        "<input type=\"text\" name=\"prezzo\" id=\"prezzo\"  class=\"form-input\" placeholder=\"Prezzo\" required disabled/>" +
+        "<input type=\"text\" name=\"quantita\" id=\"quantita\"  class=\"form-input\" placeholder=\"Quantità\" required disabled/>" +
+        "<input type=\"text\" name=\"wattaggio\" id=\"wattaggio\"  class=\"form-input\" placeholder=\"Wattaggio\" disabled/>" +
+        "<input type=\"text\" name=\"frequenza\" id=\"frequenza\"  class=\"form-input\" placeholder=\"Frequenza\" disabled/>" +
+        "<input type=\"text\" name=\"N_Core\" id=\"n_core\"  class=\"form-input\" placeholder=\"Numero di core\" disabled/>" +
+        "<input type=\"text\" name=\"N_Ram\" id=\"n_ram\"  class=\"form-input\" placeholder=\"Numero di slot RAM\" disabled/>" +
+        "<td><input type=\"text\" name=\"N_Usb\" id=\"n_usb\"  class=\"form-input\" placeholder=\"Numero di porte USB\" disabled/></td>" +
+        "<input type=\"text\" name=\"N_Pci\" id=\"n_pci\"  class=\"form-input\" placeholder=\"Numero di slot PCI\" disabled/>" +
+        "<input type=\"text\" name=\"MBs\" id=\"mbs\"  class=\"form-input\" placeholder=\"Mb/s\" disabled/>" +
+        "<input type=\"text\" name=\"Vram\" id=\"vram\"  class=\"form-input\" placeholder=\"Quantità VRAM\" disabled/>" +
+        "<input type=\"text\" name=\"W_Cpu\" id=\"w_cpu\"  class=\"form-input\" placeholder=\"Massimo watt dissipabili\" disabled/>" +
+        "<input type=\"text\" name=\"formaMobo\" id=\"formaMobo\"  class=\"form-input\" placeholder=\"Formato scheda madre\" disabled/>" +
+        "<label for=\"image\">Seleziona un'immagine</label>" +
+        "<input type=\"file\" name=\"image\" id=\"image\" accept='.png, .jpeg, .jpg, .svg'  class=\"form-input\" required disabled/>" +
+        "<input type=\"text\" name=\"descrizione\" id=\"descrizione\"  class=\"form-input\" placeholder=\"Descrizione\" required disabled/>" +
+        "<input type=\"submit\" value=\"Invia\"  class=\"form-input\"/>" +
         "</form>";
 
 }
