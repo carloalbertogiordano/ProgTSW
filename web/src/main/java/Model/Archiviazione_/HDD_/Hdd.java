@@ -2,7 +2,6 @@ package Model.Archiviazione_.HDD_;
 
 import Model.Archiviazione_.ArchivioDati;
 import Model.Archiviazione_.ArchivioDatiDAO;
-import Model.Prodotto;
 
 public class Hdd extends ArchivioDati {
 

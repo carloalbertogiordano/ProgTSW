@@ -1,7 +1,7 @@
 package Model.CASE_;
 
-import Model.ConPool;
 
+import Model.ConPool;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 

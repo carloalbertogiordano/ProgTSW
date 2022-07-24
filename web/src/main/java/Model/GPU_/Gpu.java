@@ -1,5 +1,6 @@
 package Model.GPU_;
 
+
 import Model.Prodotto;
 
 public class Gpu extends Prodotto {
