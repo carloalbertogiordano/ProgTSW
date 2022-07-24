@@ -34,6 +34,7 @@ input[type="text"], input[type="password"]{
     border: none;
     border-bottom: 1px solid #003049;
     height: 30px;
+    width: 100%;
     font-size: 18px;
     margin: 20px 0;
 }
@@ -47,7 +48,21 @@ input[type="submit"]{
     background-color: #003049;
     color: #fdf0d5;
     margin-top: 10px;
-    hwidth: 110px;
+    width: 110px;
+    height: 35px;
     font-size: 18px;
     align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+    .registration-form-container{
+        width: 100%;
+        box-shadow: none;
+        margin-top: 0;
+        background-color: transparent;
+    }
+
+    form.flex-container{
+        width: 80%;
+    }
 }

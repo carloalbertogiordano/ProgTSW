@@ -60,22 +60,23 @@
         </div>
     </div>
 </div>
-<%
-    if (request.getAttribute("register.error") != null) {
-        out.println("<div class=\"alert\">");
-        out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-        out.println("<strong>Attenzione: </strong> Compila tutti i campi.");
-        out.println("</div>");
-    }
-    if (request.getAttribute("creation.error") != null) {
-        out.println("<div class=\"alert\">");
-        out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-        out.println("<strong>Attenzione: </strong> Mail già registrata");
-        out.println("</div>");
-    }
-%>
+
 
 <div class="main flex-container">
+    <%
+        if (request.getAttribute("register.error") != null) {
+            out.println("<div class=\"alert\">");
+            out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+            out.println("<strong>Attenzione: </strong> Compila tutti i campi.");
+            out.println("</div>");
+        }
+        if (request.getAttribute("creation.error") != null) {
+            out.println("<div class=\"alert\">");
+            out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+            out.println("<strong>Attenzione: </strong> Mail già registrata");
+            out.println("</div>");
+        }
+    %>
     <div class="registration-form-container flex-container">
         <h1>Creazione Utente</h1>
         <form action="NuovoCliente" method="POST" onsubmit="return validateForm()" class="flex-container">
