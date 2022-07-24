@@ -105,9 +105,6 @@
 
                 if (cliente != null) {
                     out.println("<br>" +
-                            "<div class=\"total-price\">" +
-                                "<h3>Totale: " + carrello.calculateTotal() + "</h3>" +
-                            "</div>" +
                             "<div class=\"expire-cart-button\">" +
                                 "<a href=\"redirectToIndirizzoSpedizione\"></i>Procedi all'ordine</a>" +
                             "</div></ul>");

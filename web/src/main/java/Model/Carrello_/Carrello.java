@@ -154,9 +154,9 @@ public class Carrello {
     }
 
     public double calculateTotal(){
-        int sum = 0;
-        for(int i = 0; i < getCarrello().size(); i++){
-            sum += getCarrello().get(i).getPrezzo();
+        double sum = 0.0;
+        for(Prodotto p : carrello){
+            sum += (p.getPrezzo() * p.getQuantita());
         }
         return sum;
     }
