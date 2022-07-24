@@ -1,5 +1,6 @@
 package Model.DISSIPATORE_;
 
+
 import Model.Prodotto;
 
 public class Dissipatore extends Prodotto {
