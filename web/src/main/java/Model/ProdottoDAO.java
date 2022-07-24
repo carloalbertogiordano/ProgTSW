@@ -11,6 +11,7 @@ import Model.CPU_.CpuDAO;
 import Model.DISSIPATORE_.Dissipatore;
 import Model.DISSIPATORE_.DissipatoreDAO;
 import Model.GPU_.Gpu;
+import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
 import Model.PSU_.Psu;
 import Model.RAM_.Ram;
@@ -49,7 +50,7 @@ public abstract class ProdottoDAO {
                     return DissipatoreDAO.InitDissipatoreFromRs(rs);
                 }
                 case "GPU":{
-                    Gpu gpu = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(13), rs.getString(18), rs.getString(19));
+                    Gpu gpu = GpuDAO.InitGpuFromRs(rs);
                     return gpu;
                 }
                 case "PSU":{

@@ -7,7 +7,7 @@ public class Gpu extends Prodotto {
     private float frequenza;
     private int vRam;
 
-    public Gpu(int ID, String marca, String modello, double prezzo, int quantita,
+    /*public Gpu(int ID, String marca, String modello, double prezzo, int quantita,
                int wattaggio, float frequenza, int vRam, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantita, "GPU", url, descrizione);
         this.wattaggio = wattaggio;
@@ -21,7 +21,7 @@ public class Gpu extends Prodotto {
         this.wattaggio = wattaggio;
         this.frequenza = frequenza;
         this.vRam = vRam;
-    }
+    }*/
 
     public Gpu() {
 
@@ -43,7 +43,7 @@ public class Gpu extends Prodotto {
         this.wattaggio = wattaggio;
     }
 
-    public void setFrequenza(int frequenza) {
+    public void setFrequenza(float frequenza) {
         this.frequenza = frequenza;
     }
 

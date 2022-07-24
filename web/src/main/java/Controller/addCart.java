@@ -116,7 +116,17 @@ public class addCart extends HttpServlet {
                 break;
             case "GPU" :
                 Gpu gpu = (Gpu) catalogo.doRetriveById(id);
-                Gpu gpu_carrello = new Gpu(gpu.getID(), gpu.getMarca(), gpu.getModello(), gpu.getPrezzo(), quantity, gpu.getWattaggio(), gpu.getFrequenza(), gpu.getVRam(), gpu.getUrl(), gpu.getDescrizione());
+                Gpu gpu_carrello = new Gpu();
+                gpu_carrello.setID(gpu.getID());
+                gpu_carrello.setMarca(gpu.getMarca());
+                gpu_carrello.setModello(gpu.getModello());
+                gpu_carrello.setPrezzo(gpu.getPrezzo());
+                gpu_carrello.setQuantita(quantity);
+                gpu_carrello.setWattaggio(gpu.getWattaggio());
+                gpu_carrello.setFrequenza(gpu.getFrequenza());
+                gpu_carrello.setVRam(gpu.getVRam());
+                gpu_carrello.setUrl(gpu.getUrl());
+                gpu_carrello.setDescrizione(gpu.getDescrizione());
                 addToCart(cliente, carrello, catalogo, gpu_carrello);
                 break;
             case "DISSIPATORE" :

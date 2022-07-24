@@ -202,7 +202,18 @@ public class Aggiorna extends HttpServlet {
                     ArchivioDatiDAO.Update(ssd);
                     break;
                 case "GPU":
-                    GpuDAO.Update(new Gpu(id, marca, modello, prezzo, quantita, wattaggio, frequenza, Vram ,url, desc));
+                    Gpu gpu = new Gpu();
+                    gpu.setID(id);
+                    gpu.setMarca(marca);
+                    gpu.setModello(modello);
+                    gpu.setPrezzo(prezzo);
+                    gpu.setQuantita(quantita);
+                    gpu.setWattaggio(wattaggio);
+                    gpu.setFrequenza(frequenza);
+                    gpu.setVRam(Vram);
+                    gpu.setUrl(url);
+                    gpu.setDescrizione(desc);
+                    GpuDAO.Update(gpu);
                     break;
             }
         } catch (SQLException e) {

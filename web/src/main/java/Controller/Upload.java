@@ -177,7 +177,17 @@ public class Upload extends HttpServlet {
                     ArchivioDatiDAO.Upload(ssd);
                     break;
                 case "GPU":
-                    GpuDAO.Upload(new Gpu(Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, Vram, url, Descrizione));
+                    Gpu gpu = new Gpu();
+                    gpu.setMarca(Marca);
+                    gpu.setModello(Modello);
+                    gpu.setPrezzo(Prezzo);
+                    gpu.setQuantita(Quantita);
+                    gpu.setWattaggio(Wattaggio);
+                    gpu.setFrequenza(Frequenza);
+                    gpu.setVRam(Vram);
+                    gpu.setUrl(url);
+                    gpu.setDescrizione(Descrizione);
+                    GpuDAO.Upload(gpu);
                     break;
             }
             } catch (SQLException e) {

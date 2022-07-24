@@ -4,6 +4,7 @@ import Model.Archiviazione_.SDD_.Ssd;
 import Model.Archiviazione_.SDD_.SsdDAO;
 import Model.CASE_.Case;
 import Model.ConPool;
+import Model.DISSIPATORE_.Dissipatore;
 import Model.Prodotto;
 import Model.ProdottoDAO;
 import Model.RAM_.Ram;
@@ -21,8 +22,7 @@ public class GpuDAO {
         pdstmt.setString(1, "GPU");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                               int ID,                String marca,           String modello,              double prezzo,            int quantità,          int wattaggio,         int frequenza,              int vRam,                 , String url,           String descrizione,
-            Gpu ssd = new Gpu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(6), rs.getInt(8), rs.getInt(14), rs.getString(18), rs.getString(19));
+            Gpu ssd = InitGpuFromRs(rs);
             list.add(ssd);
         }
         return list;
@@ -82,6 +82,21 @@ public class GpuDAO {
         pdstmt.setString(9, g.getDescrizione());
         pdstmt.setInt(10, g.getID());
         pdstmt.executeUpdate();
+    }
+
+    public static Gpu InitGpuFromRs(ResultSet rs) throws SQLException {
+        Gpu gpu = new Gpu();
+        gpu.setID(rs.getInt(1));
+        gpu.setMarca(rs.getString(2));
+        gpu.setModello(rs.getString(3));
+        gpu.setPrezzo(rs.getInt(4));
+        gpu.setQuantita(rs.getInt(5));
+        gpu.setWattaggio(rs.getInt(6));
+        gpu.setFrequenza(rs.getFloat(8));
+        gpu.setVRam(rs.getInt(14));
+        gpu.setUrl(rs.getString(18));
+        gpu.setDescrizione(rs.getString(19));
+        return gpu;
     }
 
 }
