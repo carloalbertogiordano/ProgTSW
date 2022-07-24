@@ -90,7 +90,7 @@
                                         "<li>\n" +
                                             "<div id=\"" + prodotto.getID() + "\"/>\n" +
                                                 "<input type=\"number\" id=\"quantOf" + prodotto.getID() + "\" name=\"quantity\" min=\"1\" value=\"" + prodotto.getQuantita() + "\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantita() + carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">\n" +
-                                                "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\">" +
+                                                "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\" class=\"submit\">" +
                                             "</div>" +
                                         "</li>" +
                                     "</ul>" +
