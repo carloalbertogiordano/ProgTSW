@@ -7,7 +7,7 @@ public class Mobo extends Prodotto {
     private int N_RAM;
     private int N_USB;
     private int N_PCI;
-    public Mobo(int ID, String marca, String modello, double prezzo, int quantita,
+    /*public Mobo(int ID, String marca, String modello, double prezzo, int quantita,
                 short forma, int N_RAM, int N_USB, int N_PCI, String url, String descrizione){
         super( ID, marca, modello, prezzo, quantita, "MOBO", url, descrizione);
         this.forma = forma;
@@ -23,7 +23,7 @@ public class Mobo extends Prodotto {
         this.N_RAM = N_RAM;
         this.N_USB = N_USB;
         this.N_PCI = N_PCI;
-    }
+    }*/
 
     public Mobo(){}
 

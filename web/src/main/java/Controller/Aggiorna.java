@@ -169,10 +169,30 @@ public class Aggiorna extends HttpServlet {
                     DissipatoreDAO.Update(diss);
                     break;
                 case "PSU":
-                    PsuDAO.Update(new Psu(id, marca, modello, prezzo, quantita, wattaggio, url, desc));
+                    Psu psu = new Psu();
+                    psu.setID(id);
+                    psu.setMarca(marca);
+                    psu.setModello(modello);
+                    psu.setPrezzo(prezzo);
+                    psu.setQuantita(quantita);
+                    psu.setN_Watt(wattaggio);
+                    psu.setUrl(url);
+                    PsuDAO.Update(psu);
                     break;
                 case "MOBO":
-                    MoboDAO.Update(new Mobo(id, marca, modello, prezzo, quantita, formaMobo, N_Ram, N_Usb, N_Pci, url, desc));
+                    Mobo mobo = new Mobo();
+                    mobo.setID(id);
+                    mobo.setMarca(marca);
+                    mobo.setModello(modello);
+                    mobo.setPrezzo(prezzo);
+                    mobo.setQuantita(quantita);
+                    mobo.setForma(formaMobo);
+                    mobo.setN_RAM(N_Ram);
+                    mobo.setN_USB(N_Usb);
+                    mobo.setN_PCI(N_Pci);
+                    mobo.setUrl(url);
+                    mobo.setDescrizione(desc);
+                    MoboDAO.Update(mobo);
                     break;
                 case "RAM":
                     RamDAO.Update(new Ram(id, marca, modello, prezzo, quantita, frequenza, url, desc));

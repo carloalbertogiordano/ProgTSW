@@ -13,7 +13,9 @@ import Model.DISSIPATORE_.DissipatoreDAO;
 import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
+import Model.MOBO_.MoboDAO;
 import Model.PSU_.Psu;
+import Model.PSU_.PsuDAO;
 import Model.RAM_.Ram;
 
 import java.sql.*;
@@ -40,7 +42,7 @@ public abstract class ProdottoDAO {
                     return CpuDAO.InitCpuFromRs(rs);
                 }
                 case "MOBO":{
-                    Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+                    Mobo mobo = MoboDAO.InitMoboFromRs(rs);
                     return mobo;
                 }
                 case "CASE":{
@@ -50,11 +52,11 @@ public abstract class ProdottoDAO {
                     return DissipatoreDAO.InitDissipatoreFromRs(rs);
                 }
                 case "GPU":{
-                    Gpu gpu = GpuDAO.InitGpuFromRs(rs);
-                    return gpu;
+                    return GpuDAO.InitGpuFromRs(rs);
                 }
                 case "PSU":{
-                    return new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                    //return new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                    return PsuDAO.InitPsuFromRs(rs);
                 }
                 case "RAM":{
                     return new Ram(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getFloat(8), rs.getString(18), rs.getString(19));

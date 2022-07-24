@@ -2,6 +2,7 @@ package Model.PSU_;
 
 import Model.CASE_.Case;
 import Model.ConPool;
+import Model.DISSIPATORE_.Dissipatore;
 import Model.GPU_.Gpu;
 import Model.GPU_.GpuDAO;
 import Model.MOBO_.Mobo;
@@ -22,8 +23,7 @@ public class PsuDAO {
         pdstmt.setString(1, "PSU");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                              int ID,                 String marca,         String modello,              double prezzo,             int quantità,           int N_Watt ,                  String url,        String descrizione
-            Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+            Psu psu = InitPsuFromRs(rs);
             list.add(psu);
         }
         return list;
@@ -79,6 +79,19 @@ public class PsuDAO {
         pdstmt.setString(7, p.getDescrizione());
         pdstmt.setInt(8, p.getID());
         pdstmt.executeUpdate();
+    }
+
+    public static Psu InitPsuFromRs(ResultSet rs) throws SQLException {
+        Psu psu = new Psu();
+        psu.setID(rs.getInt(1));
+        psu.setMarca(rs.getString(2));
+        psu.setModello(rs.getString(3));
+        psu.setPrezzo(rs.getInt(4));
+        psu.setQuantita(rs.getInt(5));
+        psu.setN_Watt(rs.getInt(15));
+        psu.setUrl(rs.getString(18));
+        psu.setDescrizione(rs.getString(19));
+        return psu;
     }
 
 }

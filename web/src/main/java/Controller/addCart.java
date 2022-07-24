@@ -62,7 +62,18 @@ public class addCart extends HttpServlet {
             //We can repeat the process for all type of product
             case "MOBO" :
                 Mobo mobo = (Mobo) catalogo.doRetriveById(id);
-                Mobo mobo_carrello = new Mobo(mobo.getID(), mobo.getMarca(), mobo.getModello(), mobo.getPrezzo(), quantity, mobo.getForma(), mobo.getN_RAM(), mobo.getN_PCI(), mobo.getN_USB(), mobo.getUrl(), mobo.getDescrizione());
+                Mobo mobo_carrello = new Mobo();//(mobo.getID(), mobo.getMarca(), mobo.getModello(), mobo.getPrezzo(), quantity, mobo.getForma(), mobo.getN_RAM(), mobo.getN_PCI(), mobo.getN_USB(), mobo.getUrl(), mobo.getDescrizione());
+                mobo_carrello.setID(mobo.getID());
+                mobo_carrello.setMarca(mobo.getMarca());
+                mobo_carrello.setModello(mobo.getModello());
+                mobo_carrello.setPrezzo(mobo.getPrezzo());
+                mobo_carrello.setQuantita(mobo.getQuantita());
+                mobo_carrello.setForma(mobo.getForma());
+                mobo_carrello.setN_USB(mobo.getN_USB());
+                mobo_carrello.setN_PCI(mobo.getN_PCI());
+                mobo_carrello.setN_RAM(mobo.getN_RAM());
+                mobo_carrello.setUrl(mobo.getUrl());
+                mobo_carrello.setDescrizione(mobo.getDescrizione());
                 addToCart(cliente, carrello, catalogo, mobo_carrello);
                 break;
             case "RAM" :
@@ -98,7 +109,15 @@ public class addCart extends HttpServlet {
                 break;
             case "PSU" :
                 Psu psu = (Psu) p;
-                Psu psu_carrello = new Psu(psu.getID(), psu.getMarca(), psu.getModello(), psu.getPrezzo(), quantity, psu.getN_Watt(), psu.getUrl(), psu.getDescrizione());
+                Psu psu_carrello = new Psu();
+                psu_carrello.setID(psu.getID());
+                psu_carrello.setMarca(psu.getMarca());
+                psu_carrello.setModello(psu.getModello());
+                psu_carrello.setPrezzo(psu.getPrezzo());
+                psu_carrello.setQuantita(psu.getQuantita());
+                psu_carrello.setN_Watt(psu.getN_Watt());
+                psu_carrello.setUrl(psu.getUrl());
+                psu_carrello.setDescrizione(psu.getDescrizione());
                 addToCart(cliente, carrello, catalogo, psu_carrello);
                 break;
             case "CASE" :

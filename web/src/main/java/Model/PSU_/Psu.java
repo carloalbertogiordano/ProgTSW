@@ -8,7 +8,7 @@ public class Psu extends Prodotto {
 
     public Psu(){}
 
-    public Psu(int ID, String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
+    /*public Psu(int ID, String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
         super(ID, marca, modello, prezzo, quantita, "PSU",url, descrizione);
         this.N_Watt = N_Watt;
     }
@@ -16,7 +16,7 @@ public class Psu extends Prodotto {
     public Psu(String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
         super(marca, modello, prezzo, quantita, "PSU",url, descrizione);
         this.N_Watt = N_Watt;
-    }
+    }*/
 
     public int getN_Watt(){
         return N_Watt;

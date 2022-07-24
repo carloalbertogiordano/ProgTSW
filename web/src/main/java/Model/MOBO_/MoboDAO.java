@@ -2,6 +2,7 @@ package Model.MOBO_;
 
 import Model.CASE_.Case;
 import Model.ConPool;
+import Model.GPU_.Gpu;
 import Model.PSU_.Psu;
 import Model.Prodotto;
 import Model.ProdottoDAO;
@@ -20,8 +21,7 @@ public class MoboDAO {
         pdstmt.setString(1, "MOBO");
         ResultSet rs = pdstmt.executeQuery();
         while(rs.next()){
-            //                                int ID,              String marca,             String modello,           double prezzo,            int quantità,                int forma,               int N_RAM,               int N_USB,                int N_PCI,                 String url,                String descrizione,
-            Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(17), rs.getShort(6), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+            Mobo mobo = InitMoboFromRs(rs);
             list.add(mobo);
         }
         return list;
@@ -85,5 +85,20 @@ public class MoboDAO {
         pdstmt.executeUpdate();
     }
 
+    public static Mobo InitMoboFromRs(ResultSet rs) throws SQLException {
+        Mobo mobo = new Mobo();
+        mobo.setID(rs.getInt(1));
+        mobo.setMarca(rs.getString(2));
+        mobo.setModello(rs.getString(3));
+        mobo.setPrezzo(rs.getInt(4));
+        mobo.setQuantita(rs.getInt(5));
+        mobo.setForma(rs.getShort(6));
+        mobo.setN_RAM(rs.getInt(10));
+        mobo.setN_USB(rs.getInt(11));
+        mobo.setN_PCI(rs.getInt(12));
+        mobo.setUrl(rs.getString(18));
+        mobo.setDescrizione(rs.getString(19));
+        return mobo;
+    }
 
 }

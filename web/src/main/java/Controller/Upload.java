@@ -145,10 +145,28 @@ public class Upload extends HttpServlet {
                     DissipatoreDAO.Upload(diss);
                     break;
                 case "PSU":
-                    PsuDAO.Upload(new Psu(Marca, Modello, Prezzo, Quantita, N_Watt, url, Descrizione));
+                    Psu psu = new Psu();
+                    psu.setMarca(Marca);
+                    psu.setModello(Modello);
+                    psu.setPrezzo(Prezzo);
+                    psu.setQuantita(Quantita);
+                    psu.setN_Watt(Wattaggio);
+                    psu.setUrl(url);
+                    PsuDAO.Upload(psu);
                     break;
                 case "MOBO":
-                    MoboDAO.Upload(new Mobo(Marca, Modello, Prezzo, Quantita, FormaMobo, N_Ram, N_Usb, N_Pci, url, Descrizione));
+                    Mobo mobo = new Mobo();
+                    mobo.setMarca(Marca);
+                    mobo.setModello(Modello);
+                    mobo.setPrezzo(Prezzo);
+                    mobo.setQuantita(Quantita);
+                    mobo.setForma(FormaMobo);
+                    mobo.setN_RAM(N_Ram);
+                    mobo.setN_USB(N_Usb);
+                    mobo.setN_PCI(N_Pci);
+                    mobo.setUrl(url);
+                    mobo.setDescrizione(Descrizione);
+                    MoboDAO.Upload(mobo);
                     break;
                 case "RAM":
                     RamDAO.Upload(new Ram(Marca, Modello, Prezzo, Quantita, Frequenza, url, Descrizione));

@@ -45,7 +45,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "MOBO": {
-                    Mobo mobo = new Mobo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getShort(17), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getString(18), rs.getString(19));
+                    Mobo mobo = MoboDAO.InitMoboFromRs(rs);
                     catalogo.add(mobo);
                     break;
                 }
@@ -66,7 +66,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "PSU": {
-                    Psu psu = new Psu(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(15), rs.getString(18), rs.getString(19));
+                    Psu psu = PsuDAO.InitPsuFromRs(rs);
                     catalogo.add(psu);
                     break;
                 }
