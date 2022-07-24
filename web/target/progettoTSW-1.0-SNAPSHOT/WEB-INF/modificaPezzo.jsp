@@ -26,8 +26,6 @@
         Prodotto p = catalogo.doRetriveById(Integer.parseInt(id));
         Cliente c = (Cliente) request.getSession().getAttribute("cliente");
 
-        System.out.println("duce"+p.toString());
-
         //Se il cliente non è un amministratore non potrebbe essere qua
         if(!c.isAdministrator())
             request.getRequestDispatcher("index.jsp").forward(request, response);
