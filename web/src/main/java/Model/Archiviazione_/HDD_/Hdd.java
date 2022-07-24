@@ -7,7 +7,7 @@ import Model.Prodotto;
 public class Hdd extends ArchivioDati {
 
     public Hdd(){
-        super();
+        super.setTipo("HDD");
     }
 
     /*public Hdd(int ID, String marca, String modello, double prezzo, int quantita, int MBs, String url, String descrizione) {

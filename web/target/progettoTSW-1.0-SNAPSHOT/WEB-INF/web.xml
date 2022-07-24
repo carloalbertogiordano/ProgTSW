@@ -27,8 +27,8 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
-    <error-page>
+    <!--error-page>
         <location>/WEB-INF/error-page.jsp</location>
-    </error-page>
+    </error-page-->
 
 </web-app>

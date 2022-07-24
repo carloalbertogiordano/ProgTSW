@@ -29,9 +29,9 @@ public class HomeServlet extends HttpServlet {
         //Create new instance
         CatalogoDAO serviceCatalogo = new CatalogoDAO();
         CarrelloDAO serviceCarrello = new CarrelloDAO();
-        Catalogo catalogo = null;
+        Catalogo catalogo = new Catalogo();
         try {
-            catalogo = serviceCatalogo.doRetriveAll();
+            catalogo.setCatalogo(serviceCatalogo.doRetriveAll());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

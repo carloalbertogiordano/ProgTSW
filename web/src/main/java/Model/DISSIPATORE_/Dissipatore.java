@@ -16,7 +16,9 @@ public class Dissipatore extends Prodotto {
         this.W_Cpu = W_Cpu;
     }*/
 
-    public Dissipatore() {}
+    public Dissipatore() {
+        super.setTipo("DISSIPATORE");
+    }
 
     public int getW_Cpu() {
         return W_Cpu;

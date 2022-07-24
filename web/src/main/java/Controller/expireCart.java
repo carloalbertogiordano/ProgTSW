@@ -55,9 +55,9 @@ public class expireCart extends HttpServlet {
             throw new RuntimeException(e);
         }
         //Crea un nuovo catalogo
-        Catalogo newCatalogo;
+        Catalogo newCatalogo = new Catalogo();
         try {
-            newCatalogo = serviceCatalogo.doRetriveAll();
+            newCatalogo.setCatalogo(serviceCatalogo.doRetriveAll());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

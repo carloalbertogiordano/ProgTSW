@@ -25,7 +25,9 @@ public class Mobo extends Prodotto {
         this.N_PCI = N_PCI;
     }*/
 
-    public Mobo(){}
+    public Mobo(){
+        super.setTipo("MOBO");
+    }
 
     public short getForma(){
         return forma;

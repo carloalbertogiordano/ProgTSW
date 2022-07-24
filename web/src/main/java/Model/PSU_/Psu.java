@@ -6,7 +6,9 @@ public class Psu extends Prodotto {
 
     private int N_Watt;
 
-    public Psu(){}
+    public Psu(){
+        super.setTipo("PSU");
+    }
 
     /*public Psu(int ID, String marca, String modello, double prezzo, int quantita, int N_Watt ,String url, String descrizione){
         super(ID, marca, modello, prezzo, quantita, "PSU",url, descrizione);

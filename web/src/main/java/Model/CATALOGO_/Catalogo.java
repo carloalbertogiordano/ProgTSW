@@ -50,6 +50,7 @@ public class Catalogo {
         switch (type) {
             case "CPU":
                 for(Prodotto p : catalogo) {
+                    System.out.println("DIO: "+p.toString()+" "+p.getTipo());
                     if (p.getTipo().equals("CPU"))
                         list.add(p);
                 }

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogoDAO {
-    public Catalogo doRetriveAll() throws SQLException {
+    public List<Prodotto> doRetriveAll() throws SQLException {
         Connection con = ConPool.getConnection();
         PreparedStatement pdstmt = con.prepareStatement("SELECT * FROM Pezzo");
         ResultSet rs = pdstmt.executeQuery();
@@ -41,6 +41,7 @@ public class CatalogoDAO {
             switch (type) {
                 case "CPU": {
                     Cpu cpu = CpuDAO.InitCpuFromRs(rs);
+                    System.out.println(cpu);
                     catalogo.add(cpu);
                     break;
                 }
@@ -98,9 +99,7 @@ public class CatalogoDAO {
                 }
             }
         }
-        Catalogo cat = new Catalogo();
-        cat.setCatalogo(catalogo);
-        return cat;
+        return catalogo;
     }
 
     //Scala un prodotto dal db dato un id

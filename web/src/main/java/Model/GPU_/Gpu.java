@@ -24,7 +24,7 @@ public class Gpu extends Prodotto {
     }*/
 
     public Gpu() {
-
+        super.setTipo("GPU");
     }
 
     public int getWattaggio() {

@@ -5,7 +5,9 @@ import Model.Prodotto;
 public class Case extends Prodotto {
     private short formaMobo;
 
-    public Case() {}
+    public Case() {
+        super.setTipo("CASE");
+    }
 
     /*public Case(int ID, String marca, String modello, double prezzo, int quantita, short formaMobo, String url, String descrizione){
         super(ID, marca, modello, prezzo, quantita, "CASE", url, descrizione);

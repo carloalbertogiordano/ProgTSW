@@ -6,7 +6,9 @@ public class Ram extends Prodotto {
 
     private float frequenza;
 
-    public Ram(){}
+    public Ram(){
+        super.setTipo("RAM");
+    }
 
     /*public Ram(int ID, String marca, String modello, double prezzo, int quantita, float frequenza, String url, String descrizione) {
         super(ID, marca, modello, prezzo, quantita, "RAM", url, descrizione);
