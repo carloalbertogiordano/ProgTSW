@@ -29,14 +29,17 @@ public class addCart extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //take product id
-        int id = Integer.parseInt(request.getParameter("Id"));
+        Integer id = Integer.parseInt(request.getParameter("Id"));
         //take quantity
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Integer quantity = Integer.parseInt(request.getParameter("quantity"));
         //take the session and session attribute carrello, catalogo and Cliente
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
+
+        if(id==null || quantity==null || session==null || carrello==null || catalogo==null || cliente==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         //We take product from the catalogo by its id
         Prodotto p = catalogo.doRetriveById(id);

@@ -21,6 +21,9 @@ public class updateInfoCliente extends HttpServlet {
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         boolean success;
 
+        if(nick==null || tel==null || ss==null || cliente==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         cliente.setNickname(nick);
         cliente.setTel(tel);
 

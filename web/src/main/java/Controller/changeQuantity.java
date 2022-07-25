@@ -20,11 +20,14 @@ import java.sql.SQLException;
 public class changeQuantity extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
-        int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
+        Integer newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+        Integer idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
         Carrello carrello = (Carrello) request.getSession().getAttribute("carrello");
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
         Catalogo catalogo = (Catalogo) request.getSession().getAttribute("catalogo");
+
+        if(idProdotto==null || newQuantity==null || carrello==null || catalogo==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         //Cambia la quantità nel carrello e la aggiorna nel catalogo
         for(Prodotto p : carrello.getCarrello()){

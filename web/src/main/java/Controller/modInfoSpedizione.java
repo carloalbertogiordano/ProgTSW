@@ -17,13 +17,17 @@ public class modInfoSpedizione extends HttpServlet {
         String via = request.getParameter("input_via");
         String provincia = request.getParameter("input_provincia");
         String citta = request.getParameter("input_citta");
-        int cap = Integer.parseInt(request.getParameter("input_cap"));
+        Integer cap = Integer.parseInt(request.getParameter("input_cap"));
         HttpSession ss = request.getSession();
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         ClienteDAO cDAO = new ClienteDAO();
         boolean success;
 
+        if(via==null || provincia==null || citta==null || cap==null || ss==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         //Aggiorna le info
+        assert cliente != null;
         cliente.setVia(via);
         cliente.setProvincia(provincia);
         cliente.setCitta(citta);

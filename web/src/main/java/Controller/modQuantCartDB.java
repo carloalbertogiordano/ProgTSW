@@ -18,16 +18,20 @@ public class modQuantCartDB extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession ss = request.getSession();
-        int quant = Integer.parseInt(request.getParameter("attr_newQuant"));
-        int id = Integer.parseInt(request.getParameter("attr_id"));
+        Integer quant = Integer.parseInt(request.getParameter("attr_newQuant"));
+        Integer id = Integer.parseInt(request.getParameter("attr_id"));
         CarrelloDAO carrelloDAO = new CarrelloDAO();
         Carrello carrelloSessione = ((Carrello) ss.getAttribute("carrello"));
         Cliente cliente = (Cliente) ss.getAttribute("cliente");
         Catalogo catalogoSessione = (Catalogo) ss.getAttribute("catalogo");
-        int oldQuant = Integer.parseInt(request.getParameter("attr_OldQuant")); //catalogoDB.getCatalogo().size() - catalogoSessione.getCatalogo().size();
+        Integer oldQuant = Integer.parseInt(request.getParameter("attr_OldQuant")); //catalogoDB.getCatalogo().size() - catalogoSessione.getCatalogo().size();
         Prodotto p = null;
 
+        if(id==null || quant==null || ss==null || oldQuant==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         //Aggiorna il catalogo nella sessione
+        assert catalogoSessione != null;
         for (Prodotto pcart : catalogoSessione.getCatalogo()) {
             if (pcart.getID() == id)
                 pcart.setQuantita((pcart.getQuantita() + oldQuant) - quant);
@@ -35,6 +39,7 @@ public class modQuantCartDB extends HttpServlet {
         }
 
             //Aggiorna il carrello della sessione
+        assert carrelloSessione != null;
         carrelloSessione.setPrezzo(0);
             for (Prodotto pcarr : carrelloSessione.getCarrello()) {
                 if (pcarr.getID() == id){

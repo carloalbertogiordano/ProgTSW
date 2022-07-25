@@ -46,11 +46,14 @@ public class Upload extends HttpServlet {
         String prezzo1 = request.getParameter("prezzo");
         //Il prezzo deve essere inserito alla maniera americana. In caso di errore lo correggo
         prezzo1=prezzo1.replace(",", ".");
-        double Prezzo = Double.parseDouble(prezzo1);
-        int Quantita = Integer.parseInt(request.getParameter("quantita"));
+        Double Prezzo = Double.parseDouble(prezzo1);
+        Integer Quantita = Integer.parseInt(request.getParameter("quantita"));
         String Tipo = request.getParameter("tipo");
         //ImageManager necessario per salvare l'immagine
         ImageManager imgManager = new ImageManager();
+
+        if(Marca==null || Modello==null || Prezzo==null || prezzo1==null ||  Quantita==null || Tipo==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         //Inizializza un campo a null e in caso sia stato passato ne aggiorna il valore
         Integer Wattaggio = null;

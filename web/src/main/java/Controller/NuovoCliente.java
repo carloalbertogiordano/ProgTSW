@@ -24,21 +24,20 @@ public class NuovoCliente extends HttpServlet {
         String via = request.getParameter("via");
         String provincia = request.getParameter("provincia");
         String citta = request.getParameter("citta");
-        int cap = Integer.parseInt(request.getParameter("cap"));
-
-
-        //Hash della password
-        String password = PasswordEncrypter.encryptThisString(plainTxtPassword);
+        Integer cap = Integer.parseInt(request.getParameter("cap"));
 
         //Se uno dei dati non è stato inserito o è andato perso nella request
-        if (nikName.equals("") || password.equals("") || email.equals("") || telefono.equals("") || via.equals("") || provincia.equals("") || citta.equals("") || cap < 0
-                || nikName == null || password == null || email == null || telefono == null || via == null || provincia == null || citta == null
+        if (nikName.equals("") || plainTxtPassword.equals("") || email.equals("") || telefono.equals("") || via.equals("") || provincia.equals("") || citta.equals("") || cap < 0
+                || nikName == null || plainTxtPassword == null || email == null || telefono == null || via == null || provincia == null || citta == null
         ) {
             //Reindirizzo alla pagina di registrazione mostrando l'errore
             request.setAttribute("register.error", "Compilare tutti i campi");
             request.getRequestDispatcher("CreazioneUtente.jsp").forward(request, response);
         } else {
             ClienteDAO clienteDAO = new ClienteDAO();
+
+            //Hash della password
+            String password = PasswordEncrypter.encryptThisString(plainTxtPassword);
 
             try {
                 //Se un cliente con questa mail già esiste

@@ -41,15 +41,18 @@ import java.sql.SQLException;
 public class Aggiorna extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("ID"));
+        Integer id = Integer.parseInt(request.getParameter("ID"));
         String marca = request.getParameter("marca");
         String modello = request.getParameter("modello");
-        double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-        int quantita = Integer.parseInt(request.getParameter("quantita"));
+        Double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+        Integer quantita = Integer.parseInt(request.getParameter("quantita"));
         String desc = request.getParameter("desc");
         String url = request.getParameter("url");
         String tipo = request.getParameter("tipo");
         Part image = null;
+
+        if(id==null || marca==null || modello==null || prezzo==null || quantita==null || url==null || tipo==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         try {
             image = request.getPart("image");

@@ -18,6 +18,9 @@ public class Login extends HttpServlet {
         String password = PasswordEncrypter.encryptThisString(request.getParameter("Password"));
         ClienteDAO CDAO = new ClienteDAO();
 
+        if(mail==null || password==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         //Questo try deve essere fatto prima dell'if successivo perchè la terza condizione può dare errore
         try {
             CDAO.doRetrieveByMail(mail);

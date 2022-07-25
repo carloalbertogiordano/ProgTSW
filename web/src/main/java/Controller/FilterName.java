@@ -15,6 +15,9 @@ public class FilterName extends HttpServlet {
         String scelta = request.getParameter("radio_scelta");
         HttpSession ss = request.getSession();
 
+        if(ss==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         Catalogo oldCatalogo = (Catalogo) ss.getAttribute("catalogo");
         //Evitiamo null pointer exception
         assert oldCatalogo != null:"Il catalogo non dovrebbe essere null qui. Prova a ricaricare il sito";

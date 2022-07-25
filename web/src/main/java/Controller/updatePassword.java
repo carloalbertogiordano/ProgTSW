@@ -20,6 +20,10 @@ public class updatePassword extends HttpServlet {
         HttpSession ss = request.getSession();
         Cliente cliente = ((Cliente)ss.getAttribute("cliente"));
 
+        if(password==null || newPassword==null || ss==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
+        assert cliente != null;
         cliente.setPassword(newPassword);
 
         //Aggiorno la password nel DB

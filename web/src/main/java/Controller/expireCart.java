@@ -5,6 +5,7 @@ import Model.Carrello_.CarrelloDAO;
 import Model.CATALOGO_.Catalogo;
 import Model.CATALOGO_.CatalogoDAO;
 import Model.Cliente_.Cliente;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,13 +19,15 @@ import java.sql.SQLException;
 @WebServlet(name = "expireCart", value = "/expireCart")
 public class expireCart extends HttpServlet {
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int idCarrello = Integer.parseInt(request.getParameter("idCarrello"));
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Integer idCarrello = Integer.parseInt(request.getParameter("idCarrello"));
         HttpSession session = request.getSession();
         Carrello carrelloSession = (Carrello) session.getAttribute("carrello");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
-        CarrelloDAO service = new CarrelloDAO();
         CatalogoDAO serviceCatalogo = new CatalogoDAO();
+
+        if(idCarrello==null || session==null || carrelloSession==null || cliente==null || serviceCatalogo==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         //Info spedizione
         String via = request.getParameter("via");

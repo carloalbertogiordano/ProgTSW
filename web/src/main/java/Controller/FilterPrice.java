@@ -12,8 +12,11 @@ import java.io.IOException;
 public class FilterPrice extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int price = Integer.parseInt(request.getParameter("input_prezzo"));
+        Integer price = Integer.parseInt(request.getParameter("input_prezzo"));
         HttpSession ss = request.getSession();
+
+        if(ss==null || price==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
         //Se il catalogo è già stato filtrato per nome allora questo è il catalogo
         Catalogo filteredCatalog = (Catalogo) ss.getAttribute("filterCatalog");

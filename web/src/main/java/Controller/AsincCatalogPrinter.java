@@ -25,6 +25,10 @@ public class AsincCatalogPrinter extends HttpServlet {
         Catalogo c = (Catalogo) request.getSession().getAttribute("printCatalog");
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
         String path = "info-pezzo.jsp";
+
+        if(cliente==null)
+            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
         if(cliente != null){
             if(cliente.isAdministrator()){
                 path = "redirectToAdminPage";
