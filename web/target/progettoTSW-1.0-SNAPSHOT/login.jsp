@@ -64,6 +64,15 @@
 </div>
 
 <div class="main flex-container">
+    <!-- Viene visualizzato solo se è stato già fallito un login -->
+    <%
+        if (request.getAttribute("loginErr") != null) {
+        out.println("<div class=\"alert\">");
+        out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
+        out.println("<strong>Attenzione: </strong> Mail o password errata.");
+        out.println("</div>");
+        }
+        %>
     <div class="login-container">
         <h1>Effettua l'accesso</h1>
         <form action="Login" method="post" onsubmit="return validateLogin()" class="flex-container">
@@ -74,15 +83,6 @@
             <input type="submit" value="Login"/>
         </form>
         <p>Non hai ancora un account? <a href="CreazioneUtente.jsp" id="registration-link">Registrati</a></p>
-        <!-- Viene visualizzato solo se è stato già fallito un login -->
-        <%
-            if (request.getAttribute("loginErr") != null) {
-                out.println("<div class=\"alert\">");
-                out.println("<span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span> ");
-                out.println("<strong>Attenzione: </strong> Mail o password errata.");
-                out.println("</div>");
-            }
-        %>
     </div>
 </div>
 </body>
