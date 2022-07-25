@@ -22,6 +22,8 @@ public class updatePassword extends HttpServlet {
 
         if(password==null || newPassword==null || ss==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 
         assert cliente != null;
         cliente.setPassword(newPassword);

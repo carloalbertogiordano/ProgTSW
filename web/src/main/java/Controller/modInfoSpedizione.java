@@ -25,6 +25,8 @@ public class modInfoSpedizione extends HttpServlet {
 
         if(via==null || provincia==null || citta==null || cap==null || ss==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 
         //Aggiorna le info
         assert cliente != null;

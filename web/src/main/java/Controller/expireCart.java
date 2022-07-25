@@ -29,6 +29,9 @@ public class expireCart extends HttpServlet {
         if(idCarrello==null || session==null || carrelloSession==null || cliente==null || serviceCatalogo==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
 
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+
         //Info spedizione
         String via = request.getParameter("via");
         String provincia = request.getParameter("provincia");
