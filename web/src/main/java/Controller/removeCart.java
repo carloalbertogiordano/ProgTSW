@@ -26,6 +26,7 @@ public class removeCart extends HttpServlet {
 
         if(idProdotto==null || session==null || carrelloSession==null || catalogoSessione==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+        if(((Cliente)request.getSession().getAttribute("cliente"))!=null)
         if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
             request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 

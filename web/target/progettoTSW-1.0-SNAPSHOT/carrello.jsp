@@ -23,6 +23,8 @@
 <body>
 <%
     Cliente c = (Cliente) session.getAttribute("cliente");
+    if(c.isAdministrator())
+        request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
 <div class="header">
     <div class="flex-container topnav" id="topnav">
@@ -72,7 +74,6 @@
             if (!carrello.isEmpty()) {
                 List<Prodotto> carrelloList = carrello.getCarrello();
                 for (Prodotto prodotto : carrelloList) {
-                    System.out.println("quant"+prodotto.getQuantita());
                     /*out.println("<div id=\"" + prodotto.getID() + "\">" +
                             "<input type=\"number\" id=\"quantOf" + prodotto.getID() + "\" name=\"quantity\" min=\"1\" value=\"" + prodotto.getQuantita() + "\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantita() + carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
                             "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\">" +

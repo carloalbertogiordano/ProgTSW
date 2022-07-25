@@ -29,6 +29,7 @@
     <script src="js/sliderFilter.js"></script>
     <%
         Cliente user = (Cliente) session.getAttribute("cliente");
+        if(c != null)
         if(user.isAdministrator()){
             out.println("<style>" +
                     ".product-links{display:none}" +

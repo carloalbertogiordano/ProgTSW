@@ -42,9 +42,10 @@ public class Login extends HttpServlet {
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);
-                if(c.isAdministrator()) {
-                    request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
-                }
+                if(c!=null)
+                    if(c.isAdministrator()) {
+                        request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+                    }
                 else{
                     response.sendRedirect(".");
                 }

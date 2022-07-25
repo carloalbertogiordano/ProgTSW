@@ -29,6 +29,7 @@ public class modQuantCartDB extends HttpServlet {
 
         if(id==null || quant==null || ss==null || oldQuant==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+        if(((Cliente)request.getSession().getAttribute("cliente"))!=null)
         if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
             request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 

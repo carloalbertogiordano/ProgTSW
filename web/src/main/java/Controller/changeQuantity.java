@@ -28,6 +28,9 @@ public class changeQuantity extends HttpServlet {
 
         if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
             request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+        if((Cliente)request.getSession().getAttribute("cliente")!=null)
+            if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+                request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 
         if(idProdotto==null || newQuantity==null || carrello==null || catalogo==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);

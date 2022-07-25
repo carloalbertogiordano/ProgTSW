@@ -12,6 +12,7 @@ import java.io.IOException;
 public class redirectToIndirizzoSpedizione extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(((Cliente)request.getSession().getAttribute("cliente"))!=null)
         if(!((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
         request.getRequestDispatcher("./WEB-INF/indirizzoSpedizione.jsp").forward(request, response);
         else
