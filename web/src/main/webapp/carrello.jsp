@@ -71,6 +71,8 @@
 
             if (!carrello.isEmpty()) {
                 List<Prodotto> carrelloList = carrello.getCarrello();
+                out.println("<ul>" +
+                                "<h1>Il tuo carrello</h1>");
                 for (Prodotto prodotto : carrelloList) {
                     /*out.println("<div id=\"" + prodotto.getID() + "\">" +
                             "<input type=\"number\" id=\"quantOf" + prodotto.getID() + "\" name=\"quantity\" min=\"1\" value=\"" + prodotto.getQuantita() + "\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantita() + carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
@@ -81,7 +83,7 @@
                             "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" class=\"" + prodotto.getID() + "\" value=\"" + prodotto.getID() + "\">" +
                             "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
                             "</ul> </div>");*/
-                    out.println("<ul><li class=\"cart-list\">" +
+                    out.println("<li class=\"cart-list\">" +
                                 "<div class=\"row flex-container\">\n" +
                                     /*"<img src=\"" + prodotto.getUrl() + "/2.png\" alt=\"\">\n" +*/
                                     "<img src=\"Images/PCBuilder-logo.png\" alt=\"\" class=\"cart-image\">\n" +

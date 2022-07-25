@@ -9,6 +9,7 @@
     <title>Indirizzo spedizione</title>
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/indirizzoSpedizione.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
@@ -62,37 +63,28 @@
         </div>
     </div>
 </div>
-  <%
-      Cliente cliente = (Cliente) session.getAttribute("cliente");
-      Carrello carrello = (Carrello) session.getAttribute("carrello");
-      out.println("<form action=\"expireCart\" method=\"GET\" onsubmit=\"return validateInfoSped()\">" +
-              "<div id=\"modIndirizzo\">" +
-              "<table>"+
-              "<form action=\"expireCart\" method=\"\">" +
-              "<input type=\"hidden\" name=\"idCarrello\" id=\"idCarrello\" value=\"" + carrello.getCarrelloCod() + "\">" +
-              "<tr>"+
-              "<td> Via: </td>"+
-              "<td><input type=\"text\" name=\"via\" id=\"via\" value=\""+ cliente.getVia() +"\" > </td>" +
-              "</tr>"+
-              "<tr>"+
-              "<td> Provincia: </td>"+
-              "<td><input type=\"text\" name=\"provincia\" id=\"provincia\" value=\""+ cliente.getProvincia() +"\" > </td>"+
-              "</tr>"+
-              "<tr>"+
-              "<td> Città: </td>"+
-              "<td><input type=\"text\" name=\"citta\" id=\"citta\" value=\""+ cliente.getCitta() +"\" > </td>"+
-              "</tr>"+
-              "<tr>"+
-              "<td> CAP: </td>"+
-              "<td><input type=\"text\" name=\"cap\" id=\"cap\" value=\""+ cliente.getCap() +"\" > </td>"+
-              "</tr>"+
-              "<input type=\"submit\" value=\"Concludi ordine\" id=\"submit\">" +
-              "</form>" +
-              "</table>"+
-              "</div>");
-  %>
-<div class=\"total-price\">
-    <h3>Totale: <%=carrello.calculateTotal()%> </h3>
-    </div>
+<div class="main flex-container">
+    <%
+        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        Carrello carrello = (Carrello) session.getAttribute("carrello");
+        out.println("<div class=\"wrapper flex-container\">" +
+                            "<form action=\"expireCart\" method=\"GET\" onsubmit=\"return validateInfoSped()\" class=\"flex-container\">" +
+                                "<h1>Conferma o modifica l'indirizzo di spedizione</h1>" +
+                                "<input type=\"hidden\" name=\"idCarrello\" id=\"idCarrello\" value=\"" + carrello.getCarrelloCod() + "\">" +
+                                "<label for=\"via\">Via</label>" +
+                                "<input type=\"text\" name=\"via\" id=\"via\" value=\""+ cliente.getVia() +"\">" +
+                                "<label for=\"provincia\">Provincia</label>" +
+                                "<input type=\"text\" name=\"provincia\" id=\"provincia\" value=\"" + cliente.getProvincia() + "\">" +
+                                "<label for=\"citta\">Città</label>" +
+                                "<input type=\"text\" name=\"citta\" id=\"citta\" value=\"" + cliente.getCitta() + "\">" +
+                                "<label for=\"cap\">CAP</label>" +
+                                "<input type=\"text\" name=\"cap\" id=\"cap\" value=\"" + cliente.getCap() + "\">" +
+                                "<div class=\"total-price\">" +
+                                    "<h3>Totale: " + carrello.calculateTotal() + "</h3>" +
+                                "</div>" +
+                                "<input type=\"submit\" value=\"Concludi ordine\" id=\"submit\">" +
+                            "</form>" +
+                    "</div>");
+    %>
 </body>
 </html>

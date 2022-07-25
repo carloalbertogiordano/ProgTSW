@@ -20,6 +20,11 @@ html, body{
 
 a{
     text-decoration: none;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #003049;
 }
 
 a:hover{
@@ -30,6 +35,23 @@ a:hover{
 a:visited{
     text-decoration: none;
     color: default;
+}
+
+input[type="submit"], input[type="file"]{
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}
+
+
+input[type="text"]:enabled{
+    color: #003049;
+}
+
+input[type="text"]:disabled{
+    color: rgba(120, 0, 0, 0.67);
 }
 
 .flex-container{

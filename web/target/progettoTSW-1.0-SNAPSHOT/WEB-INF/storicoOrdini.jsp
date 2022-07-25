@@ -12,6 +12,7 @@
 
     <title>Strorico ordini</title>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/storicoOrdini.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
@@ -62,25 +63,49 @@
         </div>
     </div>
 </div>
-<div class="main">
-    <h1>Ecco lo storico dei tuoi ordini: </h1>
-    <%
-        ArrayList<Carrello> ordini;
-        try {
-            assert cliente != null;//Evita null pointer
-            ordini = CarrelloDAO.doRetriveStorico(cliente.getMail());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+<div class="main flex-container">
+    <div class="wrapper flex-container">
+        <div class="info-container flex-container">
+            <%
+                ArrayList<Carrello> ordini;
+                try {
+                    assert cliente != null;//Evita null pointer
+                    ordini = CarrelloDAO.doRetriveStorico(cliente.getMail());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
 
-        if(ordini == null)
-            out.println("Non hai ancora fatto acquisti");
-        else {
-            for (Carrello c : ordini) {
-                out.println(c.toString() + "<br>");
-            }
-        }
-    %>
+                if(ordini == null)
+                    out.println("<h1>Non hai ancora effettuato acquisti</h1>");
+                else {
+                    for (Carrello c : ordini) {
+                        //out.println(c.toString() + "<br>");
+                        out.println("<h1>Storico Ordini</h1>" +
+                                "<div class=\"carrello flex-container\">" +
+                                        "<div class=\"inner-padding\">" +
+                                            "<ul class=\"info-header flex-container\">" +
+                                                "<li>Oggetto</li>" +
+                                                "<li>Quantità</li>" +
+                                                "<li>Prezzo</li>" +
+                                                "<li>Subtotale</li>" +
+                                            "</ul>");
+                        for(int i = 0; i < c.getCarrello().size(); i++){
+                            out.println("<div class=\"row flex-container\">" +
+                                            "<ul class=\"info flex-container\">" +
+                                                "<li>" + c.getCarrello().get(i).getMarca() + " " + c.getCarrello().get(i).getModello() + "</li>" +
+                                                "<li>" + c.getCarrello().get(i).getQuantita() + "</li>" +
+                                                "<li>" + c.getCarrello().get(i).getPrezzo() + "</li>" +
+                                                "<li>" + c.getCarrello().get(i).getPrezzo()*c.getCarrello().get(i).getQuantita() + "</li>" +
+                                            "</ul>" +
+                                        "</div>");
+                        }
+                        out.println("</div>" +
+                                "</div>");
+                    }
+                }
+            %>
+        </div>
+    </div>
 </div>
 </body>
 </html>

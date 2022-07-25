@@ -27,7 +27,7 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
 </head>
 <body>
-<div><%
+<%
     Cliente c = (Cliente) session.getAttribute("cliente");
 %>
     <div class="header">
@@ -97,7 +97,7 @@
         }
     %>-->
 
-    <div class="main">
+    <div class="main flex-container">
         <div class="first-row flex-container">
             <div class="product-header flex-container">
                 <h2><%out.print(p.getMarca() + " " + p.getModello());%></h2><br>
@@ -205,6 +205,6 @@
             </div>
         </div>
     </div>
-</div>
+
 </body>
 </html>

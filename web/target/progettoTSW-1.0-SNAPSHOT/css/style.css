@@ -20,6 +20,11 @@ html, body{
 
 a{
     text-decoration: none;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #003049;
 }
 
 a:hover{
@@ -30,6 +35,14 @@ a:hover{
 a:visited{
     text-decoration: none;
     color: default;
+}
+
+input[type="submit"], input[type="file"]{
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
 }
 
 .flex-container{
@@ -193,6 +206,16 @@ ul.flex-container{
 .welcome-header > h1{
     color: #003049;
 }
+
+.alert{
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+
 /*FINE MAIN*/
 
 @media screen and (max-width: 768px) {
@@ -242,4 +265,5 @@ ul.flex-container{
     .empty-flex-field{
         display: none;
     }
+
 }

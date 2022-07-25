@@ -13,8 +13,9 @@ form.flex-container{
 
 #stampa{
     background-color: white;
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
     width: 50%;
-    margin-top: 30px;
+    margin-top: 50px;
     padding: 50px
 }
 
@@ -73,6 +74,14 @@ label{
     margin-bottom: 20px;
     font-size: 18px;
     color: #003049;
+}
+
+input[type="text"]:enabled{
+    color: #003049;
+}
+
+input[type="text"]:disabled{
+    color: rgba(120, 0, 0, 0.67);
 }
 
 .instruction-header{

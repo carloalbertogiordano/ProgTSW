@@ -13,6 +13,11 @@
     align-items: center;
 }
 
+.main h1{
+    margin-top: 50px;
+    text-align: center;
+}
+
 div.main > ul {
     width: 90%;
     margin-top: 50px;
@@ -26,6 +31,10 @@ div.main > ul {
 
 .main.flex-container ul {
     list-style-type: none;
+}
+
+ul.flex-container{
+    flex-direction: column;
 }
 
 .row {
