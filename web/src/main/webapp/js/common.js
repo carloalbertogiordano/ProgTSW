@@ -71,7 +71,6 @@ function validateInfoPers(){
         return true;
     return false;
 }
-
 function validateInfoSped(){
     if(testCap() && testProv() && testVia() && testCitta()){
         return true;
