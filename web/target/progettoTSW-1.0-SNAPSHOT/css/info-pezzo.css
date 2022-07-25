@@ -91,6 +91,7 @@ div.spec li{
     font-size: 18px;
     font-family: inherit;
     color: #003049;
+    padding: 30px;
 }
 
 @media screen and (max-width: 768px){
