@@ -27,6 +27,14 @@
     <script src="js/navbar.js"></script>
     <script src="js/catalogo.js"></script>
     <script src="js/sliderFilter.js"></script>
+    <%
+        Cliente user = (Cliente) session.getAttribute("cliente");
+        if(user.isAdministrator()){
+            out.println("<style>" +
+                    ".product-links{display:none}" +
+                    "</style>");
+        }
+    %>
 </head>
 <body>
 <%
@@ -43,7 +51,6 @@
     List<Ram> ramList = (List<Ram>) catalogo.doRetriveByType("RAM");
     List<Hdd> hddList = (List<Hdd>) catalogo.doRetriveByType("HDD");
     List<Ssd> ssdList = (List<Ssd>) catalogo.doRetriveByType("SSD");
-    Cliente user = (Cliente) session.getAttribute("cliente");
 
     String path = "info-pezzo.jsp";
     boolean isAdministrator = false;

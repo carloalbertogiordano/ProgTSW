@@ -1,0 +1,19 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.main.flex-container {
+    background-color: white;
+    width: 50%;
+    justify-content: center;
+}
+
+form.flex-container{
+    flex-direction: column;
+    width: 50%;
+}
+
+input{
+    margin-bottom: 20px;
+}

@@ -143,10 +143,9 @@ function disableAll() {
     document.getElementById("descrizione").disabled = true;
 }
 
-//funzione per l'aggionamento della quantità nel DB
 function aggiorna(){
     document.getElementById("stampa").style.display="none";
-    document.getElementById("frameCatalogo").style.display="block";
+    document.getElementById("frameCatalogo").style.display="flex";
     document.getElementById("frameCatalogo").src="Catalogo.jsp";
 }
 
@@ -293,6 +292,7 @@ function controllo() {
 //Funzione che stampa il form per l'inserimento di un nuovo prodotto nel database
 function nuovo() {
     document.getElementById("frameCatalogo").style.display="none";
+    document.getElementById("stampa").style.display="flex";
     document.getElementById("stampa").innerHTML =
         "<div class=\"instruction-header\"><h2>Per compilare i campi selezionare una tipologia di pezzo</h2></div>" +
         "<form action=\"Upload\" method=\"post\" onsubmit=\"return validateProductUpdate()\" enctype=\"multipart/form-data\" class=\"flex-container\"'>" +

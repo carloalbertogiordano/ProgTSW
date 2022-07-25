@@ -17,7 +17,7 @@
 <div class="header">
     <div class="flex-container topnav" id="topnav">
         <div class="flex-left-item logo">
-            <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+            <a href="#"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
         </div>
         <a href="javascript:void(0);" class="right-buttons burger" onclick="dropDownBurger()">&#9776;</a>
         <div class="nav flex-right-item" id="nav-list">
@@ -25,19 +25,7 @@
                 <li><a href="#" class="active" onclick="nuovo()">Nuovo Prodotto</a></li>
                 <li><a href="#" onclick="aggiorna()">Modifica prodotto</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
-                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
-                        class="fa-solid fa-cart-shopping"></i></a></li>
-                <%
-                    if (c != null) {
-                        out.println("<li class=\"right-buttons\">" +
-                                "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
-                                "</li>");
-                    }
-
-                    if (c == null) {
-                        out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
-                    }
-                %>
+                <li class=\"right-buttons\"><a href=\"Logout\" class=\"logout-link\">LogOut</a></li>
             </ul>
         </div>
     </div>
