@@ -51,7 +51,7 @@ public class addCart extends HttpServlet {
         switch (p.getTipo()) {
             case "CPU" :
                 //We cast the product to CPU
-                Cpu cpu = (Cpu) catalogo.doRetriveById(id);
+                Cpu cpu = (Cpu) p;
                 //take the product from carrello by its id (we need it to update quantity in catalogo)
                 Cpu cpu_carrello = new Cpu();
                 cpu_carrello.setID(cpu.getID());
@@ -68,7 +68,7 @@ public class addCart extends HttpServlet {
             break;
             //We can repeat the process for all type of product
             case "MOBO" :
-                Mobo mobo = (Mobo) catalogo.doRetriveById(id);
+                Mobo mobo = (Mobo) p;
                 Mobo mobo_carrello = new Mobo();//(mobo.getID(), mobo.getMarca(), mobo.getModello(), mobo.getPrezzo(), quantity, mobo.getForma(), mobo.getN_RAM(), mobo.getN_PCI(), mobo.getN_USB(), mobo.getUrl(), mobo.getDescrizione());
                 mobo_carrello.setID(mobo.getID());
                 mobo_carrello.setMarca(mobo.getMarca());
@@ -136,7 +136,7 @@ public class addCart extends HttpServlet {
                 addToCart(cliente, carrello, catalogo, psu_carrello);
                 break;
             case "CASE" :
-                Case case_ = (Case) catalogo.doRetriveById(id);
+                Case case_ = (Case) p;
                 Case case_carrello = new Case();
                 case_carrello.setID(case_.getID());
                 case_carrello.setMarca(case_.getMarca());
@@ -149,7 +149,7 @@ public class addCart extends HttpServlet {
                 addToCart(cliente, carrello, catalogo, case_carrello);
                 break;
             case "GPU" :
-                Gpu gpu = (Gpu) catalogo.doRetriveById(id);
+                Gpu gpu = (Gpu) p;
                 Gpu gpu_carrello = new Gpu();
                 gpu_carrello.setID(gpu.getID());
                 gpu_carrello.setMarca(gpu.getMarca());
@@ -164,7 +164,7 @@ public class addCart extends HttpServlet {
                 addToCart(cliente, carrello, catalogo, gpu_carrello);
                 break;
             case "DISSIPATORE" :
-                Dissipatore dissipatore = (Dissipatore) catalogo.doRetriveById(id);
+                Dissipatore dissipatore = (Dissipatore) p;
                 Dissipatore dissipatore_carrello = new Dissipatore();//(dissipatore.getID(), dissipatore.getMarca(), dissipatore.getModello(), dissipatore.getPrezzo(), quantity, dissipatore.getW_Cpu(), dissipatore.getUrl(), dissipatore.getDescrizione());
                 dissipatore_carrello.setID(dissipatore.getID());
                 dissipatore_carrello.setMarca(dissipatore.getMarca());
@@ -198,7 +198,6 @@ public class addCart extends HttpServlet {
             carrello.addSessionProduct(prodotto);
         }
         catalogo.aggiornaQuantita(prodotto);
-
     }
 }
 

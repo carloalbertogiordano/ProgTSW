@@ -22,9 +22,9 @@
 </head>
 <body>
 <%
-    Cliente c = (Cliente) session.getAttribute("cliente");
-    if(c != null)
-    if(c.isAdministrator())
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
+    if(cliente != null)
+    if(cliente.isAdministrator())
         request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
 <div class="header">
@@ -37,7 +37,6 @@
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
@@ -58,7 +57,7 @@
                     }
                 %>
                 <%
-                    if (c == null) {
+                    if (cliente == null) {
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
                     }
                 %>
@@ -69,7 +68,6 @@
 <div class="main flex-container">
         <%
             Carrello carrello = (Carrello) session.getAttribute("carrello");
-            Cliente cliente = (Cliente) session.getAttribute("cliente");
             Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
 
             if (!carrello.isEmpty()) {
@@ -77,15 +75,6 @@
                 out.println("<ul>" +
                                 "<h1>Il tuo carrello</h1>");
                 for (Prodotto prodotto : carrelloList) {
-                    /*out.println("<div id=\"" + prodotto.getID() + "\">" +
-                            "<input type=\"number\" id=\"quantOf" + prodotto.getID() + "\" name=\"quantity\" min=\"1\" value=\"" + prodotto.getQuantita() + "\" max=\"" + (catalogo.doRetriveById(prodotto.getID()).getQuantita() + carrello.doRetriveQuantitaProdottoById(prodotto.getID())) + "\">" +
-                            "<input type=\"button\" value=\"Aggiorna quantità\" id=\"submit\">" +
-                            "</ul> </div>");
-
-                    out.println("<form action=\"removeCart\" method=\"GET\">" +
-                            "<input type=\"hidden\" name=\"idProdotto\" id=\"idProdotto\" class=\"" + prodotto.getID() + "\" value=\"" + prodotto.getID() + "\">" +
-                            "<input type=\"submit\" value=\"Rimuovi\" id=\"submit\"></form>" +
-                            "</ul> </div>");*/
                     out.println("<li class=\"cart-list\">" +
                                 "<div class=\"row flex-container\">\n" +
                                     /*"<img src=\"" + prodotto.getUrl() + "/2.png\" alt=\"\">\n" +*/

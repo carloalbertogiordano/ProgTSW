@@ -31,9 +31,6 @@ public class HomeServlet extends HttpServlet {
         CarrelloDAO serviceCarrello = new CarrelloDAO();
         Catalogo catalogo = new Catalogo();
 
-        //In caso proveniamo da info-pezzo dobbiamo essere rediretti al carrello
-        //Boolean toCartJSP = (Boolean) request.getAttribute("toCartJSP");
-
         try {
             catalogo.setCatalogo(serviceCatalogo.doRetriveAll());
         } catch (SQLException e) {
@@ -73,7 +70,7 @@ public class HomeServlet extends HttpServlet {
                     }
                     try {
                         //Update carrello in the DB
-                        serviceCarrello.delCarrelloFromComporre(carrello);
+                        CarrelloDAO.delCarrelloFromComporre(carrello);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

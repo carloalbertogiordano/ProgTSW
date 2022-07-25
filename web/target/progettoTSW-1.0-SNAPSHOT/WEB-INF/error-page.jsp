@@ -56,7 +56,8 @@
 </div>
 <div class="main flex-container">
     <p class="error">Errore: <%=response.getStatus()%></p><br>
-    <p class="message">Oops... Qualcosa è andato storto.<br><a href="./HomeServlet">Ricarica</a></p>
+    <p class="message">Oops... Qualcosa è andato storto.</p><br>
+    <a href="./HomeServlet">Ricarica</a>
 </div>
 </body>
 </html>

@@ -18,12 +18,10 @@ public class Login extends HttpServlet {
         String password = PasswordEncrypter.encryptThisString(request.getParameter("Password"));
         ClienteDAO CDAO = new ClienteDAO();
 
-        if(mail==null || password==null)
-            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
-
+        Cliente c = null;
         //Questo try deve essere fatto prima dell'if successivo perchè la terza condizione può dare errore
         try {
-            CDAO.doRetrieveByMail(mail);
+            c = CDAO.doRetrieveByMail(mail);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -37,8 +35,6 @@ public class Login extends HttpServlet {
             //Se la coppia è corretta, prendi il cliente dal DB e lo metti nella sessione
             else{
                 //Prendi Le info dal DB e crea l' oggetto cliente da tenere in sessione
-                //Cliente c = new Cliente(mail, CDAO.doRetriveNickByEmail(mail), CDAO.doRetriveTelByEmail(mail), CDAO.doRetriveViaByEmail(mail), CDAO.doRetriveProvinciaByEmail(mail), CDAO.doRetriveCapByEmail(mail), CDAO.isAdministrator(mail));
-                Cliente c = CDAO.doRetrieveByMail(mail);
                 HttpSession session = request.getSession();
                 //Setta come attributo della sessione il cliente
                 session.setAttribute("cliente", c);

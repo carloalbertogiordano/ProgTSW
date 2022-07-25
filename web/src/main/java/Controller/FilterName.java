@@ -41,7 +41,7 @@ public class FilterName extends HttpServlet {
             //Stampa il catalogo
             response.sendRedirect("AsincCatalogPrinter");
         } else {
-            response.getWriter().println("Err: Nessun risultato trovato");
+            response.getWriter().println("<div class=\"error-message\">Nessun risultato trovato</div>");
         }
     }
 

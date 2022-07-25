@@ -70,7 +70,6 @@
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
@@ -114,7 +113,6 @@
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
@@ -195,23 +193,6 @@
         </div>
     </div>
     <div class="catalogo-div inline flex-container" id="divCatalogo">
-        <!--<div class="product-card">
-            <div class="product-tumb">
-                <img src="<%out.print("cpuList.get(1).getUrl()+\"/2.png\"");%>" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">CPU</span>
-                <h4><a href="">Women leather bag</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price"><small>$96.00</small>$230.99</div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
         <div class="flex-container product-slider">
             <%
                 for (Cpu cpu : cpuList) {
@@ -241,21 +222,10 @@
                     }
                 }
             %>
-        <!--</div>
-        <div class="flex-container product-slider">-->
             <%
                 for (Case case_ : caseList) {
                     boolean toShow = case_.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + case_.getID() + "\"><div class = \"product case-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                case_.getMarca() + "</li>" +
-                                "<li>Modello: " + case_.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + case_.getPrezzo() + "</li>" +
-                                "<li>Forma mobo:" + case_.getFormaMobo() + "</li>" +
-                                "<li>Descrizione: " + case_.getDescrizione() + "</li>" +
-                                "<li>Url: " + case_.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + case_.getQuantita() + "</li></ul></div></a>");*/
                          out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -276,21 +246,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Dissipatore dissipatore : dissipatoreList) {
                     boolean toShow = dissipatore.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + dissipatore.getID() + "\"><div class = \"product dissipatore-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                dissipatore.getMarca() + "</li>" +
-                                "<li>Modello: " + dissipatore.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + dissipatore.getPrezzo() + "</li>" +
-                                "<li>W_Cpu:" + dissipatore.getW_Cpu() + "</li>" +
-                                "<li>Descrizione: " + dissipatore.getDescrizione() + "</li>" +
-                                "<li>Url: " + dissipatore.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + dissipatore.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -311,23 +270,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Gpu gpu : gpuList) {
                     boolean toShow = gpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + gpu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                gpu.getMarca() + "</li>" +
-                                "<li>Modello: " + gpu.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + gpu.getPrezzo() + "</li>" +
-                                "<li>W_Gpu: " + gpu.getWattaggio() + "</li>" +
-                                "<li>Frequenza: " + gpu.getFrequenza() + "</li>" +
-                                "<li>vRam:" + gpu.getVRam() + "</li>" +
-                                "<li>Descrizione: " + gpu.getDescrizione() + "</li>" +
-                                "<li>Url: " + gpu.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + gpu.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -348,24 +294,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Mobo mobo : moboList) {
                     boolean toShow = mobo.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + mobo.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                mobo.getMarca() + "</li>" +
-                                "<li>Modello: " + mobo.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + mobo.getPrezzo() + "</li>" +
-                                "<li>Forma: " + mobo.getForma() + "</li>" +
-                                "<li>Banchi RAM: " + mobo.getN_RAM() + "</li>" +
-                                "<li>Numero USB:" + mobo.getN_USB() + "</li>" +
-                                "<li>Numero PCI:" + mobo.getN_PCI() + "</li>" +
-                                "<li>Descrizione: " + mobo.getDescrizione() + "</li>" +
-                                "<li>Url: " + mobo.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + mobo.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -386,21 +318,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Psu psu : psuList) {
                     boolean toShow = psu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + psu.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                psu.getMarca() + "</li>" +
-                                "<li>Modello: " + psu.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + psu.getPrezzo() + "</li>" +
-                                "<li>Watt: " + psu.getN_Watt() + "</li>" +
-                                "<li>Descrizione: " + psu.getDescrizione() + "</li>" +
-                                "<li>Url: " + psu.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + psu.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -421,21 +342,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Ram ram : ramList) {
                     boolean toShow = ram.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + ram.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                ram.getMarca() + "</li>" +
-                                "<li>Modello: " + ram.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + ram.getPrezzo() + "</li>" +
-                                "<li>Frequenza: " + ram.getFrequenza() + "</li>" +
-                                "<li>Descrizione: " + ram.getDescrizione() + "</li>" +
-                                "<li>Url: " + ram.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + ram.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -456,21 +366,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Hdd hdd : hddList) {
                     boolean toShow = hdd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + hdd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                hdd.getMarca() + "</li>" +
-                                "<li>Modello: " + hdd.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + hdd.getPrezzo() + "</li>" +
-                                "<li>MB/s: " + hdd.getMBs() + "</li>" +
-                                "<li>Descrizione: " + hdd.getDescrizione() + "</li>" +
-                                "<li>Url: " + hdd.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + hdd.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -491,21 +390,10 @@
                     }
                 }
             %>
-            <!--</div>
-                    <div class="flex-container product-slider">-->
             <%
                 for (Ssd ssd : ssdList) {
                     boolean toShow = ssd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        /*out.println("<a href=\"" + path + "?Id=" + ssd.getID() + "\"><div class = \"product gpu-product\" style=\"borer: 1px solid red\"><ul><li>Marca: " +
-                                ssd.getMarca() + "</li>" +
-                                "<li>Modello: " + ssd.getModello() + "</li>" +
-                                "Prezzo: " +
-                                "<li class=\"price\">" + ssd.getPrezzo() + "</li>" +
-                                "<li>MB/s: " + ssd.getMBs() + "</li>" +
-                                "<li>Descrizione: " + ssd.getDescrizione() + "</li>" +
-                                "<li>Url: " + ssd.getUrl() + "</li>" +
-                                "<li>Disponibilità: " + ssd.getQuantita() + "</li></ul></div></a>");*/
                         out.println("<div class=\"product-card\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/

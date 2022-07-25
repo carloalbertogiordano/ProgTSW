@@ -55,7 +55,6 @@ public class CatalogoDAO {
                     break;
                 }
                 case "DISSIPATORE": {
-                    //Dissipatore dissipatore = new Dissipatore(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(16), rs.getString(18), rs.getString(19));
                     Dissipatore diss = DissipatoreDAO.InitDissipatoreFromRs(rs);
                     catalogo.add(diss);
                     break;
@@ -81,15 +80,7 @@ public class CatalogoDAO {
                     break;
                 }
                 case "SSD": {
-                    Ssd ssd = new Ssd();
-                    ssd.setID(rs.getInt(1));
-                    ssd.setMarca(rs.getString(2));
-                    ssd.setModello(rs.getString(3));
-                    ssd.setPrezzo(rs.getInt(4));
-                    ssd.setQuantita(rs.getInt(5));
-                    ssd.setMBs(rs.getInt(13));
-                    ssd.setUrl(rs.getString(18));
-                    ssd.setDescrizione(rs.getString(19));
+                    Ssd ssd = SsdDAO.InitSsdFromRs(rs);
                     catalogo.add(ssd);
                     break;
                 }

@@ -32,7 +32,6 @@
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
@@ -54,10 +53,7 @@
                 <%
                     if(cliente==null){
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
-                    }/*
-                        else{
-                            out.println("<li class=\"right-buttons\"><a href=\"Logout\">Logout</a></li>");
-                        }*/
+                    }
                 %>
             </ul>
         </div>
@@ -78,10 +74,9 @@
                 if(ordini == null)
                     out.println("<h1>Non hai ancora effettuato acquisti</h1>");
                 else {
+                    out.println("<h1>Storico Ordini</h1>");
                     for (Carrello c : ordini) {
-                        //out.println(c.toString() + "<br>");
-                        out.println("<h1>Storico Ordini</h1>" +
-                                "<div class=\"carrello flex-container\">" +
+                        out.println("<div class=\"carrello flex-container\">" +
                                         "<div class=\"inner-padding\">" +
                                             "<ul class=\"info-header flex-container\">" +
                                                 "<li>Oggetto</li>" +
