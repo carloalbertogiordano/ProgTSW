@@ -25,7 +25,7 @@
                 <li><a href="#" class="active" onclick="nuovo()">Nuovo Prodotto</a></li>
                 <li><a href="#" onclick="aggiorna()">Modifica prodotto</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
-                <li class=\"right-buttons\"><a href=\"Logout\" class=\"logout-link\">LogOut</a></li>
+                <li class="right-buttons"><a href="Logout" class="logout-link">LogOut</a></li>
             </ul>
         </div>
     </div>

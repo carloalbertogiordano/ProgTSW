@@ -9,62 +9,87 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <script src="js/common.js"></script>
     <script src="js/modInfoCliente.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/modInfoCliente.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<%
+    Cliente c = (Cliente) session.getAttribute("cliente");
+%>
+<div class="header">
+    <div class="flex-container topnav" id ="topnav">
+        <div class="flex-left-item logo">
+            <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
+        </div>
+        <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
+        <div class="nav flex-right-item" id="nav-list">
+            <ul class="flex-container">
+                <li><a href="index.jsp" class="active">Home</a></li>
+                <li><a href="Catalogo.jsp">Catalogo</a></li>
+                <li><a href="#">Chi siamo</a></li>
+                <li class="empty-flex-field" id="emptyFlexField"></li>
+                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <%
+                    if(c!=null){
+                        out.println("<li class=\"right-buttons\">" +
+                                "<div class=\"dropdown\">" +
+                                "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
+                                "<i class=\"fa-solid fa-circle-user\"></i>Profilo\n" +
+                                "</button>" +
+                                "<div class=\"dropdown-content\" id=\"myDropdown\">\n" +
+                                "<a href=\"modInfoCliente\">Il mio profilo</a>\n" +
+                                "<a href=\"storicoOrdini\">I miei ordini</a>\n" +
+                                "<a href=\"Logout\" class=\"logout-link\">LogOut</a>\n" +
+                                "</div>" +
+                                "</div>" +
+                                "</li>");
+                    }
+                %>
+                <%
+                    if(c==null){
+                        out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
+                    }/*
+                        else{
+                            out.println("<li class=\"right-buttons\"><a href=\"Logout\">Logout</a></li>");
+                        }*/
+                %>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main flex-container">
     <%
-
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-        out.println("<h2>Info personali</h2>");
-        out.println("<table>"+
-            "<tr>"+
-            "<td> NickName: </td>"+
-            "<td><input type=\"text\" name=\"nick\" id=\"nick\" class=\"infoPers\" value=\""+ cliente.getNickname() +"\" > </td>"+
-            "</tr>"+
-            "<tr>"+
-            "<td> Telefono: </td>"+
-            "<td><input type=\"text\" name=\"tel\" id=\"tel\" class=\"infoPers\" value=\""+ cliente.getTel() +"\" > </td>"+
-            "</tr>"+
-            "<input type=\"submit\" value=\"Modifica info. personali\" id=\"submitModInfoCliente\">" +
-            "</table>");
-        out.println("<br>");
-
-        out.println("<h2>Password</h2>");
-        out.println("<table>"+
-                "<tr>" +
-                "<td><input type=\"password\" value=\"**********\" id=\"password\" class=\"pass\" /></td>" +
-                "</tr>" +
-                "<tr>" +
-                "<td><input type=\"submit\" value=\"Modifica password\" id=\"submitModPass\"/></td>" +
-                "</tr>" +
-                "</table>"+
-                "</form>");
-
-        out.println("<br><h2>Info spedizione</h2>");
-        out.println("<table>" +
-                "<div id=\"modIndirizzo\">" +
-                "<tr>"+
-                "<td> Via: </td>"+
-                "<td><input type=\"text\" name=\"via\" id=\"via\" class=\"infoSped\" value=\""+ cliente.getVia() +"\" > </td>" +
-                "</tr>"+
-                "<tr>"+
-                "<td> Provincia: </td>"+
-                "<td><input type=\"text\" name=\"provincia\" id=\"provincia\" class=\"infoSped\" value=\""+ cliente.getProvincia() +"\" > </td>"+
-                "</tr>"+
-                "<tr>"+
-                "<td> Città: </td>"+
-                "<td><input type=\"text\" name=\"citta\" id=\"citta\" class=\"infoSped\" value=\""+ cliente.getCitta() +"\" > </td>"+
-                "</tr>"+
-                "<tr>"+
-                "<td> CAP: </td>"+
-                "<td><input type=\"text\" name=\"cap\" id=\"cap\" class=\"infoSped\" value=\""+ cliente.getCap() +"\" > </td>"+
-                "</tr>"+
-                "<input type=\"submit\" value=\"Modifica info. spedizione\" id=\"submitModInfoSped\">" +
-                "</table>"+
-                "</div>");
-
-
+        out.println("<div class=\"wrapper\">" +
+                        "<div class=\"field-container flex-container\">" +
+                            "<h2>Dati utente</h2>" +
+                            "<label for=\"nick\">NickName</label>" +
+                            "<input type=\"text\" name=\"nick\" id=\"nick\" class=\"infoPers\" value=\""+ cliente.getNickname() +"\" >"+
+                            "<label for=\"tel\">Telefono</label>" +
+                            "<input type=\"text\" name=\"tel\" id=\"tel\" class=\"infoPers\" value=\""+ cliente.getTel() +"\" >"+
+                            "<input type=\"submit\" value=\"Modifica info. personali\" id=\"submitModInfoCliente\">" +
+                            "<br>" +
+                            "<h2>Password</h2>" +
+                            "<label for=\"password\">Password</label>" +
+                            "<input type=\"password\" value=\"**********\" name=\"password\" id=\"password\" class=\"pass\" />" +
+                            "<input type=\"submit\" value=\"Modifica password\" id=\"submitModPass\"/>" +
+                            "<br>" +
+                            "<h2>Indirizzo di spedizione</h2>" +
+                            "<div id=\"modIndirizzo\" class=\"flex-container\">" +
+                                "<label for=\"via\">Via</label>" +
+                                "<input type=\"text\" name=\"via\" id=\"via\" class=\"infoSped\" value=\""+ cliente.getVia() +"\" >" +
+                                "<label for=\"provincia\">Provincia</label>" +
+                                "<input type=\"text\" name=\"provincia\" id=\"provincia\" class=\"infoSped\" value=\""+ cliente.getProvincia() +"\" >"+
+                                "<label for=\"citta\">Città</label>" +
+                                "<input type=\"text\" name=\"citta\" id=\"citta\" class=\"infoSped\" value=\""+ cliente.getCitta() +"\" >"+
+                                "<label for=\"cap\">CAP</label>" +
+                                "<input type=\"text\" name=\"cap\" id=\"cap\" class=\"infoSped\" value=\""+ cliente.getCap() +"\" >"+
+                                "<input type=\"submit\" value=\"Modifica info. spedizione\" id=\"submitModInfoSped\">" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>"
+        );
     %>
-
-
+</div>
 </body>
 </html>

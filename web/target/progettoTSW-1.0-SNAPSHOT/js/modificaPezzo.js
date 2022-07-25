@@ -11,7 +11,6 @@ function validateMarcaAndModello() {
 
 function validatePrezzo() {
     let prezzo = /^(?!0\d)\d*(\.\d+)?$/;
-    console.log($("#prezzo").val());
     if(!(prezzo.test($("#prezzo").val()))){
         console.error("Err: Prezzo non valida");
     }
@@ -39,16 +38,13 @@ function validateCompulsoryProduct() {
 }
 
 function validateByTipo(tipo) {
-    console.log(tipo);
     switch (tipo) {
         case "CPU" :
-            console.log("cpu");
             const ncore = new RegExp('[1-9][0-9]{0,1}');
             let str = document.getElementById("ncore").value;
             return ncore.test(str);
             break;
         case "CASE" :
-            console.log("case");
             let formaMobo = /[0-2]$/;
             let num = /^[0-9]{1,2}$/;
             let strFormaMobo = document.getElementById("formaMobo").value;
@@ -58,13 +54,11 @@ function validateByTipo(tipo) {
             return formaMobo.test(strFormaMobo) && num.test(strNram) && num.test(strNusb) && num.test(strNpci);
             break;
         case "DISSIPATORE" :
-            console.log("diss");
             let wCpu = /[1-9][0-9]{0,3}/;
             let strwCpu = document.getElementById("wCpu").value;
             return wCpu.test(strwCpu);
             break;
         case "GPU" :
-            console.log("gpu");
             let wGpu = /[1-9][0-9]{0,3}/;
             let freqGpu = /^(?!0\d)\d*(\.\d+)?$/mg; //Frequenza espressa in GHz
             let vRam = /[1-9][0-9]{0,2}/;
@@ -74,7 +68,6 @@ function validateByTipo(tipo) {
             return (wGpu.test(strwGpu) && freqGpu.test(strFreqGpu) && vRam.test(strvRam));
             break;
         case "MOBO" :
-            console.log("mobo");
             let forma = /[0-2]/;
             let n = /[1-9][0-9]{0,2}/;
             let strForma = document.getElementById("forma").value;
@@ -89,14 +82,12 @@ function validateByTipo(tipo) {
             return watt.test(strWatt);
             break;
         case "RAM" :
-            console.log("ram");
             let frequenza = /^(?!0\d)\d*(\.\d+)?$/mg;
             let strFrequenza = document.getElementById("frequenza").value;
             return frequenza.test(strFrequenza);
             break;
         case "HDD":
         case "SSD":
-            console.log("dati");
             let mbps = /\d{1,100}/;
             let strMbps = document.getElementById("mbps").value;
             return mbps.test(strMbps);
