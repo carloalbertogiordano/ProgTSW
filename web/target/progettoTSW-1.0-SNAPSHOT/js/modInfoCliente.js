@@ -2,6 +2,7 @@ $(document).ready(function() {
     let btnInfoCliente = $('#submitModInfoCliente');
     let btnInfoSpedCliente = $('#submitModInfoSped');
     let btnPass = $('#submitModPass');
+    console.log("test");
 
     btnInfoCliente.click(function () {
         if(validateInfoPers()) {
@@ -18,7 +19,7 @@ $(document).ready(function() {
                     btnInfoCliente.attr('disabled', true);
                 },
                 error: function () {
-                    $(location).attr('href','error.page.jsp');
+                $(location).attr('href','error.page.jsp');
                 }
             });
         }
@@ -47,14 +48,14 @@ $(document).ready(function() {
     });
     btnPass.click(function() {
         if(testPassword()){
-            let pass = $('#pass').val();
+            let pass = $('#password').val();
             $.ajax({
                 url: 'updatePassword',
                 type: 'POST',
                 data: {
                     input_pass: pass
                 },
-                success: function (response){
+                success: function (){
                     alert("Informazioni inserite correttamente");
                     btnPass.attr('disabled', true);
                 },
@@ -76,7 +77,7 @@ $(document).ready(function() {
         btnInfoSpedCliente.attr('disabled', false);
     });
     $('.pass').click(function(){
-        $('#pass').val('');
+        $('#password').val('');
         btnPass.attr('disabled', false);
     });
 });

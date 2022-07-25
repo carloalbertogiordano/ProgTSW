@@ -106,4 +106,7 @@ public class Cliente {
         Cap = cap;
     }
 
+    public void setPassword(String password) {
+        Pass = password;
+    }
 }

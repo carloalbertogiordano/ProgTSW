@@ -139,16 +139,13 @@ public class ClienteDAO {
     }
 
 
-    public boolean updatePassword(Cliente c, String newPass) throws SQLException {
+    public static void updatePassword(Cliente c) throws SQLException {
         Connection con = ConPool.getConnection();
         Statement stmt = (Statement) con.createStatement();
         PreparedStatement pdstmt = con.prepareStatement("UPDATE Cliente SET Pass=? WHERE Mail = ? ");
-        pdstmt.setString(1, newPass);
+        pdstmt.setString(1, c.getPass());
         pdstmt.setString(2, c.getMail());
-        int success = pdstmt.executeUpdate();
-
-        //True se <= 0
-        return success >= 0;
+        pdstmt.executeUpdate();
     }
 
     public static Cliente InitClienteFromRs(ResultSet rs) throws SQLException {
