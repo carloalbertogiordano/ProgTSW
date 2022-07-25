@@ -25,9 +25,6 @@ public class ImageManager {
         File oldDir = new File(path+url);
         File newDir = new File(path+"Images/"+marca+modello);
 
-        System.out.println(oldDir.getAbsolutePath());
-        System.out.println(newDir.getAbsolutePath());
-
         if(!oldDir.renameTo(newDir))
             throw new IOException("Cannot rename "+oldDir.getPath()+" to this name"+newDir.getPath()+". Please select a different one");
     }
@@ -46,7 +43,6 @@ public class ImageManager {
     private int calcScalingFactor(int x, int y){
         int workDim = Math.max(x, y);
         int scale = workDim/targetDim;
-        System.out.println("Scale: "+scale);
         return scale;
     }
 
@@ -108,7 +104,6 @@ public class ImageManager {
     }
 
     private void deleteDirectory(File file) throws IOException {
-        System.out.println("DELETING: "+file.getPath());
         if(file.listFiles() != null){
             File[] list=file.listFiles();
             if(list.length>=1) {
@@ -124,7 +119,6 @@ public class ImageManager {
     }
 
     public void deleteImageDir(String url, String root) throws IOException {
-        System.out.println("DELETING: "+root+url);
         root = root.replace("file:", "");
         File file = new File(root+url);
         deleteDirectory(file);

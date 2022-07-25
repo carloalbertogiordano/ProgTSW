@@ -67,7 +67,7 @@ public class addCart extends HttpServlet {
                 mobo_carrello.setMarca(mobo.getMarca());
                 mobo_carrello.setModello(mobo.getModello());
                 mobo_carrello.setPrezzo(mobo.getPrezzo());
-                mobo_carrello.setQuantita(mobo.getQuantita());
+                mobo_carrello.setQuantita(quantity);
                 mobo_carrello.setForma(mobo.getForma());
                 mobo_carrello.setN_USB(mobo.getN_USB());
                 mobo_carrello.setN_PCI(mobo.getN_PCI());
@@ -83,7 +83,7 @@ public class addCart extends HttpServlet {
                 ram_carrello.setMarca(ram.getMarca());
                 ram_carrello.setModello(ram.getModello());
                 ram_carrello.setPrezzo(ram.getPrezzo());
-                ram_carrello.setQuantita(ram.getQuantita());
+                ram_carrello.setQuantita(quantity);
                 ram_carrello.setFrequenza(ram.getFrequenza());
                 ram_carrello.setUrl(ram.getUrl());
                 ram_carrello.setDescrizione(ram.getDescrizione());
@@ -96,7 +96,7 @@ public class addCart extends HttpServlet {
                 hdd_carrello.setMarca(hdd.getMarca());
                 hdd_carrello.setModello(hdd.getModello());
                 hdd_carrello.setPrezzo(hdd.getPrezzo());
-                hdd_carrello.setQuantita(hdd.getQuantita());
+                hdd_carrello.setQuantita(quantity);
                 hdd_carrello.setMBs(hdd.getMBs());
                 hdd_carrello.setUrl(hdd.getUrl());
                 hdd_carrello.setDescrizione(hdd.getDescrizione());
@@ -109,7 +109,7 @@ public class addCart extends HttpServlet {
                 ssd_carrello.setMarca(ssd.getMarca());
                 ssd_carrello.setModello(ssd.getModello());
                 ssd_carrello.setPrezzo(ssd.getPrezzo());
-                ssd_carrello.setQuantita(ssd.getQuantita());
+                ssd_carrello.setQuantita(quantity);
                 ssd_carrello.setMBs(ssd.getMBs());
                 ssd_carrello.setUrl(ssd.getUrl());
                 ssd_carrello.setDescrizione(ssd.getDescrizione());
@@ -122,7 +122,7 @@ public class addCart extends HttpServlet {
                 psu_carrello.setMarca(psu.getMarca());
                 psu_carrello.setModello(psu.getModello());
                 psu_carrello.setPrezzo(psu.getPrezzo());
-                psu_carrello.setQuantita(psu.getQuantita());
+                psu_carrello.setQuantita(quantity);
                 psu_carrello.setN_Watt(psu.getN_Watt());
                 psu_carrello.setUrl(psu.getUrl());
                 psu_carrello.setDescrizione(psu.getDescrizione());
@@ -135,7 +135,7 @@ public class addCart extends HttpServlet {
                 case_carrello.setMarca(case_.getMarca());
                 case_carrello.setModello(case_.getModello());
                 case_carrello.setPrezzo(case_.getPrezzo());
-                case_carrello.setQuantita(case_.getQuantita());
+                case_carrello.setQuantita(quantity);
                 case_carrello.setFormaMobo(case_.getFormaMobo());
                 case_carrello.setUrl(case_.getUrl());
                 case_carrello.setDescrizione(case_.getDescrizione());
@@ -163,15 +163,14 @@ public class addCart extends HttpServlet {
                 dissipatore_carrello.setMarca(dissipatore.getMarca());
                 dissipatore_carrello.setModello(dissipatore.getModello());
                 dissipatore_carrello.setPrezzo(dissipatore.getPrezzo());
-                dissipatore_carrello.setQuantita(dissipatore.getQuantita());
+                dissipatore_carrello.setQuantita(quantity);
                 dissipatore_carrello.setW_Cpu(dissipatore.getW_Cpu());
                 dissipatore_carrello.setUrl(dissipatore.getUrl());
                 dissipatore_carrello.setDescrizione(dissipatore.getDescrizione());
                 addToCart(cliente, carrello, catalogo, dissipatore_carrello);
                 break;
         }
-        request.setAttribute("toCartJSP", true);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("HomeServlet");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -183,17 +182,16 @@ public class addCart extends HttpServlet {
     private void addToCart(Cliente cliente, Carrello carrello, Catalogo catalogo, Prodotto prodotto){
         if (cliente != null) {
             try {
-                System.out.println(carrello.getCarrelloCod());
                 carrello.addProduct(prodotto);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            catalogo.aggiornaQuantita(prodotto);
         } else {
-            //Even if user is not logged you hacve to update Carrello and Catalogo
+            //Even if user is not logged you have to update Carrello and Catalogo
             carrello.addSessionProduct(prodotto);
-            catalogo.aggiornaQuantita(prodotto);
         }
+        catalogo.aggiornaQuantita(prodotto);
+
     }
 }
 

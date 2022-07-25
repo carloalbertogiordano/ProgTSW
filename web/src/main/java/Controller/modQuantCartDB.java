@@ -35,7 +35,6 @@ public class modQuantCartDB extends HttpServlet {
         }
 
             //Aggiorna il carrello della sessione
-        System.out.println("q="+quant);
         carrelloSessione.setPrezzo(0);
             for (Prodotto pcarr : carrelloSessione.getCarrello()) {
                 if (pcarr.getID() == id){
@@ -44,7 +43,6 @@ public class modQuantCartDB extends HttpServlet {
                 }
                 carrelloSessione.setPrezzo(carrelloSessione.getPrezzo()+(pcarr.getPrezzo()* pcarr.getQuantita()));
             }
-            System.out.println("id:"+carrelloSessione.getCarrelloCod()+" prezzo:"+carrelloSessione.getPrezzo());
             ss.setAttribute("carrello", carrelloSessione);
 
             //Se il cliente è loggato aggiorna il carrello nel DB

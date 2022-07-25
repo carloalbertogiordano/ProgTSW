@@ -3,6 +3,7 @@ package Model.Carrello_;
 import Model.CATALOGO_.Catalogo;
 import Model.Cliente_.Cliente;
 import Model.Prodotto;
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -105,26 +106,19 @@ public class Carrello {
 
     public void addProduct(Prodotto prodotto) throws SQLException {
         boolean flag = false;
-        int index=-1;
-        for(int i = 0; i < carrello.size(); i++){
-            if(prodotto.getID()==carrello.get(i).getID()){
+        for(Prodotto p : carrello){
+            if(p.getID() == prodotto.getID()){
+                //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
+                p.setQuantita(p.getQuantita()+prodotto.getQuantita());
                 flag = true;
-                index=i;
+                break;
             }
         }
-        CarrelloDAO service = new CarrelloDAO();
         if(!flag){
-            //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
-            carrello.add(prodotto);
-            //service.addCartDB(prodotto.getID(), CarrelloCod ,prodotto.getQuantità());
-            service.delCarrelloFromComporre(this);
+                //il prodotto non era presente all'interno del carrello quindi posso aggiungerlo direttamente
+                carrello.add(prodotto);
         }
-        else{
-            //il prodotto era già presente all'interno del carrello quindi devo solo aggiornare la sua quantità andando a sommare a quella già presente nel carrello, quella che è stata richiesta in info-pezzo
-            carrello.get(index).setQuantita(carrello.get(index).getQuantita()+prodotto.getQuantita());
-            //service.updateCarrelloDB(carrello.get(index).getID(), CarrelloCod, carrello.get(index).getQuantità());
-            service.delCarrelloFromComporre(this);
-        }
+        CarrelloDAO.delCarrelloFromComporre(this);
     }
 
     public void addSessionProduct(Prodotto prodotto) {

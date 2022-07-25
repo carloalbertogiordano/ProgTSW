@@ -30,6 +30,10 @@ public class HomeServlet extends HttpServlet {
         CatalogoDAO serviceCatalogo = new CatalogoDAO();
         CarrelloDAO serviceCarrello = new CarrelloDAO();
         Catalogo catalogo = new Catalogo();
+
+        //In caso proveniamo da info-pezzo dobbiamo essere rediretti al carrello
+        //Boolean toCartJSP = (Boolean) request.getAttribute("toCartJSP");
+
         try {
             catalogo.setCatalogo(serviceCatalogo.doRetriveAll());
         } catch (SQLException e) {
@@ -96,15 +100,9 @@ public class HomeServlet extends HttpServlet {
                 }
             }
         }
-        Boolean toCartJSP = (Boolean) request.getAttribute("toCartJSP");
-        request.setAttribute("toCartJSP", null);
-        if(toCartJSP != null && toCartJSP==true){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
-            dispatcher.forward(request, response);
-        }else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
-        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override

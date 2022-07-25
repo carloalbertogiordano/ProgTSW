@@ -19,7 +19,6 @@ public class FilterPrice extends HttpServlet {
         Catalogo filteredCatalog = (Catalogo) ss.getAttribute("filterCatalog");
         //Altrimenti se questo non è ancora successo utilizziamo l'intero catalogo
         if (filteredCatalog == null){
-            System.out.println("FileredCatalog is null. Is this firt filter applied?");
             filteredCatalog = (Catalogo) ss.getAttribute("catalogo");
         }
 

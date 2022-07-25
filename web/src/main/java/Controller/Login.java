@@ -28,7 +28,6 @@ public class Login extends HttpServlet {
             //Se mail e password sono valide controlla che la coppia sia corretta con isCorrectLogin()
             if (mail == null || password == null || !CDAO.isCorrectLogin(mail, password)) {
                 request.setAttribute("loginErr", "Cliente non trovato o password errata");
-                System.out.println("Cliente non trovato o password errata");
                 //Rimanda alla pagina di login
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
