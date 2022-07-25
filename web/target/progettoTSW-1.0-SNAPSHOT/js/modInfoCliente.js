@@ -2,7 +2,6 @@ $(document).ready(function() {
     let btnInfoCliente = $('#submitModInfoCliente');
     let btnInfoSpedCliente = $('#submitModInfoSped');
     let btnPass = $('#submitModPass');
-    console.log("test");
 
     btnInfoCliente.click(function () {
         if(validateInfoPers()) {
