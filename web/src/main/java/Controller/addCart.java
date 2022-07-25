@@ -38,8 +38,12 @@ public class addCart extends HttpServlet {
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
         Cliente cliente = (Cliente) session.getAttribute("cliente");
 
-        if(id==null || quantity==null || session==null || carrello==null || catalogo==null || cliente==null)
+        if(id==null || quantity==null || session==null || carrello==null || catalogo==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+
+        if(cliente != null)
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 
         //We take product from the catalogo by its id
         Prodotto p = catalogo.doRetriveById(id);

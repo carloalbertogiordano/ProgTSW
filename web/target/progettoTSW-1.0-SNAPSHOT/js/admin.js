@@ -27,7 +27,7 @@ function validateQuantita() {
 }
 
 function validateDesc() {
-    let desc = /^[a-zA-Z0-9].{1,10000}$/;
+    let desc = /^.{1,10000}$/;
     if(!(desc.test($("#descrizione").val()))){
         console.error("Err: Descrizione non valida");
     }
@@ -317,7 +317,7 @@ function nuovo() {
         "<label for=\"image\">Seleziona un'immagine</label>" +
         "<input type=\"file\" name=\"image\" id=\"image\" accept='.png, .jpeg, .jpg, .svg'  class=\"form-input\" required disabled/>" +
         "<input type=\"text\" name=\"descrizione\" id=\"descrizione\"  class=\"form-input\" placeholder=\"Descrizione\" required disabled/>" +
-        "<input type=\"submit\" value=\"Invia\"  class=\"form-input\"/>" +
+        "<input type=\"submit\" value=\"Invia\" class=\"form-input\"/>" +
         "</form>";
 
 }

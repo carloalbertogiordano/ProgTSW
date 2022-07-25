@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Carrello_.Carrello;
+import Model.Cliente_.Cliente;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,6 +14,11 @@ public class CarrelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
+
+        if((Cliente)request.getSession().getAttribute("cliente")!=null)
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+
         if(carrello!=null){
             response.sendRedirect("carrello.jsp");
         }else{

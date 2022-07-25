@@ -23,6 +23,9 @@ public class updateInfoCliente extends HttpServlet {
 
         if(nick==null || tel==null || ss==null || cliente==null)
             request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request, response);
+        if(((Cliente)request.getSession().getAttribute("cliente")).isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+
 
         cliente.setNickname(nick);
         cliente.setTel(tel);

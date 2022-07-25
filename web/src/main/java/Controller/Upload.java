@@ -88,10 +88,6 @@ public class Upload extends HttpServlet {
         if (request.getParameter("Vram") != null) {
             Vram = Integer.parseInt(request.getParameter("Vram"));
         }
-        Integer N_Watt = null;
-        if (request.getParameter("N_Watt") != null) {
-            N_Watt = Integer.parseInt(request.getParameter("N_Watt"));
-        }
         Integer W_Cpu = null;
         if (request.getParameter("W_Cpu") != null) {
             W_Cpu = Integer.parseInt(request.getParameter("W_Cpu"));
