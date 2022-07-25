@@ -61,7 +61,7 @@
     <%
         Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
         out.println("<div class=\"wrapper\">" +
-                        "<div class=\"field-container\">" +
+                        "<div class=\"field-container flex-container\">" +
                             "<h2>Dati utente</h2>" +
                             "<label for=\"nick\">NickName</label>" +
                             "<input type=\"text\" name=\"nick\" id=\"nick\" class=\"infoPers\" value=\""+ cliente.getNickname() +"\" >"+
@@ -75,12 +75,12 @@
                             "<input type=\"submit\" value=\"Modifica password\" id=\"submitModPass\"/>" +
                             "<br>" +
                             "<h2>Indirizzo di spedizione</h2>" +
-                            "<div id=\"modIndirizzo\">" +
+                            "<div id=\"modIndirizzo\" class=\"flex-container\">" +
                                 "<label for=\"via\">Via</label>" +
                                 "<input type=\"text\" name=\"via\" id=\"via\" class=\"infoSped\" value=\""+ cliente.getVia() +"\" >" +
                                 "<label for=\"provincia\">Provincia</label>" +
                                 "<input type=\"text\" name=\"provincia\" id=\"provincia\" class=\"infoSped\" value=\""+ cliente.getProvincia() +"\" >"+
-                                "<label for=\"citta\">Città</label" +
+                                "<label for=\"citta\">Città</label>" +
                                 "<input type=\"text\" name=\"citta\" id=\"citta\" class=\"infoSped\" value=\""+ cliente.getCitta() +"\" >"+
                                 "<label for=\"cap\">CAP</label>" +
                                 "<input type=\"text\" name=\"cap\" id=\"cap\" class=\"infoSped\" value=\""+ cliente.getCap() +"\" >"+
