@@ -193,9 +193,9 @@
         </div>
     </div>
     <div class="catalogo-div inline flex-container" id="divCatalogo">
-        <div class="flex-container product-slider">
+        <div class="flex-container product-slider" id="divCatalogo-inner">
             <%
-                for (Cpu cpu : cpuList) {
+                    for (Cpu cpu : cpuList) {
                     //Visto che la visione del catalogo è generalizzata dobbiamo poter
                     //mostrare all'amministratore anche i prodotti a 0 ma questo non deve succedere
                     //se invece è un utente normale.

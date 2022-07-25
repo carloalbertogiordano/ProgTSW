@@ -30,10 +30,6 @@
         </div>
     </div>
 </div>
-    <!--<button onclick="nuovo()">Nuovo Prodotto</button>
-    <button onclick="aggiorna()">Mod. Quantità Prodotto</button>
-    <a href="Logout"> <button>Logout</button> </a>
-    <br>-->
 <div class="main flex-container">
     <div id="stampa" class="flex-container"><p>Premi un pulsante.</p></div>
     <iframe id="frameCatalogo" name="iframeCatalogo"

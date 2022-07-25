@@ -17,6 +17,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 //Stampa il catalogo. Viene usata per stampare i risultati delle query ajax al catalogo (marca, modello, prezzo)
 @WebServlet(name = "AsincCatalogPrinter", value = "/AsincCatalogPrinter")
 public class AsincCatalogPrinter extends HttpServlet {
@@ -32,9 +34,13 @@ public class AsincCatalogPrinter extends HttpServlet {
             }
         }
 
+        String result = "";
+
         for(Prodotto p : c.getCatalogo()){
-            doSwCase(p, response, path);
+            result+=(doSwCase(p, response, path));
         }
+        PrintWriter out = response.getWriter();
+        out.write(result);
     }
 
     @Override
@@ -42,38 +48,28 @@ public class AsincCatalogPrinter extends HttpServlet {
 
     }
 
-    private void doSwCase(Prodotto p, HttpServletResponse response, String path) throws IOException {
+    private String doSwCase(Prodotto p, HttpServletResponse response, String path) throws IOException {
         switch (p.getTipo()) {
             case "CPU":
-                writeCpuForCatalog(response, p, path);
-                break;
+                return writeCpuForCatalog(response, p, path);
             case "CASE":
-                writeCaseForCatalog(response, p, path);
-                break;
+                return writeCaseForCatalog(response, p, path);
             case "DISSIPATORE":
-                writeDissipatoreForCatalog(response, p, path);
-                break;
+                return writeDissipatoreForCatalog(response, p, path);
             case "PSU":
-                writePsuForCatalog(response, p, path);
-                break;
+                return writePsuForCatalog(response, p, path);
             case "MOBO":
-                writeMoboForCatalog(response, p, path);
-                break;
+                return writeMoboForCatalog(response, p, path);
             case "RAM":
-                writeRamForCatalog(response, p, path);
-                break;
+                return writeRamForCatalog(response, p, path);
             case "HDD":
-                writeHddForCatalog(response, p, path);
-                break;
+                return writeHddForCatalog(response, p, path);
             case "SSD":
-                writeSsdForCatalog(response, p, path);
-                break;
+                return writeSsdForCatalog(response, p, path);
             case "GPU":
-                writeGpuForCatalog(response, p, path);
-                break;
+                return writeGpuForCatalog(response, p, path);
             default:
-                response.getWriter().println("Errore");
-
+                return "Errore";
         }
     }
 
@@ -123,9 +119,9 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>";
         return result;
     }
-    private void writeCpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
+    private String writeCpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Cpu cpu = (Cpu) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -142,11 +138,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>");
+                        "</div>";
+                        return result;
     }
-    private void writeGpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeGpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Gpu gpu = (Gpu) p;
-        response.getWriter().println("<div class=\"product-card\">\n" +
+        String result = "<div class=\"product-card\">\n" +
                 "<div class=\"product-tumb\">\n" +
                 /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
                 "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
@@ -162,12 +159,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                 "</div>\n" +
                 "</div>\n" +
                 "</div>\n" +
-                "</div>");
-
+                "</div>";
+                return result;
     }
-    private void writeMoboForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeMoboForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Mobo mobo = (Mobo) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -184,11 +181,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>");
+                        "</div>";
+        return result;
     }
-    private void writeHddForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeHddForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Hdd hdd = (Hdd) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -205,12 +203,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>"
-        );
+                        "</div>";
+        return result;
     }
-    private void writeSsdForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeSsdForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Ssd ssd = (Ssd) p;
-        response.getWriter().println("<div class=\"product-card\">\n" +
+        String result = "<div class=\"product-card\">\n" +
                 "<div class=\"product-tumb\">\n" +
                 /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
                 "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
@@ -226,11 +224,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                 "</div>\n" +
                 "</div>\n" +
                 "</div>\n" +
-                "</div>");
+                "</div>";
+        return result;
     }
-    private void writeRamForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeRamForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Ram ram = (Ram) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -247,12 +246,12 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>"
-        );
+                        "</div>";
+        return result;
     }
-    private void writeCaseForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
+    private String writeCaseForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Case case_ = (Case) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -269,7 +268,7 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>"
-        );
+                        "</div>";
+        return result;
     }
 }
