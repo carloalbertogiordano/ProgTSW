@@ -22,9 +22,9 @@
 </head>
 <body>
 <%
-    Cliente c = (Cliente) session.getAttribute("cliente");
-    if(c != null)
-    if(c.isAdministrator())
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
+    if(cliente != null)
+    if(cliente.isAdministrator())
         request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
 <div class="header">
@@ -41,7 +41,7 @@
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
-                    if (c != null) {
+                    if (cliente != null) {
                         out.println("<li class=\"right-buttons\">" +
                                 "<div class=\"dropdown\">" +
                                 "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
@@ -57,7 +57,7 @@
                     }
                 %>
                 <%
-                    if (c == null) {
+                    if (cliente == null) {
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
                     }
                 %>
@@ -68,7 +68,6 @@
 <div class="main flex-container">
         <%
             Carrello carrello = (Carrello) session.getAttribute("carrello");
-            Cliente cliente = (Cliente) session.getAttribute("cliente");
             Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
 
             if (!carrello.isEmpty()) {

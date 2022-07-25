@@ -40,7 +40,6 @@
                 <ul class="flex-container">
                     <li><a href="index.jsp" class="active">Home</a></li>
                     <li><a href="Catalogo.jsp">Catalogo</a></li>
-                    <li><a href="#">Chi siamo</a></li>
                     <li class="empty-flex-field" id="emptyFlexField"></li>
                     <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                             class="fa-solid fa-cart-shopping"></i></a></li>
@@ -69,33 +68,12 @@
             </div>
         </div>
     </div>
-    <!--<%
+    <%
         int id = Integer.parseInt(request.getParameter("Id"));
         String type = request.getParameter("type");
         Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
         Prodotto p = catalogo.doRetriveById(id);
-
-        if(p != null) {
-            out.println("<div><ul>" +
-                    "<li>Marca: " + p.getMarca() + "</li>" +
-                    "<li>Modello: " + p.getModello() + "</li>" +
-                    "</ul>" +
-                    "<form action=\"addCart\" id=\"buy\">" +
-                    "<input type=\"hidden\" name=\"Id\" value=" + p.getID() + ">");
-                    if(p.getQuantita() > 0) {
-                        out.println(
-                                "<input type=\"number\" id=\"quantity\" name=\"quantity\" value=\"1\" min=\"1\" max=\"" + p.getQuantita() + "\">" +
-                                        "<input type=\"submit\" id=\"submit\" value=\"Aggiungi al carrello\"></form>" +
-                                        "</div>");
-                    }
-                    else{
-                        out.println("Ci dispiace, questo prodotto non è più disponibile.</form></div>");
-                    }
-        }
-        else{
-            request.getRequestDispatcher("WEB-INF/error-page.jsp").forward(request,response);
-        }
-    %>-->
+    %>
 
     <div class="main flex-container">
         <div class="first-row flex-container">
@@ -201,7 +179,7 @@
             <div class="product-description-div flex-container">
                 <p class="product-description"><%
                     out.print(p.getDescrizione());
-                    %>/p>
+                    %></p>
             </div>
         </div>
     </div>

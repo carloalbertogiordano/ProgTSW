@@ -41,7 +41,7 @@
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
                         class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
-                    if (c != null) {
+                    if (cliente != null) {
                         out.println("<li class=\"right-buttons\">" +
                                 "<div class=\"dropdown\">" +
                                 "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +

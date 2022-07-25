@@ -31,7 +31,6 @@
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
-                <li><a href="#">Chi siamo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
                 <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
@@ -53,10 +52,7 @@
                 <%
                     if(c==null){
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
-                    }/*
-                        else{
-                            out.println("<li class=\"right-buttons\"><a href=\"Logout\">Logout</a></li>");
-                        }*/
+                    }
                 %>
             </ul>
         </div>
@@ -76,9 +72,7 @@
     <div class="login-container">
         <h1>Effettua l'accesso</h1>
         <form action="Login" method="post" onsubmit="return validateLogin()" class="flex-container">
-            <!--<lable for="mail" class="form-label">Mail</lable>-->
             <input type="text" name="Mail" id="mail" placeholder="Mail" required/>
-            <!--<label for="password" class="form-label">Password</label>-->
             <input type="password" name="Password" id="password" placeholder="Password" required/>
             <input type="submit" value="Login"/>
         </form>

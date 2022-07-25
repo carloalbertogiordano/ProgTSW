@@ -77,9 +77,10 @@ public class AsincCatalogPrinter extends HttpServlet {
         }
     }
 
-    private void writePsuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
+    private String writePsuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Psu psu = (Psu) p;
-        response.getWriter().println(
+        //response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -96,12 +97,13 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>"
-        );
+                        "</div>";
+        //);
+        return result;
     }
-    private void writeDissipatoreForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
+    private String writeDissipatoreForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Dissipatore dissipatore = (Dissipatore) p;
-        response.getWriter().println(
+        String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
                         /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
@@ -118,8 +120,8 @@ public class AsincCatalogPrinter extends HttpServlet {
                         "</div>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "</div>"
-        );
+                        "</div>";
+        return result;
     }
     private void writeCpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException {
         Cpu cpu = (Cpu) p;
