@@ -76,14 +76,6 @@ label{
     color: #003049;
 }
 
-input[type="text"]:enabled{
-    color: #003049;
-}
-
-input[type="text"]:disabled{
-    color: rgba(120, 0, 0, 0.67);
-}
-
 .instruction-header{
     margin: auto;
 }
