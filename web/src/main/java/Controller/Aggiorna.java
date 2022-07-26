@@ -182,6 +182,7 @@ public class Aggiorna extends HttpServlet {
                     psu.setQuantita(quantita);
                     psu.setN_Watt(wattaggio);
                     psu.setUrl(url);
+                    psu.setDescrizione(desc);
                     PsuDAO.Update(psu);
                     break;
                 case "MOBO":
