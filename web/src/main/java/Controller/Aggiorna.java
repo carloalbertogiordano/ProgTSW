@@ -209,6 +209,7 @@ public class Aggiorna extends HttpServlet {
                     ram.setFrequenza(frequenza);
                     ram.setUrl(url);
                     ram.setDescrizione(desc);
+                    RamDAO.Update(ram);
                     break;
                 case "HDD":
                     Hdd hdd = new Hdd();

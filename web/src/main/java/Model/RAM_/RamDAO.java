@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class RamDAO{
 
+
     private ArrayList<Prodotto> doRetrive() throws SQLException {
         ArrayList<Prodotto> list = new ArrayList<>();
         Connection con = ConPool.getConnection();
