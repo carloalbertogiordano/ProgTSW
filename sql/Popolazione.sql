@@ -21,7 +21,7 @@ insert into Ordine values ("cliente3@placeholdermail.com", 3, 0, "Via del client
 #CPU
 insert into Pezzo (Id, tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values (1, "CPU", "Intel", "i7", 200, 50, 300, 4.2, 8, "Images/placeHolder");
 insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 150, 200, 100, 3.2, 6, "Images/placeHolder");
-insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen7", 250, 250, 20, 4.4, 8, "Images/placeHolder");
+insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, Wattaggio, Frequenza, N_Core, url) values ("CPU", "AMD", "Ryzen5", 250, 250, 20, 4.4, 8, "Images/placeHolder");
 
 #Mobo #matx=0, atx=1, eatx=2
 insert into Pezzo (tipo, Marca, Modello, Prezzo, Quantita, N_RAM, N_USB, N_PCI, formaMobo, url) values ("MOBO", "Asrock", "Z590 OC Formula", 300, 40, 2, 6, 3, 1, "Images/placeHolder");
