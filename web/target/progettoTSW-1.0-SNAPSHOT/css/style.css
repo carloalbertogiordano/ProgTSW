@@ -74,6 +74,10 @@ input[type="text"]:disabled{
     display: none;
 }
 
+.inner-padding{
+    padding: 15px;
+}
+
 /*HEADER*/
 .header{
     background-color: #003049;

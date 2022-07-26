@@ -202,7 +202,7 @@ a {
     align-items: center;
     justify-content: center;
     height: 300px;
-    padding: 50px;
+    /*padding: 50px;*/
     background: #669bbc;
 }
 
