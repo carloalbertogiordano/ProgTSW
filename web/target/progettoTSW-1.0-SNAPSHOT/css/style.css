@@ -34,7 +34,7 @@ a:hover{
 
 a:visited{
     text-decoration: none;
-    color: default;
+    color: inherit;
 }
 
 input[type="submit"], input[type="file"]{

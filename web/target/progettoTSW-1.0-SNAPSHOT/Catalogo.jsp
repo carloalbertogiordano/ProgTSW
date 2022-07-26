@@ -226,7 +226,7 @@
                     boolean toShow = case_.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                          out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + case_.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
@@ -249,7 +249,7 @@
                     boolean toShow = dissipatore.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + dissipatore.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
@@ -271,7 +271,7 @@
                 for (Gpu gpu : gpuList) {
                     boolean toShow = gpu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
-                        out.println("<div class=\"product-card\">\n" +
+                        out.println("<div class=\"product-card  inner-padding\">\n" +
                                         "<div class=\"product-tumb\">\n" +
                                             "<img src=\"" + gpu.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
@@ -295,7 +295,7 @@
                     boolean toShow = mobo.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + mobo.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
@@ -318,7 +318,7 @@
                     boolean toShow = psu.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + psu.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
@@ -341,7 +341,7 @@
                     boolean toShow = ram.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + ram.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
@@ -364,7 +364,7 @@
                     boolean toShow = hdd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb\">\n" +
+                                        "<div class=\"product-tumb  inner-padding\">\n" +
                                             "<img src=\"" + hdd.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
