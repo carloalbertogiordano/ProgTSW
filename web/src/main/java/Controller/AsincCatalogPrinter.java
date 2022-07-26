@@ -79,8 +79,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + psu.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">PSU</span>\n" +
@@ -102,8 +101,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + dissipatore.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Dissipatori</span>\n" +
@@ -124,8 +122,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">CPU</span>\n" +
@@ -145,8 +142,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         Gpu gpu = (Gpu) p;
         String result = "<div class=\"product-card\">\n" +
                 "<div class=\"product-tumb\">\n" +
-                /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                "<img src=\"" + gpu.getUrl() + "/2.png\" alt=\"\">\n" +
                 "</div>\n" +
                 "<div class=\"product-details\">\n" +
                 "<span class=\"product-catagory\">GPU</span>\n" +
@@ -167,8 +163,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + mobo.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Scheda madre</span>\n" +
@@ -189,8 +184,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + hdd.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Hard disk</span>\n" +
@@ -210,8 +204,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         Ssd ssd = (Ssd) p;
         String result = "<div class=\"product-card\">\n" +
                 "<div class=\"product-tumb\">\n" +
-                /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                "<img src=\"" + ssd.getUrl() + "/2.png\" alt=\"\">\n" +
                 "</div>\n" +
                 "<div class=\"product-details\">\n" +
                 "<span class=\"product-catagory\">Solid state disk</span>\n" +
@@ -232,8 +225,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + ram.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">RAM</span>\n" +
@@ -254,8 +246,7 @@ public class AsincCatalogPrinter extends HttpServlet {
         String result =
                 "<div class=\"product-card\">\n" +
                         "<div class=\"product-tumb\">\n" +
-                        /*"<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                        "<img src=\"Images/PCBuilder-logo.png\" alt=\"\">\n" +
+                        "<img src=\"" + case_.getUrl() + "/2.png\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Case</span>\n" +

@@ -76,8 +76,7 @@
                 for (Prodotto prodotto : carrelloList) {
                     out.println("<li class=\"cart-list\">" +
                                 "<div class=\"row flex-container\">\n" +
-                                    /*"<img src=\"" + prodotto.getUrl() + "/2.png\" alt=\"\">\n" +*/
-                                    "<img src=\"Images/PCBuilder-logo.png\" alt=\"\" class=\"cart-image\">\n" +
+                                    "<img src=\"" + prodotto.getUrl() + "/2.png\" alt=\"\">\n" +
                                     "<ul class=\"flex-item\">\n" +
                                         "<li><h3>"+ prodotto.getMarca() + " " + prodotto.getModello() +"</h3></li>\n" +
                                         "<li>\n" +

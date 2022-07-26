@@ -20,9 +20,6 @@
 <body>
 <%
     Cliente c = (Cliente) session.getAttribute("cliente");
-    if(c != null)
-        if(c.isAdministrator())
-            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
     <div class="header">
         <div class="flex-container topnav" id ="topnav">
