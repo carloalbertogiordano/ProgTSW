@@ -78,8 +78,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         //response.getWriter().println(
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + psu.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + psu.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">PSU</span>\n" +
@@ -100,8 +100,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Dissipatore dissipatore = (Dissipatore) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + dissipatore.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + dissipatore.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Dissipatori</span>\n" +
@@ -121,8 +121,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Cpu cpu = (Cpu) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + cpu.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + cpu.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">CPU</span>\n" +
@@ -141,8 +141,8 @@ public class AsincCatalogPrinter extends HttpServlet {
     private String writeGpuForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Gpu gpu = (Gpu) p;
         String result = "<div class=\"product-card\">\n" +
-                "<div class=\"product-tumb\">\n" +
-                "<img src=\"" + gpu.getUrl() + "/2.png\" alt=\"\">\n" +
+                "<div class=\"product-tumb inner-padding\">\n" +
+                "<img src=\"" + gpu.getUrl() + "/2.jpg\" alt=\"\">\n" +
                 "</div>\n" +
                 "<div class=\"product-details\">\n" +
                 "<span class=\"product-catagory\">GPU</span>\n" +
@@ -162,8 +162,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Mobo mobo = (Mobo) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + mobo.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + mobo.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Scheda madre</span>\n" +
@@ -183,8 +183,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Hdd hdd = (Hdd) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + hdd.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + hdd.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Hard disk</span>\n" +
@@ -203,8 +203,8 @@ public class AsincCatalogPrinter extends HttpServlet {
     private String writeSsdForCatalog(HttpServletResponse response, Prodotto p, String path) throws IOException{
         Ssd ssd = (Ssd) p;
         String result = "<div class=\"product-card\">\n" +
-                "<div class=\"product-tumb\">\n" +
-                "<img src=\"" + ssd.getUrl() + "/2.png\" alt=\"\">\n" +
+                "<div class=\"product-tumb inner-padding\">\n" +
+                "<img src=\"" + ssd.getUrl() + "/2.jpg\" alt=\"\">\n" +
                 "</div>\n" +
                 "<div class=\"product-details\">\n" +
                 "<span class=\"product-catagory\">Solid state disk</span>\n" +
@@ -224,8 +224,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Ram ram = (Ram) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + ram.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + ram.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">RAM</span>\n" +
@@ -245,8 +245,8 @@ public class AsincCatalogPrinter extends HttpServlet {
         Case case_ = (Case) p;
         String result =
                 "<div class=\"product-card\">\n" +
-                        "<div class=\"product-tumb\">\n" +
-                        "<img src=\"" + case_.getUrl() + "/2.png\" alt=\"\">\n" +
+                        "<div class=\"product-tumb inner-padding\">\n" +
+                        "<img src=\"" + case_.getUrl() + "/2.jpg\" alt=\"\">\n" +
                         "</div>\n" +
                         "<div class=\"product-details\">\n" +
                         "<span class=\"product-catagory\">Case</span>\n" +
