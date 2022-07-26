@@ -101,7 +101,7 @@
                     <p class="left-text">
                         Acquistando sul nostro store sarà assicurato sulla qualità dei protoddi, tutti con garanzia italiana per 2 anni.<br>
                         Se non hai ancora un account effettua subito la registrazione e inizia subito ad assemblare la tua build<br>
-                        <a href="NuovoCliente">Registrati</a>
+                        <a href="CreazioneUtente.jsp">Registrati</a>
                     </p>
                 </div>
                 <div class="col left">

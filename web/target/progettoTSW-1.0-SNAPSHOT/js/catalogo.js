@@ -13,7 +13,7 @@ function getChoice(){
     return choice;
 }
 $(document).ready(function() {
-    let oldCatalog = $('#divCatalogo').html();
+    let oldCatalog = $('#divCatalogo-inner').html();
     $('#input_cerca').keyup(function () {
         if($('#input_cerca').val() !== '') {
             $.ajax({
@@ -22,7 +22,7 @@ $(document).ready(function() {
                 data: {input_cerca: $('#input_cerca').val(), radio_scelta: getChoice()
                 },
                 success: function (response) {
-                    $('#divCatalogo').html(response);
+                    $('#divCatalogo-inner').html(response);
                 }
             });
         }
@@ -31,7 +31,7 @@ $(document).ready(function() {
                 url: 'resetFilterCatalog',
                 type: 'GET',
             });
-            $('#divCatalogo').html(oldCatalog);
+            $('#divCatalogo-inner').html(oldCatalog);
         }
     });
     $("#priceSlider").change(function(){
@@ -41,7 +41,8 @@ $(document).ready(function() {
             data: {input_prezzo: $("#priceSlider").val(),
             },
             success: function (response) {
-                $('#divCatalogo').html(response);
+                console.log('response present');
+                $('#divCatalogo-inner').html(response);
             }
         });
     });
@@ -50,7 +51,7 @@ $(document).ready(function() {
     });
 
     $('#reset-button').click(function(){
-        $('#divCatalogo').html(oldCatalog);
+        $('#divCatalogo-inner').html(oldCatalog);
 
     });
 });
