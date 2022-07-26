@@ -24,24 +24,23 @@
 <%
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     if(cliente != null)
-    if(cliente.isAdministrator())
-        request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+        if(cliente.isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
 <div class="header">
-    <div class="flex-container topnav" id="topnav">
+    <div class="flex-container topnav" id ="topnav">
         <div class="flex-left-item logo">
             <a href="index.jsp"><img src="Images/PCBuilder-logo.png" id="header-logo"></a>
         </div>
-        <a href="javascript:void(0);" class="right-buttons burger" onclick="dropDownBurger()">&#9776;</a>
+        <a href="javascript:void(0);" class="right-buttons burger"  onclick="dropDownBurger()">&#9776;</a>
         <div class="nav flex-right-item" id="nav-list">
             <ul class="flex-container">
                 <li><a href="index.jsp" class="active">Home</a></li>
                 <li><a href="Catalogo.jsp">Catalogo</a></li>
                 <li class="empty-flex-field" id="emptyFlexField"></li>
-                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i
-                        class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="right-buttons"><a href="carrello.jsp" class="carrello-link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <%
-                    if (cliente != null) {
+                    if(cliente!=null){
                         out.println("<li class=\"right-buttons\">" +
                                 "<div class=\"dropdown\">" +
                                 "<button class=\"dropbtn\" onclick=\"dropdownMenu()\">" +
@@ -57,7 +56,7 @@
                     }
                 %>
                 <%
-                    if (cliente == null) {
+                    if(cliente==null){
                         out.println("<li class=\"right-buttons\"><a href=\"login.jsp\">Login</a></li>");
                     }
                 %>

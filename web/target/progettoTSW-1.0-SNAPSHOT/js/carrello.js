@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    let cont = 0;
     function saveOldQuant() {
         let id = $('#submit').parent().attr("id");
         return $('#quantOf' + id).val();
@@ -10,14 +9,13 @@ $(document).ready(function(){
         let quantOf = $('#quantOf'+id);
         let quant = Number(quantOf.val());
         if(quant > 0 && quant<=Number(quantOf.attr("max"))) {
-            cont++;
             $.ajax({
                 url: 'modQuantCartDB',
                 type: 'GET',
                 data: {
                     attr_id: id, attr_newQuant: quant, attr_OldQuant: oldQuant
                 },
-                success: function (response){
+                success: function (){
                     alert("Quantità aggiornata correttamente");
                 },
                 error: function () {

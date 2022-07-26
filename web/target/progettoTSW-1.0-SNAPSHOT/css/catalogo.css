@@ -292,6 +292,13 @@ div.product-details > h4{
 
 /*FINE PRODUCT CARD*/
 
+.error-meaage{
+    width: 100%;
+    background-color: #780000;
+    color: #fdf0d5;
+    font-size: 18px;
+}
+
 @media screen and (max-width: 1510px){
     .filter-div{
         max-width: 100%;

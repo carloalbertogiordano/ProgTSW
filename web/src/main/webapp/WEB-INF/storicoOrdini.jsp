@@ -83,6 +83,7 @@
                                                 "<li>Quantità</li>" +
                                                 "<li>Prezzo</li>" +
                                                 "<li>Subtotale</li>" +
+                                                "<li>Totale</li>" +
                                             "</ul>");
                         for(int i = 0; i < c.getCarrello().size(); i++){
                             out.println("<div class=\"row flex-container\">" +
@@ -94,7 +95,8 @@
                                             "</ul>" +
                                         "</div>");
                         }
-                        out.println("</div>" +
+                        out.println(    "<br><h3>Totale: " + c.calculateTotal() + "</h3>" +
+                                    "</div>" +
                                 "</div>");
                     }
                 }

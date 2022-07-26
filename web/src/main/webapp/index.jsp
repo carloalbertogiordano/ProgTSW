@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/d757446473.js" crossorigin="anonymous"></script>
     <script src="js/navbar.js"></script>
@@ -20,8 +21,8 @@
 <%
     Cliente c = (Cliente) session.getAttribute("cliente");
     if(c != null)
-    if(c.isAdministrator())
-        request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
+        if(c.isAdministrator())
+            request.getRequestDispatcher("./WEB-INF/admin.jsp").forward(request, response);
 %>
     <div class="header">
         <div class="flex-container topnav" id ="topnav">
@@ -73,9 +74,43 @@
                         "</div>");
             }
         %>
+        <div class="wrapper flex-container">
+            <div class="row flex-container">
+                <div class="col left">
+                    <img src="Images/pc-image2.jpg" class="left-image">
+                </div>
+                <div class="col right">
+                    <p class="right-text">
+                        PCBuilder offre un vastissimo assortimento di componentistica per PC desktopo. I prodotti offerti da PCBuilder sono: <br>
+                        <ul>
+                            <li>CPU</li>
+                            <li>GPU</li>
+                            <li>Schede madri</li>
+                            <li>RAM</li>
+                            <li>Alimentatori</li>
+                            <li>Dissipatori</li>
+                            <li>Case</li>
+                            <li>Hard disk</li>
+                            <li>SSD</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="row flex-container">
+                <div class="col right">
+                    <p class="left-text">
+                        Acquistando sul nostro store sarà assicurato sulla qualità dei protoddi, tutti con garanzia italiana per 2 anni.<br>
+                        Se non hai ancora un account effettua subito la registrazione e inizia subito ad assemblare la tua build<br>
+                        <a href="NuovoCliente">Registrati</a>
+                    </p>
+                </div>
+                <div class="col left">
+                    <img src="Images/pc-image4.jpg" class="right-image">
+                </div>
+            </div>
+        </div>
     </div>
 
-<p>Testing test: <a href="testing.jsp"> TEST </a></p>
 
 </body>
 </html>
