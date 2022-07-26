@@ -387,7 +387,7 @@
                     boolean toShow = ssd.getQuantita() > 0 || isAdministrator;
                     if (toShow) {
                         out.println("<div class=\"product-card\">\n" +
-                                        "<div class=\"product-tumb inner-padding \">\n" +
+                                        "<div class=\"product-tumb inner-padding\">\n" +
                                             "<img src=\"" + ssd.getUrl() + "/2.jpg\" alt=\"\">\n" +
                                         "</div>\n" +
                                         "<div class=\"product-details\">\n" +
