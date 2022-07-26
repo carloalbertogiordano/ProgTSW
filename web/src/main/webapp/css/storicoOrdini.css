@@ -64,9 +64,7 @@ ul{
     font-weight: bold;
 }
 
-.inner-padding{
-    padding: 15px;
-}
+
 
 @media screen and (max-width: 768px){
     ul.info-header{
