@@ -61,12 +61,16 @@ public class Aggiorna extends HttpServlet {
             //significa che non abbiamo modificato l'immagine'
         }
 
-        //Nel caso ho caricato una nuova immagine eliino la cartella e la ricreo
+        //Nel caso ho caricato una nuova immagine elimino la cartella e la ricreo
         if(ImageManager.isImage(image)){
             String rootPath = String.valueOf(request.getServletContext().getResource("/"));
             //ImageManager necessario per salvare l'immagine
             ImageManager imgManager = new ImageManager();
-            imgManager.deleteImageDir(url, rootPath);
+            try{
+                imgManager.deleteImageDir(url, rootPath);
+            }catch(IOException ignored){
+
+            }
             url = imgManager.saveImage(rootPath, image, marca+modello);
         }
         //Nel caso NON ho caricato una nuova immagine ma ho cambiato marca e/o modello

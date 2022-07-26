@@ -82,8 +82,7 @@
             </div>
             <div class="flex-left-item image-box">
                 <div class="img-container flex-container">
-                    <!--<img src="<%out.print(p.getUrl() + "/1.png");%>">-->
-                    <img src="Images/logo.png" class="product-image">
+                    <img src="<%out.print(p.getUrl() + "/1.png");%>">
                 </div>
             </div>
             <div class="flex-right-item info-box">
