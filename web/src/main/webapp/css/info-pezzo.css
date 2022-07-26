@@ -18,6 +18,10 @@
     max-width: 50%;
 }
 
+.img-container.flex-container img{
+    width: 100%;
+}
+
 .product-header > h2{
     color: #003049;
 }
