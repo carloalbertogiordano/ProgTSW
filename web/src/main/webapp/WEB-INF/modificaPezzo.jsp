@@ -28,10 +28,6 @@
     Prodotto p = catalogo.doRetriveById(Integer.parseInt(id));
     Cliente c = (Cliente) request.getSession().getAttribute("cliente");
 
-    //Se il cliente non è un amministratore non potrebbe essere qua
-    if (!c.isAdministrator())
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
-
 %>
 <div class="main flex-container">
     <form id="modProd" method="post" action="Aggiorna" class="flex-container" onsubmit="return validateProductUpdate()" enctype="multipart/form-data">

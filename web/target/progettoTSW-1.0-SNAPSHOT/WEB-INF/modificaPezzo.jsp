@@ -29,8 +29,8 @@
     Cliente c = (Cliente) request.getSession().getAttribute("cliente");
 
     //Se il cliente non è un amministratore non potrebbe essere qua
-    if (!c.isAdministrator())
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    //if (!c.isAdministrator())
+        //request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 %>
 <div class="main flex-container">
